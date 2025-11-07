@@ -47,7 +47,7 @@ cd "E:\chiththa chaithasika චිත්ත චෛතසික\abidharma-sith"
 npm install
 
 # 3. Set API key
-$Env:GROQ_API_KEY="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"
+$Env:GROQ_API_KEY="your_groq_api_key_here"
 
 # 4. Start server
 npm start
@@ -56,7 +56,7 @@ npm start
 ### Daily Use:
 ```powershell
 # 1. Set API key (each new PowerShell session)
-$Env:GROQ_API_KEY="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"
+$Env:GROQ_API_KEY="your_groq_api_key_here"
 
 # 2. Start server
 npm start

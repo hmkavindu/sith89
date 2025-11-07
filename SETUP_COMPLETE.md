@@ -34,7 +34,7 @@
 
 ### Step 1: Set API Key
 ```powershell
-$Env:GROQ_API_KEY="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"
+$Env:GROQ_API_KEY="your_groq_api_key_here"
 ```
 
 ### Step 2: Start Server
@@ -151,7 +151,7 @@ When ready to deploy to Netlify:
 
 1. **Add environment variable:**
    - Netlify Dashboard → Site settings → Environment variables
-   - Add: `GROQ_API_KEY` = `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`
+   - Add: `GROQ_API_KEY` = `your_groq_api_key_here`
 
 2. **Deploy:**
    - Push to Git repository

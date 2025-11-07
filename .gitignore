@@ -1,1 +1,29 @@
+# Dependencies
 /node_modules
+
+# Environment variables (NEVER commit these!)
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+server-out.log
+server-err.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Security documentation (contains actual API key)
+SECURITY_FIX_APPLIED.md
+GIT_READY.md
