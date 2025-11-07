@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>සෝමනස්ස සහගත දිට්ඨිගත සම්ප්‍රයුක්ත සසංඛාරික සිත - අභිධර්ම විශ්ලේෂණය</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Malithi+Web:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iskoola+Pota:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans Sinhala', 'Malithi Web', sans-serif;
+            background: linear-gradient(to bottom right, #fee2e2, #fed7aa, #fef3c7);
+            min-height: 100vh;
+            padding: 20px;
+            color: #1f2937;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .header {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #ef4444;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .header-icon {
+            width: 48px;
+            height: 48px;
+            color: #ef4444;
+        }
+
+        .header-text h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .header-text p {
+            color: #6b7280;
+            font-size: 16px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 16px;
+        }
+
+        .section-header {
+            width: 100%;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            background: transparent;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1f2937;
+            text-align: left;
+        }
+
+        .section-header:hover {
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        .section-header-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .section-content {
+            padding: 24px;
+            display: none;
+            color: #374151;
+            line-height: 1.6;
+        }
+
+        .section-content.active {
+            display: block;
+        }
+
+        .color-blue {
+            background: linear-gradient(to right, #dbeafe, #cffafe);
+            border-left: 4px solid #3b82f6;
+        }
+
+        .color-red {
+            background: linear-gradient(to right, #fee2e2, #fce7f3);
+            border-left: 4px solid #ef4444;
+        }
+
+        .color-green {
+            background: linear-gradient(to right, #dcfce7, #d1fae5);
+            border-left: 4px solid #10b981;
+        }
+
+        .color-purple {
+            background: linear-gradient(to right, #f3e8ff, #ede9fe);
+            border-left: 4px solid #8b5cf6;
+        }
+
+        .color-orange {
+            background: linear-gradient(to right, #fed7aa, #fde68a);
+            border-left: 4px solid #f97316;
+        }
+
+        .chevron {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .chevron.rotated {
+            transform: rotate(180deg);
+        }
+
+        .content-box {
+            background: #f9fafb;
+            padding: 24px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .content-box h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #111827;
+        }
+
+        .content-box h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1f2937;
+        }
+
+        .content-box p {
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        .content-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .content-box li {
+            margin-bottom: 12px;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .content-box li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #ef4444;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .highlight-box {
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            border-left: 4px solid #10b981;
+            margin: 16px 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        .grid-item {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .info-box {
+            background: linear-gradient(to right, #fef3c7, #fde68a);
+            padding: 16px;
+            border-radius: 8px;
+            border: 2px solid #f59e0b;
+            margin: 16px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+
+        table th, table td {
+            padding: 12px;
+            border: 1px solid #e5e7eb;
+            text-align: left;
+        }
+
+        table th {
+            background: #f3f4f6;
+            font-weight: 600;
+        }
+
+        table tr:hover {
+            background: #f9fafb;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html#table" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            <span>ආපසු</span>
+        </a>
+
+        <!-- Header -->
+        <div class="header">
+            <div class="header-content">
+                <i class="fas fa-brain header-icon"></i>
+                <div class="header-text">
+                    <h1>සෝමනස්ස සහගත දිට්ඨිගත සම්ප්‍රයුක්ත සසංඛාරික සිත</h1>
+                    <p>ලෝභමූල සිත 2 - අභිධර්ම විශ්ලේෂණය</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 1: සරලම අර්ථය -->
+        <div class="section color-green">
+            <button class="section-header" onclick="toggleSection('simple')">
+                <div class="section-header-content">
+                    <i class="fas fa-lightbulb section-icon"></i>
+                    <h2>මට්ටම 1: ඉතා සරල අර්ථය</h2>
+                </div>
+                <i class="fas fa-chevron-down chevron" id="chevron-simple"></i>
+            </button>
+            <div class="section-content" id="content-simple">
+                <div class="content-box">
+                    <h3>සරල භාෂාවෙන්:</h3>
+                    <ul>
+                        <li><strong>සතුටින්</strong> යුක්ත වූ</li>
+                        <li><strong>වැරදි විශ්වාසයක්</strong> සහිත</li>
+                        <li><strong>අනුන් බල දී</strong> ඇතිවන</li>
+                        <li><strong>උසස්වනලද</strong> තෘෂ්ණා සිතක්</li>
+                    </ul>
+                    <div class="highlight-box" style="border-left-color: #ef4444;">
+                        <p><strong>උදාහරණ:</strong> කෙනෙක් ගුරුවරයෙකු විසින්, මිතුරෙකු විසින්, හෝ පොතක් කියවා "මගේ ආගම පමණයි නිවැරදි" යි වැරදි විශ්වාසයක් ගෙන සතුටුයි. මෙය <strong>ප්‍රබල අකුසල සිතක්</strong> වේ (අසංඛාරික එකට වඩා).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 2: අසංඛාරික හා සසංඛාරික වෙනස -->
+        <div class="section color-orange">
+            <button class="section-header" onclick="toggleSection('difference')">
+                <div class="section-header-content">
+                    <i class="fas fa-info-circle section-icon"></i>
+                    <h2>මට්ටම 2: අසංඛාරික හා සසංඛාරික වෙනස</h2>
+                </div>
+                <i class="fas fa-chevron-down chevron" id="chevron-difference"></i>
+            </button>
+            <div class="section-content" id="content-difference">
+                <div class="content-box">
+                    <div class="grid">
+                        <div class="grid-item" style="border-left: 4px solid #3b82f6;">
+                            <h4>අසංඛාරික (සිත 1)</h4>
+                            <ul style="font-size: 14px;">
+                                <li>තමන්ටම සිතුණු</li>
+                                <li>ස්වභාවික</li>
+                                <li>දුර්වල</li>
+                                <li>අනුන් බල නොකළ</li>
+                            </ul>
+                        </div>
+                        <div class="grid-item" style="border-left: 4px solid #ef4444;">
+                            <h4>සසංඛාරික (සිත 2) ⭐</h4>
+                            <ul style="font-size: 14px;">
+                                <li>අනුන් බල දී ඇති</li>
+                                <li>උසස්වනලද</li>
+                                <li>ප්‍රබල</li>
+                                <li>පෙළඹවීම් ඇති</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>සසංඛාරික සිත ඇතිවන ආකාර:</h4>
+                        <ul>
+                            <li>1. <strong>ගුරුවරයෙකු පැවසීම:</strong> "මේ දහම පමණයි නිවැරදි" යි කියා ඉගැන්වීම</li>
+                            <li>2. <strong>මිතුරන් පෙළඹවීම:</strong> "මේ විශ්වාසය තබන්න, එය හොඳයි" යි උනන්දු කිරීම</li>
+                            <li>3. <strong>පොත් කියවීම:</strong> ග්‍රන්ථයක් කියවා වැරදි මතයක් ගැනීම</li>
+                            <li>4. <strong>සමාජ බලපෑම:</strong> සමාජය නිසා විශ්වාසයක් ගැනීම</li>
+                            <li>5. <strong>ප්‍රචාරණය:</strong> දැන්වීම්, මාධ්‍ය ආදියෙන් බලපෑම</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 3: චෛතසික සංයුතිය -->
+        <div class="section color-purple">
+            <button class="section-header" onclick="toggleSection('cetasikas')">
+                <div class="section-header-content">
+                    <i class="fas fa-heart section-icon"></i>
+                    <h2>මට්ටම 3: චෛතසික සංයුතිය</h2>
+                </div>
+                <i class="fas fa-chevron-down chevron" id="chevron-cetasikas"></i>
+            </button>
+            <div class="section-content" id="content-cetasikas">
+                <div class="content-box">
+                    <h3>මෙම සිතෙහි චෛතසික 20ක් යෙදේ:</h3>
+                    <p style="font-size: 14px; margin-bottom: 16px;">(අසංඛාරික සිත සමඟ සමානයි - චෛතසික එකම සංඛ්‍යාව)</p>
+                    
+                    <div class="highlight-box" style="border-left-color: #3b82f6;">
+                        <h4>1. සබ්බචිත්තසාධාරණ - 7</h4>
+                        <p style="font-size: 14px;">ඵස්ස, වේදනා, සඤ්ඤා, චේතනා, ඒකග්ගතා, ජීවිතිඞ්ද්‍රිය, මනසිකාර</p>
+                    </div>
+
+                    <div class="highlight-box" style="border-left-color: #ef4444;">
+                        <h4>2. අකුසල සාධාරණ - 4</h4>
+                        <p style="font-size: 14px;">මෝහ, අහිරික, අනොත්තප්ප, උද්ධච්ච</p>
+                    </div>
+
+                    <div class="highlight-box" style="border-left-color: #8b5cf6;">
+                        <h4>3. ප්‍රකීර්ණක - 5</h4>
+                        <p style="font-size: 14px;">විතක්ක, විචාර, අධිමොක්ඛ, විරිය, පීති</p>
+                    </div>
+
+                    <div class="highlight-box" style="border-left-color: #ec4899;">
+                        <h4>4. විශේෂ අකුසල - 4</h4>
+                        <p style="font-size: 14px;">ලෝභ, දිට්ඨි, මාන, සෝමනස්ස වේදනා</p>
+                    </div>
+
+                    <div class="info-box" style="background: #fee2e2; border-left-color: #ef4444;">
+                        <p><strong>ප්‍රධාන වෙනස:</strong></p>
+                        <p>චෛතසික සංයුතිය <strong>සමානයි</strong>, නමුත් සිත ඇතිවන <strong>හේතුව</strong> වෙනස්! සසංඛාරික සිතෙහි අනුන්ගේ බලපෑම්, පෙළඹවීම් ඇති නිසා එය <strong>වඩා ප්‍රබලයි</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 4: සසංඛාරික සිත ඇතිවීමට හේතු -->
+        <div class="section color-red">
+            <button class="section-header" onclick="toggleSection('causes')">
+                <div class="section-header-content">
+                    <i class="fas fa-exclamation-circle section-icon"></i>
+                    <h2>මට්ටම 4: සසංඛාරික සිත ඇතිවීමට හේතු</h2>
+                </div>
+                <i class="fas fa-chevron-down chevron" id="chevron-causes"></i>
+            </button>
+            <div class="section-content" id="content-causes">
+                <div class="content-box">
+                    <h3>ප්‍රධාන හේතු:</h3>
+                    
+                    <div class="highlight-box" style="border-left-color: #ef4444;">
+                        <h4>1. පර උපදේශ (අනුන්ගේ උපදෙස්):</h4>
+                        <p>ගුරුවරුන්, පියවරුන්, මිතුරන් වැරදි දහම් ඉගැන්වීම</p>
+                    </div>
+
+                    <div class="highlight-box" style="border-left-color: #f97316;">
+                        <h4>2. සඞ්ඛාර (පෙළඹවීම):</h4>
+                        <ul>
+                            <li>• මාධ්‍ය ප්‍රචාරණය</li>
+                            <li>• දේශන, කථා ශ්‍රවණය</li>
+                            <li>• පොත්, ග්‍රන්ථ කියවීම</li>
+                            <li>• සමාජ බලපෑම්</li>
+                        </ul>
+                    </div>
+
+                    <div class="highlight-box" style="border-left-color: #8b5cf6;">
+                        <h4>3. ලෝභ + දිට්ඨි පරමීතා:</h4>
+                        <p>පෙර භවවල වැරදි විශ්වාස හා තෘෂ්ණාව ගොඩනැගීම</p>
+                    </div>
+
+                    <div class="highlight-box" style="border-left-color: #3b82f6;">
+                        <h4>4. අභිනිවේශය (දැඩි ඇල්ම):</h4>
+                        <p>වැරදි මතයට දැඩි ලෙස බැඳීම, ප්‍රබල විශ්වාසය</p>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>සිතුවිලි උදාහරණ:</h4>
+                        <ul>
+                            <li><strong>1.</strong> "ගුරුවරයා කිව්වා මගේ ආගම පමණයි නිවැරදියි කියලා, එය සත්‍යයි"</li>
+                            <li><strong>2.</strong> "මාධ්‍යයෙන් දැක්කා - මේ දේශපාලන මතය පමණයි හොඳ"</li>
+                            <li><strong>3.</strong> "පොතක කියවලා තේරුණා - කර්මය කියන්නේ මිථ්‍යාවක්"</li>
+                            <li><strong>4.</strong> "මිතුරෝ කිව්වා - මේ කණ්ඩායම පමණයි උසස්"</li>
+                            <li><strong>5.</strong> "ජාතිය/වර්ගය උගන්වලා - අපි උසස්, අනිත් අය පහත්"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 5: සංසන්දනය -->
+        <div class="section color-blue">
+            <button class="section-header" onclick="toggleSection('comparison')">
+                <div class="section-header-content">
+                    <i class="fas fa-info-circle section-icon"></i>
+                    <h2>මට්ටම 5: අසංඛාරික vs සසංඛාරික සංසන්දනය</h2>
+                </div>
+                <i class="fas fa-chevron-down chevron" id="chevron-comparison"></i>
+            </button>
+            <div class="section-content" id="content-comparison">
+                <div class="content-box">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ලක්ෂණය</th>
+                                <th>අසංඛාරික (සිත 1)</th>
+                                <th>සසංඛාරික (සිත 2)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>ඇතිවීම</strong></td>
+                                <td>ස්වභාවික, තමන්ටම</td>
+                                <td style="color: #ef4444;">අනුන් බල දී, උසස්වනලද</td>
+                            </tr>
+                            <tr>
+                                <td><strong>බලය</strong></td>
+                                <td>දුර්වල</td>
+                                <td style="color: #ef4444;">ප්‍රබල</td>
+                            </tr>
+                            <tr>
+                                <td><strong>කල් පැවැත්ම</strong></td>
+                                <td>අඩු කාලයක්</td>
+                                <td style="color: #ef4444;">වැඩි කාලයක්</td>
+                            </tr>
+                            <tr>
+                                <td><strong>විපාක</strong></td>
+                                <td>අඩු භයානක</td>
+                                <td style="color: #ef4444;">වඩා භයානක</td>
+                            </tr>
+                            <tr>
+                                <td><strong>උදාහරණ</strong></td>
+                                <td>"මම තනියම සිතුවා"</td>
+                                <td style="color: #ef4444;">"ගුරුවරයා කිව්වා"</td>
+                            </tr>
+                            <tr>
+                                <td><strong>දුරු කිරීම</strong></td>
+                                <td>පහසු</td>
+                                <td style="color: #ef4444;">අපහසු (දැඩි බැඳීම)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="info-box" style="background: #fee2e2; border-left-color: #ef4444;">
+                        <p><strong>වැදගත්:</strong></p>
+                        <p>සසංඛාරික සිත් වඩා භයානක වන්නේ අනුන්ගේ බලපෑම් නිසා <strong>දැඩි ලෙස</strong> මතයට බැඳී සිටීම සහ එම විශ්වාසය වෙනස් කිරීම <strong>ඉතා අපහසු</strong> වීමයි.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 6: දුරු කිරීම -->
+        <div class="section color-green">
+            <button class="section-header" onclick="toggleSection('removal')">
+                <div class="section-header-content">
+                    <i class="fas fa-heart section-icon"></i>
+                    <h2>මට්ටම 6: සසංඛාරික සිත දුරු කිරීම</h2>
+                </div>
+                <i class="fas fa-chevron-down chevron" id="chevron-removal"></i>
+            </button>
+            <div class="section-content" id="content-removal">
+                <div class="content-box">
+                    <h3>විශේෂ ප්‍රතිකාර:</h3>
+                    
+                    <div class="highlight-box" style="border-left-color: #10b981;">
+                        <h4>1. සම්‍යක් දිට්ඨිය වැඩීම:</h4>
+                        <p>ත්‍රිපිටකය අධ්‍යයනය, කල්‍යාණ මිත්‍රතාව, බුද්ධ වචනය අනුව විමසීම</p>
+                    </div>
+
+                    <div class="highlight-box" style="border-left-color: #3b82f6;">
+                        <h4>2. ස්වාධීන චින්තනය:</h4>
+                        <p style="margin-bottom: 8px;">අන්ධ ලෙස විශ්වාස නොකර විමසීම. බුදුරජාණන් වදාළේ:</p>
+                        <p style="font-style: italic; font-size: 14px; background: #dbeafe; padding: 8px; border-radius: 4px;">"මා කෙරෙහි විශ්වාසයෙන් නොව, විමසා දැනගෙන භාවනා කරන්න" (කාලාම සූත්‍රය)</p>
+                    </div>
+
+                    <div class="highlight-box" style="border-left-color: #8b5cf6;">
+                        <h4>3. යෝනිසෝ මනසිකාරය:</h4>
+                        <ul>
+                            <li>• සෑම දෙයක්ම විචාරශීලීව සිතීම</li>
+                            <li>• සාක්ෂි සොයා බැලීම</li>
+                            <li>• තාර්කික විශ්ලේෂණය</li>
+                            <li>• විවිධ දෘෂ්ටි කෝණ සලකා බැලීම</li>
+                        </ul>
+                    </div>
+
+                    <div class="highlight-box" style="border-left-color: #ec4899;">
+                        <h4>4. විදර්ශනා භාවනාව:</h4>
+                        <p>අනිච්ච, දුක්ඛ, අනාත්ම ස්වභාවය මෙනෙහි කර දිට්ඨි දුරු කිරීම</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 7: සවිස්තර උදාහරණ -->
+        <div class="section color-orange">
+            <button class="section-header" onclick="toggleSection('examples')">
+                <div class="section-header-content">
+                    <i class="fas fa-lightbulb section-icon"></i>
+                    <h2>මට්ටම 7: සවිස්තර උදාහරණ</h2>
+                </div>
+                <i class="fas fa-chevron-down chevron" id="chevron-examples"></i>
+            </button>
+            <div class="section-content" id="content-examples">
+                <div class="content-box">
+                    <div class="highlight-box" style="border-left-color: #f97316;">
+                        <h4>උදාහරණ 1: ආගමික උග්‍රවාදය</h4>
+                        <p><strong>තත්වය:</strong> පුද්ගලයෙකු ආගමික නායකයෙකු විසින් "අපේ ආගම පමණයි නිවැරදි, අනිත් සියල්ල වැරදියි" යි උගන්වනු ලබයි. ඔහු එය විශ්වාස කර සතුටුයි.</p>
+                        <p><strong>සිත:</strong> සෝමනස්ස දිට්ඨි <strong>සසංඛාරික</strong> (ගුරුවරයා බල දී)</p>
+                        <p><strong>විපාක:</strong> අනිත් ආගම්වලට වෛරය, සමාජ ගැටුම්, අන්තවාදී ක්‍රියා</p>
+                        <p><strong>ප්‍රතිකාරය:</strong> විවිධ ධර්ම අධ්‍යයනය, ඉවසීම වැඩීම, සර්වහිත දිට්ඨිය</p>
+                    </div>
+
+                    <div class="highlight-box" style="border-left-color: #3b82f6;">
+                        <h4>උදාහරණ 2: දේශපාලන අන්ධභක්තිය</h4>
+                        <p><strong>තත්වය:</strong> පක්ෂ ප්‍රචාරක, මාධ්‍ය, මිතුරන් බලපෑමෙන් "මගේ පක්ෂය පමණයි හොඳ, අනිත් සියල්ලෝ දූෂිතයි" යි විශ්වාස කිරීම.</p>
+                        <p><strong>සිත:</strong> සෝමනස්ස දිට්ඨි <strong>සසංඛාරික</strong> (බාහිර බලපෑම්)</p>
+                        <p><strong>විපාක:</strong> ජාතියේ බෙදීම්, හිංසනය, සත්‍යය නොදැකීම</p>
+                        <p><strong>ප්‍රතිකාරය:</strong> උපේක්ෂාව, විවෘත මනසක්, විවිධ මතවලට ඉවසීම</p>
+                    </div>
+
+                    <div class="highlight-box" style="border-left-color: #8b5cf6;">
+                        <h4>උදාහරණ 3: ජාති අභිමානය</h4>
+                        <p><strong>තත්වය:</strong> පවුල, සමාජය විසින් "අපේ ජාතිය උසස්, අනිත් අය පහත්" යි ඉගැන්වීම.</p>
+                        <p><strong>සිත:</strong> සෝමනස්ස දිට්ඨි <strong>සසංඛාරික</strong> (සමාජීයකරණය)</p>
+                        <p><strong>විපාක:</strong> වර්ගවාදය, භේදභේදය, ජාතිවාදී ගැටුම්</p>
+                        <p><strong>ප්‍රතිකාරය:</strong> සියලු සත්වයන් සමාන බව දැනීම, මෛත්‍රිය වැඩීම</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="section" style="background: linear-gradient(to right, #fee2e2, #fed7aa); border-left: 4px solid #ef4444;">
+            <div class="section-header" style="background: transparent;">
+                <div class="section-header-content">
+                    <i class="fas fa-info-circle section-icon"></i>
+                    <h2>සාරාංශ</h2>
+                </div>
+            </div>
+            <div class="section-content active">
+                <div class="content-box">
+                    <div class="info-box" style="background: #fee2e2; border-left-color: #ef4444;">
+                        <p style="text-align: center; font-weight: 700; font-size: 18px; margin-bottom: 12px;">මතක තබා ගන්න:</p>
+                        <p style="text-align: center;">සසංඛාරික සිත් <strong>අසංඛාරික සිත්වලට වඩා ප්‍රබල</strong> වන්නේ අනුන්ගේ බලපෑම් නිසාය. එය <strong>වඩා භයානක</strong> වන්නේ දැඩි ලෙස මතයට බැඳී සිටීම නිසාය. එබැවින් <strong>ස්වාධීන චින්තනය</strong> හා <strong>විචාරශීලී බව</strong> වැදගත්ය!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSection(sectionId) {
+            const content = document.getElementById('content-' + sectionId);
+            const chevron = document.getElementById('chevron-' + sectionId);
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                chevron.classList.remove('rotated');
+            } else {
+                content.classList.add('active');
+                chevron.classList.add('rotated');
+            }
+        }
+
+        // Initialize - open first section by default
+        document.addEventListener('DOMContentLoaded', function() {
+            toggleSection('simple');
+        });
+    </script>
+</body>
+</html>
+
+
+

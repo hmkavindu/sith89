@@ -1,0 +1,292 @@
+{
+  "book": "අභිධර්මයේ මුළින් කරණු",
+  "author": "රේරුකානේ චන්දවිමල මහරහතන් වහන්සේ",
+  "year": 2007,
+  "total_cittas": 121,
+  "cittas": [
+    {
+      "id": 1,
+      "bhumi": "කාමාවචර",
+      "kandaya": "අකුසල්",
+      "mula": "ලෝභ",
+      "nama": "සෝමනස්ස සහගත දෘෂ්ටිගත සම්ප්‍රයුක්ත අසංස්කාරික සිත",
+      "nama_en": "Pleasant feeling with wrong view, accompanied, rootless consciousness",
+      "cetasika_count": 35,
+      "vedana": "සෝමනස්ස",
+      "asankharika": true,
+      "ditthigata": true,
+      "cetasikas": {
+        "sabba_citta_sadharana_7": [true, true, true, true, true, true, true],
+        "pakinnaka_6": [true, true, true, true, true, true],
+        "akusala_sadharana_4": [true, true, true, true],
+        "lobha_specific": [true, true, true],
+        "ditthi_mana": [true, true]
+      }
+    },
+    {
+      "id": 2,
+      "bhumi": "කාමාවචර",
+      "kandaya": "අකුසල්",
+      "mula": "ලෝභ",
+      "nama": "සෝමනස්ස සහගත දෘෂ්ටිගත සම්ප්‍රයුක්ත සසංස්කාරික සිත",
+      "nama_en": "Pleasant feeling with wrong view, accompanied, with prompting consciousness",
+      "cetasika_count": 36,
+      "vedana": "සෝමනස්ස",
+      "asankharika": false,
+      "ditthigata": true
+    },
+    {
+      "id": 3,
+      "bhumi": "කාමාවචර",
+      "kandaya": "අකුසල්",
+      "mula": "ලෝභ",
+      "nama": "සෝමනස්ස සහගත දෘෂ්ටිගත විප්‍රයුක්ත අසංස්කාරික සිත",
+      "nama_en": "Pleasant feeling with wrong view, dissociated, rootless consciousness",
+      "cetasika_count": 34,
+      "vedana": "සෝමනස්ස",
+      "asankharika": true,
+      "ditthigata": false
+    },
+    {
+      "id": 4,
+      "bhumi": "කාමාවචර",
+      "kandaya": "අකුසල්",
+      "mula": "ලෝභ",
+      "nama": "සෝමනස්ස සහගත දෘෂ්ටිගත විප්‍රයුක්ත සසංස්කාරික සිත",
+      "nama_en": "Pleasant feeling with wrong view, dissociated, with prompting consciousness",
+      "cetasika_count": 35,
+      "vedana": "සෝමනස්ස",
+      "asankharika": false,
+      "ditthigata": false
+    },
+    {
+      "id": 5,
+      "bhumi": "කාමාවචර",
+      "kandaya": "අකුසල්",
+      "mula": "ලෝභ",
+      "nama": "උපේක්ෂා සහගත දෘෂ්ටිගත සම්ප්‍රයුක්ත අසංස්කාරික සිත",
+      "nama_en": "Equanimity with wrong view, accompanied, rootless consciousness",
+      "cetasika_count": 34,
+      "vedana": "උපේක්ෂා",
+      "asankharika": true,
+      "ditthigata": true
+    },
+    {
+      "id": 6,
+      "bhumi": "කාමාවචර",
+      "kandaya": "අකුසල්",
+      "mula": "ලෝභ",
+      "nama": "උපේක්ෂා සහගත දෘෂ්ටිගත සම්ප්‍රයුක්ත සසංස්කාරික සිත",
+      "nama_en": "Equanimity with wrong view, accompanied, with prompting consciousness",
+      "cetasika_count": 35,
+      "vedana": "උපේක්ෂා",
+      "asankharika": false,
+      "ditthigata": true
+    },
+    {
+      "id": 7,
+      "bhumi": "කාමාවචර",
+      "kandaya": "අකුසල්",
+      "mula": "ලෝභ",
+      "nama": "උපේක්ෂා සහගත දෘෂ්ටිගත විප්‍රයුක්ත අසංස්කාරික සිත",
+      "nama_en": "Equanimity with wrong view, dissociated, rootless consciousness",
+      "cetasika_count": 33,
+      "vedana": "උපේක්ෂා",
+      "asankharika": true,
+      "ditthigata": false
+    },
+    {
+      "id": 8,
+      "bhumi": "කාමාවචර",
+      "kandaya": "අකුසල්",
+      "mula": "ලෝභ",
+      "nama": "උපේක්ෂා සහගත දෘෂ්ටිගත විප්‍රයුක්ත සසංස්කාරික සිත",
+      "nama_en": "Equanimity with wrong view, dissociated, with prompting consciousness",
+      "cetasika_count": 34,
+      "vedana": "උපේක්ෂා",
+      "asankharika": false,
+      "ditthigata": false
+    },
+    {
+      "id": 9,
+      "bhumi": "කාමාවචර",
+      "kandaya": "අකුසල්",
+      "mula": "දෝස",
+      "nama": "දෝමනස්ස සහගත පටිඝ සම්ප්‍රයුක්ත අසංස්කාරික සිත",
+      "nama_en": "Unpleasant feeling with aversion, accompanied, rootless consciousness",
+      "cetasika_count": 22,
+      "vedana": "දෝමනස්ස"
+    },
+    {
+      "id": 10,
+      "bhumi": "කාමාවචර",
+      "kandaya": "අකුසල්",
+      "mula": "දෝස",
+      "nama": "දෝමනස්ස සහගත පටිඝ සම්ප්‍රයුක්ත සසංස්කාරික සිත",
+      "nama_en": "Unpleasant feeling with aversion, accompanied, with prompting consciousness",
+      "cetasika_count": 23,
+      "vedana": "දෝමනස්ස"
+    },
+    {
+      "id": 11,
+      "bhumi": "කාමාවචර",
+      "kandaya": "අකුසල්",
+      "mula": "මෝහ",
+      "nama": "උපේක්ෂා සහගත විචිකිච්ඡා සම්ප්‍රයුක්ත සිත",
+      "nama_en": "Equanimity with doubt, accompanied consciousness",
+      "cetasika_count": 20,
+      "vedana": "උපේක්ෂා"
+    },
+    {
+      "id": 12,
+      "bhumi": "කාමාවචර",
+      "kandaya": "අකුසල්",
+      "mula": "මෝහ",
+      "nama": "උපේක්ෂා සහගත උද්ධච්ච සහගත සිත",
+      "nama_en": "Equanimity with restlessness consciousness",
+      "cetasika_count": 20,
+      "vedana": "උපේක්ෂා"
+    },
+    {
+      "id": 13,
+      "bhumi": "කාමාවචර",
+      "kandaya": "කුසල්",
+      "nama": "සෝමනස්ස සහගත ඤාණ සම්ප්‍රයුක්ත අසංස්කාරික සිත",
+      "nama_en": "Pleasant feeling with knowledge, accompanied, rootless consciousness",
+      "cetasika_count": 36
+    },
+    {
+      "id": 14,
+      "bhumi": "කාමාවචර",
+      "kandaya": "කුසල්",
+      "nama": "සෝමනස්ස සහගත ඤාණ සම්ප්‍රයුක්ත සසංස්කාරික සිත",
+      "nama_en": "Pleasant feeling with knowledge, accompanied, with prompting consciousness",
+      "cetasika_count": 37
+    },
+    {
+      "id": 15,
+      "bhumi": "කාමාවචර",
+      "kandaya": "කුසල්",
+      "nama": "සෝමනස්ස සහගත ඤාණ විප්‍රයුක්ත අසංස්කාරික සිත",
+      "nama_en": "Pleasant feeling with knowledge, dissociated, rootless consciousness",
+      "cetasika_count": 35
+    },
+    {
+      "id": 16,
+      "bhumi": "කාමාවචර",
+      "kandaya": "කුසල්",
+      "nama": "සෝමනස්ස සහගත ඤාණ විප්‍රයුක්ත සසංස්කාරික සිත",
+      "nama_en": "Pleasant feeling with knowledge, dissociated, with prompting consciousness",
+      "cetasika_count": 36
+    },
+    {
+      "id": 17,
+      "bhumi": "කාමාවචර",
+      "kandaya": "කුසල්",
+      "nama": "උපේක්ෂා සහගත ඤාණ සම්ප්‍රයුක්ත අසංස්කාරික සිත",
+      "nama_en": "Equanimity with knowledge, accompanied, rootless consciousness",
+      "cetasika_count": 35
+    },
+    {
+      "id": 18,
+      "bhumi": "කාමාවචර",
+      "kandaya": "කුසල්",
+      "nama": "උපේක්ෂා සහගත ඤාණ සම්ප්‍රයුක්ත සසංස්කාරික සිත",
+      "nama_en": "Equanimity with knowledge, accompanied, with prompting consciousness",
+      "cetasika_count": 36
+    },
+    {
+      "id": 19,
+      "bhumi": "කාමාවචර",
+      "kandaya": "කුසල්",
+      "nama": "උපේක්ෂා සහගත ඤාණ විප්‍රයුක්ත අසංස්කාරික සිත",
+      "nama_en": "Equanimity with knowledge, dissociated, rootless consciousness",
+      "cetasika_count": 34
+    },
+    {
+      "id": 20,
+      "bhumi": "කාමාවචර",
+      "kandaya": "කුසල්",
+      "nama": "උපේක්ෂා සහගත ඤාණ විප්‍රයුක්ත සසංස්කාරික සිත",
+      "nama_en": "Equanimity with knowledge, dissociated, with prompting consciousness",
+      "cetasika_count": 35
+    },
+    {
+      "id": 21,
+      "bhumi": "කාමාවචර",
+      "kandaya": "විපාක",
+      "nama": "සෝමනස්ස සහගත ඤාණ සම්ප්‍රයුක්ත අසංස්කාරික විපාක සිත",
+      "nama_en": "Pleasant feeling with knowledge, accompanied, rootless resultant consciousness",
+      "cetasika_count": 36
+    },
+    {
+      "id": 81,
+      "bhumi": "ලෝකෝත්තර",
+      "kandaya": "මග්ග",
+      "nama": "ප්‍රථම ධ්‍යාන සෝතාපත්ති මග්ග චිත්තය",
+      "nama_en": "First jhana stream-enterer path consciousness",
+      "cetasika_count": 36
+    },
+    {
+      "id": 82,
+      "bhumi": "ලෝකෝත්තර",
+      "kandaya": "මග්ග",
+      "nama": "ද්විතීය ධ්‍යාන සෝතාපත්ති මග්ග චිත්තය",
+      "nama_en": "Second jhana stream-enterer path consciousness",
+      "cetasika_count": 35
+    },
+    {
+      "id": 83,
+      "bhumi": "ලෝකෝත්තර",
+      "kandaya": "මග්ග",
+      "nama": "තෘතීය ධ්‍යාන සෝතාපත්ති මග්ග චිත්තය",
+      "nama_en": "Third jhana stream-enterer path consciousness",
+      "cetasika_count": 34
+    },
+    {
+      "id": 84,
+      "bhumi": "ලෝකෝත්තර",
+      "kandaya": "මග්ග",
+      "nama": "චතුර්ථ ධ්‍යාන සෝතාපත්ති මග්ග චිත්තය",
+      "nama_en": "Fourth jhana stream-enterer path consciousness",
+      "cetasika_count": 33
+    },
+    {
+      "id": 85,
+      "bhumi": "ලෝකෝත්තර",
+      "kandaya": "මග්ග",
+      "nama": "පඤ්චම ධ්‍යාන සෝතාපත්ති මග්ග චිත්තය",
+      "nama_en": "Fifth jhana stream-enterer path consciousness",
+      "cetasika_count": 33
+    },
+    {
+      "id": 101,
+      "bhumi": "ලෝකෝත්තර",
+      "kandaya": "ඵල",
+      "nama": "ප්‍රථම ධ්‍යාන සෝතාපත්ති ඵල චිත්තය",
+      "nama_en": "First jhana stream-enterer fruition consciousness",
+      "cetasika_count": 36
+    },
+    {
+      "id": 121,
+      "bhumi": "ලෝකෝත්තර",
+      "kandaya": "ඵල",
+      "nama": "පඤ්චම ධ්‍යාන අරහත්ත ඵල චිත්තය",
+      "nama_en": "Fifth jhana arahant fruition consciousness",
+      "cetasika_count": 33,
+      "final_nirvana": true,
+      "explanation": "සියලු කෙලෙස් සදහටම නැති වූ අරහත් ඵල සිත – නිවන"
+    }
+  ],
+  "metadata": {
+    "total_kamavacara": 54,
+    "total_rupavacara": 15,
+    "total_arupavacara": 12,
+    "total_lokuttara_magga": 20,
+    "total_lokuttara_phala": 20,
+    "grand_total": 121
+  }
+}
+
+
+

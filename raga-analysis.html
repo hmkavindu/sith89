@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>රාගය - අභිධර්ම විශ්ලේෂණය</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Malithi+Web:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iskoola+Pota:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .raga-analysis-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            min-height: 100vh;
+        }
+
+        .raga-header {
+            background: linear-gradient(135deg, #C71585, #FF69B4);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(199, 21, 133, 0.3);
+        }
+
+        .raga-header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+
+        .raga-header p {
+            margin: 0;
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: #333;
+            overflow-x: auto;
+            white-space: nowrap;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 0;
+            scrollbar-width: thin;
+            gap: 0;
+            align-items: stretch;
+            scroll-behavior: smooth;
+            position: relative;
+            scrollbar-width: none; /* Hide scrollbar for seamless effect */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+        
+        .nav-tabs::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+        
+        .nav-tabs-wrapper {
+            display: flex;
+            width: fit-content;
+        }
+
+        .nav-tabs button {
+            background: none;
+            border: none;
+            color: #ddd;
+            padding: 15px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: fit-content;
+            width: auto;
+            white-space: nowrap;
+            font-family: 'Noto Sans Sinhala', Arial, sans-serif;
+            position: relative;
+            flex-shrink: 0;
+            flex-grow: 0;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-tabs button:last-child {
+            border-right: none;
+        }
+
+        .nav-tabs button:hover {
+            background: #555;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .nav-tabs button.active {
+            background: #C71585;
+            color: white;
+            font-weight: bold;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(199, 21, 133, 0.3);
+            z-index: 5;
+        }
+
+        .nav-tabs button:active {
+            transform: translateY(0);
+            transition: transform 0.1s ease;
+        }
+
+        .tab-content-wrapper {
+            background: white;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .tab-content {
+            padding: 30px;
+            display: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+            animation: fadeIn 0.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            color: #C71585;
+            border-bottom: 3px solid #FF69B4;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            font-weight: 600;
+        }
+
+        .raga-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95em;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .raga-table th, .raga-table td {
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .raga-table th {
+            background: linear-gradient(135deg, #C71585, #FF69B4);
+            color: white;
+            font-weight: 600;
+        }
+
+        .raga-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .raga-table tr:hover {
+            background: #fff0f5;
+            transition: background 0.3s ease;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #fff0f5, #ffe0f0);
+            padding: 15px 20px;
+            border-left: 5px solid #FF69B4;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(255, 105, 180, 0.2);
+        }
+
+        .highlight strong {
+            color: #C71585;
+            font-size: 1.1em;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #555;
+            border-right: 4px solid #C71585;
+            padding: 15px 20px;
+            margin: 25px 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-size: 1.05em;
+        }
+
+        .quote strong {
+            color: #C71585;
+        }
+
+        .raga-btn {
+            background: linear-gradient(135deg, #C71585, #FF69B4);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-size: 1em;
+            box-shadow: 0 3px 10px rgba(199, 21, 133, 0.3);
+        }
+
+        .raga-btn:hover {
+            background: linear-gradient(135deg, #FF69B4, #C71585);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(199, 21, 133, 0.4);
+        }
+
+        .raga-btn:active {
+            transform: translateY(0);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #C71585;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #FF69B4;
+            transform: translateX(-5px);
+        }
+
+        .back-link i {
+            margin-right: 8px;
+        }
+
+        ul {
+            line-height: 1.8;
+            padding-left: 25px;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        ul li strong {
+            color: #C71585;
+        }
+
+        @media (max-width: 768px) {
+            .raga-header h1 {
+                font-size: 1.8em;
+            }
+
+            .nav-tabs {
+                flex-wrap: wrap;
+                gap: 0;
+            }
+
+            .nav-tabs button {
+                min-width: auto;
+                flex: 1 1 auto;
+                font-size: 0.85em;
+                padding: 12px 10px;
+                border-right: 1px solid rgba(255, 255, 255, 0.1);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-tabs button:nth-child(2n) {
+                border-right: none;
+            }
+
+            .tab-content {
+                padding: 20px;
+            }
+
+            .section-title {
+                font-size: 1.5em;
+            }
+
+            .raga-table {
+                font-size: 0.85em;
+            }
+
+            .raga-table th, .raga-table td {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .raga-header h1 {
+                font-size: 1.5em;
+            }
+
+            .raga-header p {
+                font-size: 0.9em;
+            }
+
+            .nav-tabs button {
+                font-size: 0.75em;
+                padding: 10px 8px;
+                flex: 1 1 50%;
+            }
+
+            .nav-tabs button:nth-child(2n) {
+                border-right: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-tabs button:nth-child(2n+1) {
+                border-right: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="raga-analysis-container">
+    <a href="index.html" class="back-link">
+        <i class="fas fa-arrow-left"></i> <span data-si="මුල් පිටුවට ආපසු" data-en="Back to Home">මුල් පිටුවට ආපසු</span>
+    </a>
+
+    <div class="raga-header">
+        <h1>රාගය - අභිධර්ම විශ්ලේෂණය</h1>
+        <p>බුද්ධ ධර්මයෙන් රාගය තේරුම් ගන්න</p>
+    </div>
+
+    <div class="nav-tabs" id="navTabsContainer">
+        <button class="tab-button active" onclick="openTab(event, 'what-is-raga')">රාගය යනු කුමක්ද</button>
+        <button class="tab-button" onclick="openTab(event, 'cetasika')">රාග සම්බන්ධ චෛතසික</button>
+        <button class="tab-button" onclick="openTab(event, 'causes')">රාගයට හේතු වුණ චෛතසික සහ සිත්</button>
+        <button class="tab-button" onclick="openTab(event, 'remove')">රාගය දුරු කිරීම</button>
+        <button class="tab-button" onclick="openTab(event, 'meditation')">භාවනා ක්‍රම</button>
+        <button class="tab-button" onclick="openTab(event, 'mind-analysis')">සිත් විශ්ලේෂණය</button>
+        <button class="tab-button" onclick="openTab(event, 'kusala-akusala')">කුසල සිත් හා අකුසල සිත්</button>
+        <button class="tab-button" onclick="openTab(event, 'summary')">සාරාංශය</button>
+    </div>
+
+    <div class="tab-content-wrapper">
+        <!-- Tab 1: රාගය යනු කුමක්ද -->
+        <div id="what-is-raga" class="tab-content active">
+            <h2 class="section-title">රාගය යනු කුමක්ද?</h2>
+            <p>රාගය යනු <strong>ඇලීම, තණ්හාව, කාම ආශාව</strong> වේ. මෙය <strong>ලෝභ මූලික අකුසල් චිත්ත 8</strong> තුළින් ප්‍රධාන වශයෙන් හටගන්නා බව අභිධර්මය පෙන්වයි.</p>
+            
+            <div class="highlight">
+                <strong>ප්‍රධාන ලක්ෂණ:</strong> "ඇලීම, තණ්හාව, කැමතිකම" — රූප, ශබ්ද, ගන්ධ, රස, ස්පර්ශ ආදියට ඇලීම
+            </div>
+
+            <h3>බෙදීම</h3>
+            <ul>
+                <li><strong>සෝමනස්ස සහගත දෘෂ්ටිගත සම්ප්‍රයුක්ත අසංස්කාරික</strong></li>
+                <li><strong>සෝමනස්ස සහගත දෘෂ්ටිගත සම්ප්‍රයුක්ත සසංස්කාරික</strong></li>
+                <li><strong>සෝමනස්ස සහගත දෘෂ්ටි විප්පයුක්ත අසංස්කාරික</strong></li>
+                <li><strong>සෝමනස්ස සහගත දෘෂ්ටි විප්පයුක්ත සසංස්කාරික</strong></li>
+                <li><strong>උපේක්ඛා සහගත දෘෂ්ටිගත සම්ප්‍රයුක්ත අසංස්කාරික</strong></li>
+                <li><strong>උපේක්ඛා සහගත දෘෂ්ටිගත සම්ප්‍රයුක්ත සසංස්කාරික</strong></li>
+                <li><strong>උපේක්ඛා සහගත දෘෂ්ටි විප්පයුක්ත අසංස්කාරික</strong></li>
+                <li><strong>උපේක්ඛා සහගත දෘෂ්ටි විප්පයුක්ත සසංස්කාරික</strong></li>
+            </ul>
+
+            <p class="quote">"<em>ලොභෝ චිත්තං තණ්හා සහගතං</em>" — ලෝභය තණ්හාව සමග එක්ව සිත බන්ධනය කරයි</p>
+        </div>
+
+        <!-- Tab 2: රාග සම්බන්ධ චෛතසික -->
+        <div id="cetasika" class="tab-content">
+            <h2 class="section-title">රාග සම්බන්ධ චෛතසික</h2>
+            <p>රාගය යනු <strong>ලෝභ චෛතසිකය</strong> මූලිකව හටගන්නා බව අභිධර්මය පෙන්වයි. මෙය අකුසල් චෛතසික 10 තුළින් එකකි.</p>
+
+            <table class="raga-table">
+                <tr>
+                    <th>චෛතසිකය</th>
+                    <th>විග්‍රහය</th>
+                    <th>සම්ප්‍රයෝගය (ලෝභ සිත්වල)</th>
+                </tr>
+                <tr>
+                    <td><strong>ලෝභය</strong></td>
+                    <td>ඇලීම, තණ්හාව, කැමතිකම</td>
+                    <td>✓ (මූලික)</td>
+                </tr>
+                <tr>
+                    <td>දිට්ඨි</td>
+                    <td>මිථ්‍යා දෘෂ්ටිය (මම, මගේ)</td>
+                    <td>✓ (4 සිත්වල)</td>
+                </tr>
+                <tr>
+                    <td>මෝහය</td>
+                    <td>අවිද්‍යාව</td>
+                    <td>✓</td>
+                </tr>
+                <tr>
+                    <td>අහිරිකය</td>
+                    <td>ලැජ්ජාව නැතිකම</td>
+                    <td>✓</td>
+                </tr>
+                <tr>
+                    <td>අනොත්තප්පය</td>
+                    <td>ගුණ බිය නැතිකම</td>
+                    <td>✓</td>
+                </tr>
+                <tr>
+                    <td>උද්ධච්චය</td>
+                    <td>සිත රිදීම</td>
+                    <td>✓</td>
+                </tr>
+            </table>
+
+            <p class="quote">"<em>ලොභෝ චේතසිකං අකුසලං</em>" — ලෝභය අකුසල් චෛතසිකයකි</p>
+        </div>
+
+        <!-- Tab 3: රාගයට හේතු වුණ චෛතසික සහ සිත් -->
+        <div id="causes" class="tab-content">
+            <h2 class="section-title">රාගයට හේතු වුණ චෛතසික සහ සිත්</h2>
+
+            <table class="raga-table">
+                <tr>
+                    <th>සිතුවිල්ල / චෛතසික</th>
+                    <th>හේතුව</th>
+                </tr>
+                <tr>
+                    <td>ඇලීමේ සිතුවිල්ල (ලෝභයෙන්)</td>
+                    <td>රූප, ශබ්ද, ගන්ධ ආදියට ඇලීම</td>
+                </tr>
+                <tr>
+                    <td>"මම, මගේ" සිතුවිල්ල (දිට්ඨියෙන්)</td>
+                    <td>අත්තභාවයට ඇලීම</td>
+                </tr>
+                <tr>
+                    <td>අවිද්‍යා සිතුවිල්ල (මෝහයෙන්)</td>
+                    <td>අනිත්‍ය බව නොදැනීම</td>
+                </tr>
+                <tr>
+                    <td>ලැජ්ජාව නැති සිතුවිල්ල</td>
+                    <td>පව් කිරීමට බිය නැති</td>
+                </tr>
+                <tr>
+                    <td>ව්‍යාකූල සිතුවිල්ල</td>
+                    <td>සිත රිදීම</td>
+                </tr>
+            </table>
+
+            <div class="highlight">
+                <strong>ප්‍රධාන හේතුව:</strong> තණ්හාව → "භව තණ්හා, විභව තණ්හා, කාම තණ්හා"
+            </div>
+        </div>
+
+        <!-- Tab 4: රාගය දුරු කිරීම -->
+        <div id="remove" class="tab-content">
+            <h2 class="section-title">රාගය දුරු කිරීම</h2>
+
+            <table class="raga-table">
+                <tr>
+                    <th>ක්‍රියාව</th>
+                    <th>විස්තර</th>
+                </tr>
+                <tr>
+                    <td><strong>අලෝභය වර්ධනය</strong></td>
+                    <td>දානය, චාගය, පැවිද්ද භාවනාව</td>
+                </tr>
+                <tr>
+                    <td>නේකඛම්ම සීලය</td>
+                    <td>කාමයෙන් වැළකීම</td>
+                </tr>
+                <tr>
+                    <td>සෝතාපත්ති මග්ග</td>
+                    <td>සක්කාය දෘෂ්ටිය නැති කිරීම</td>
+                </tr>
+                <tr>
+                    <td>අනාගාමි මග්ග</td>
+                    <td>කාම රාගය සදහටම නැති කිරීම</td>
+                </tr>
+                <tr>
+                    <td>ප්‍රඥාව වර්ධනය</td>
+                    <td>අනිත්‍ය, දුක්ඛ, අනත්ත දැකීම</td>
+                </tr>
+            </table>
+
+            <p class="quote">"<em>අලොභෝ කුසලං</em>" — අලෝභය කුසල් ධර්මයකි</p>
+        </div>
+
+        <!-- Tab 5: භාවනා ක්‍රම -->
+        <div id="meditation" class="tab-content">
+            <h2 class="section-title">භාවනා ක්‍රම</h2>
+
+            <table class="raga-table">
+                <tr>
+                    <th>භාවනාව</th>
+                    <th>විස්තර</th>
+                </tr>
+                <tr>
+                    <td><strong>අසුභ භාවනාව</strong></td>
+                    <td>කයේ අසුභ බව දැකීම → කාම රාගය නැති කිරීම</td>
+                </tr>
+                <tr>
+                    <td>මරණානුස්සති</td>
+                    <td>මරණය සිහියේ තබාගැනීම → භෝග ඇලීම අඩු කිරීම</td>
+                </tr>
+                <tr>
+                    <td>විපස්සනා</td>
+                    <td>අනිත්‍ය, දුක්ඛ, අනත්ත දැකීම</td>
+                </tr>
+                <tr>
+                    <td>අනිච්ච භාවනාව</td>
+                    <td>සියලු ධර්ම අනිත්‍ය බව දැකීම</td>
+                </tr>
+            </table>
+
+            <button class="raga-btn" onclick="alert('අසුභ භාවනා ආරම්භ කරන්න:\n\nකයේ අසුභ බව දැකීම\nරූපයේ අනිත්‍ය බව සිහි කරන්න\nකාම රාගය නැති කිරීම')">
+                <i class="fas fa-heart"></i> අසුභ භාවනා ආරම්භ කරන්න
+            </button>
+        </div>
+
+        <!-- Tab 6: සිත් විශ්ලේෂණය -->
+        <div id="mind-analysis" class="tab-content">
+            <h2 class="section-title">සිත් විශ්ලේෂණය</h2>
+
+            <table class="raga-table">
+                <tr>
+                    <th>චිත්ත වර්ගය</th>
+                    <th>බලපෑම</th>
+                </tr>
+                <tr>
+                    <td><strong>අකුසල් 12</strong></td>
+                    <td>ලෝභ මූල 8 → "තණ්හාවෙන් බන්ධනය"</td>
+                </tr>
+                <tr>
+                    <td>කාමාවචර කුසල්</td>
+                    <td>අලෝභය → රාගයට ප්‍රතිරූපය</td>
+                </tr>
+                <tr>
+                    <td>ලෝකෝත්තර</td>
+                    <td>රාගය සදහටම නැති → අනාගාමි/අරහත්</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Tab 7: කුසල සිත් හා අකුසල සිත් -->
+        <div id="kusala-akusala" class="tab-content">
+            <h2 class="section-title">කුසල සිත් හා අකුසල සිත්</h2>
+
+            <table class="raga-table">
+                <tr>
+                    <th>වර්ගය</th>
+                    <th>අකුසල්</th>
+                    <th>කුසල් (ප්‍රතිරූප)</th>
+                </tr>
+                <tr>
+                    <td>මූලික චෛතසික</td>
+                    <td>ලෝභ</td>
+                    <td>අලෝභ (දානය)</td>
+                </tr>
+                <tr>
+                    <td>පරිපාචක</td>
+                    <td>දිට්ඨි</td>
+                    <td>සම්මා දිට්ඨි</td>
+                </tr>
+                <tr>
+                    <td>අවසාන ඵල</td>
+                    <td>දුක්ඛ, බන්ධන</td>
+                    <td>සුඛ, නිවන</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Tab 8: සාරාංශය -->
+        <div id="summary" class="tab-content">
+            <h2 class="section-title">සාරාංශය</h2>
+            <ul>
+                <li><strong>රාගය</strong> = ලෝභ මූලික අකුසල් චිත්ත 8</li>
+                <li><strong>හේතු</strong>: ලෝභ, දිට්ඨි, තණ්හාව</li>
+                <li><strong>චෛතසික</strong>: අකුසල් රාශිය 14</li>
+                <li><strong>නැති කිරීම</strong>: අලෝභ, නේකඛම්ම, ප්‍රඥාව</li>
+                <li><strong>භාවනා</strong>: අසුභ, මරණානුස්සති, විපස්සනා</li>
+                <li><strong>අවසාන ඵල</strong>: අනාගාමි/අරහත් → කාම රාගය සදහටම නැති</li>
+            </ul>
+
+            <div class="highlight">
+                <strong>තෙරුවන් සරණයි!</strong> ඔබේ රාගය අසුභ භාවනාවෙන් දුරු වේවා!
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openTab(evt, tabName) {
+        // Prevent multiple clicks
+        if (evt.currentTarget.classList.contains('active')) {
+            return;
+        }
+        
+        // Use querySelectorAll for better performance
+        const tabcontent = document.querySelectorAll(".tab-content");
+        const tablinks = document.querySelectorAll(".tab-button");
+        const targetTab = document.getElementById(tabName);
+        
+        // Batch DOM updates using requestAnimationFrame for better performance
+        requestAnimationFrame(() => {
+            // Remove active class from all tabs and buttons
+            tabcontent.forEach(tab => {
+                tab.classList.remove("active");
+            });
+            tablinks.forEach(btn => {
+                btn.classList.remove("active");
+            });
+            
+            // Add active class to target tab and button
+            if (targetTab) {
+                targetTab.classList.add("active");
+            }
+            evt.currentTarget.classList.add("active");
+        });
+    }
+    
+    // Circular carousel auto-scroll for nav tabs (PC view only)
+    document.addEventListener('DOMContentLoaded', function() {
+        const navTabs = document.querySelector('.nav-tabs');
+        if (!navTabs) return;
+        
+        // Only apply auto-scroll on desktop (PC view)
+        if (window.innerWidth >= 769) {
+            // Clone all buttons for seamless loop
+            const buttons = navTabs.querySelectorAll('.tab-button');
+            const originalCount = buttons.length;
+            buttons.forEach(button => {
+                const clone = button.cloneNode(true);
+                clone.classList.remove('active'); // Remove active from clones
+                navTabs.appendChild(clone);
+            });
+            
+            // Calculate original width by measuring the first cloned button's position
+            // which marks the end of the original set
+            const clonedButtons = navTabs.querySelectorAll('.tab-button');
+            const firstClonedButton = clonedButtons[originalCount];
+            const originalWidth = firstClonedButton ? firstClonedButton.offsetLeft : navTabs.scrollWidth / 2;
+            
+            let scrollSpeed = 1; // pixels per frame
+            let isHovered = false;
+            let animationFrameId = null;
+            let isAutoScrolling = false;
+            let lastScrollLeft = 0;
+            
+            // Function to scroll
+            function autoScroll() {
+                if (!isHovered) {
+                    // Normal speed when not hovered
+                    scrollSpeed = 1;
+                } else {
+                    // Slower speed when hovered
+                    scrollSpeed = 0.3;
+                }
+                
+                // Scroll left (decrease scrollLeft)
+                navTabs.scrollLeft -= scrollSpeed;
+                lastScrollLeft = navTabs.scrollLeft;
+                
+                // When we've scrolled through the original set, seamlessly jump back
+                // This creates the circular effect
+                if (navTabs.scrollLeft <= 0) {
+                    // Jump back to the start of original set (seamlessly)
+                    isAutoScrolling = true;
+                    navTabs.scrollLeft = originalWidth;
+                    lastScrollLeft = originalWidth;
+                    isAutoScrolling = false;
+                }
+                
+                animationFrameId = requestAnimationFrame(autoScroll);
+            }
+            
+            // Start from the right side (original width position)
+            navTabs.scrollLeft = originalWidth;
+            lastScrollLeft = originalWidth;
+            
+            // Start auto-scroll after a short delay
+            setTimeout(() => {
+                autoScroll();
+            }, 1000);
+            
+            // Slow down on hover
+            navTabs.addEventListener('mouseenter', function() {
+                isHovered = true;
+            });
+            
+            navTabs.addEventListener('mouseleave', function() {
+                isHovered = false;
+            });
+            
+            // Pause on manual scroll (only if it's not auto-scrolling)
+            let scrollTimeout;
+            navTabs.addEventListener('scroll', function() {
+                // Only pause if it's a manual scroll (not auto-scroll)
+                if (!isAutoScrolling) {
+                    const currentScroll = navTabs.scrollLeft;
+                    const scrollDiff = Math.abs(currentScroll - lastScrollLeft);
+                    
+                    // If scroll difference is significant, it's likely manual
+                    if (scrollDiff > 5) {
+                        if (animationFrameId) {
+                            cancelAnimationFrame(animationFrameId);
+                            animationFrameId = null;
+                        }
+                        
+                        clearTimeout(scrollTimeout);
+                        scrollTimeout = setTimeout(() => {
+                            lastScrollLeft = navTabs.scrollLeft;
+                            autoScroll();
+                        }, 2000); // Resume after 2 seconds of no manual scroll
+                    }
+                }
+                lastScrollLeft = navTabs.scrollLeft;
+            });
+        }
+    });
+</script>
+
+<script src="term-definitions-system.js"></script>
+</body>
+</html>
+
+

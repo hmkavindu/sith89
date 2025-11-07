@@ -1,0 +1,399 @@
+// Enhanced Features for Abhidhamma Website
+// Based on Google Sheets analysis and improvements
+
+// Enhanced Explanations Management
+class ExplanationsManager {
+    constructor() {
+        this.explanationsGrid = document.getElementById('explanationsGrid');
+        this.categoryFilter = document.getElementById('explanationCategoryFilter');
+        this.searchInput = document.getElementById('explanationSearch');
+        this.statsContainer = document.getElementById('explanationsStats');
+        this.filteredChaithasikas = [...meditationData.chaithasikas];
+        
+        this.initialize();
+    }
+    
+    initialize() {
+        this.populateExplanations();
+        this.setupEventListeners();
+        this.updateStats();
+    }
+    
+    populateExplanations() {
+        this.explanationsGrid.innerHTML = '';
+        
+        this.filteredChaithasikas.forEach(chaithasika => {
+            const card = this.createExplanationCard(chaithasika);
+            this.explanationsGrid.appendChild(card);
+        });
+    }
+    
+    createExplanationCard(chaithasika) {
+        const card = document.createElement('div');
+        card.className = `explanation-card ${chaithasika.category.toLowerCase()}`;
+        
+        const displayName = currentLanguage === 'si' ? chaithasika.name : chaithasika.nameEn;
+        const displayCategory = currentLanguage === 'si' ? chaithasika.category : chaithasika.categoryEn;
+        const displayDescription = currentLanguage === 'si' ? chaithasika.description : chaithasika.descriptionEn;
+        
+        card.innerHTML = `
+            <div class="explanation-header">
+                <h3 class="explanation-title">${displayName}</h3>
+                <span class="explanation-category">${displayCategory}</span>
+            </div>
+            <div class="explanation-description">${displayDescription}</div>
+            <div class="explanation-details">
+                <p>${chaithasika.detailedExplanation || 'Detailed explanation coming soon...'}</p>
+            </div>
+            <div class="explanation-reference">
+                <strong>Reference:</strong> ${chaithasika.bookReference || 'Ven. Rerukane Chandawimala Thero'}
+            </div>
+        `;
+        
+        return card;
+    }
+    
+    setupEventListeners() {
+        if (this.categoryFilter) {
+            this.categoryFilter.addEventListener('change', () => {
+                this.filterByCategory();
+            });
+        }
+        
+        if (this.searchInput) {
+            this.searchInput.addEventListener('input', () => {
+                this.filterBySearch();
+            });
+        }
+    }
+    
+    filterByCategory() {
+        const selectedCategory = this.categoryFilter.value;
+        
+        if (selectedCategory === '') {
+            this.filteredChaithasikas = [...meditationData.chaithasikas];
+        } else {
+            this.filteredChaithasikas = meditationData.chaithasikas.filter(
+                chaithasika => chaithasika.category === selectedCategory
+            );
+        }
+        
+        this.populateExplanations();
+        this.updateStats();
+    }
+    
+    filterBySearch() {
+        const searchTerm = this.searchInput.value.toLowerCase();
+        
+        this.filteredChaithasikas = meditationData.chaithasikas.filter(chaithasika => {
+            const nameMatch = chaithasika.name.toLowerCase().includes(searchTerm) ||
+                            chaithasika.nameEn.toLowerCase().includes(searchTerm);
+            const descMatch = chaithasika.description.toLowerCase().includes(searchTerm) ||
+                            chaithasika.descriptionEn.toLowerCase().includes(searchTerm);
+            const categoryMatch = chaithasika.category.toLowerCase().includes(searchTerm) ||
+                                chaithasika.categoryEn.toLowerCase().includes(searchTerm);
+            
+            return nameMatch || descMatch || categoryMatch;
+        });
+        
+        this.populateExplanations();
+        this.updateStats();
+    }
+    
+    updateStats() {
+        if (!this.statsContainer) return;
+        
+        const total = this.filteredChaithasikas.length;
+        const categories = {};
+        
+        this.filteredChaithasikas.forEach(chaithasika => {
+            categories[chaithasika.category] = (categories[chaithasika.category] || 0) + 1;
+        });
+        
+        this.statsContainer.innerHTML = `
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">${total}</span>
+                    <span class="stat-label">${currentLanguage === 'si' ? 'සම්පූර්ණ' : 'Total'}</span>
+                </div>
+                ${Object.entries(categories).map(([category, count]) => `
+                    <div class="stat-item">
+                        <span class="stat-number">${count}</span>
+                        <span class="stat-label">${category}</span>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+}
+
+// Enhanced Comparison Manager
+class ComparisonManager {
+    constructor() {
+        this.selectedCittas = [];
+        this.comparisonResults = document.getElementById('comparisonResults');
+        this.comparisonTableBody = document.getElementById('comparisonTableBody');
+        this.comparisonStats = document.getElementById('comparisonStats');
+        this.chartContainer = document.getElementById('chartContainer');
+        this.analysisContainer = document.getElementById('analysisContainer');
+        
+        this.initialize();
+    }
+    
+    initialize() {
+        this.setupEventListeners();
+        this.setupTabs();
+    }
+    
+    setupEventListeners() {
+        const clearBtn = document.getElementById('clearSelection');
+        const exportBtn = document.getElementById('exportComparison');
+        const chartBtn = document.getElementById('generateChart');
+        
+        if (clearBtn) {
+            clearBtn.addEventListener('click', () => this.clearSelection());
+        }
+        
+        if (exportBtn) {
+            exportBtn.addEventListener('click', () => this.exportComparison());
+        }
+        
+        if (chartBtn) {
+            chartBtn.addEventListener('click', () => this.generateChart());
+        }
+    }
+    
+    setupTabs() {
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabPanels = document.querySelectorAll('.tab-panel');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetTab = btn.getAttribute('data-tab');
+                
+                // Remove active class from all buttons and panels
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabPanels.forEach(p => p.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding panel
+                btn.classList.add('active');
+                document.getElementById(targetTab + 'Tab').classList.add('active');
+            });
+        });
+    }
+    
+    updateComparison() {
+        if (this.selectedCittas.length === 0) {
+            this.comparisonResults.style.display = 'none';
+            return;
+        }
+        
+        this.comparisonResults.style.display = 'block';
+        this.updateComparisonTable();
+        this.updateComparisonStats();
+    }
+    
+    updateComparisonTable() {
+        // Create header row
+        const headerRow = document.createElement('tr');
+        headerRow.innerHTML = '<th>' + (currentLanguage === 'si' ? 'චෛතසිකය' : 'Mental Factor') + '</th>';
+        
+        this.selectedCittas.forEach(cittaId => {
+            const citta = meditationData.cittas.find(c => c.id === cittaId);
+            const displayName = currentLanguage === 'si' ? citta.name : citta.nameEn;
+            headerRow.innerHTML += `<th>${displayName}</th>`;
+        });
+        
+        this.comparisonTableBody.innerHTML = '';
+        this.comparisonTableBody.appendChild(headerRow);
+        
+        // Create data rows for each chaithasika
+        meditationData.chaithasikas.forEach(chaithasika => {
+            const row = document.createElement('tr');
+            const displayName = currentLanguage === 'si' ? chaithasika.name : chaithasika.nameEn;
+            row.innerHTML = `<td>${displayName}</td>`;
+            
+            this.selectedCittas.forEach(cittaId => {
+                const associations = meditationData.associations[cittaId] || [];
+                const isPresent = associations.includes(chaithasika.id);
+                
+                const cell = document.createElement('td');
+                cell.textContent = isPresent ? '✓' : '✗';
+                cell.className = isPresent ? 'present' : 'absent';
+                row.appendChild(cell);
+            });
+            
+            this.comparisonTableBody.appendChild(row);
+        });
+    }
+    
+    updateComparisonStats() {
+        if (!this.comparisonStats) return;
+        
+        const totalChaithasikas = meditationData.chaithasikas.length;
+        const commonFactors = this.findCommonFactors();
+        const uniqueFactors = this.findUniqueFactors();
+        
+        this.comparisonStats.innerHTML = `
+            <div class="stat-badge">${currentLanguage === 'si' ? 'සම්පූර්ණ චෛතසික' : 'Total Factors'}: ${totalChaithasikas}</div>
+            <div class="stat-badge">${currentLanguage === 'si' ? 'පොදු චෛතසික' : 'Common Factors'}: ${commonFactors.length}</div>
+            <div class="stat-badge">${currentLanguage === 'si' ? 'වෙනස් චෛතසික' : 'Unique Factors'}: ${uniqueFactors.length}</div>
+        `;
+    }
+    
+    findCommonFactors() {
+        if (this.selectedCittas.length === 0) return [];
+        
+        const firstCittaAssociations = meditationData.associations[this.selectedCittas[0]] || [];
+        
+        return firstCittaAssociations.filter(factorId => {
+            return this.selectedCittas.every(cittaId => {
+                const associations = meditationData.associations[cittaId] || [];
+                return associations.includes(factorId);
+            });
+        });
+    }
+    
+    findUniqueFactors() {
+        const allFactors = new Set();
+        const commonFactors = new Set(this.findCommonFactors());
+        
+        this.selectedCittas.forEach(cittaId => {
+            const associations = meditationData.associations[cittaId] || [];
+            associations.forEach(factorId => {
+                if (!commonFactors.has(factorId)) {
+                    allFactors.add(factorId);
+                }
+            });
+        });
+        
+        return Array.from(allFactors);
+    }
+    
+    clearSelection() {
+        this.selectedCittas = [];
+        document.querySelectorAll('.selection-item.selected').forEach(item => {
+            item.classList.remove('selected');
+        });
+        this.updateComparison();
+    }
+    
+    exportComparison() {
+        if (this.selectedCittas.length === 0) {
+            alert(currentLanguage === 'si' ? 'සංසන්දනයක් නැත' : 'No comparison to export');
+            return;
+        }
+        
+        const comparisonData = {
+            selectedCittas: this.selectedCittas.map(id => meditationData.cittas.find(c => c.id === id)),
+            commonFactors: this.findCommonFactors(),
+            uniqueFactors: this.findUniqueFactors(),
+            timestamp: new Date().toISOString()
+        };
+        
+        const dataStr = JSON.stringify(comparisonData, null, 2);
+        const dataBlob = new Blob([dataStr], {type: 'application/json'});
+        
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(dataBlob);
+        link.download = 'abhidhamma-comparison.json';
+        link.click();
+    }
+    
+    generateChart() {
+        if (this.selectedCittas.length === 0) {
+            alert(currentLanguage === 'si' ? 'සංසන්දනයක් නැත' : 'No comparison to chart');
+            return;
+        }
+        
+        // Simple chart generation (can be enhanced with Chart.js)
+        const chartData = this.prepareChartData();
+        this.renderChart(chartData);
+    }
+    
+    prepareChartData() {
+        const data = {
+            labels: meditationData.chaithasikas.map(c => currentLanguage === 'si' ? c.name : c.nameEn),
+            datasets: this.selectedCittas.map(cittaId => {
+                const citta = meditationData.cittas.find(c => c.id === cittaId);
+                const associations = meditationData.associations[cittaId] || [];
+                
+                return {
+                    label: currentLanguage === 'si' ? citta.name : citta.nameEn,
+                    data: meditationData.chaithasikas.map(c => associations.includes(c.id) ? 1 : 0),
+                    backgroundColor: this.getRandomColor()
+                };
+            })
+        };
+        
+        return data;
+    }
+    
+    renderChart(data) {
+        // Simple visualization (can be enhanced with Chart.js)
+        this.chartContainer.innerHTML = `
+            <div class="chart-placeholder">
+                <h4>${currentLanguage === 'si' ? 'චෛතසික සංසන්දන ප්‍රස්ථාරය' : 'Mental Factors Comparison Chart'}</h4>
+                <p>${currentLanguage === 'si' ? 'ප්‍රස්ථාරය ජනනය කරන ලදී' : 'Chart generated successfully'}</p>
+                <div class="chart-data">
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                </div>
+            </div>
+        `;
+    }
+    
+    getRandomColor() {
+        const colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'];
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
+}
+
+// Enhanced Toggle Selection Function
+function toggleCittaSelection(cittaId, element) {
+    const comparisonManager = window.comparisonManager;
+    const index = comparisonManager.selectedCittas.indexOf(cittaId);
+    
+    if (index > -1) {
+        // Remove from selection
+        comparisonManager.selectedCittas.splice(index, 1);
+        element.classList.remove('selected');
+    } else {
+        // Add to selection (max 5)
+        if (comparisonManager.selectedCittas.length < 5) {
+            comparisonManager.selectedCittas.push(cittaId);
+            element.classList.add('selected');
+        } else {
+            alert(currentLanguage === 'si' ? 'උපරිම චිත්ත 5 ක් පමණක් තෝරාගත හැකිය' : 'Maximum 5 consciousness states can be selected');
+            return;
+        }
+    }
+    
+    comparisonManager.updateComparison();
+}
+
+// Initialize Enhanced Features
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize enhanced managers
+    window.explanationsManager = new ExplanationsManager();
+    window.comparisonManager = new ComparisonManager();
+    
+    // Update language switcher to handle new elements
+    const originalUpdateLanguage = window.updateLanguage;
+    window.updateLanguage = function() {
+        originalUpdateLanguage();
+        
+        // Update explanations
+        if (window.explanationsManager) {
+            window.explanationsManager.populateExplanations();
+            window.explanationsManager.updateStats();
+        }
+        
+        // Update comparison
+        if (window.comparisonManager) {
+            window.comparisonManager.updateComparison();
+        }
+    };
+    
+    console.log('Enhanced Abhidhamma features initialized successfully!');
+});
+
