@@ -111,19 +111,20 @@ p, .section-description, .hero-description {
 
 /* Navigation */
 .navbar {
-    background: linear-gradient(135deg, #2c3e50, #34495e);
+    background: rgba(44, 62, 80, 0.5);
+    backdrop-filter: blur(8px);
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
-    padding: 0.5rem 0;
+    padding: 0.3rem 0;
     transition: padding 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navbar.scrolled {
-    padding: 0.3rem 0;
-    background: rgba(44, 62, 80, 0.92);
+    padding: 0.2rem 0;
+    background: rgba(44, 62, 80, 0.65);
     backdrop-filter: blur(12px);
 }
 
@@ -140,16 +141,16 @@ p, .section-description, .hero-description {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 0.2rem;
-    padding-bottom: 0.2rem;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
     transition: all 0.3s ease;
     width: 100%;
     box-sizing: border-box;
 }
 
 .navbar.scrolled .nav-container {
-    padding-top: 0.15rem;
-    padding-bottom: 0.15rem;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
 }
 
 .nav-header {
@@ -157,8 +158,8 @@ p, .section-description, .hero-description {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin-bottom: 0.3rem;
-    padding: 0.2rem 0;
+    margin-bottom: 0.2rem;
+    padding: 0.1rem 0;
     transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -169,7 +170,7 @@ p, .section-description, .hero-description {
 
 .nav-title {
     color: #fff;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 700;
     margin: 0;
     text-align: center;
@@ -233,11 +234,11 @@ p, .section-description, .hero-description {
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease, padding 0.3s ease;
-    padding: 0.3rem 0.6rem;
+    padding: 0.3rem 0.7rem;
     border-radius: 5px;
     white-space: nowrap;
     text-align: center;
-    font-size: 0.85rem;
+    font-size: 1.1rem;
     flex-shrink: 0;
 }
 
@@ -254,7 +255,7 @@ p, .section-description, .hero-description {
     padding: 6px 12px;
     border-radius: 25px;
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     font-weight: 500;
     display: flex;
     align-items: center;
@@ -322,26 +323,137 @@ p, .section-description, .hero-description {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
     color: white;
     padding: 100px 0 100px;
     text-align: center;
     min-height: 100vh;
     display: flex;
     align-items: center;
+    overflow: hidden;
+}
+
+/* Animated Background Slider */
+.hero-background-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.hero-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transform: scale(1.5);
+    transform-origin: center center;
+    filter: blur(20px);
+    will-change: opacity, transform, filter;
+    transition: opacity 6s ease-in, transform 12s ease-out, filter 6s ease-in;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+}
+
+.hero-bg-image.active {
+    opacity: 1;
+    transform: scale(1);
+    transform-origin: center center;
+    filter: blur(0px);
+    z-index: 1;
+}
+
+.hero-bg-image.prev {
+    opacity: 0;
+    transform: scale(1.2);
+    transform-origin: center center;
+    filter: blur(10px);
+    z-index: 0;
+    transition: opacity 4s ease-in-out, filter 4s ease-in-out, transform 4s ease-in-out;
+}
+
+.hero-bg-image.next {
+    opacity: 0;
+    transform: scale(1.5);
+    transform-origin: center center;
+    filter: blur(20px);
+    z-index: 0;
+    transition: none;
+}
+
+/* Keyframe animation for slow zoom in (getting closer) */
+@keyframes zoomInSlow {
+    0% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Smooth fade in animation */
+@keyframes fadeInSlow {
+    0% {
+        opacity: 0;
+        filter: blur(15px);
+    }
+    100% {
+        opacity: 1;
+        filter: blur(0px);
+    }
+}
+
+/* Overlay for better text readability */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
 }
 
 .hero-container {
+    position: relative;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
     width: 100%;
     box-sizing: border-box;
+    z-index: 2;
 }
 
 @media (max-width: 768px) {
-    .hero-container {
-        padding: 0 15px;
+    .hero {
+        padding: 80px 0 80px;
+        min-height: 90vh;
+    }
+    
+    .hero-background-slider {
+        background-attachment: scroll;
+    }
+    
+    .hero-bg-image {
+        background-size: cover;
+        background-position: center center;
+    }
+    
+    .hero-overlay {
+        background: rgba(0, 0, 0, 0.5);
+    }
+    
+    .nav-link {
+        font-size: 0.9rem;
+        padding: 0.35rem 0.7rem;
     }
 }
 
