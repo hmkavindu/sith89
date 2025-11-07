@@ -1,0 +1,11 @@
+{
+  "name": "abidharma-sith",
+  "version": "1.0.0",
+  "description": "Local development server for the Abhidhamma Citta Chaithasika tool with Groq chatbot integration.",
+  "scripts": {
+    "start": "node local-server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

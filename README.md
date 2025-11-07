@@ -26,6 +26,12 @@ A comprehensive web application for studying Buddhist meditation and consciousne
 - Category filtering (කුසල්, අකුසල්, අභ්‍යාකත, ලෝකෝත්තර)
 - Interactive table with hover effects
 
+### 🤖 Dhamma AI Chatbot
+- Groq-powered conversational assistant
+- Sinhala + English responses with Abhidhamma context
+- Connects cittas, cetasikas, and Tri-vidya relationships
+- Runs through a secure Netlify Function proxy (no keys in the browser)
+
 ### 🔍 Consciousness Categories
 - **කුසල් චිත්ත** (Wholesome Consciousness) - 89 states
 - **අකුසල් චිත්ත** (Unwholesome Consciousness) - 12 states  
@@ -58,6 +64,9 @@ A comprehensive web application for studying Buddhist meditation and consciousne
 ├── index.html          # Main HTML structure
 ├── styles.css          # CSS styling and responsive design
 ├── script.js           # JavaScript functionality and data
+├── chatbot.js          # Chatbot UI + client integration
+├── netlify/functions/
+│   └── groq-chat.js    # Netlify Function proxy to Groq API
 └── README.md           # This documentation
 ```
 
@@ -71,6 +80,27 @@ A comprehensive web application for studying Buddhist meditation and consciousne
 6. **Compare**: Go to the comparison section and select up to 5 states to compare
 7. **Mobile**: The site is fully responsive and works on mobile devices
 8. **Language Preference**: Your language choice is automatically saved and restored on future visits
+
+## AI Chatbot Setup
+
+1. **Create a Groq account**: Visit [https://console.groq.com](https://console.groq.com) and generate a `GROQ_API_KEY`.
+2. **Add the key to Netlify**:
+   - Netlify UI → Site settings → Build & deploy → Environment → Edit variables
+   - Add `GROQ_API_KEY` with your token value and redeploy.
+3. **Local development** (two options):
+   - **Simple Node server (recommended for offline work):**
+     1. `npm install`
+     2. Export `GROQ_API_KEY` in your shell (`$Env:GROQ_API_KEY="..."` on PowerShell, `export GROQ_API_KEY=...` on macOS/Linux)
+     3. *(Optional)* Export `GROQ_MODEL` if you want to override the default Groq model (`llama-3.3-70b-versatile`).
+     3. `npm start`
+     4. Open `http://localhost:8888`
+   - **Netlify dev environment:**
+     1. Install the Netlify CLI `npm install -g netlify-cli`
+     2. `netlify dev` (after exporting `GROQ_API_KEY` and optional `GROQ_MODEL`)
+4. **Production usage**:
+   - The frontend calls `/.netlify/functions/groq-chat`.
+   - The function forwards chat prompts to Groq (`llama-3.3-70b-versatile` by default, overridable via `GROQ_MODEL`) and returns the assistant reply in JSON.
+   - The UI keeps a short, bilingual conversation history to preserve context while protecting the API key.
 
 ## Data Source
 

@@ -330,43 +330,22 @@ function populateTable() {
         if (viewBtn) {
             viewBtn.addEventListener('click', function(e) {
                 e.stopPropagation();
-                // Special handling for citta id 1 - navigate to dedicated page
-                if (citta.id === 1) {
-                    window.location.href = 'lobha-ditthi-citta-guide.html';
-                    return;
-                }
-                // Special handling for citta id 2 - navigate to dedicated page
-                if (citta.id === 2) {
-                    window.location.href = 'lobha-ditthi-sasankharika-guide.html';
-                    return;
-                }
+                // Navigate to dedicated citta guide page (inner page)
+                window.location.href = `citta-${citta.id}-guide.html`;
+            });
+        }
+        
+        // Also make entire row clickable - but show modal popup instead
+        row.addEventListener('click', function(e) {
+            // Only trigger if not clicking the button itself
+            if (!e.target.closest('.view-details-btn')) {
+                // Show modal with cetasika details
                 if (window.abhidhammaDataLoader && window.abhidhammaDataLoader.showDetails) {
                     window.abhidhammaDataLoader.showDetails(citta);
                 } else if (window.showCittaDetails) {
                     window.showCittaDetails(citta);
                 } else {
                     console.warn('showCittaDetails function not available');
-                }
-            });
-        }
-        
-        // Also make entire row clickable
-        row.addEventListener('click', function(e) {
-            if (e.target.tagName !== 'BUTTON') {
-                // Special handling for citta id 1 - navigate to dedicated page
-                if (citta.id === 1) {
-                    window.location.href = 'lobha-ditthi-citta-guide.html';
-                    return;
-                }
-                // Special handling for citta id 2 - navigate to dedicated page
-                if (citta.id === 2) {
-                    window.location.href = 'lobha-ditthi-sasankharika-guide.html';
-                    return;
-                }
-                if (window.abhidhammaDataLoader && window.abhidhammaDataLoader.showDetails) {
-                    window.abhidhammaDataLoader.showDetails(citta);
-                } else if (window.showCittaDetails) {
-                    window.showCittaDetails(citta);
                 }
             }
         });
@@ -581,19 +560,26 @@ window.addEventListener('scroll', function() {
             scrollBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
             scrollBtn.style.cssText = `
                 position: fixed;
-                bottom: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
+                bottom: 24px;
+                right: 24px;
+                width: 52px;
+                height: 52px;
                 border-radius: 50%;
                 background: #f39c12;
                 color: white;
                 border: none;
                 cursor: pointer;
-                box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-                z-index: 1000;
-                transition: all 0.3s ease;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+                z-index: 1040;
+                transition: transform 0.25s ease, box-shadow 0.25s ease;
             `;
+            scrollBtn.setAttribute('aria-label', currentLanguage === 'si' ? 'ඉහළට' : 'Back to top');
+            scrollBtn.addEventListener('mouseenter', function() {
+                scrollBtn.style.transform = 'translateY(-2px)';
+            });
+            scrollBtn.addEventListener('mouseleave', function() {
+                scrollBtn.style.transform = 'translateY(0)';
+            });
             
             scrollBtn.addEventListener('click', function() {
                 window.scrollTo({
@@ -705,6 +691,11 @@ function updateLanguage() {
         if (langText) {
             langText.textContent = currentLanguage === 'si' ? 'English' : 'සිංහල';
         }
+    }
+
+    const scrollBtn = document.querySelector('.scroll-to-top');
+    if (scrollBtn) {
+        scrollBtn.setAttribute('aria-label', currentLanguage === 'si' ? 'ඉහළට' : 'Back to top');
     }
     
     // Update all dynamic content

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>සියලුම චිත්ත - ඉක්මන් සුචිය</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            background: linear-gradient(to bottom right, #f0f9ff, #e0f2fe);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        .header {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 32px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .header h1 { font-size: 32px; color: #1f2937; margin-bottom: 12px; }
+        .header p { color: #6b7280; font-size: 18px; }
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .back-button:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); }
+        .category-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .category-section h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid;
+        }
+        .akusala h2 { border-bottom-color: #ef4444; color: #ef4444; }
+        .kusala h2 { border-bottom-color: #10b981; color: #10b981; }
+        .lokuttara h2 { border-bottom-color: #8b5cf6; color: #8b5cf6; }
+        .vipaka h2 { border-bottom-color: #3b82f6; color: #3b82f6; }
+        .kriya h2 { border-bottom-color: #f59e0b; color: #f59e0b; }
+        .citta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 12px;
+        }
+        .citta-card {
+            padding: 16px;
+            border-radius: 8px;
+            border: 2px solid #e5e7eb;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            color: inherit;
+        }
+        .citta-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: #3b82f6;
+        }
+        .citta-card .citta-id {
+            font-size: 14px;
+            font-weight: 700;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+        .citta-card .citta-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1f2937;
+            line-height: 1.4;
+        }
+        .citta-card .citta-count {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-top: 8px;
+        }
+        @media (max-width: 768px) {
+            .citta-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html#table" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            <span>ආපසු මූලික වගුවට</span>
+        </a>
+
+        <div class="header">
+            <h1>සියලුම චිත්ත - ඉක්මන් සුචිය</h1>
+            <p>89 චිත්ත සඳහා විස්තරාත්මක මාර්ගෝපදේශ</p>
+        </div>
+
+        <div class="category-section akusala">
+            <h2><i class="fas fa-fire"></i> අකුසල් චිත්ත (12)</h2>
+            <div class="citta-grid" id="akusala-grid"></div>
+        </div>
+
+        <div class="category-section kusala">
+            <h2><i class="fas fa-heart"></i> කුසල් චිත්ත (8)</h2>
+            <div class="citta-grid" id="kusala-grid"></div>
+        </div>
+
+        <div class="category-section kusala">
+            <h2><i class="fas fa-om"></i> රූපාවචර චිත්ත (5)</h2>
+            <div class="citta-grid" id="rupavacara-grid"></div>
+        </div>
+
+        <div class="category-section kusala">
+            <h2><i class="fas fa-infinity"></i> අරූපාවචර චිත්ත (4)</h2>
+            <div class="citta-grid" id="arupavacara-grid"></div>
+        </div>
+
+        <div class="category-section lokuttara">
+            <h2><i class="fas fa-star"></i> ලෝකෝත්තර චිත්ත (40)</h2>
+            <div class="citta-grid" id="lokuttara-grid"></div>
+        </div>
+
+        <div class="category-section vipaka">
+            <h2><i class="fas fa-sync"></i> විපාක චිත්ත (16)</h2>
+            <div class="citta-grid" id="vipaka-grid"></div>
+        </div>
+
+        <div class="category-section kriya">
+            <h2><i class="fas fa-cog"></i> ක්‍රියා චිත්ත (8)</h2>
+            <div class="citta-grid" id="kriya-grid"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        const cittas = [
+            { id: 1, name: "සෝමනස්ස සහගත දෘෂ්ටිගත සම්ප්‍රයුක්ත අසංස්කාරික සිත", category: "අකුසල්", count: 19 },
+            { id: 2, name: "සෝමනස්ස සහගත දිට්ඨිගත සම්ප්‍රයුක්ත සසංස්කාරික සිත", category: "අකුසල්", count: 21 },
+            { id: 3, name: "සෝමනස්ස සහගත දිට්ඨිගත විප්‍රයුක්ත අසංස්කාරික සිත", category: "අකුසල්", count: 19 },
+            { id: 4, name: "සෝමනස්ස සහගත දෘෂ්ඨිගත විප්‍රයුක්ත සසංස්කාරික සිත", category: "අකුසල්", count: 21 },
+            { id: 5, name: "උපේක්ෂා සහගත දෘෂ්ටිගත සම්ප්‍රයුක්ත අසංස්කාරික සිත", category: "අකුසල්", count: 18 },
+            { id: 6, name: "උපේක්ෂා සහගත දෘෂ්ටිගත සම්ප්‍රයුක්ත සසංස්කාරික සිත", category: "අකුසල්", count: 20 },
+            { id: 7, name: "උපේක්ෂා සහගත දෘෂ්ටිගත විප්‍රයුක්ත අසංස්කාරික සිත", category: "අකුසල්", count: 18 },
+            { id: 8, name: "උපේක්ෂා සහගත දෘෂ්ටිගත විප්‍රයුක්ත සසංස්කාරික සිත", category: "අකුසල්", count: 20 },
+            { id: 9, name: "දෝමනස්ස සහගත පටිඝ සම්ප්‍රයුක්ත අසංස්කාරික සිත", category: "අකුසල්", count: 20 },
+            { id: 10, name: "දෝමනස්ස සහගත පටිඝ සම්ප්‍රයුක්ත සසංස්කාරික සිත", category: "අකුසල්", count: 22 },
+            { id: 11, name: "උපේක්ෂා සහගත විචිකිච්ඡා සම්ප්‍රයුක්ත අසංස්කාරික සිත", category: "අකුසල්", count: 18 },
+            { id: 12, name: "උපේක්ෂා සහගත උද්ධච්ච සම්ප්‍රයුක්ත අසංස්කාරික සිත", category: "අකුසල්", count: 18 },
+            { id: 13, name: "සෝමනස්ස සහගත ඤාණ සම්ප්‍රයුක්ත අසංස්කාරික සිත", category: "කුසල්", count: 38 },
+            { id: 14, name: "සෝමනස්ස සහගත ඤාණ සම්ප්‍රයුක්ත සසංස්කාරික සිත", category: "කුසල්", count: 38 },
+            { id: 15, name: "සෝමනස්ස සහගත ඥාන විප්‍රයුක්ත අසංස්කාරික සිත", category: "කුසල්", count: 37 },
+            { id: 16, name: "සෝමනස්ස සහගත ඥාන විප්‍රයුක්ත සසංස්කාරික සිත", category: "කුසල්", count: 37 },
+            { id: 17, name: "උපේක්ෂා සහගත ඤාණ සම්ප්‍රයුක්ත අසංස්කාරික සිත", category: "කුසල්", count: 37 },
+            { id: 18, name: "උපේක්ෂා සහගත ඤාණ සම්ප්‍රයුක්ත සසංස්කාරික සිත", category: "කුසල්", count: 37 },
+            { id: 19, name: "උපේක්ෂා සහගත ඥාන විප්‍රයුක්ත අසංස්කාරික සිත", category: "කුසල්", count: 36 },
+            { id: 20, name: "උපේක්ෂා සහගත ඥාන විප්‍රයුක්ත සසංස්කාරික සිත", category: "කුසල්", count: 36 },
+            { id: 21, name: "විතර්ක විචාර ප්‍රීති සුඛ ඒකාග්‍රතා සහිත ප්‍රථම ධ්‍යාන සිතය", category: "රූපාවචර", count: 34 },
+            { id: 22, name: "විචාර ප්‍රීති සුඛ ඒකාග්‍රතා සහිත ද්විතීය ධ්‍යාන සිතය", category: "රූපාවචර", count: 32 },
+            { id: 23, name: "ප්‍රීති සුඛ ඒකාග්‍රතා සහිත තෘතීය ධ්‍යාන සිතය", category: "රූපාවචර", count: 31 },
+            { id: 24, name: "සුඛ ඒකාග්‍රතා සහිත චතුර්ථ ධ්‍යාන සිතය", category: "රූපාවචර", count: 30 },
+            { id: 25, name: "උපේක්ෂා ඒකාග්‍රතා සහිත පංචම ධ්‍යාන සිතය", category: "රූපාවචර", count: 30 },
+            { id: 26, name: "ආකාසානඤ්චායතන කුසල් සිත", category: "අරූපාවචර", count: 30 },
+            { id: 27, name: "විඤ්ඤාණඤ්චායතන කුසල් සිත", category: "අරූපාවචර", count: 30 },
+            { id: 28, name: "ආකිඤ්චඤ්ඤායතන කුසල් සිත", category: "අරූපාවචර", count: 30 },
+            { id: 29, name: "නේවසංඤ්ඤා නාසඤ්ඤායතන කුසල් සිත", category: "අරූපාවචර", count: 30 }
+        ];
+
+        // Add Lokuttara cittas (30-69)
+        for (let i = 30; i <= 69; i++) {
+            cittas.push({ id: i, name: `ලෝකෝත්තර චිත්තය ${i}`, category: "ලෝකෝත්තර", count: 30 + (i % 7) });
+        }
+
+        // Add Vipaka cittas (70-77, 86-89)
+        for (let i = 70; i <= 77; i++) {
+            cittas.push({ id: i, name: `විපාක චිත්තය ${i}`, category: "විපාක", count: 31 + (i % 3) });
+        }
+        for (let i = 86; i <= 89; i++) {
+            cittas.push({ id: i, name: `විපාක චිත්තය ${i}`, category: "විපාක", count: 32 + (i % 4) });
+        }
+
+        // Add Kriya cittas (78-85)
+        for (let i = 78; i <= 85; i++) {
+            cittas.push({ id: i, name: `ක්‍රියා චිත්තය ${i}`, category: "ක්‍රියා", count: 33 + (i % 3) });
+        }
+
+        function renderCittas() {
+            const akusalaGrid = document.getElementById('akusala-grid');
+            const kusalaGrid = document.getElementById('kusala-grid');
+            const rupavacaraGrid = document.getElementById('rupavacara-grid');
+            const arupavacaraGrid = document.getElementById('arupavacara-grid');
+            const lokuttaraGrid = document.getElementById('lokuttara-grid');
+            const vipakaGrid = document.getElementById('vipaka-grid');
+            const kriyaGrid = document.getElementById('kriya-grid');
+
+            cittas.forEach(citta => {
+                const card = document.createElement('a');
+                card.href = `citta-${citta.id}-guide.html`;
+                card.className = 'citta-card';
+                card.innerHTML = `
+                    <div class="citta-id">සිත ${citta.id}</div>
+                    <div class="citta-name">${citta.name}</div>
+                    <div class="citta-count">චෛතසික: ${citta.count}</div>
+                `;
+
+                if (citta.category === 'අකුසල්') akusalaGrid.appendChild(card);
+                else if (citta.category === 'කුසල්') kusalaGrid.appendChild(card);
+                else if (citta.category === 'රූපාවචර') rupavacaraGrid.appendChild(card);
+                else if (citta.category === 'අරූපාවචර') arupavacaraGrid.appendChild(card);
+                else if (citta.category === 'ලෝකෝත්තර') lokuttaraGrid.appendChild(card);
+                else if (citta.category === 'විපාක') vipakaGrid.appendChild(card);
+                else if (citta.category === 'ක්‍රියා') kriyaGrid.appendChild(card);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', renderCittas);
+    </script>
+</body>
+</html>
+

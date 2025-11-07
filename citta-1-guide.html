@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>සෝමනස්ස සහගත දෘෂ්ටිගත සම්ප්‍රයුක්ත අසංස්කාරික සිත - අභිධර්ම විශ්ලේෂණය</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            background: linear-gradient(to bottom right, #fee2e2, #fed7aa);
+            min-height: 100vh;
+            padding: 20px;
+            color: #1f2937;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #ef4444 0%, #ef4444dd 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .back-button:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); }
+        .header {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #ef4444;
+        }
+        .header-content { display: flex; align-items: center; gap: 16px; }
+        .header-icon { width: 48px; height: 48px; color: #ef4444; }
+        .header-text h1 { font-size: 28px; font-weight: 700; color: #1f2937; margin-bottom: 8px; }
+        .header-text p { color: #6b7280; font-size: 16px; }
+        .section {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 16px;
+        }
+        .section-header {
+            width: 100%;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            background: transparent;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1f2937;
+            text-align: left;
+        }
+        .section-header:hover { background: rgba(0, 0, 0, 0.02); }
+        .section-header-content { display: flex; align-items: center; gap: 12px; }
+        .section-icon { width: 24px; height: 24px; }
+        .section-content { padding: 24px; display: none; color: #374151; line-height: 1.6; }
+        .section-content.active { display: block; }
+        .color-blue { background: linear-gradient(to right, #dbeafe, #cffafe); border-left: 4px solid #3b82f6; }
+        .color-red { background: linear-gradient(to right, #fee2e2, #fce7f3); border-left: 4px solid #ef4444; }
+        .color-green { background: linear-gradient(to right, #dcfce7, #d1fae5); border-left: 4px solid #10b981; }
+        .color-purple { background: linear-gradient(to right, #f3e8ff, #ede9fe); border-left: 4px solid #8b5cf6; }
+        .color-orange { background: linear-gradient(to right, #fed7aa, #fde68a); border-left: 4px solid #f97316; }
+        .chevron { width: 20px; height: 20px; transition: transform 0.3s ease; }
+        .chevron.rotated { transform: rotate(180deg); }
+        .content-box { background: #f9fafb; padding: 24px; border-radius: 8px; margin-bottom: 16px; }
+        .content-box h3 { font-size: 20px; font-weight: 700; margin-bottom: 16px; color: #111827; }
+        .content-box h4 { font-size: 18px; font-weight: 600; margin-bottom: 12px; color: #1f2937; }
+        .content-box p { margin-bottom: 12px; line-height: 1.8; }
+        .content-box ul { list-style: none; padding-left: 0; }
+        .content-box li { margin-bottom: 12px; padding-left: 24px; position: relative; }
+        .content-box li::before { content: "•"; position: absolute; left: 0; color: #ef4444; font-weight: bold; font-size: 24px; }
+        .highlight-box { background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #10b981; margin: 16px 0; }
+        .info-box { background: linear-gradient(to right, #fef3c7, #fde68a); padding: 16px; border-radius: 8px; border: 2px solid #f59e0b; margin: 16px 0; }
+        @media (max-width: 768px) {
+            .header-content { flex-direction: column; text-align: center; }
+            .section-header { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html#table" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            <span>ආපසු</span>
+        </a>
+
+        <div class="header">
+            <div class="header-content">
+                <i class="fas fa-brain header-icon"></i>
+                <div class="header-text">
+                    <h1>සෝමනස්ස සහගත දෘෂ්ටිගත සම්ප්‍රයුක්ත අසංස්කාරික සිත</h1>
+                    <p>ලෝභ මූල සිත 1 - අභිධර්ම විශ්ලේෂණය</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section color-green">
+            <button class="section-header" onclick="toggleSection('simple')">
+                <div class="section-header-content">
+                    <i class="fas fa-lightbulb section-icon"></i>
+                    <h2>මට්ටම 1: ඉතා සරල අර්ථය</h2>
+                </div>
+                <i class="fas fa-chevron-down chevron" id="chevron-simple"></i>
+            </button>
+            <div class="section-content" id="content-simple">
+                <div class="content-box">
+                    <h3>සරල භාෂාවෙන්:</h3>
+                    <p>මෙම සිත <strong>අකුසල්</strong> කාණ්ඩයට අයත් වන අතර <strong>ලෝභ මූල</strong> සිතක් වේ.</p>
+                    <div class="highlight-box" style="border-left-color: #ef4444;">
+                        <p><strong>චෛතසික සංඛ්‍යාව:</strong> 19</p>
+                        <p>මෙම සිතෙහි චෛතසික 19ක් යෙදේ.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section color-blue">
+            <button class="section-header" onclick="toggleSection('details')">
+                <div class="section-header-content">
+                    <i class="fas fa-info-circle section-icon"></i>
+                    <h2>මට්ටම 2: විස්තරාත්මක විශ්ලේෂණය</h2>
+                </div>
+                <i class="fas fa-chevron-down chevron" id="chevron-details"></i>
+            </button>
+            <div class="section-content" id="content-details">
+                <div class="content-box">
+                    <h3>සිතෙහි ලක්ෂණ:</h3>
+                    <p>මෙම සිත <strong>අකුසල්</strong> වන අතර <strong>ලෝභ මූල</strong> කාණ්ඩයට අයත් වේ.</p>
+                    <div class="info-box">
+                        <p><strong>වැදගත්:</strong> මෙම සිත පිළිබඳ සවිස්තර විශ්ලේෂණය අභිධර්ම පාඨවලින් ලබා ගත හැක.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section color-purple">
+            <button class="section-header" onclick="toggleSection('cetasikas')">
+                <div class="section-header-content">
+                    <i class="fas fa-heart section-icon"></i>
+                    <h2>මට්ටම 3: චෛතසික සංයුතිය</h2>
+                </div>
+                <i class="fas fa-chevron-down chevron" id="chevron-cetasikas"></i>
+            </button>
+            <div class="section-content" id="content-cetasikas">
+                <div class="content-box">
+                    <h3>මෙම සිතෙහි චෛතසික 19ක් යෙදේ:</h3>
+                    <p>සවිස්තර චෛතසික විශ්ලේෂණය සඳහා මූලික වගුව බලන්න.</p>
+                    <div class="info-box">
+                        <p><strong>සටහන:</strong> චෛතසික සංයුතිය සිතෙහි ස්වභාවය තීරණය කරයි. අකුසල් සිතක් ලෙස මෙහි විශේෂ චෛතසික සංයෝජනයක් ඇත.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section color-orange">
+            <button class="section-header" onclick="toggleSection('practice')">
+                <div class="section-header-content">
+                    <i class="fas fa-hands-praying section-icon"></i>
+                    <h2>මට්ටම 4: ප්‍රායෝගික මාර්ගෝපදේශ</h2>
+                </div>
+                <i class="fas fa-chevron-down chevron" id="chevron-practice"></i>
+            </button>
+            <div class="section-content" id="content-practice">
+                <div class="content-box">
+                    <h3>භාවනා සහ ප්‍රායෝගික යෙදවීම:</h3>
+                    
+                    <div class="highlight-box" style="border-left-color: #ef4444;">
+                        <h4>අකුසල සිත දුරු කිරීම:</h4>
+                        <ul>
+                            <li>සතිපට්ඨාන භාවනාව</li>
+                            <li>යෝනිසෝ මනසිකාරය</li>
+                            <li>සම්‍යක් දිට්ඨිය වැඩීම</li>
+                            <li>කල්‍යාණ මිත්‍රතාව</li>
+                        </ul>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="section" style="background: linear-gradient(to right, #fee2e2, #fed7aa); border-left: 4px solid #ef4444;">
+            <div class="section-header" style="background: transparent;">
+                <div class="section-header-content">
+                    <i class="fas fa-info-circle section-icon"></i>
+                    <h2>සාරාංශ</h2>
+                </div>
+            </div>
+            <div class="section-content active">
+                <div class="content-box">
+                    <div class="info-box" style="background: #fee2e2; border-left-color: #ef4444;">
+                        <p style="text-align: center; font-weight: 700; font-size: 18px; margin-bottom: 12px;">මතක තබා ගන්න:</p>
+                        <p style="text-align: center;"><strong>සෝමනස්ස සහගත දෘෂ්ටිගත සම්ප්‍රයුක්ත අසංස්කාරික සිත</strong> යනු <strong>අකුසල්</strong> <strong>ලෝභ මූල</strong> සිතක් වන අතර චෛතසික <strong>19ක්</strong> සමඟ ඇතිවේ.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSection(sectionId) {
+            const content = document.getElementById('content-' + sectionId);
+            const chevron = document.getElementById('chevron-' + sectionId);
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                chevron.classList.remove('rotated');
+            } else {
+                content.classList.add('active');
+                chevron.classList.add('rotated');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            toggleSection('simple');
+        });
+    </script>
+</body>
+</html>

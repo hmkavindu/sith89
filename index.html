@@ -34,6 +34,9 @@
                     <a href="#table" class="nav-link" data-si="චිත්ත චෛතසික වගුව" data-en="Citta Chaithasika Table">චිත්ත චෛතසික වගුව</a>
                 </li>
                 <li class="nav-item">
+                    <a href="citta-index.html" class="nav-link" data-si="සියලුම චිත්ත" data-en="All Cittas">සියලුම චිත්ත</a>
+                </li>
+                <li class="nav-item">
                     <a href="#analysis" class="nav-link" data-si="චෛතසික විග්‍රහයන්" data-en="Chaithasika Analysis">චෛතසික විග්‍රහයන්</a>
                 </li>
                 <li class="nav-item">
@@ -463,6 +466,40 @@
         </div>
     </footer>
 
+    <!-- Chatbot Launcher -->
+    <button id="chatbotLauncher" class="chatbot-launcher" aria-expanded="false" aria-controls="chatbotWidget">
+        <span class="chatbot-launcher-icon"><i class="fas fa-comments"></i></span>
+        <span class="chatbot-launcher-label" data-si="දම්ම AI උපකාරක" data-en="Dhamma AI Guide">දම්ම AI උපකාරක</span>
+    </button>
+
+    <!-- Chatbot Widget -->
+    <section id="chatbotWidget" class="chatbot-widget" aria-hidden="true" role="dialog" aria-label="Dhamma AI Chat Assistant">
+        <div class="chatbot-header">
+            <div class="chatbot-title-group">
+                <h3 data-si="ධර්ම දැනුම AI උපකාරක" data-en="Dhamma Knowledge Assistant">ධර්ම දැනුම AI උපකාරක</h3>
+                <p data-si="අභිධර්මය, චිත්ත, චෛතසික පිළිබඳ ප්‍රශ්න කරන්න" data-en="Ask about Abhidhamma, chitta, and cetasika insights">අභිධර්මය, චිත්ත, චෛතසික පිළිබඳ ප්‍රශ්න කරන්න</p>
+            </div>
+            <button id="chatbotClose" class="chatbot-close" aria-label="Close chatbot"><span aria-hidden="true">&times;</span></button>
+        </div>
+
+        <div id="chatbotMessages" class="chatbot-messages" aria-live="polite"></div>
+
+        <form id="chatbotForm" class="chatbot-form" autocomplete="off">
+            <label class="chatbot-input-label" for="chatbotInput" data-si="ඔබේ ප්‍රශ්නය ලියන්න" data-en="Type your question">
+                ඔබේ ප්‍රශ්නය ලියන්න
+            </label>
+            <div class="chatbot-input-row">
+                <textarea id="chatbotInput" class="chatbot-input" rows="2" placeholder="අභිධර්මය පිළිබඳව ඔබට වැරදි නොවන විශ්ලේෂණයක් ලබා ගන්න..." data-si-placeholder="අභිධර්මය පිළිබඳව ඔබේ ප්‍රශ්නය ලියන්න..." data-en-placeholder="Ask your Abhidhamma question..." required></textarea>
+                <button id="chatbotSend" type="submit" class="chatbot-send">
+                    <span class="chatbot-send-text" data-si="නැව්වන්න" data-en="Send">නැව්වන්න</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </form>
+
+        <div id="chatbotStatus" class="chatbot-status" role="status" aria-live="polite"></div>
+    </section>
+
     <script src="script.js"></script>
     <script src="hero-background-slider.js"></script>
     <script src="enhanced-features.js"></script>
@@ -471,5 +508,6 @@
     <script src="load-rerukane-data.js"></script>
     <script src="load-enhanced-citta-data.js"></script>
     <script src="term-definitions-system.js"></script>
+    <script src="chatbot.js"></script>
 </body>
 </html>
