@@ -27,3 +27,11 @@ Thumbs.db
 # Security documentation (contains actual API key)
 SECURITY_FIX_APPLIED.md
 GIT_READY.md
+
+# Add to .gitignore
+/node_modules
+*.log
+server-out.log
+server-err.log
+.env
+.env.local
