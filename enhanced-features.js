@@ -30,25 +30,50 @@ class ExplanationsManager {
     
     createExplanationCard(chaithasika) {
         const card = document.createElement('div');
-        card.className = `explanation-card ${chaithasika.category.toLowerCase()}`;
+        const categoryClass = (chaithasika.categoryEn || chaithasika.category || '').toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+        card.className = `explanation-card ${categoryClass}`;
         
         const displayName = currentLanguage === 'si' ? chaithasika.name : chaithasika.nameEn;
         const displayCategory = currentLanguage === 'si' ? chaithasika.category : chaithasika.categoryEn;
         const displayDescription = currentLanguage === 'si' ? chaithasika.description : chaithasika.descriptionEn;
         
-        card.innerHTML = `
-            <div class="explanation-header">
-                <h3 class="explanation-title">${displayName}</h3>
-                <span class="explanation-category">${displayCategory}</span>
-            </div>
-            <div class="explanation-description">${displayDescription}</div>
-            <div class="explanation-details">
-                <p>${chaithasika.detailedExplanation || 'Detailed explanation coming soon...'}</p>
-            </div>
-            <div class="explanation-reference">
-                <strong>Reference:</strong> ${chaithasika.bookReference || 'Ven. Rerukane Chandawimala Thero'}
-            </div>
-        `;
+        // Create elements properly to avoid HTML injection issues
+        const header = document.createElement('div');
+        header.className = 'explanation-header';
+        
+        const title = document.createElement('h3');
+        title.className = 'explanation-title';
+        title.textContent = displayName;
+        
+        const categorySpan = document.createElement('span');
+        categorySpan.className = 'explanation-category';
+        categorySpan.textContent = displayCategory || '';
+        
+        header.appendChild(title);
+        header.appendChild(categorySpan);
+        
+        const descriptionDiv = document.createElement('div');
+        descriptionDiv.className = 'explanation-description';
+        descriptionDiv.textContent = displayDescription || '';
+        
+        const detailsDiv = document.createElement('div');
+        detailsDiv.className = 'explanation-details';
+        const detailsP = document.createElement('p');
+        detailsP.textContent = chaithasika.detailedExplanation || 'Detailed explanation coming soon...';
+        detailsDiv.appendChild(detailsP);
+        
+        const referenceDiv = document.createElement('div');
+        referenceDiv.className = 'explanation-reference';
+        const referenceStrong = document.createElement('strong');
+        referenceStrong.textContent = 'Reference: ';
+        const referenceText = document.createTextNode(chaithasika.bookReference || 'Ven. Rerukane Chandawimala Thero');
+        referenceDiv.appendChild(referenceStrong);
+        referenceDiv.appendChild(referenceText);
+        
+        card.appendChild(header);
+        card.appendChild(descriptionDiv);
+        card.appendChild(detailsDiv);
+        card.appendChild(referenceDiv);
         
         return card;
     }

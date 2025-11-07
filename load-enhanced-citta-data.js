@@ -10,6 +10,7 @@ async function loadEnhancedCittaData() {
         
         if (!response.ok) {
             console.warn(`⚠️ Could not load citta-data-enhanced.json (${response.status}). Skipping.`);
+            // Don't fail completely - embedded data will be used
             return null;
         }
         

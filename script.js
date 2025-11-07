@@ -216,6 +216,9 @@ const meditationData = {
     }
 };
 
+// Make meditationData globally available for fallback when JSON files can't be loaded (local file://)
+window.meditationData = meditationData;
+
 // Global variables
 let selectedCittas = [];
 let filteredData = [...meditationData.cittas];
@@ -286,22 +289,44 @@ function populateTable() {
             (citta.descriptionSi || citta.description || citta.name) : 
             (citta.descriptionEn || citta.description || citta.nameEn);
         
-        row.innerHTML = `
-            <td>${citta.id}</td>
-            <td>${displayName}</td>
-            <td><span class="category-badge category-${(citta.categoryEn || citta.category).toLowerCase()}">${displayCategory}</span></td>
-            <td>${displayType}</td>
-            <td>${displayDescription}</td>
-            <td>
-                <button class="view-details-btn" data-citta-id="${citta.id}" title="${currentLanguage === 'si' ? 'විස්තර බලන්න' : 'View Details'}">
-                    <i class="fas fa-eye"></i> <span data-si="විස්තර" data-en="View">විස්තර</span>
-                </button>
-            </td>
-        `;
+        // Create row elements properly to avoid HTML injection issues
+        const idCell = document.createElement('td');
+        idCell.textContent = citta.id;
+        
+        const nameCell = document.createElement('td');
+        nameCell.textContent = displayName;
+        
+        const categoryCell = document.createElement('td');
+        const categoryBadge = document.createElement('span');
+        const categoryClass = (citta.categoryEn || citta.category).toLowerCase().replace(/\s+/g, '-');
+        categoryBadge.className = `category-badge category-${categoryClass}`;
+        categoryBadge.textContent = displayCategory;
+        categoryCell.appendChild(categoryBadge);
+        
+        const typeCell = document.createElement('td');
+        typeCell.textContent = displayType;
+        
+        const descCell = document.createElement('td');
+        descCell.textContent = displayDescription;
+        
+        const actionCell = document.createElement('td');
+        const viewBtn = document.createElement('button');
+        viewBtn.className = 'view-details-btn';
+        viewBtn.setAttribute('data-citta-id', citta.id);
+        viewBtn.title = currentLanguage === 'si' ? 'විස්තර බලන්න' : 'View Details';
+        viewBtn.innerHTML = '<i class="fas fa-eye"></i> <span data-si="විස්තර" data-en="View">විස්තර</span>';
+        
+        actionCell.appendChild(viewBtn);
+        
+        row.appendChild(idCell);
+        row.appendChild(nameCell);
+        row.appendChild(categoryCell);
+        row.appendChild(typeCell);
+        row.appendChild(descCell);
+        row.appendChild(actionCell);
         row.style.cursor = 'pointer';
         
-        // Add click handler to the button
-        const viewBtn = row.querySelector('.view-details-btn');
+        // Add click handler to the button (viewBtn already created above)
         if (viewBtn) {
             viewBtn.addEventListener('click', function(e) {
                 e.stopPropagation();
@@ -349,6 +374,9 @@ function populateTable() {
         tableBody.appendChild(row);
     });
 }
+
+// Make populateTable globally available
+window.populateTable = populateTable;
 
 // Populate the selection grid for comparison
 function populateSelectionGrid() {
@@ -688,6 +716,13 @@ function updateLanguage() {
     
     // Update any dynamically generated content
     updateDynamicContent();
+    
+    // Clean up broken HTML if term definitions system is available
+    if (window.termDefinitionsSystem && typeof window.termDefinitionsSystem.cleanupBrokenHTML === 'function') {
+        window.termDefinitionsSystem.cleanupBrokenHTML();
+    } else if (typeof cleanupBrokenHTML === 'function') {
+        cleanupBrokenHTML();
+    }
 }
 
 function updateTableWithTranslations() {

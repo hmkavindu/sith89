@@ -32,9 +32,16 @@ async function loadTermDefinitions() {
 
 // Find term in text (handles partial matches and word boundaries)
 function findTermInText(text, term) {
-    // Create regex pattern for the term with word boundaries
+    // Don't match if term is part of a longer word (unless it's an exact match)
+    // For Sinhala, we need to be careful about word boundaries
     const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const pattern = new RegExp(`(${escapedTerm})`, 'gi');
+    
+    // Check for exact match first
+    if (text === term) return true;
+    
+    // Try to find the term with proper boundaries
+    // Use word boundaries that work for Sinhala - check for non-Sinhala characters or start/end
+    const pattern = new RegExp(`(^|[^\\u0D80-\\u0DFF\\w])(${escapedTerm})([^\\u0D80-\\u0DFF\\w]|$)`, 'gi');
     return pattern.test(text);
 }
 
@@ -45,9 +52,31 @@ function extractTermsFromText(text) {
     const foundTerms = [];
     const textLower = text.toLowerCase();
     
-    // Check each term in the database
+    // First, find all longer terms to exclude shorter substrings
+    const longerTerms = [];
     for (const term in termDefinitions) {
         if (findTermInText(textLower, term.toLowerCase())) {
+            longerTerms.push(term);
+        }
+    }
+    
+    // Sort longer terms by length (longest first)
+    longerTerms.sort((a, b) => b.length - a.length);
+    
+    // Check each term in the database
+    for (const term in termDefinitions) {
+        const termLower = term.toLowerCase();
+        
+        // Skip if this term is a substring of a longer term that exists in text
+        let isSubstring = false;
+        for (const longerTerm of longerTerms) {
+            if (longerTerm.length > term.length && longerTerm.includes(term) && textLower.includes(longerTerm.toLowerCase())) {
+                isSubstring = true;
+                break;
+            }
+        }
+        
+        if (!isSubstring && findTermInText(textLower, termLower)) {
             foundTerms.push({
                 term: term,
                 definition: termDefinitions[term]
@@ -97,6 +126,19 @@ function processTextNode(node) {
         return;
     }
     
+    // Skip if parent or ancestor has been processed
+    let parent = node.parentElement;
+    while (parent) {
+        if (parent.dataset.termsProcessed === 'true' || 
+            parent.classList.contains('term-clickable') ||
+            parent.classList.contains('category-card') ||
+            parent.classList.contains('explanation-category') ||
+            parent.closest('.category-card')) {  // Also check if ancestor is category-card
+            return;
+        }
+        parent = parent.parentElement;
+    }
+    
     // Skip if parent contains HTML attributes (already processed)
     if (node.parentElement && (
         node.parentElement.innerHTML.includes('data-term-clickable') ||
@@ -115,11 +157,38 @@ function processTextNode(node) {
     let hasChanges = false;
     
     // Mark terms in text - process longest terms first
-    terms.forEach(({ term }) => {
-        const regex = new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-        if (regex.test(processedText)) {
-            processedText = processedText.replace(regex, `<span class="term-marker" data-term="${term}">$1</span>`);
-            hasChanges = true;
+    // But avoid matching shorter terms that are part of longer terms
+    const sortedTerms = terms.sort((a, b) => b.term.length - a.term.length);
+    const usedPositions = new Set();
+    
+    sortedTerms.forEach(({ term }) => {
+        const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        // Use word boundaries for Sinhala - check if not part of longer word
+        const regex = new RegExp(`(^|[^\\u0D80-\\u0DFF])(${escapedTerm})([^\\u0D80-\\u0DFF]|$)`, 'gi');
+        let match;
+        
+        while ((match = regex.exec(processedText)) !== null) {
+            const startPos = match.index + match[1].length;
+            const endPos = startPos + term.length;
+            
+            // Check if this position overlaps with an already marked term
+            let overlaps = false;
+            for (const pos of usedPositions) {
+                if (startPos < pos.end && endPos > pos.start) {
+                    overlaps = true;
+                    break;
+                }
+            }
+            
+            if (!overlaps) {
+                const before = processedText.substring(0, startPos);
+                const matched = processedText.substring(startPos, endPos);
+                const after = processedText.substring(endPos);
+                processedText = before + `<span class="term-marker" data-term="${term}">${matched}</span>` + after;
+                usedPositions.add({ start: startPos, end: endPos });
+                hasChanges = true;
+                break; // Only mark first occurrence to avoid multiple wraps
+            }
         }
     });
     
@@ -127,6 +196,11 @@ function processTextNode(node) {
     if (hasChanges && processedText !== text) {
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = processedText;
+        
+        // Mark parent as processed
+        if (node.parentElement) {
+            node.parentElement.dataset.termsProcessed = 'true';
+        }
         
         // Replace text node with new content
         const parent = node.parentNode;
@@ -150,6 +224,11 @@ function processTextNode(node) {
 // Process all text nodes in an element
 function processElementForTerms(element) {
     if (!element || !termDefinitions) return;
+    
+    // Skip category cards entirely
+    if (element.classList && element.classList.contains('category-card')) {
+        return;
+    }
     
     // Skip if already processed
     if (element.dataset.termsProcessed === 'true') return;
@@ -284,6 +363,53 @@ function processElementForTerms(element) {
     });
 }
 
+// Clean up any broken HTML from previous processing
+function cleanupBrokenHTML() {
+    // Fix broken category card headings
+    const categoryCards = document.querySelectorAll('.category-card h3');
+    categoryCards.forEach(h3 => {
+        const siText = h3.getAttribute('data-si');
+        const enText = h3.getAttribute('data-en');
+        if (siText && enText) {
+            // Reset to clean HTML
+            const currentLang = window.currentLanguage || 'si';
+            h3.innerHTML = '';
+            h3.textContent = currentLang === 'si' ? siText : enText;
+            h3.setAttribute('data-si', siText);
+            h3.setAttribute('data-en', enText);
+            // Mark as processed to prevent re-processing
+            h3.dataset.termsProcessed = 'true';
+            if (h3.parentElement) {
+                h3.parentElement.dataset.termsProcessed = 'true';
+            }
+        }
+    });
+    
+    // Fix broken explanation category spans
+    const explanationCategories = document.querySelectorAll('.explanation-category');
+    explanationCategories.forEach(span => {
+        // If it contains broken HTML, clean it up
+        if (span.innerHTML && (span.innerHTML.includes('කුසල්">') || span.innerHTML.includes('">අ'))) {
+            const text = span.textContent.replace(/කුසල්">/g, '').replace(/">/g, '').trim();
+            span.textContent = text;
+            span.dataset.termsProcessed = 'true';
+        }
+    });
+    
+    // Fix broken filter options
+    const filterOptions = document.querySelectorAll('#categoryFilter option');
+    filterOptions.forEach(option => {
+        if (option.textContent.includes('">')) {
+            const siText = option.getAttribute('data-si');
+            const enText = option.getAttribute('data-en');
+            if (siText && enText) {
+                const currentLang = window.currentLanguage || 'si';
+                option.textContent = currentLang === 'si' ? siText : enText;
+            }
+        }
+    });
+}
+
 // Initialize click handlers for all terms
 function initializeTermClickHandlers() {
     if (!termDefinitions) {
@@ -293,7 +419,10 @@ function initializeTermClickHandlers() {
     
     console.log('🔄 Initializing term click handlers...');
     
-    // Process main content areas
+    // Clean up any broken HTML first
+    cleanupBrokenHTML();
+    
+    // Process main content areas - exclude category cards to avoid breaking HTML
     const contentAreas = [
         '#table',
         '#analysis',
@@ -302,7 +431,7 @@ function initializeTermClickHandlers() {
         '.tab-content',
         '.mental-state-card',
         '.analysis-card',
-        '.category-card',
+        // Exclude .category-card to prevent breaking HTML
         'table',
         '.moha-analysis-container',
         '.raga-analysis-container',
@@ -320,6 +449,13 @@ function initializeTermClickHandlers() {
         mutations.forEach(mutation => {
             mutation.addedNodes.forEach(node => {
                 if (node.nodeType === Node.ELEMENT_NODE) {
+                    // Skip category cards and their children
+                    if (node.classList && (
+                        node.classList.contains('category-card') ||
+                        node.closest('.category-card')
+                    )) {
+                        return;
+                    }
                     processElementForTerms(node);
                 }
             });
@@ -395,13 +531,6 @@ function showTermDefinition(term, definition, element) {
                     <div style="margin-top: 5px;">
                         ${definition.relatedTerms.map(t => `<span class="related-term" style="display: inline-block; margin: 2px 5px; padding: 3px 8px; background: #f0f0f0; border-radius: 5px; cursor: pointer;" data-term="${t}">${t}</span>`).join('')}
                     </div>
-                </div>
-            ` : ''}
-            ${definition.tipitakaLink ? `
-                <div class="term-reference" style="margin-top: 15px; padding-top: 10px; border-top: 1px solid #ddd;">
-                    <a href="${definition.tipitakaLink}" target="_blank" style="color: #2F4F4F; text-decoration: none;">
-                        <i class="fas fa-external-link-alt"></i> Tipitaka.lk වෙත යන්න
-                    </a>
                 </div>
             ` : ''}
         </div>
@@ -546,14 +675,22 @@ function cleanupDisplayedAttributes() {
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
         addTermDefinitionStyles();
+        // Clean up broken HTML immediately
+        cleanupBrokenHTML();
         loadTermDefinitions().then(() => {
+            // Clean up again after term definitions load
+            cleanupBrokenHTML();
             // Clean up any displayed attributes after a short delay
             setTimeout(cleanupDisplayedAttributes, 2000);
         });
     });
 } else {
     addTermDefinitionStyles();
+    // Clean up broken HTML immediately
+    cleanupBrokenHTML();
     loadTermDefinitions().then(() => {
+        // Clean up again after term definitions load
+        cleanupBrokenHTML();
         // Clean up any displayed attributes after a short delay
         setTimeout(cleanupDisplayedAttributes, 2000);
     });
@@ -564,7 +701,8 @@ window.termDefinitionsSystem = {
     loadTermDefinitions,
     showTermDefinition,
     closeTermDefinition,
-    initializeTermClickHandlers
+    initializeTermClickHandlers,
+    cleanupBrokenHTML
 };
 
 

@@ -15,11 +15,25 @@ async function loadAbhidhammaData() {
             // Fallback: try to use existing meditationData if available
             if (window.meditationData && window.meditationData.cittas) {
                 console.log('✅ Using existing meditationData as fallback');
+                // Set abhidhammaData to use embedded data structure
+                abhidhammaData = {
+                    metadata: {
+                        title: "Abhidhamma Citta Chaithasika Dataset",
+                        description: "Embedded dataset from script.js",
+                        source: "Chiththa Chaithasika Tool V2.2.xlsx"
+                    },
+                    cittas: window.meditationData.cittas,
+                    cetasikas: window.meditationData.cetasikas || { factors: [] }
+                };
                 setTimeout(() => {
                     initializeCittaClickHandlers();
                     updateSearchFunctionality();
+                    // Refresh table if it exists
+                    if (window.populateTable) {
+                        window.populateTable();
+                    }
                 }, 1000);
-                return window.meditationData;
+                return abhidhammaData;
             }
             return null;
         }
@@ -48,11 +62,25 @@ async function loadAbhidhammaData() {
         // Don't break the site - use fallback data if available
         if (window.meditationData && window.meditationData.cittas) {
             console.log('✅ Using existing meditationData as fallback');
+            // Set abhidhammaData to use embedded data structure
+            abhidhammaData = {
+                metadata: {
+                    title: "Abhidhamma Citta Chaithasika Dataset",
+                    description: "Embedded dataset from script.js",
+                    source: "Chiththa Chaithasika Tool V2.2.xlsx"
+                },
+                cittas: window.meditationData.cittas,
+                cetasikas: window.meditationData.cetasikas || { factors: [] }
+            };
             setTimeout(() => {
                 initializeCittaClickHandlers();
                 updateSearchFunctionality();
+                // Refresh table if it exists
+                if (window.populateTable) {
+                    window.populateTable();
+                }
             }, 1000);
-            return window.meditationData;
+            return abhidhammaData;
         }
         return null;
     }
@@ -306,27 +334,17 @@ function populateCittaModal(citta, modal) {
         });
     }
     
-    // References
+    // References - removed source links as requested
     const references = modal.querySelector('#cittaDetailReferences');
     if (citta.references) {
         references.innerHTML = `
-            <div class="reference-item">
-                <strong data-si="ටිපිටක" data-en="Tipitaka">ටිපිටක:</strong>
-                <a href="${citta.tipitakaLink || citta.references.tipitaka}" target="_blank">
-                    ${citta.references.tipitaka || citta.tipitakaLink}
-                </a>
-            </div>
-            <div class="reference-item">
-                <strong data-si="සම්ප්‍රදාය" data-en="Archive">සම්ප්‍රදාය:</strong>
-                <a href="${citta.archiveLink || citta.references.archive}" target="_blank">
-                    ${citta.references.archive || citta.archiveLink}
-                </a>
-            </div>
             <div class="reference-item">
                 <strong data-si="මූලාශ්‍ර" data-en="Source">මූලාශ්‍ර:</strong>
                 <span>${citta.references.source || 'Ven. Rerukane Chandawimala Thero\'s books'}</span>
             </div>
         `;
+    } else {
+        references.innerHTML = '';
     }
 }
 

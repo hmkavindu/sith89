@@ -8,6 +8,7 @@ async function loadRerukaneAbhidhammaData() {
         
         if (!response.ok) {
             console.warn(`⚠️ Could not load rerukane-abhidhamma-data.json (${response.status}). Skipping.`);
+            // Don't fail completely - embedded data will be used
             return null;
         }
         
