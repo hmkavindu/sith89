@@ -326,13 +326,162 @@ function populateTable() {
         row.appendChild(actionCell);
         row.style.cursor = 'pointer';
         
-        // Add click handler to the button (viewBtn already created above)
+        // Add click handler to the button - this takes priority
         if (viewBtn) {
             viewBtn.addEventListener('click', function(e) {
+                e.preventDefault();
                 e.stopPropagation();
-                // Navigate to dedicated citta guide page (inner page)
-                window.location.href = `citta-${citta.id}-guide.html`;
-            });
+                e.stopImmediatePropagation();
+                
+                const cittaId = parseInt(this.getAttribute('data-citta-id') || citta.id);
+                console.log('View details button clicked for citta:', cittaId);
+                
+                // For cittas 1-3, use new detailed pages
+                if (cittaId === 1) {
+                    console.log('Navigating to citta-1-detailed-page.html');
+                    window.location.href = 'citta-1-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 2) {
+                    console.log('Navigating to citta-2-detailed-page.html');
+                    window.location.href = 'citta-2-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 3) {
+                    console.log('Navigating to citta-3-detailed-page.html');
+                    window.location.href = 'citta-3-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 4) {
+                    console.log('Navigating to citta-4-detailed-page.html');
+                    window.location.href = 'citta-4-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 5) {
+                    console.log('Navigating to citta-5-detailed-page.html');
+                    window.location.href = 'citta-5-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 6) {
+                    console.log('Navigating to citta-6-detailed-page.html');
+                    window.location.href = 'citta-6-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 7) {
+                    console.log('Navigating to citta-7-detailed-page.html');
+                    window.location.href = 'citta-7-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 8) {
+                    console.log('Navigating to citta-8-detailed-page.html');
+                    window.location.href = 'citta-8-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 9) {
+                    console.log('Navigating to citta-9-detailed-page.html');
+                    window.location.href = 'citta-9-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 10) {
+                    console.log('Navigating to citta-10-detailed-page.html');
+                    window.location.href = 'citta-10-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 11) {
+                    console.log('Navigating to citta-11-detailed-page.html');
+                    window.location.href = 'citta-11-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 12) {
+                    console.log('Navigating to citta-12-detailed-page.html');
+                    window.location.href = 'citta-12-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 13) {
+                    console.log('Navigating to citta-13-detailed-page.html');
+                    window.location.href = 'citta-13-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 14) {
+                    console.log('Navigating to citta-14-detailed-page.html');
+                    window.location.href = 'citta-14-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 15) {
+                    console.log('Navigating to citta-15-detailed-page.html');
+                    window.location.href = 'citta-15-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 16) {
+                    console.log('Navigating to citta-16-detailed-page.html');
+                    window.location.href = 'citta-16-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 17) {
+                    console.log('Navigating to citta-17-detailed-page.html');
+                    window.location.href = 'citta-17-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 18) {
+                    console.log('Navigating to citta-18-detailed-page.html');
+                    window.location.href = 'citta-18-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 19) {
+                    console.log('Navigating to citta-19-detailed-page.html');
+                    window.location.href = 'citta-19-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 20) {
+                    console.log('Navigating to citta-20-detailed-page.html');
+                    window.location.href = 'citta-20-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 21) {
+                    console.log('Navigating to citta-21-detailed-page.html');
+                    window.location.href = 'citta-21-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 22) {
+                    console.log('Navigating to citta-22-detailed-page.html');
+                    window.location.href = 'citta-22-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 23) {
+                    console.log('Navigating to citta-23-detailed-page.html');
+                    window.location.href = 'citta-23-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 24) {
+                    console.log('Navigating to citta-24-detailed-page.html');
+                    window.location.href = 'citta-24-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 25) {
+                    console.log('Navigating to citta-25-detailed-page.html');
+                    window.location.href = 'citta-25-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 26) {
+                    console.log('Navigating to citta-26-detailed-page.html');
+                    window.location.href = 'citta-26-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 27) {
+                    console.log('Navigating to citta-27-detailed-page.html');
+                    window.location.href = 'citta-27-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 28) {
+                    console.log('Navigating to citta-28-detailed-page.html');
+                    window.location.href = 'citta-28-detailed-page.html';
+                    return false;
+                }
+                // Fallback to old guide pages for other cittas
+                console.log('Navigating to guide page for citta:', cittaId);
+                window.location.href = `citta-${cittaId}-guide.html`;
+                return false;
+            }, true); // Use capture phase to ensure it fires first
         }
         
         // Also make entire row clickable - but show modal popup instead

@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>සෝමනස්ස සහගත ඥාන විප්‍රයුක්ත සසංස්කාරික සිත - විස්තර</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            background: linear-gradient(135deg, #e0e7ff 0%, #ddd6fe 50%, #fce7f3 100%);
+            min-height: 100vh;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Hero Header */
+        .hero-header {
+            background: linear-gradient(135deg, #9333ea 0%, #ec4899 100%);
+            color: white;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2rem;
+        }
+
+        .hero-content {
+            padding: 3rem 1.5rem;
+        }
+
+        .hero-title-section {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-icon {
+            width: 4rem;
+            height: 4rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-top: 0.75rem;
+            opacity: 0.95;
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1.25rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Section Card */
+        .section-card {
+            margin-bottom: 1.25rem;
+            border: 2px solid;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-header {
+            width: 100%;
+            padding: 1.25rem 1.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            border: none;
+        }
+
+        .section-header:hover {
+            transform: translateY(-2px);
+        }
+
+        .section-header.green {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-color: #10b981;
+        }
+
+        .section-header.blue {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-color: #3b82f6;
+        }
+
+        .section-header.purple {
+            background: linear-gradient(135deg, #f3e8ff 0%, #ddd6fe 100%);
+            border-color: #8b5cf6;
+        }
+
+        .section-header.orange {
+            background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+            border-color: #f59e0b;
+        }
+
+        .section-header.red {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            border-color: #ef4444;
+        }
+
+        .section-header.gold {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-color: #fbbf24;
+        }
+
+        .section-header.pink {
+            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+            border-color: #ec4899;
+        }
+
+        .section-title-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-icon {
+            width: 1.75rem;
+            height: 1.75rem;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            color: #1f2937;
+        }
+
+        .section-chevron {
+            width: 1.5rem;
+            height: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .section-header.expanded .section-chevron {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            padding: 1.5rem 1.75rem;
+            background: rgba(249, 250, 251, 0.7);
+            display: none;
+        }
+
+        .section-content.expanded {
+            display: block;
+        }
+
+        /* Content Styles */
+        .content-box {
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 4px solid;
+            margin-bottom: 1rem;
+        }
+
+        .content-box.green {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-color: #10b981;
+        }
+
+        .content-box.yellow {
+            background: #fef3c7;
+            border: 2px solid #fbbf24;
+        }
+
+        .content-box.blue {
+            background: #dbeafe;
+            border-left: 8px solid #2563eb;
+        }
+
+        .content-box.red {
+            background: #fee2e2;
+            border-left: 8px solid #dc2626;
+        }
+
+        .content-box.green-border {
+            background: #d1fae5;
+            border-left: 8px solid #059669;
+        }
+
+        .content-box.orange {
+            background: #fed7aa;
+            border-left: 8px solid #f59e0b;
+        }
+
+        .content-box.purple {
+            background: #f3e8ff;
+            border-left: 8px solid #a855f7;
+        }
+
+        .content-box.pink {
+            background: #fce7f3;
+            border-left: 8px solid #ec4899;
+        }
+
+        .content-box.gold {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 4px solid #fbbf24;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-2xl {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .text-3xl {
+            font-size: 1.875rem;
+            font-weight: 700;
+        }
+
+        .text-4xl {
+            font-size: 2.25rem;
+            font-weight: 700;
+        }
+
+        .text-5xl {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .text-6xl {
+            font-size: 4rem;
+            font-weight: 700;
+        }
+
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-3 { margin-bottom: 0.75rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mb-10 { margin-bottom: 2.5rem; }
+        .mt-2 { margin-top: 0.5rem; }
+        .mt-3 { margin-top: 0.75rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-6 { margin-top: 1.5rem; }
+        .mt-8 { margin-top: 2rem; }
+        .mt-10 { margin-top: 2.5rem; }
+        .mt-16 { margin-top: 4rem; }
+
+        .p-2 { padding: 0.5rem; }
+        .p-3 { padding: 0.75rem; }
+        .p-4 { padding: 1rem; }
+        .p-5 { padding: 1.25rem; }
+        .p-6 { padding: 1.5rem; }
+        .p-8 { padding: 2rem; }
+        .p-12 { padding: 3rem; }
+
+        .px-10 { padding-left: 2.5rem; padding-right: 2.5rem; }
+        .px-12 { padding-left: 3rem; padding-right: 3rem; }
+        .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+        .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+
+        .rounded { border-radius: 0.5rem; }
+        .rounded-lg { border-radius: 0.75rem; }
+        .rounded-xl { border-radius: 1rem; }
+        .rounded-2xl { border-radius: 1.5rem; }
+        .rounded-3xl { border-radius: 2rem; }
+        .rounded-full { border-radius: 999px; }
+
+        .shadow { box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .shadow-md { box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .shadow-lg { box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
+        .shadow-xl { box-shadow: 0 20px 25px rgba(0,0,0,0.1); }
+        .shadow-2xl { box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25); }
+
+        .bg-white { background: white; }
+        .bg-yellow-50 { background: #fef9c3; }
+        .bg-white-20 { background: rgba(255, 255, 255, 0.2); }
+        .bg-white-80 { background: rgba(255, 255, 255, 0.8); }
+        .bg-yellow-400 { background: #facc15; }
+        .bg-yellow-500 { background: #eab308; }
+        .bg-amber-100 { background: #fef3c7; }
+        .bg-amber-200 { background: #fde68a; }
+        .bg-amber-500 { background: #f59e0b; }
+        .bg-amber-600 { background: #d97706; }
+        .bg-amber-700 { background: #b45309; }
+        .bg-amber-900 { color: #78350f; }
+
+        .backdrop-blur {
+            backdrop-filter: blur(10px);
+        }
+
+        .font-bold { font-weight: 700; }
+        .font-semibold { font-weight: 600; }
+        .font-medium { font-weight: 500; }
+        .font-black { font-weight: 900; }
+
+        .text-gray-800 { color: #1f2937; }
+        .text-gray-700 { color: #374151; }
+        .text-gray-600 { color: #4b5563; }
+        .text-gray-500 { color: #6b7280; }
+        .text-gray-900 { color: #111827; }
+        .text-green-900 { color: #065f46; }
+        .text-blue-900 { color: #1e3a8a; }
+        .text-red-900 { color: #991b1b; }
+        .text-purple-900 { color: #581c87; }
+        .text-orange-900 { color: #7c2d12; }
+        .text-indigo-900 { color: #312e81; }
+        .text-yellow-900 { color: #78350f; }
+        .text-green-800 { color: #065f46; }
+        .text-red-800 { color: #991b1b; }
+        .text-purple-800 { color: #6b21a8; }
+        .text-green-700 { color: #059669; }
+        .text-blue-700 { color: #1d4ed8; }
+        .text-red-700 { color: #b91c1c; }
+        .text-purple-700 { color: #7c3aed; }
+        .text-indigo-700 { color: #4338ca; }
+        .text-yellow-700 { color: #a16207; }
+        .text-orange-700 { color: #c2410c; }
+        .text-pink-700 { color: #be185d; }
+        .text-pink-800 { color: #9f1239; }
+        .text-pink-900 { color: #831843; }
+        .text-amber-700 { color: #b45309; }
+        .text-amber-900 { color: #78350f; }
+
+        .text-white { color: white; }
+        .text-center { text-align: center; }
+
+        .space-y-2 > * + * { margin-top: 0.5rem; }
+        .space-y-3 > * + * { margin-top: 0.75rem; }
+        .space-y-4 > * + * { margin-top: 1rem; }
+        .space-y-6 > * + * { margin-top: 1.5rem; }
+        .space-y-8 > * + * { margin-top: 2rem; }
+
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .items-start { align-items: flex-start; }
+        .justify-center { justify-content: center; }
+        .justify-between { justify-content: space-between; }
+        .gap-2 { gap: 0.5rem; }
+        .gap-3 { gap: 0.75rem; }
+        .gap-4 { gap: 1rem; }
+        .gap-5 { gap: 1.25rem; }
+        .gap-6 { gap: 1.5rem; }
+        .gap-8 { gap: 2rem; }
+
+        .leading-relaxed { line-height: 1.75; }
+        .italic { font-style: italic; }
+
+        ul, ol {
+            list-style: none;
+            padding: 0;
+        }
+
+        ol {
+            counter-reset: item;
+        }
+
+        ol li {
+            counter-increment: item;
+        }
+
+        /* Summary Section */
+        .summary-section {
+            margin-top: 4rem;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            border-radius: 2rem;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            padding: 3rem;
+            color: white;
+        }
+
+        .summary-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.25rem;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .summary-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 2rem;
+        }
+
+        .summary-highlight {
+            text-align: center;
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-top: 2.5rem;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1.5rem;
+            border-radius: 1rem;
+        }
+
+        .footer-section {
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .footer-title {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #f59e0b;
+        }
+
+        .footer-subtitle {
+            font-size: 2.5rem;
+            color: #d97706;
+            margin-top: 1rem;
+        }
+
+        .footer-text {
+            font-size: 1.5rem;
+            color: #374151;
+            margin-top: 2.5rem;
+        }
+
+        /* Back Button */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: white;
+            color: #2c3e50;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin: 1.5rem 0;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 1.75rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.125rem;
+            }
+
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-title {
+                font-size: 2.5rem;
+            }
+
+            .footer-subtitle {
+                font-size: 1.5rem;
+            }
+
+            .footer-text {
+                font-size: 1.125rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            <span>මුල් පිටුවට ආපසු</span>
+        </a>
+
+        <!-- Hero Header -->
+        <div class="hero-header">
+            <div class="hero-content">
+                <div class="hero-title-section">
+                    <i class="fas fa-brain hero-icon"></i>
+                    <div>
+                        <h1 class="hero-title">
+                            සෝමනස්ස සහගත ඥාන විප්‍රයුක්ත සසංස්කාරික සිත
+                        </h1>
+                        <p class="hero-subtitle">මහා කුසල සිත් 8න් හතරවැන්න • ත්‍රිහේතුක • අනුන්ගේ පෙළඹවීමෙන් ඇතිවූ!</p>
+                    </div>
+                </div>
+                <div class="hero-badges">
+                    <span class="hero-badge">කාමාවචර කුසල 8න් 4</span>
+                    <span class="hero-badge">චෛතසික 36</span>
+                    <span class="hero-badge">ත්‍රිහේතුක</span>
+                    <span class="hero-badge">ඤාණ විප්‍රයුක්ත</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 1 -->
+        <div class="section-card">
+            <button class="section-header green" onclick="toggleSection('lvl1')">
+                <div class="section-title-content">
+                    <i class="fas fa-lightbulb section-icon" style="color: #059669;"></i>
+                    <h2 class="section-title">මට්ටම 1 • සරලම අර්ථය</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron" style="color: #059669;"></i>
+            </button>
+            <div class="section-content" id="lvl1">
+                <div class="content-box green">
+                    <h3 class="text-2xl font-bold text-green-900 mb-6 text-center">ඉතා සරලෙන් කිව්වොත්...</h3>
+                    <div class="grid-2">
+                        <div class="bg-white p-6 rounded-xl shadow-md">
+                            <p class="flex items-center gap-3 mb-3">
+                                <span class="text-4xl">😊</span>
+                                <span class="text-lg"><strong>සතුට</strong> සහගත</span>
+                            </p>
+                            <p class="flex items-center gap-3 mb-3">
+                                <span class="text-4xl">❌</span>
+                                <span class="text-lg"><strong>ඤාණය</strong> නැහැ (විප්‍රයුක්ත)</span>
+                            </p>
+                            <p class="flex items-center gap-3">
+                                <span class="text-4xl">👥</span>
+                                <span class="text-lg"><strong>අනුන්</strong> පෙළඹවූ (සසංස්කාරික)</span>
+                            </p>
+                        </div>
+                        <div class="content-box yellow">
+                            <p class="font-bold text-yellow-900 mb-3">උදාහරණ:</p>
+                            <p class="italic leading-relaxed text-lg text-gray-700">
+                                "අද මම දන් දුන්නා…  
+                                හිතට ලැබුණේ ලොකු සතුටක්!  
+                                ඒත් ඒකෙන් වෙන්නේ මොකක්ද කියලා මම තේරුම් ගත්තේ නැහැ."  
+                                → සතුට තියෙනවා, ඒත් ඤාණය නැහැ → මහා කුසලයි!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 2 -->
+        <div class="section-card">
+            <button class="section-header blue" onclick="toggleSection('lvl2')">
+                <div class="section-title-content">
+                    <i class="fas fa-book section-icon" style="color: #2563eb;"></i>
+                    <h2 class="section-title">මට්ටම 2 • වචන විග්‍රහය</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron" style="color: #2563eb;"></i>
+            </button>
+            <div class="section-content" id="lvl2">
+                <div class="space-y-6">
+                    <div class="grid-2">
+                        <div class="content-box pink">
+                            <h4 class="font-bold text-xl text-pink-900 mb-3">සෝමනස්ස සහගත</h4>
+                            <p class="text-lg">ප්‍රීති සහගත වේදනාව</p>
+                            <p class="text-sm mt-2 text-pink-700">කුසල ප්‍රීතිය – ධර්මානුභාවයෙන් බැඳුණු සතුට</p>
+                        </div>
+                        <div class="content-box purple">
+                            <h4 class="font-bold text-xl text-purple-900 mb-3">ඥාන විප්‍රයුක්ත</h4>
+                            <p class="text-lg">ඤාණය නැති සිතක්</p>
+                            <p class="text-sm mt-2 text-purple-700">ප්‍රඥා චෛතසිකය යෙදෙන්නේ නැහැ → ත්‍රිහේතුක</p>
+                        </div>
+                        <div class="content-box orange">
+                            <h4 class="font-bold text-xl text-orange-900 mb-3">සසංස්කාරික</h4>
+                            <p class="text-lg">අනුන්ගේ පෙළඹවීමෙන් ඇතිවූ</p>
+                            <p class="text-sm mt-2 text-orange-700">යාළුවෝ, ගුරුවරයා, මාධ්‍ය බලපෑම් කළා</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 3 -->
+        <div class="section-card">
+            <button class="section-header purple" onclick="toggleSection('lvl3')">
+                <div class="section-title-content">
+                    <i class="fas fa-brain section-icon" style="color: #7c3aed;"></i>
+                    <h2 class="section-title">මට්ටම 3 • අභිධර්ම වර්ගීකරණය</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron" style="color: #7c3aed;"></i>
+            </button>
+            <div class="section-content" id="lvl3">
+                <div class="content-box purple">
+                    <h3 class="text-2xl font-bold text-purple-900 mb-6 text-center">මෙම සිත අයත් වන්නේ...</h3>
+                    <div class="grid-3">
+                        <div class="bg-white p-6 rounded-2xl text-center shadow-lg">
+                            <div class="text-5xl mb-3">8</div>
+                            <p class="font-bold text-purple-700">මහා කුසල සිත්</p>
+                            <p class="text-sm text-purple-600 mt-2">හතරවැන්න</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl text-center shadow-lg">
+                            <div class="text-5xl mb-3">24</div>
+                            <p class="font-bold text-purple-700">කාමාවචර කුසල</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl text-center shadow-lg">
+                            <div class="text-5xl mb-3">89/121</div>
+                            <p class="font-bold text-purple-700">සියලු සිත් අතර</p>
+                        </div>
+                    </div>
+                    <div class="mt-10 bg-gradient-to-r from-amber-200 to-yellow-200 p-6 rounded-2xl">
+                        <h4 class="font-bold text-xl text-amber-900 mb-4">මහා කුසල 8 – සංඛ්‍යා පද්ධතිය</h4>
+                        <div class="grid-4 gap-4 text-sm">
+                            <div class="p-3 rounded-lg bg-white-80">1. සෝමනස්ස ඤාණ සම්ප්‍රයුක්ත අසංඛාරික</div>
+                            <div class="p-3 rounded-lg bg-white-80">2. සෝමනස්ස ඤාණ සම්ප්‍රයුක්ත සසංස්කාරික</div>
+                            <div class="p-3 rounded-lg bg-white-80">3. සෝමනස්ස ඤාණ විප්‍රයුක්ත අසංඛාරික</div>
+                            <div class="p-3 rounded-lg bg-yellow-500 font-bold animate-pulse">4. සෝමනස්ස ඤාණ විප්‍රයුක්ත සසංස්කාරික ⭐</div>
+                            <div class="p-3 rounded-lg bg-white-80">5. උපේක්ෂා ඤාණ සම්ප්‍රයුක්ත අසංඛාරික</div>
+                            <div class="p-3 rounded-lg bg-white-80">6. උපේක්ෂා ඤාණ සම්ප්‍රයුක්ත සසංස්කාරික</div>
+                            <div class="p-3 rounded-lg bg-white-80">7. උපේක්ෂා ඤාණ විප්‍රයුක්ත අසංඛාරික</div>
+                            <div class="p-3 rounded-lg bg-white-80">8. උපේක්ෂා ඤාණ විප්‍රයුක්ත සසංස්කාරික</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 4 -->
+        <div class="section-card">
+            <button class="section-header gold" onclick="toggleSection('lvl4')">
+                <div class="section-title-content">
+                    <i class="fas fa-heart section-icon" style="color: #f59e0b;"></i>
+                    <h2 class="section-title">මට්ටම 4 • චෛතසික සංයුතිය (36)</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron" style="color: #f59e0b;"></i>
+            </button>
+            <div class="section-content" id="lvl4">
+                <div class="content-box gold">
+                    <h3 class="text-3xl font-bold text-amber-900 mb-8 text-center">
+                        ත්‍රිහේතුක + ඤාණ විප්‍රයුක්ත + සසංස්කාරික = 36 චෛතසික!
+                    </h3>
+                    <div class="text-center mb-8">
+                        <p class="text-6xl font-black text-amber-700">ඤාණය නැති + සසංස්කාරික නිසා → 36!</p>
+                        <p class="text-lg text-amber-800 mt-2">(ඤාණ සම්ප්‍රයුක්ත සසංස්කාරිකට වඩා 1ක් අඩු - අමෝහ, පඤ්ඤින්ද්‍රිය, ඤාණ තුනම නැහැ, ඒත් විතක්ක තියෙනවා)</p>
+                    </div>
+                    <div class="grid-2">
+                        <div class="bg-white p-6 rounded-2xl shadow-xl">
+                            <h4 class="font-bold text-blue-800 text-xl mb-4">සබ්බ චිත්ත සාධාරණ 7</h4>
+                            <div class="grid-2 gap-3">
+                                <div class="bg-blue-100 p-3 rounded text-center">ඵස්ස</div>
+                                <div class="bg-blue-100 p-3 rounded text-center">වේදනා</div>
+                                <div class="bg-blue-100 p-3 rounded text-center">සඤ්ඤා</div>
+                                <div class="bg-blue-100 p-3 rounded text-center">චේතනා</div>
+                                <div class="bg-blue-100 p-3 rounded text-center">ඒකග්ගතා</div>
+                                <div class="bg-blue-100 p-3 rounded text-center">ජීවිතින්ද්‍රිය</div>
+                                <div class="bg-blue-100 p-3 rounded text-center">මනසිකාර</div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl shadow-xl">
+                            <h4 class="font-bold text-green-800 text-xl mb-4">කුසල සාධාරණ 16</h4>
+                            <div class="text-sm grid-3 gap-2">
+                                <div class="bg-green-100 p-2 rounded text-center">අලෝභ</div>
+                                <div class="bg-green-100 p-2 rounded text-center">අදෝස</div>
+                                <div class="bg-green-100 p-2 rounded text-center">මෙත්තා</div>
+                                <div class="bg-green-100 p-2 rounded text-center">කරුණා</div>
+                                <div class="bg-green-100 p-2 rounded text-center">මුදිතා</div>
+                                <div class="bg-green-100 p-2 rounded text-center">සද්ධා</div>
+                                <div class="bg-green-100 p-2 rounded text-center">සති</div>
+                                <div class="bg-green-100 p-2 rounded text-center">හිරි</div>
+                                <div class="bg-green-100 p-2 rounded text-center">ඔත්තප්ප</div>
+                                <div class="bg-green-100 p-2 rounded text-center">තප්ප</div>
+                                <div class="bg-green-100 p-2 rounded text-center">චාග</div>
+                                <div class="bg-green-100 p-2 rounded text-center">උපේක්ෂා</div>
+                                <div class="bg-green-100 p-2 rounded text-center">කාය පසාද</div>
+                                <div class="bg-green-100 p-2 rounded text-center">මනෝ පසාද</div>
+                                <div class="bg-green-100 p-2 rounded text-center">මනසිකාර</div>
+                                <div class="bg-green-100 p-2 rounded text-center">විරිය</div>
+                            </div>
+                            <div class="mt-4 bg-yellow-50 p-3 rounded border-2 border-yellow-400">
+                                <p class="text-sm font-bold text-yellow-900 text-center">
+                                    ⚠️ අමෝහ, පඤ්ඤින්ද්‍රිය, ඤාණ තුනම නැහැ!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 bg-gradient-to-r from-amber-100 to-yellow-100 p-8 rounded-3xl border-4 border-amber-500">
+                        <h4 class="font-bold text-2xl text-amber-900 mb-6 text-center">විශේෂ ලක්ෂණ</h4>
+                        <div class="grid-3 gap-6 text-center">
+                            <div class="bg-amber-600 text-white p-6 rounded-2xl">
+                                <p class="text-5xl mb-2">3</p>
+                                <p class="font-bold">හේතු</p>
+                            </div>
+                            <div class="bg-amber-600 text-white p-6 rounded-2xl">
+                                <p class="text-5xl mb-2">❌</p>
+                                <p class="font-bold">ඤාණය නැහැ</p>
+                            </div>
+                            <div class="bg-amber-600 text-white p-6 rounded-2xl">
+                                <p class="text-5xl mb-2">👥</p>
+                                <p class="font-bold">පෙළඹවීමෙන්</p>
+                            </div>
+                        </div>
+                        <div class="mt-6 bg-white p-4 rounded-xl">
+                            <p class="text-center text-lg font-bold text-amber-900">
+                                ඤාණය නැතත් + පෙළඹවීමෙන් ආවත් මහා කුසලයි! ත්‍රිහේතුක නිසා!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 5 -->
+        <div class="section-card">
+            <button class="section-header red" onclick="toggleSection('lvl5')">
+                <div class="section-title-content">
+                    <i class="fas fa-exclamation-circle section-icon" style="color: #dc2626;"></i>
+                    <h2 class="section-title">මට්ටම 5 • උදාහරණ 10ක්</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron" style="color: #dc2626;"></i>
+            </button>
+            <div class="section-content" id="lvl5">
+                <div class="content-box red">
+                    <h3 class="text-3xl font-bold text-red-900 mb-8 text-center">
+                        අනුන්ගේ පෙළඹවීමෙන් ඇතිවෙන ලස්සන මොහොත්!
+                    </h3>
+                    <div class="grid-2 gap-6">
+                        <div class="bg-white p-5 rounded-xl shadow-lg border-l-8 border-yellow-500">
+                            <p class="text-lg font-medium">යාළුවා කිව්වා "දන් දෙමු" → දී සතුට ලැබුණා (ධර්මය ගැන තේරුමක් නැහැ)</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl shadow-lg border-l-8 border-yellow-500">
+                            <p class="text-lg font-medium">ගුරුවරයා පෙළඹව්වා "සීලය රකිමු" → රැක සතුට ලැබුණා (ඤාණය නැහැ)</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl shadow-lg border-l-8 border-yellow-500">
+                            <p class="text-lg font-medium">මිත්‍රයා කිව්වා "මෙත්තාව පතුරවමු" → පතුරවා සතුට ලැබුණා (ධර්මය ගැන තේරුමක් නැහැ)</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl shadow-lg border-l-8 border-yellow-500">
+                            <p class="text-lg font-medium">යාළුවා පෙළඹව්වා "කරුණාවෙන් උදව් කරමු" → කර සතුට ලැබුණා (ඤාණය නැහැ)</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl shadow-lg border-l-8 border-yellow-500">
+                            <p class="text-lg font-medium">ගුරුවරයා කිව්වා "ධර්ම දානය දෙමු" → දී සතුට ලැබුණා (ධර්මය ගැන තේරුමක් නැහැ)</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl shadow-lg border-l-8 border-yellow-500">
+                            <p class="text-lg font-medium">මිත්‍රයා පෙළඹව්වා "බණ අහමු" → අහා සතුට ලැබුණා (ධර්මය තේරුම් ගත්තේ නැහැ)</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl shadow-lg border-l-8 border-yellow-500">
+                            <p class="text-lg font-medium">යාළුවා කිව්වා "පිංකමක් කරමු" → කර සතුට ලැබුණා (ඤාණය නැහැ)</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl shadow-lg border-l-8 border-yellow-500">
+                            <p class="text-lg font-medium">ගුරුවරයා පෙළඹව්වා "මුදිතාව පතුරවමු" → පතුරවා සතුට ලැබුණා (ධර්මය ගැන තේරුමක් නැහැ)</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl shadow-lg border-l-8 border-yellow-500">
+                            <p class="text-lg font-medium">මිත්‍රයා කිව්වා "භාවනා කරමු" → කර සතුට ලැබුණා (ඤාණය නැහැ)</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl shadow-lg border-l-8 border-yellow-500">
+                            <p class="text-lg font-medium">යාළුවා පෙළඹව්වා "සද්ධාවෙන් පින්කමක් කරමු" → කර සතුට ලැබුණා (ධර්මය ගැන තේරුමක් නැහැ)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="summary-section">
+            <h2 class="summary-title">
+                <i class="fas fa-info-circle"></i>
+                සාරාංශය – අනුන්ගේ පෙළඹවීමෙන් ආවත් මහා කුසලයි!
+            </h2>
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <p class="text-6xl mb-3">😊</p>
+                    <p class="text-2xl font-bold">සෝමනස්ස</p>
+                </div>
+                <div class="summary-card">
+                    <p class="text-6xl mb-3">❌</p>
+                    <p class="text-2xl font-bold">ඤාණ විප්‍රයුක්ත</p>
+                </div>
+                <div class="summary-card">
+                    <p class="text-6xl mb-3">👥</p>
+                    <p class="text-2xl font-bold">සසංස්කාරික</p>
+                </div>
+                <div class="summary-card">
+                    <p class="text-6xl mb-3">✨</p>
+                    <p class="text-2xl font-bold">මහා කුසලයි</p>
+                </div>
+            </div>
+            <p class="summary-highlight">
+                මහා කුසල 8න් හතරවැන්න – ඤාණය නැතත් + පෙළඹවීමෙන් ආවත් ත්‍රිහේතුක නිසා මහා කුසලයි!
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-section">
+            <p class="footer-title">සාධු! සාධු! සාධු!</p>
+            <p class="footer-subtitle">මහා කුසල 4/8 සම්පූර්ණයි!</p>
+            <p class="footer-text">
+                ඊළඟ එක කියන්න → මම හදලා දෙන්නම්!<br>
+                (89 ඉතිරි සිත් – එකින් එක හදමු!)
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function toggleSection(sectionId) {
+            try {
+                const section = document.getElementById(sectionId);
+                if (!section) {
+                    console.error('Section not found:', sectionId);
+                    return;
+                }
+                
+                const header = section.previousElementSibling;
+                if (!header) {
+                    console.error('Header not found for section:', sectionId);
+                    return;
+                }
+                
+                if (section.classList.contains('expanded')) {
+                    section.classList.remove('expanded');
+                    header.classList.remove('expanded');
+                } else {
+                    section.classList.add('expanded');
+                    header.classList.add('expanded');
+                }
+            } catch (error) {
+                console.error('Error toggling section:', error);
+            }
+        }
+
+        // Initialize - expand first section by default
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                toggleSection('lvl1');
+            } catch (error) {
+                console.error('Error initializing page:', error);
+            }
+        });
+    </script>
+</body>
+</html>

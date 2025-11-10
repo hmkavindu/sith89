@@ -1,11 +1,80 @@
 (() => {
-    const launcher = document.getElementById('chatbotLauncher');
-    const widget = document.getElementById('chatbotWidget');
-    const closeBtn = document.getElementById('chatbotClose');
-    const messagesContainer = document.getElementById('chatbotMessages');
-    const form = document.getElementById('chatbotForm');
-    const input = document.getElementById('chatbotInput');
-    const statusEl = document.getElementById('chatbotStatus');
+    function ensureChatbotElements() {
+        let launcher = document.getElementById('chatbotLauncher');
+        let widget = document.getElementById('chatbotWidget');
+        let closeBtn = document.getElementById('chatbotClose');
+        let messagesContainer = document.getElementById('chatbotMessages');
+        let form = document.getElementById('chatbotForm');
+        let input = document.getElementById('chatbotInput');
+        let statusEl = document.getElementById('chatbotStatus');
+
+        if (launcher && widget && closeBtn && messagesContainer && form && input && statusEl) {
+            return { launcher, widget, closeBtn, messagesContainer, form, input, statusEl };
+        }
+
+        if (!document.body) {
+            return {};
+        }
+
+        const fragment = document.createDocumentFragment();
+
+        launcher = document.createElement('button');
+        launcher.id = 'chatbotLauncher';
+        launcher.className = 'chatbot-launcher';
+        launcher.type = 'button';
+        launcher.setAttribute('aria-expanded', 'false');
+        launcher.setAttribute('aria-controls', 'chatbotWidget');
+        launcher.innerHTML = `
+            <span class="chatbot-launcher-icon"><i class="fas fa-comments"></i></span>
+            <span class="chatbot-launcher-label" data-si="දම්ම AI උපකාරක" data-en="Dhamma AI Guide">දම්ම AI උපකාරක</span>
+        `;
+        fragment.appendChild(launcher);
+
+        widget = document.createElement('section');
+        widget.id = 'chatbotWidget';
+        widget.className = 'chatbot-widget';
+        widget.setAttribute('aria-hidden', 'true');
+        widget.setAttribute('role', 'dialog');
+        widget.setAttribute('aria-label', 'Dhamma AI Chat Assistant');
+        widget.innerHTML = `
+            <div class="chatbot-header">
+                <div class="chatbot-title-group">
+                    <h3 data-si="ධර්ම දැනුම AI උපකාරක" data-en="Dhamma Knowledge Assistant">ධර්ම දැනුම AI උපකාරක</h3>
+                    <p data-si="අභිධර්මය, චිත්ත, චෛතසික පිළිබඳ ප්‍රශ්න කරන්න" data-en="Ask about Abhidhamma, chitta, and cetasika insights">අභිධර්මය, චිත්ත, චෛතසික පිළිබඳ ප්‍රශ්න කරන්න</p>
+                </div>
+                <button id="chatbotClose" class="chatbot-close" aria-label="Close chatbot"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div id="chatbotMessages" class="chatbot-messages" aria-live="polite"></div>
+            <form id="chatbotForm" class="chatbot-form" autocomplete="off">
+                <label class="chatbot-input-label" for="chatbotInput" data-si="ඔබේ ප්‍රශ්නය ලියන්න" data-en="Type your question">
+                    ඔබේ ප්‍රශ්නය ලියන්න
+                </label>
+                <div class="chatbot-input-row">
+                    <textarea id="chatbotInput" class="chatbot-input" rows="2" placeholder="අභිධර්මය පිළිබඳව ඔබට වැරදි නොවන විශ්ලේෂණයක් ලබා ගන්න..." data-si-placeholder="අභිධර්මය පිළිබඳව ඔබේ ප්‍රශ්නය ලියන්න..." data-en-placeholder="Ask your Abhidhamma question..." required></textarea>
+                    <button id="chatbotSend" type="submit" class="chatbot-send">
+                        <span class="chatbot-send-text" data-si="නැව්වන්න" data-en="Send">නැව්වන්න</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </form>
+            <div id="chatbotStatus" class="chatbot-status" role="status" aria-live="polite"></div>
+        `;
+        fragment.appendChild(widget);
+
+        document.body.appendChild(fragment);
+
+        return {
+            launcher: document.getElementById('chatbotLauncher'),
+            widget: document.getElementById('chatbotWidget'),
+            closeBtn: document.getElementById('chatbotClose'),
+            messagesContainer: document.getElementById('chatbotMessages'),
+            form: document.getElementById('chatbotForm'),
+            input: document.getElementById('chatbotInput'),
+            statusEl: document.getElementById('chatbotStatus')
+        };
+    }
+
+    const { launcher, widget, closeBtn, messagesContainer, form, input, statusEl } = ensureChatbotElements();
 
     if (!launcher || !widget || !messagesContainer || !form || !input || !statusEl) {
         console.warn('Chatbot elements missing, skipping chatbot initialization.');

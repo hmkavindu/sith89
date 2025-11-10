@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>උපේක්ෂා සහගත ඤාණ විප්‍රයුක්ත අසංස්කාරික සිත - විස්තර</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            background: linear-gradient(135deg, #e0f2fe 0%, #ede9fe 45%, #f4f4f5 100%);
+            min-height: 100vh;
+            line-height: 1.8;
+            color: #1f2937;
+        }
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 1.5rem 3.5rem; }
+        .back-button {
+            display: inline-flex;
+            gap: 0.6rem;
+            align-items: center;
+            padding: 0.75rem 1.6rem;
+            margin: 1.5rem 0;
+            background: #ffffff;
+            border-radius: 0.75rem;
+            text-decoration: none;
+            color: #1f2937;
+            font-weight: 600;
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.16);
+            transition: all 0.25s ease;
+        }
+        .back-button:hover { transform: translateX(-6px); box-shadow: 0 20px 45px rgba(15, 23, 42, 0.22); }
+        .hero-header {
+            background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 60%, #ec4899 100%);
+            color: #ffffff;
+            border-radius: 1.75rem;
+            box-shadow: 0 28px 60px rgba(14, 116, 144, 0.32);
+            margin-bottom: 2.3rem;
+        }
+        .hero-content { padding: 3.5rem 2rem; }
+        .hero-title-section { display: flex; gap: 1.5rem; align-items: center; margin-bottom: 1.75rem; }
+        .hero-icon { width: 4.3rem; height: 4.3rem; animation: pulse 2.6s ease-in-out infinite; }
+        @keyframes pulse { 0%,100% {opacity:1; transform:scale(1);} 50% {opacity:.8; transform:scale(0.94);} }
+        .hero-title { font-size: 2.5rem; font-weight: 800; line-height: 1.2; }
+        .hero-subtitle { margin-top: 0.8rem; font-size: 1.15rem; opacity: 0.95; }
+        .hero-badges { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+        .hero-badge {
+            padding: 0.45rem 1.35rem;
+            border-radius: 999px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.22);
+            backdrop-filter: blur(14px);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.38);
+        }
+        .section-card {
+            background: #ffffff;
+            border-radius: 1.35rem;
+            border: 1px solid rgba(148, 163, 184, 0.26);
+            box-shadow: 0 22px 45px rgba(15, 23, 42, 0.12);
+            margin-bottom: 1.7rem;
+            overflow: hidden;
+        }
+        .section-header {
+            width: 100%;
+            padding: 1.35rem 1.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            border: none;
+            background: linear-gradient(135deg, rgba(14,165,233,0.14) 0%, rgba(99,102,241,0.14) 100%);
+            transition: all 0.3s ease;
+        }
+        .section-header:hover { background: linear-gradient(135deg, rgba(14,165,233,0.25) 0%, rgba(99,102,241,0.25) 100%); }
+        .section-header.expanded { box-shadow: inset 0 0 0 2px rgba(14, 165, 233, 0.26); }
+        .section-title-content { display: flex; align-items: center; gap: 1.1rem; }
+        .section-icon { width: 1.9rem; height: 1.9rem; color: #0ea5e9; }
+        .section-title { font-size: 1.26rem; font-weight: 700; color: #0f172a; }
+        .section-chevron { width: 1.5rem; height: 1.5rem; color: #0ea5e9; transition: transform 0.3s ease; }
+        .section-header.expanded .section-chevron { transform: rotate(180deg); }
+        .section-content { padding: 1.8rem 2rem; background: linear-gradient(135deg, #f1f5f9 0%, #e0f2fe 100%); display: none; }
+        .section-content.expanded { display: block; }
+        .content-box {
+            padding: 2rem;
+            border-radius: 1.35rem;
+            margin-bottom: 1.3rem;
+            border: 3px solid rgba(14, 165, 233, 0.16);
+            background: #ffffff;
+            box-shadow: 0 16px 36px rgba(14, 165, 233, 0.08);
+        }
+        .content-box.neutral { background: linear-gradient(135deg, #f8fafc 0%, #e5e7eb 100%); border-color: #9ca3af; }
+        .content-box.warning { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-color: #f59e0b; }
+        .content-box.highlight { background: linear-gradient(135deg, #e0f2fe 0%, #bfdbfe 100%); border-color: #2563eb; }
+        .grid-2 { display: grid; gap: 1.6rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+        .grid-3 { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+        .grid-4 { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+        .badge-list { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.45rem 0.9rem;
+            background: rgba(14, 165, 233, 0.12);
+            border-radius: 999px;
+            font-size: 0.86rem;
+            font-weight: 600;
+            color: #0e7490;
+        }
+        .example-card {
+            background: #ffffff;
+            border-radius: 1.15rem;
+            border-left: 6px solid #f59e0b;
+            padding: 1.2rem 1.25rem;
+            box-shadow: 0 15px 32px rgba(15, 23, 42, 0.12);
+            font-size: 1.02rem;
+            font-weight: 500;
+        }
+        .summary-section {
+            margin-top: 3.5rem;
+            background: linear-gradient(135deg, #0f172a 0%, #334155 60%, #0f172a 100%);
+            color: #f8fafc;
+            padding: 3rem;
+            border-radius: 2.25rem;
+            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.4);
+        }
+        .summary-grid { display: grid; gap: 1.6rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+        .summary-card { background: rgba(148, 163, 184, 0.18); border-radius: 1.7rem; padding: 2rem 1.6rem; backdrop-filter: blur(16px); }
+        .summary-highlight { margin-top: 2.3rem; text-align: center; font-size: 1.75rem; font-weight: 700; padding: 1.4rem; border-radius: 1.2rem; background: rgba(14, 165, 233, 0.18); border: 1px solid rgba(56, 189, 248, 0.45); color: #bae6fd; }
+        .footer-section { margin-top: 3.4rem; text-align: center; }
+        .footer-title { font-size: 3.4rem; font-weight: 800; color: #2563eb; }
+        .footer-text { font-size: 1.35rem; margin-top: 0.9rem; color: #1f2937; }
+        .footer-note { margin-top: 2rem; padding: 1.4rem; border-radius: 1.2rem; background: rgba(37, 99, 235, 0.08); font-weight: 600; }
+        ul { list-style: none; }
+        ul li { position: relative; padding-left: 1.4rem; margin-bottom: 0.6rem; }
+        ul li::before { content: '•'; position: absolute; left: 0; color: #2563eb; font-weight: 800; }
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2rem; }
+            .hero-content { padding: 2.6rem 1.6rem; }
+            .section-content { padding: 1.4rem 1.5rem; }
+            .content-box { padding: 1.6rem; }
+            .summary-section { padding: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            <span>මුල් පිටුවට ආපසු</span>
+        </a>
+
+        <div class="hero-header">
+            <div class="hero-content">
+                <div class="hero-title-section">
+                    <i class="fas fa-brain hero-icon"></i>
+                    <div>
+                        <h1 class="hero-title">උපේක්ෂා සහගත ඤාණ විප්‍රයුක්ත අසංස්කාරික සිත</h1>
+                        <p class="hero-subtitle">මහා කුසල සිත් 8න් හතවැන්න • උපේක්ෂා + ඤාණ නැති • ස්වභාවිකව ඇතිවූ</p>
+                    </div>
+                </div>
+                <div class="hero-badges">
+                    <span class="hero-badge">කාමාවචර කුසල 8න් 7</span>
+                    <span class="hero-badge">චෛතසික 34</span>
+                    <span class="hero-badge">ද්විහේතුක (අලෝභ + අදෝස)</span>
+                    <span class="hero-badge">ඤාණ විප්‍රයුක්ත</span>
+                    <span class="hero-badge">අසංස්කාරික</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <button class="section-header" onclick="toggleSection('lvl1')">
+                <div class="section-title-content">
+                    <i class="fas fa-lightbulb section-icon"></i>
+                    <h2 class="section-title">මට්ටම 1 • සරලම අර්ථය</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="lvl1">
+                <div class="grid-2">
+                    <div class="content-box neutral">
+                        <h3 class="text-xl font-bold mb-4">සෘජු වශයෙන්</h3>
+                        <ul>
+                            <li><strong>උපේක්ෂා:</strong> මනසෙහි සතුටු හෝ දුක නැති මැදිහත්භාවයක්.</li>
+                            <li><strong>ඤාණ විප්‍රයුක්ත:</strong> ඤාණය, පඤ්ඤා, අමෝහ නොමැති – ද්විහේතුක.</li>
+                            <li><strong>අසංස්කාරික:</strong> අත්‍යවශ්‍යයෙන් ස්වයං ස්පූර්තියෙන් – අයෙකු පෙළඹුවේ නැහැ.</li>
+                        </ul>
+                    </div>
+                    <div class="content-box warning">
+                        <h3 class="text-xl font-bold mb-3">උදාහරණයක්</h3>
+                        <p class="leading-relaxed">
+                            "මම දන් දීලා හෝ පින්කමක් කරලා, හැම දේම මැදිහත් හිතකින් කළා. පව් හොඳ මග ගැන ගැඹුරු අවබෝධයක් හිමිවුණේ නැහැ, ඒත් හිතට කුසල උත්සාහයක් ඇති වුණා." → උපේක්ෂා + ඤාණ නැති + ස්වභාවික = මහා කුසලයි.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <button class="section-header" onclick="toggleSection('lvl2')">
+                <div class="section-title-content">
+                    <i class="fas fa-book section-icon"></i>
+                    <h2 class="section-title">මට්ටම 2 • වචන විග්‍රහය</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="lvl2">
+                <div class="grid-2">
+                    <div class="content-box neutral">
+                        <h3 class="font-bold text-lg mb-3">"උපේක්ෂා"</h3>
+                        <ul>
+                            <li>සතුට හෝ දුක නොමැති, සමාන මනෝභාවයක්.</li>
+                            <li>උපේක්ෂා භාවනාවෙන් ඇතිවන මැදිහත්වීම.</li>
+                            <li>කාර්යයන් සාමාන්‍යව සිදු කරන අතර, ව්‍යාකූල නොවන චිත්තයක්.</li>
+                        </ul>
+                    </div>
+                    <div class="content-box warning">
+                        <h3 class="font-bold text-lg mb-3">"ඤාණ විප්‍රයුක්ත"</h3>
+                        <ul>
+                            <li>ඤාණය (පඤ්ඤා) යෙදී නැති – අමෝහ, පඤ්ඤින්ද්‍රිය, ඤාණ චෛතසික 3ක් නොමැති.</li>
+                            <li>හේතු 2ක් (අලෝභ, අදෝස) පමණයි – ද්විහේතුක.</li>
+                            <li>නිවැරදි දහම ගැන ගැඹුරු අවබෝධය නොමැති.</li>
+                        </ul>
+                    </div>
+                    <div class="content-box highlight">
+                        <h3 class="font-bold text-lg mb-3">"අසංස්කාරික"</h3>
+                        <ul>
+                            <li>අනුන්ගේ උපදෙස් නැතිව ස්වයංව ඇතිවී.</li>
+                            <li>පෙර පිරිමැසුම හෝ පවතින උපක්‍රමයක් නිසා ස්වභාවිකව පැනනගි.</li>
+                            <li>විතක්ක චෛතසිකය නොමැති (අතුරුපත් සංකේතයක්).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <button class="section-header" onclick="toggleSection('lvl3')">
+                <div class="section-title-content">
+                    <i class="fas fa-diagram-project section-icon"></i>
+                    <h2 class="section-title">මට්ටම 3 • අභිධර්ම වර්ගීකරණය</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="lvl3">
+                <div class="content-box">
+                    <h3 class="text-2xl font-bold text-center mb-6">මහා කුසල සිත් 8 තිබෙන සංවිධානයේ තැන</h3>
+                    <div class="grid-3">
+                        <div class="content-box neutral">
+                            <p class="text-5xl font-black mb-2">8</p>
+                            <p class="font-bold">මහා කුසල සිත්</p>
+                            <p class="text-sm text-gray-600 mt-2">අංක 7 – උපේක්ෂා, ඤාණ විප්‍රයුක්ත, අසංස්කාරික</p>
+                        </div>
+                        <div class="content-box neutral">
+                            <p class="text-5xl font-black mb-2">34</p>
+                            <p class="font-bold">චෛතසික සංයුතිය</p>
+                            <p class="text-sm text-gray-600 mt-2">ඤාණය හා විතක්ක නොමැති නිසා 34</p>
+                        </div>
+                        <div class="content-box neutral">
+                            <p class="text-5xl font-black mb-2">89/121</p>
+                            <p class="font-bold">සම්පූර්ණ චිත්ත වර්ගීකරණයේ තැන</p>
+                        </div>
+                    </div>
+                    <div class="content-box highlight" style="margin-top:1.6rem;">
+                        <h4 class="font-bold text-lg mb-4">මහා කුසල 8 – සංඛ්‍යා පද්ධතිය</h4>
+                        <div class="grid-4">
+                            <div class="badge">1. සෝමනස්ස ඤාණ සම්ප්‍රයුක්ත අසං</div>
+                            <div class="badge">2. සෝමනස්ස ඤාණ සම්ප්‍රයුක්ත සසං</div>
+                            <div class="badge">3. සෝමනස්ස ඤාණ විප්‍රයුක්ත අසං</div>
+                            <div class="badge">4. සෝමනස්ස ඤාණ විප්‍රයුක්ත සසං</div>
+                            <div class="badge">5. උපේක්ෂා ඤාණ සම්ප්‍රයුක්ත අසං</div>
+                            <div class="badge">6. උපේක්ෂා ඤාණ සම්ප්‍රයුක්ත සසං</div>
+                            <div class="badge" style="background: rgba(56,189,248,0.28); color:#0f172a; font-weight:700;">7. උපේක්ෂා ඤාණ විප්‍රයුක්ත අසං ⭐</div>
+                            <div class="badge">8. උපේක්ෂා ඤාණ විප්‍රයුක්ත සසං</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <button class="section-header" onclick="toggleSection('lvl4')">
+                <div class="section-title-content">
+                    <i class="fas fa-heart section-icon"></i>
+                    <h2 class="section-title">මට්ටම 4 • චෛතසික සංයුතිය (34)</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="lvl4">
+                <div class="content-box">
+                    <h3 class="text-center text-2xl font-bold mb-6">ඤාණ නැති + විතක්ක නැති නිසා → 34 චෛතසික!</h3>
+                    <div class="grid-2">
+                        <div class="content-box neutral">
+                            <h4 class="font-bold mb-3">සබ්බචිත්ත සාධාරණ 7</h4>
+                            <div class="badge-list">
+                                <span class="badge">ඵස්ස</span>
+                                <span class="badge">වේදනා</span>
+                                <span class="badge">සඤ්ඤා</span>
+                                <span class="badge">චේතනා</span>
+                                <span class="badge">ඒකග්ගතා</span>
+                                <span class="badge">ජීවිතින්ද්‍රිය</span>
+                                <span class="badge">මනසිකාර</span>
+                            </div>
+                        </div>
+                        <div class="content-box neutral">
+                            <h4 class="font-bold mb-3">කුසල සාධාරණ 16</h4>
+                            <div class="grid-3">
+                                <span class="badge">අලෝභ</span>
+                                <span class="badge">අදෝස</span>
+                                <span class="badge">සද්ධා</span>
+                                <span class="badge">සති</span>
+                                <span class="badge">හිරි</span>
+                                <span class="badge">ඔත්තප්ප</span>
+                                <span class="badge">කාය පසද්ධි</span>
+                                <span class="badge">චිත්ත පසද්ධි</span>
+                                <span class="badge">කාය ලහුතා</span>
+                                <span class="badge">චිත්ත ලහුතා</span>
+                                <span class="badge">කාය මුදුතා</span>
+                                <span class="badge">චිත්ත මුදුතා</span>
+                                <span class="badge">කාය කම්මඤ්ඤතා</span>
+                                <span class="badge">චිත්ත කම්මඤ්ඤතා</span>
+                                <span class="badge">කාය පාගුඤ්ඤතා</span>
+                                <span class="badge">චිත්ත පාගුඤ්ඤතා</span>
+                                <span class="badge">කායුජුකතා</span>
+                                <span class="badge">චිත්තුජුකතා</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-box neutral">
+                        <h4 class="font-bold mb-3">ප්‍රකීර්ණක 5 (විතක්ක නැති!)</h4>
+                        <div class="badge-list">
+                            <span class="badge" style="background: rgba(244, 114, 182, 0.2); color:#9d174d;">විතක්ක ❌</span>
+                            <span class="badge">විචාර</span>
+                            <span class="badge">අධිමොක්ඛ</span>
+                            <span class="badge">විරිය</span>
+                            <span class="badge">පීති</span>
+                            <span class="badge">ඡන්ද</span>
+                        </div>
+                        <div class="badge-list" style="margin-top:0.8rem;">
+                            <span class="badge">කරුණා/මුදිතා</span>
+                            <span class="badge">සම්මා වාචා</span>
+                            <span class="badge">සම්මා කම්මන්ත</span>
+                            <span class="badge">සම්මා ආජීව</span>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-3">ඤාණය නැති නිසා <strong>අමෝහ, පඤ්ඤින්ද්‍රිය, ඤාණ</strong> නොමැති. අසංස්කාරික නිසා <strong>විතක්ක</strong> නැති. ඒ නිසා සම්පූර්ණ සංයුතිය 34ක්.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <button class="section-header" onclick="toggleSection('lvl5')">
+                <div class="section-title-content">
+                    <i class="fas fa-seedling section-icon"></i>
+                    <h2 class="section-title">මට්ටම 5 • උදාහරණ 10ක්</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="lvl5">
+                <div class="grid-2">
+                    <div class="example-card">1. උපන් හිතක් – කවුරුත් නොකියවාම දැනටමත් පින්කමක් කිරීමට තැත් කිරීම (මැදිහත්, ඤාණ නැති).</div>
+                    <div class="example-card">2. දවසෙ වැඩ කරද්දී ස්වයංවම නරක සිතක් නැතිව ජීවත් වීම – නමුත් ධර්මය ගැන ගැඹුරු අවබෝධයක් නැති.</div>
+                    <div class="example-card">3. යමෙක්ට උදව් කළා – හිතට සතුටක් නැතිව මැදිහත් තමන්ගේ කර්තව්‍යය කළා.</div>
+                    <div class="example-card">4. දන් දීලා හෝ බණ අහලා – ඉගැන්වීමට කොයි කෙනෙක්වත් නොතිබුණත් තමාටම හිතුණා.</div>
+                    <div class="example-card">5. සදාචාරය රකිනකොට – නිවැරදි මඟ ගැන සිතා සතුටක් නැතිව ධර්මය අනුගමනය කිරීම.</div>
+                    <div class="example-card">6. විපස්සනා හෝ ධර්ම ව්‍යාපෘතියක් නොව, උපන් හිතකින් පවත්වන උපකාරී ක්‍රියා.</div>
+                    <div class="example-card">7. දොරටු බලා ගැනීම – "මට මෙය කරන්න ඕන" කියලා මැදිහත් බවෙන් කරන්නේ මුල් පරමිතාවෙන්.</div>
+                    <div class="example-card">8. ආගමික නිතිකර්මයක් ස්වෙන් අනුගමනය කළත්, ඤාණය නැති නිසා ගැඹුරු අවබෝධයක් නොකැමති.</div>
+                    <div class="example-card">9. ව්‍යාපෘතියකට හිතේ උනන්දුවෙන් නියුතු වීම – සතුට හෝ දුක නැතිව මහන්සි වෙන ලක්ෂණය.</div>
+                    <div class="example-card">10. අධිකාරි කෙනෙකුට හිතුණා – සමාජයට හොඳ කරන්න, නමුත් ධර්මය ගැන දැනුමක් නොමැතිව.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="summary-section">
+            <h2 class="text-3xl font-bold text-center mb-8">සාරාංශයෙන් – මනසේ මැදිහත්වීමේ කුසලතාව</h2>
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <p class="text-5xl mb-2">😐</p>
+                    <p class="font-bold text-lg">උපේක්ෂා සහගත</p>
+                    <p class="text-sm mt-2">සතුට හෝ දුක්ඛය නැති මැදිහත් මනස.</p>
+                </div>
+                <div class="summary-card">
+                    <p class="text-5xl mb-2">❌✨</p>
+                    <p class="font-bold text-lg">ඤාණ විප්‍රයුක්ත</p>
+                    <p class="text-sm mt-2">ඤාණය නැති නිසා ද්විහේතුක.</p>
+                </div>
+                <div class="summary-card">
+                    <p class="text-5xl mb-2">🌱</p>
+                    <p class="font-bold text-lg">අසංස්කාරික</p>
+                    <p class="text-sm mt-2">අනුන් පෙළඹවීමක් නොමැති ස්වයං පාරිභෝගික ගුණය.</p>
+                </div>
+                <div class="summary-card">
+                    <p class="text-5xl mb-2">34</p>
+                    <p class="font-bold text-lg">චෛතසික සංයුතිය</p>
+                    <p class="text-sm mt-2">අමෝහ + පඤ්ඤා + විතක්ක නොමැති නිසා 34.</p>
+                </div>
+            </div>
+            <p class="summary-highlight">උපේක්ෂා + ඤාණ නැත + අසංස්කාරික = ත්‍රිවිධ හේතු 2ක් (අලෝභ, අදෝස) පමණක් සහිත මහා කුසල සිත!</p>
+        </div>
+
+        <div class="footer-section">
+            <p class="footer-title">සාධු! සාධු! සාධු!</p>
+            <p class="footer-text">මහා කුසල 7/8 සම්පූර්ණයි • තව එකක් – උපේක්ෂා ඤාණ විප්‍රයුක්ත සසංස්කාරික!</p>
+            <p class="footer-note">ඊළඟ පියවර: සසංස්කාරික වර්ගයේ (උපේක්ෂා + ඤාණ නැති + අනුන් පෙළඹවූ) සිතක් සකස් කරමු. මට දැනුම් දෙන්න!</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleSection(sectionId) {
+            try {
+                const section = document.getElementById(sectionId);
+                if (!section) return;
+                const header = section.previousElementSibling;
+                const expanded = section.classList.contains('expanded');
+                if (expanded) {
+                    section.classList.remove('expanded');
+                    header.classList.remove('expanded');
+                } else {
+                    section.classList.add('expanded');
+                    header.classList.add('expanded');
+                }
+            } catch (error) {
+                console.error('Error toggling section:', error);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            try { toggleSection('lvl1'); } catch (error) { console.error(error); }
+        });
+    </script>
+</body>
+</html>

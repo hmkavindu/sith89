@@ -186,7 +186,7 @@ function processTextNode(node) {
                 const after = processedText.substring(endPos);
                 processedText = before + `<span class="term-marker" data-term="${term}">${matched}</span>` + after;
                 usedPositions.add({ start: startPos, end: endPos });
-                hasChanges = true;
+            hasChanges = true;
                 break; // Only mark first occurrence to avoid multiple wraps
             }
         }

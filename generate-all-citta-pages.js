@@ -402,3 +402,4 @@ console.log(`   📁 Total: ${generated + skipped} pages`);
 console.log(`\n✨ All citta pages created successfully!`);
 console.log(`\n🌐 Open http://localhost:8888 to view the site with all citta pages.`);
 
+

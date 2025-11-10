@@ -96,3 +96,4 @@ The background slider now includes 12 images:
 - All images use `background-size: cover` to fill the viewport
 - Images are optimized for both desktop and mobile viewing
 
+

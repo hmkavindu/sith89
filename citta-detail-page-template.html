@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">චිත්ත විස්තර - අභිධර්මය</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .detail-page-container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 2rem 1rem;
+        }
+        
+        .detail-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: white;
+            color: #2c3e50;
+            text-decoration: none;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .detail-header {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-top: 4px solid #8e44ad;
+        }
+        
+        .detail-header h1 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .detail-header p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+        
+        .section-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .section-header {
+            padding: 1.25rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+        
+        .section-header:hover {
+            background: #f8f9fa;
+        }
+        
+        .section-header.green { background: linear-gradient(135deg, #d4f1d4, #bfe9bf); }
+        .section-header.blue { background: linear-gradient(135deg, #dbeafe, #bfdbfe); }
+        .section-header.purple { background: linear-gradient(135deg, #f3e8ff, #ddd6fe); }
+        .section-header.orange { background: linear-gradient(135deg, #fed7aa, #fdba74); }
+        .section-header.red { background: linear-gradient(135deg, #fecaca, #fca5a5); }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+        
+        .section-icon {
+            font-size: 1.5rem;
+        }
+        
+        .section-content {
+            padding: 1.5rem;
+            display: none;
+        }
+        
+        .section-content.expanded {
+            display: block;
+        }
+        
+        .content-box {
+            background: #f8f9fa;
+            border-left: 4px solid;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .content-box.green { border-color: #10b981; }
+        .content-box.blue { border-color: #3b82f6; }
+        .content-box.purple { border-color: #8b5cf6; }
+        .content-box.orange { border-color: #f59e0b; }
+        .content-box.red { border-color: #ef4444; }
+        
+        .cetasika-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        
+        .cetasika-item {
+            background: white;
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .summary-card {
+            background: white;
+            padding: 1.25rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .summary-card h3 {
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+        
+        .summary-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .summary-card li {
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        
+        .final-message {
+            background: linear-gradient(135deg, #8e44ad, #e74c3c);
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="detail-page-container">
+        <div class="detail-content">
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                <span data-si="මුල් පිටුවට ආපසු" data-en="Back to Home">මුල් පිටුවට ආපසු</span>
+            </a>
+            
+            <div class="detail-header">
+                <h1 id="cittaName">සෝමනස්ස සහගත දිට්ඨිගත සම්ප්‍රයුක්ත අසංඛාරික සිත</h1>
+                <p id="cittaDescription">අභිධර්ම අනුව සරල සිට ගැඹුරු විශ්ලේෂණය</p>
+            </div>
+            
+            <!-- Sections will be dynamically loaded here -->
+            <div id="sectionsContainer"></div>
+        </div>
+    </div>
+    
+    <script src="citta-detail-loader.js"></script>
+</body>
+</html>
+
