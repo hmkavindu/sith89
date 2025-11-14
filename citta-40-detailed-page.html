@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ද්විතීය ධ්‍යානයේ සකදාගාමී මග්ග චිත්තය - විස්තර</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            background: radial-gradient(circle at top, #0b1120 0%, #1d4ed8 45%, #0f172a 100%);
+            min-height: 100vh;
+            color: #e2e8f0;
+            line-height: 1.78;
+        }
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 1.5rem 3.5rem; }
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.75rem 1.6rem;
+            margin: 1.6rem 0;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 0.85rem;
+            text-decoration: none;
+            color: #f8fafc;
+            font-weight: 600;
+            box-shadow: 0 18px 40px rgba(8, 47, 73, 0.32);
+            transition: all 0.25s ease;
+        }
+        .back-button:hover { transform: translateX(-6px); box-shadow: 0 24px 52px rgba(8, 47, 73, 0.45); }
+        .hero-header {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.28) 0%, rgba(129, 140, 248, 0.45) 45%, rgba(34, 197, 94, 0.65) 100%);
+            border-radius: 1.9rem;
+            box-shadow: 0 32px 64px rgba(8, 47, 73, 0.45);
+            margin-bottom: 2.4rem;
+        }
+        .hero-content { padding: 3.8rem 2.2rem; }
+        .hero-title-section { display: flex; gap: 1.6rem; align-items: center; margin-bottom: 2rem; }
+        .hero-icon { width: 4.1rem; height: 4.1rem; color: #38bdf8; animation: pulse 3s ease-in-out infinite; }
+        @keyframes pulse { 0%,100% {opacity:1; transform:scale(1);} 50% {opacity:.84; transform:scale(0.95);} }
+        .hero-title { font-size: 2.45rem; font-weight: 800; line-height: 1.22; color: #f8fafc; }
+        .hero-subtitle { margin-top: 0.75rem; font-size: 1.12rem; color: #bfdbfe; }
+        .hero-badges { display: flex; flex-wrap: wrap; gap: 1rem; }
+        .hero-badge {
+            padding: 0.45rem 1.35rem;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            background: rgba(15, 23, 42, 0.45);
+            color: #bbf7d0;
+            backdrop-filter: blur(12px);
+            box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.32);
+        }
+        .section-card {
+            background: rgba(15, 23, 42, 0.78);
+            border-radius: 1.35rem;
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            box-shadow: 0 24px 48px rgba(2, 6, 23, 0.45);
+            margin-bottom: 1.7rem;
+            overflow: hidden;
+        }
+        .section-header {
+            width: 100%;
+            padding: 1.35rem 1.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            border: none;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.24) 0%, rgba(129, 140, 248, 0.24) 100%);
+            transition: all 0.3s ease;
+        }
+        .section-header:hover { background: linear-gradient(135deg, rgba(56, 189, 248, 0.3) 0%, rgba(129, 140, 248, 0.3) 100%); }
+        .section-header.expanded { box-shadow: inset 0 0 0 2px rgba(56, 189, 248, 0.35); }
+        .section-title-content { display: flex; align-items: center; gap: 1.1rem; }
+        .section-icon { width: 1.9rem; height: 1.9rem; color: #38bdf8; }
+        .section-title { font-size: 1.27rem; font-weight: 700; color: #e0f2fe; }
+        .section-chevron { width: 1.5rem; height: 1.5rem; color: #38bdf8; transition: transform 0.3s ease; }
+        .section-header.expanded .section-chevron { transform: rotate(180deg); }
+        .section-content { padding: 1.8rem 2rem; background: rgba(8, 28, 50, 0.85); display: none; }
+        .section-content.expanded { display: block; }
+        .content-box {
+            padding: 2rem;
+            border-radius: 1.35rem;
+            margin-bottom: 1.3rem;
+            border: 2px solid rgba(56, 189, 248, 0.32);
+            background: rgba(15, 23, 42, 0.68);
+            box-shadow: 0 18px 36px rgba(8, 47, 73, 0.42);
+        }
+        .content-box.highlight { background: linear-gradient(135deg, rgba(56, 189, 248, 0.18) 0%, rgba(129, 140, 248, 0.18) 100%); border-color: rgba(56, 189, 248, 0.48); }
+        .content-box.warning { background: linear-gradient(135deg, rgba(253, 224, 71, 0.14) 0%, rgba(250, 250, 125, 0.2) 100%); border-color: rgba(202, 138, 4, 0.4); color: #0f172a; }
+        .grid-2 { display: grid; gap: 1.6rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+        .grid-3 { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+        .grid-4 { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+        .badge-list { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.45rem 0.9rem;
+            background: rgba(56, 189, 248, 0.2);
+            border-radius: 999px;
+            font-size: 0.86rem;
+            font-weight: 600;
+            color: #f0f9ff;
+        }
+        .example-card {
+            background: rgba(15, 23, 42, 0.78);
+            border-radius: 1.15rem;
+            border-left: 6px solid rgba(56, 189, 248, 0.58);
+            padding: 1.2rem 1.3rem;
+            box-shadow: 0 16px 32px rgba(2, 6, 23, 0.55);
+            font-size: 1.02rem;
+            font-weight: 500;
+            color: #e2e8f0;
+        }
+        .summary-section {
+            margin-top: 3.5rem;
+            background: linear-gradient(135deg, rgba(2, 6, 23, 0.9) 0%, rgba(15, 23, 42, 0.85) 55%, rgba(56, 189, 248, 0.28) 100%);
+            color: #e0f2fe;
+            padding: 3rem;
+            border-radius: 2.25rem;
+            box-shadow: 0 36px 72px rgba(2, 6, 23, 0.6);
+        }
+        .summary-grid { display: grid; gap: 1.6rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+        .summary-card { background: rgba(56, 189, 248, 0.18); border-radius: 1.7rem; padding: 2rem 1.6rem; backdrop-filter: blur(16px); }
+        .summary-highlight { margin-top: 2.4rem; text-align: center; font-size: 1.7rem; font-weight: 700; padding: 1.4rem; border-radius: 1.2rem; background: rgba(56, 189, 248, 0.22); border: 1px solid rgba(56, 189, 248, 0.45); color: #bbf7d0; }
+        .footer-section { margin-top: 3.4rem; text-align: center; color: #bae6fd; }
+        .footer-title { font-size: 3.1rem; font-weight: 800; }
+        .footer-text { font-size: 1.24rem; margin-top: 1rem; }
+        .footer-note { margin-top: 2rem; padding: 1.4rem; border-radius: 1.2rem; background: rgba(56, 189, 248, 0.2); font-weight: 600; color: #0f172a; }
+        ul { list-style: none; }
+        ul li { position: relative; padding-left: 1.35rem; margin-bottom: 0.6rem; }
+        ul li::before { content: '•'; position: absolute; left: 0; color: #38bdf8; font-weight: 800; }
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2rem; }
+            .hero-content { padding: 2.8rem 1.7rem; }
+            .section-content { padding: 1.45rem 1.55rem; }
+            .content-box { padding: 1.65rem; }
+            .summary-section { padding: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            <span>මුල් පිටුවට</span>
+        </a>
+
+        <div class="hero-header">
+            <div class="hero-content">
+                <div class="hero-title-section">
+                    <i class="fas fa-water hero-icon"></i>
+                    <div>
+                        <h1 class="hero-title">ද්විතීය ධ්‍යානයේ සකදාගාමී මග්ග චිත්තය</h1>
+                        <p class="hero-subtitle">විතර්කය නැති දෙවැනි ධ්යානයේ සමාධිය මත සකදාගාමී මග්ගය වර්ධනය කරමින් කාමරාගය හා පටිඝය තවත් දිරවා දමන මග්ගය</p>
+                    </div>
+                </div>
+                <div class="hero-badges">
+                    <span class="hero-badge">ලෝකූත්තර මග්ග</span>
+                    <span class="hero-badge">සකදාගාමී මග්ග (2 වන ධ්‍යානය)</span>
+                    <span class="hero-badge">ද්විතීය ධ්‍යානය</span>
+                    <span class="hero-badge">චෛතසික 35</span>
+                    <span class="hero-badge">ත්‍රිහේතුක</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 1 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl1" onclick="toggleSection('lvl1')">
+                <div class="section-title-content">
+                    <i class="fas fa-info-circle section-icon"></i>
+                    <span class="section-title">මට්ටම 1: ඉතා සරල අර්ථය</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl1">
+                <div class="content-box">
+                    <h4 class="font-bold text-lg mb-4">මෙය කුමක්ද?</h4>
+                    <p>මෙම චිත්තය යනු <strong>සකදාගාමී මග්ග</strong> – දෙවැනි ධ්‍යානයේ ලබාගත් අවබෝධය මත <strong>කාමරාගය (ලෝභය) හා පටිඝය (දේෂය)</strong> තවදුරටත් අඩුකරන ලෝකූත්තර මග්ගයකි. විතර්කය (පයන සිතීම) නිශ්ශබ්දවී, විචාර-ප්‍රීති-සුඛ-ඒකාග්‍රතා සමුච්චය මත නිශ්චල සමාධියකින් එය උත්පාදනය වේ.</p>
+                    <div class="content-box highlight" style="margin-top: 1.2rem;">
+                        <div class="grid-2">
+                            <div>
+                                <p><strong>කාණ්ඩය:</strong> ලෝකූත්තර මග්ග සිත</p>
+                                <p><strong>උත්පාදනය:</strong> සකදාගාමී මග්ග අවිභාගය</p>
+                            </div>
+                            <div>
+                                <p><strong>උත්කර්ෂය:</strong> කාම රාගය හා පටිඝය තවදුරටත් ශිථිලි කිරීම</p>
+                                <p><strong>චෛතසික සංඛ්‍යාව:</strong> 35 (විතර්කය අහිමි)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 2 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl2" onclick="toggleSection('lvl2')">
+                <div class="section-title-content">
+                    <i class="fas fa-book-open section-icon"></i>
+                    <span class="section-title">මට්ටම 2: පද විග්‍රහය</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl2">
+                <div class="content-box">
+                    <h4 class="font-bold text-lg mb-4">ප්‍රධාන පද 5 ක්</h4>
+                    <ul>
+                        <li><strong>ද්විතීය ධ්‍යානය:</strong> විතර්කය නැතිවූ, විචාර-ප්‍රීති-සුඛ-ඒකාග්‍රතා පමණක් පවතින ධ්‍යානය; සමාධිය තවදුරටත් ගැඹුරුයි.</li>
+                        <li><strong>සකදාගාමී:</strong> <em>සකං ආගමී</em> – එක්වරක් යළි උපදින්නාවූ අර්ථයෙන්, කාමරාගය සහ පටිඝය තවත් දැඩිව අඩු කරගත් ආත්මභාවය.</li>
+                        <li><strong>මග්ග:</strong> නිවනට ගෙනයන මාර්ග චිත්තය; අර්ථයෙන් අරහත්ත පතනට පියවර.</li>
+                        <li><strong>ත්‍රිහේතුක:</strong> අලොභ, අදොෂ, අමෝහ සමග ඇතිවීම; සුග්‍රාහිත දර්ශනයක මූලය.</li>
+                        <li><strong>නිබ්බානාරමුණ:</strong> අග්‍ර අරමුණ ඉලක්ක කරගත් නිබ්බාන නිර්වාණාව අරමුණු කරගැනීම.</li>
+                    </ul>
+                    <div class="content-box highlight" style="margin-top: 1.1rem;">
+                        <p><strong>සංකේත ඉඟිය:</strong> දෙවැනි ධ්‍යානයේ සමාධිය = නිශ්ශබ්ද ජලය. ඒ මත සකදාගාමී මග්ගය උත්පාදනය වීමෙන් එම ජලයේ මතුපිට තවදුරටත් පැහැදින්වීම.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 3 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl3" onclick="toggleSection('lvl3')">
+                <div class="section-title-content">
+                    <i class="fas fa-sitemap section-icon"></i>
+                    <span class="section-title">මට්ටම 3: අභිධර්මවශයෙන් වර්ගිකරණය</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl3">
+                <div class="content-box">
+                    <div class="grid-2">
+                        <div>
+                            <h4 class="mb-3">උද්භව ස්වභාවය</h4>
+                            <ul>
+                                <li><strong>විභාගය:</strong> ලෝකූත්තර • මග්ග</li>
+                                <li><strong>ජහනීය:</strong> ක්ෂණික (ekacittakkhaṇika)</li>
+                                <li><strong>වර්ගය:</strong> ත්‍රිහේතුක, පඤ්චද්වාරාවජ්ජනයෙන් නොඋද්භවය.</li>
+                                <li><strong>ජ්හාන වර්ගය:</strong> ද්විතීය ධ්‍යානය (විචාර, ප්‍රීති, සුඛ, ඒකාග්‍රතා, උපේක්ෂා සාරය)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="mb-3">අරමුණ හා කර්ත්ත්‍රධර්මය</h4>
+                            <ul>
+                                <li>අරමුණ: නිබ්බාන ධාතු (අසංසෘත්තාරමුණ).</li>
+                                <li>කරුණායත්‍රාව: සකදාගාමී ඵලයාට පියවර ලැබීම.</li>
+                                <li>අභිසංකාරය: මාර්ග පල්ලංග විසින් කාමරාග-පටිඝය තවත් දුර්වල කිරීම.</li>
+                                <li>සංස්කාරය: අරමුණෙහි ශක්තිමත් සති-සමාධි සංයෝගයකි.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="content-box highlight" style="margin-top: 1.4rem;">
+                        <h4 class="mb-3">ඵල සම්බන්ධතා</h4>
+                        <div class="badge-list">
+                            <span class="badge">සොතාපත්ති මග්ගයට පසුව</span>
+                            <span class="badge">සකදාගාමී ඵලයට පෙර</span>
+                            <span class="badge">අනාගාමී මග්ගයට මූලිකය</span>
+                            <span class="badge">මග්ග-ඵල චක්‍රයේ දෙවැනි පියවර</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 4 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl4" onclick="toggleSection('lvl4')">
+                <div class="section-title-content">
+                    <i class="fas fa-layer-group section-icon"></i>
+                    <span class="section-title">මට්ටම 4: චෛතසික සංයුතිය (35)</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl4">
+                <div class="content-box">
+                    <p>ද්විතීය ධ්‍යානයේදී <strong>විතර්කය</strong> ඉවරය. ඒ නිසා චෛතසික සංයුතිය 36 → 35 යි. ඉතිරිවූ වර්ගීකරණය පහත පරිදි:</p>
+                    <div class="grid-3" style="margin-top: 1.4rem;">
+                        <div class="content-box" style="background: rgba(15, 23, 42, 0.6); border-color: rgba(56,189,248,0.28);">
+                            <h4 class="mb-2">අනුසය මූලික 19</h4>
+                            <ul>
+                                <li>සබ්බචිත්ත සමාන 7</li>
+                                <li>සබ්බසදාරණ 6</li>
+                                <li>සෝභන සමාන 6 (සද්ධා, හිරි, උත්තප්ප, අලොභ, අදොෂ, ටත්‍රමජ්ඣත්තතා)</li>
+                            </ul>
+                        </div>
+                        <div class="content-box" style="background: rgba(15, 23, 42, 0.6); border-color: rgba(56,189,248,0.28);">
+                            <h4 class="mb-2">කාරක චෛතසික</h4>
+                            <ul>
+                                <li>සමුච්චය 16 = 19 + පඤ්ච ජ්හානංග (විචාර, ප්‍රීති, සුඛ, ඒකාග්‍රතා, උපෙක්‍ඛා)</li>
+                                <li>බලශාලී සති, සම්මා වායාම, සම්මා සමාධි චෛතසික</li>
+                            </ul>
+                        </div>
+                        <div class="content-box" style="background: rgba(15, 23, 42, 0.6); border-color: rgba(56,189,248,0.28);">
+                            <h4 class="mb-2">අට මග්ගංග</h4>
+                            <div class="badge-list">
+                                <span class="badge">සම්මාදිට්ඨි</span>
+                                <span class="badge">සම්මාසංකප්ප</span>
+                                <span class="badge">සම්මාවාචා</span>
+                                <span class="badge">සම්මජීව</span>
+                                <span class="badge">සම්මාකම්මන්ත</span>
+                                <span class="badge">සම්මාවායාම</span>
+                                <span class="badge">සම්මාසති</span>
+                                <span class="badge">සම්මාසමාධි</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 5 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl5" onclick="toggleSection('lvl5')">
+                <div class="section-title-content">
+                    <i class="fas fa-seedling section-icon"></i>
+                    <span class="section-title">මට්ටම 5: ජීවන යථාර්ථය / උදාහරණ</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl5">
+                <div class="grid-2">
+                    <div class="example-card">
+                        <strong>1. නිශ්ශබ්ද සමාධියේ ඉඳින භික්ෂුවක්</strong><br>
+                        පිරිසිදු සීලාචාරයෙන් හා මාරුවන ඉන්දීයාවෙන් මුදාගනිමින්, ධානීපත්තරයේ සෙමින් ඇති සුවඳත් සමඟ සිත නිශ්චල වේ. වචන සන්සුන්, විතර්කය නොමැති නිසි සමාධියේදී මාර්ග-ඵල ධර්මය සකස් වෙයි.
+                    </div>
+                    <div class="example-card">
+                        <strong>2. භාවනා කටයුතු වැඩසටහනක සිටින ගෘහස්ථයෙකු</strong><br>
+                        කාමරාගයේ සහ පටිඝයේ ඉතිරි තතු නිරීක්ෂණයෙන් දුර්වල වෙමින් ද්විතීය ධ්‍යාන නිමිත්තක නිවිරුවී සිටී. මනසට වැඩි කරුණාවක්, සීඝ්‍ර සබ්බෙනි සමාධියක්.
+                    </div>
+                    <div class="example-card">
+                        <strong>3. වෛද්‍යවරයෙකුට අත්විඳි අභිමන්</strong><br>
+                        රෝගීන්ට නොපෙනී සිටින තැන සමාධිය පුහුණු කරමින්, තම තමා නිරීක්ෂණයෙන් කාමරාගයාරම්භණය හඳුනා අඩුකරයි; වෘත්තිය ජීවිතයේ කරුණාව සහිත සම්බන්ධතාවය වැඩි වේ.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 6 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl6" onclick="toggleSection('lvl6')">
+                <div class="section-title-content">
+                    <i class="fas fa-microscope section-icon"></i>
+                    <span class="section-title">මට්ටම 6: ගැඹුරු අභිධර්ම විශ්ලේෂණය</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl6">
+                <div class="content-box">
+                    <h4 class="font-bold mb-4">දේසනා විශෙෂ</h4>
+                    <ul>
+                        <li>මෙය <strong>සෝත භාවිතිය</strong> (සංඥාව, වෙදනාව, සඤ්ඤා, සඤ්ඤාකාරා) තුළින් උත්පන්න වන <strong>මාර්ග-ඵල කණ්ඩය</strong> තුළ දෙවැනි පියවර.</li>
+                        <li>විචාර (savitakka-vicāra) පවතින අතර, විතර්කය නොමැති නිසා සමාධිය වැඩිහිටිය. එය කාමරාග-පටිඝ සමුල අහෝසි නොකරයි; නමුත් <em>තීව‍්‍ර නිස්සරණ පීඩාකාරී රැලක්</em> ලෙස ආවේග අඩු කරයි.</li>
+                        <li>පටිසම්භිදාමාග්ගමීව <strong>අට්ඨ මග්ගංග</strong> එකම ක්ෂණයක එක්වූ <strong>විකට්ඨන</strong> යි.</li>
+                        <li><strong>පච්චය විවරණය:</strong> නිබ්බාන අරමුණාවූ විපාක, සතීරිය පච්චය, කාරක සම්බන්ධ, අසංඛාරික මග්ග බව.</li>
+                    </ul>
+                    <div class="content-box highlight" style="margin-top: 1.3rem;">
+                        <h4 class="mb-3">දෙවැනි ධ්‍යාන මග්ග-ඵල සමුච්චය</h4>
+                        <div class="grid-2">
+                            <div>
+                                <p><strong>මග්ගය (චිත්ත #40):</strong> ද්විතීය ධ්‍යාන සකදාගාමී මග්ග</p>
+                                <p><strong>ඵලය (චිත්ත #41):</strong> ද්විතීය ධ්‍යාන සකදාගාමී ඵල</p>
+                            </div>
+                            <div>
+                                <p>ඉහත දෙකම එකම චෛතසික 35 කට්ටලය භාවිතය. මග්ගයෙන් පසු වහාම ඵල සමාපත්තිය පවතින බව අභිධර්මය පැහැදිලි කරයි.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 7 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl7" onclick="toggleSection('lvl7')">
+                <div class="section-title-content">
+                    <i class="fas fa-route section-icon"></i>
+                    <span class="section-title">මට්ටම 7: ප්‍රායෝගික මාර්ගෝපදේශ</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl7">
+                <div class="content-box">
+                    <div class="grid-2">
+                        <div>
+                            <h4 class="mb-3">භාවනාවේ ක්‍රියාමාර්ග</h4>
+                            <ul>
+                                <li>මුල් වශයෙන් සීල සංවරය පවත්වා, සීලය මත සතිපට්ඨානය ශක්තිමත් කරන්න.</li>
+                                <li>සෝතාපත්ති මග්ග පසුගිය අත්දැකීම review කර, ඉතිරි වූ කාමරාග-පටිඝ සංඛ්‍යාත නිරීක්ෂණය.</li>
+                                <li>නිර්ජන වටපිටාවක විචාරය පමණක් පැවති නිශ්ශබ්ද second jhana nimitta සවිමත් කරන්න.</li>
+                                <li>සම්මාසති හා සම්මාසමාධිය සමග අනිත්‍ය-දුක්ඛ-අනත්ත උපලබ්ධිය පිළිබඳ විද්දහන්න.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="mb-3">පිළිවෙලට සැලකිලිමත් වන්න</h4>
+                            <ul>
+                                <li>ධ්‍යානයේදී විතර්කය නැතිවීමෙන් සිත පුළුවන්තම නිශ්ශබ්දයට යයි; එවැනි අවස්ථා නිසි උපදේශකගෙන් true second jhana ලෙස තහවුරු කරගෙන තහවුරු කරගන්න.</li>
+                                <li>ආවේගික වචන, ව්‍යාජ සමාධි විකාසය, අනවශ්‍ය දෘෂ්ටි සංකල්ප වලින් වළකින්න.</li>
+                                <li>ඵල සමාපත්තිය දිගුකාලීනව භාවිතයෙන් පසුව අනාගාමී මග්ගය වෙත වර්ධනය කරන්න.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="content-box highlight" style="margin-top: 1.3rem;">
+                        <h4 class="mb-2">කෙටි මතක සටහන</h4>
+                        <p>සකදාගාමී මග්ගයේ විශේෂ පරමාර්ථය: <strong>කේලෙස් දෙකෙහි තවත් අවශේෂ අඩු කිරීම</strong>. නිශ්චල සමාධිය, පිරිසිදු විදර්ශනා මත තවදුරටත් සතුටුදායක නිවන අරමුණ කලින්ම දිස් කරයි.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="summary-section">
+            <h2 class="text-3xl font-bold text-center mb-8">සාරාංශයෙන් – ද්විතීය ධ්‍යානයේ සකදාගාමී මග්ග චිත්තය</h2>
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <p class="text-5xl mb-2">🌊</p>
+                    <p class="font-bold text-lg">නිශ්ශබ්ද සමාධිය</p>
+                    <p class="text-sm mt-2">විතර්කය නැතිවූ දෙවැනි ධ්‍යානයේ සමාධිය කාමරාග-පටිඝය දිරවා ගැනීමට අවනතයි.</p>
+                </div>
+                <div class="summary-card">
+                    <p class="text-5xl mb-2">🛡️</p>
+                    <p class="font-bold text-lg">සකදාගාමී යැපීම</p>
+                    <p class="text-sm mt-2">කේලෙස් දෙක (කාමරාග, පටිඝ) තවත් දැඩිව දිරවයි; දීප්තිමත් සකදාගාමී මග්ගය.</p>
+                </div>
+                <div class="summary-card">
+                    <p class="text-5xl mb-2">🧘</p>
+                    <p class="font-bold text-lg">චෛතසික 35</p>
+                    <p class="text-sm mt-2">විතර්කය අහිමි වී, විචාර-ප්‍රීති-සුඛ-ඒකාග්‍රතා සහිත ත්‍රිහේතුක ලෝකූත්තර මග්ගය.</p>
+                </div>
+                <div class="summary-card">
+                    <p class="text-5xl mb-2">🚀</p>
+                    <p class="font-bold text-lg">ඉදිරියට මග</p>
+                    <p class="text-sm mt-2">අනාගාමී මග්ගය වෙත ද්විතීය ධ්‍යානයේ සමාධිය ශක්තියේ සෘජු පදනම සකස් කරයි.</p>
+                </div>
+            </div>
+            <p class="summary-highlight">ද්විතීය ධ්‍යානයේ සකදාගාමී මග්ග චිත්තය – විතර්කය නැති සමාධිය මත කාමරාගය හා පටිඝය තවත් අඩුකරන, චෛතසික 35 සමඟ සහිත ත්‍රිහේතුක ලෝකූත්තර මග්ගයකි!</p>
+        </div>
+
+        <div class="footer-section">
+            <p class="footer-title">සාධු! සාධු! සාධු!</p>
+            <p class="footer-text">ද්විතීය ධ්‍යානයේ සකදාගාමී මග්ගය සාර්ථකයි • ඉදිරියට ද්විතීය ධ්‍යානයේ සකදාගාමී ඵලයට සූදානම් වෙමු.</p>
+            <p class="footer-note">ඵල සමාපත්තිය නිතර භාවිතයෙන් නිවන අත්දැකීම ශක්තිමත් කරගෙන, අනාගාමී මග්ගය වෙත සමාධිය හා විදර්ශනා නිරන්තරයෙන් වැඩිකරන්න.</p>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleSection(sectionId) {
+            const content = document.getElementById('content-' + sectionId);
+            const header = document.getElementById('header-' + sectionId);
+            if (!content || !header) return;
+
+            const isExpanded = content.classList.contains('expanded');
+            if (isExpanded) {
+                content.classList.remove('expanded');
+                header.classList.remove('expanded');
+            } else {
+                content.classList.add('expanded');
+                header.classList.add('expanded');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            toggleSection('lvl1');
+        });
+    </script>
+</body>
+</html>

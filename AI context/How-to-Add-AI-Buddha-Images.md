@@ -97,3 +97,5 @@ The background slider now includes 12 images:
 - Images are optimized for both desktop and mobile viewing
 
 
+
+

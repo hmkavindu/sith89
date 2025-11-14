@@ -718,3 +718,5 @@ window.cittaDetailLoader = {
     getCittaId: getCittaIdFromURL
 };
 
+
+

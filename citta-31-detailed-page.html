@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ප්‍රථම ධ්‍යාන සෝතාපත්ති ඵල චිත්තය - විස්තර</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            background: radial-gradient(circle at top, #0b1120 0%, #312e81 45%, #134e4a 100%);
+            min-height: 100vh;
+            color: #e2e8f0;
+            line-height: 1.78;
+        }
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 1.5rem 3.5rem; }
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.75rem 1.6rem;
+            margin: 1.6rem 0;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 0.85rem;
+            text-decoration: none;
+            color: #f8fafc;
+            font-weight: 600;
+            box-shadow: 0 18px 40px rgba(8, 47, 73, 0.32);
+            transition: all 0.25s ease;
+        }
+        .back-button:hover { transform: translateX(-6px); box-shadow: 0 24px 52px rgba(8, 47, 73, 0.45); }
+        .hero-header {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.28) 0%, rgba(59, 130, 246, 0.48) 45%, rgba(34, 197, 94, 0.72) 100%);
+            border-radius: 1.9rem;
+            box-shadow: 0 32px 64px rgba(8, 47, 73, 0.45);
+            margin-bottom: 2.4rem;
+        }
+        .hero-content { padding: 3.8rem 2.2rem; }
+        .hero-title-section { display: flex; gap: 1.6rem; align-items: center; margin-bottom: 2rem; }
+        .hero-icon { width: 4.1rem; height: 4.1rem; color: #c084fc; animation: pulse 3s ease-in-out infinite; }
+        @keyframes pulse { 0%,100% {opacity:1; transform:scale(1);} 50% {opacity:.84; transform:scale(0.95);} }
+        .hero-title { font-size: 2.45rem; font-weight: 800; line-height: 1.22; color: #f8fafc; }
+        .hero-subtitle { margin-top: 0.75rem; font-size: 1.12rem; color: #e0f2fe; }
+        .hero-badges { display: flex; flex-wrap: wrap; gap: 1rem; }
+        .hero-badge {
+            padding: 0.45rem 1.35rem;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            background: rgba(15, 23, 42, 0.45);
+            color: #e0f2fe;
+            backdrop-filter: blur(12px);
+            box-shadow: inset 0 0 0 1px rgba(226, 232, 240, 0.28);
+        }
+        .section-card {
+            background: rgba(15, 23, 42, 0.78);
+            border-radius: 1.35rem;
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            box-shadow: 0 24px 48px rgba(2, 6, 23, 0.45);
+            margin-bottom: 1.7rem;
+            overflow: hidden;
+        }
+        .section-header {
+            width: 100%;
+            padding: 1.35rem 1.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            border: none;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.28) 0%, rgba(59, 130, 246, 0.24) 100%);
+            transition: all 0.3s ease;
+        }
+        .section-header:hover { background: linear-gradient(135deg, rgba(168, 85, 247, 0.34) 0%, rgba(59, 130, 246, 0.3) 100%); }
+        .section-header.expanded { box-shadow: inset 0 0 0 2px rgba(196, 181, 253, 0.35); }
+        .section-title-content { display: flex; align-items: center; gap: 1.1rem; }
+        .section-icon { width: 1.9rem; height: 1.9rem; color: #c084fc; }
+        .section-title { font-size: 1.27rem; font-weight: 700; color: #e0f2fe; }
+        .section-chevron { width: 1.5rem; height: 1.5rem; color: #c084fc; transition: transform 0.3s ease; }
+        .section-header.expanded .section-chevron { transform: rotate(180deg); }
+        .section-content { padding: 1.8rem 2rem; background: rgba(8, 28, 50, 0.85); display: none; }
+        .section-content.expanded { display: block; }
+        .content-box {
+            padding: 2rem;
+            border-radius: 1.35rem;
+            margin-bottom: 1.3rem;
+            border: 2px solid rgba(168, 85, 247, 0.32);
+            background: rgba(15, 23, 42, 0.68);
+            box-shadow: 0 18px 36px rgba(8, 47, 73, 0.42);
+        }
+        .content-box.highlight { background: linear-gradient(135deg, rgba(168, 85, 247, 0.18) 0%, rgba(59, 130, 246, 0.18) 100%); border-color: rgba(168, 85, 247, 0.52); }
+        .content-box.warning { background: linear-gradient(135deg, rgba(253, 224, 71, 0.14) 0%, rgba(250, 250, 125, 0.18) 100%); border-color: rgba(202, 138, 4, 0.4); color: #0f172a; }
+        .grid-2 { display: grid; gap: 1.6rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+        .grid-3 { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+        .grid-4 { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+        .badge-list { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.45rem 0.9rem;
+            background: rgba(168, 85, 247, 0.2);
+            border-radius: 999px;
+            font-size: 0.86rem;
+            font-weight: 600;
+            color: #f1f5f9;
+        }
+        .example-card {
+            background: rgba(15, 23, 42, 0.78);
+            border-radius: 1.15rem;
+            border-left: 6px solid rgba(168, 85, 247, 0.58);
+            padding: 1.2rem 1.3rem;
+            box-shadow: 0 16px 32px rgba(2, 6, 23, 0.55);
+            font-size: 1.02rem;
+            font-weight: 500;
+            color: #e2e8f0;
+        }
+        .summary-section {
+            margin-top: 3.5rem;
+            background: linear-gradient(135deg, rgba(2, 6, 23, 0.9) 0%, rgba(15, 23, 42, 0.85) 55%, rgba(168, 85, 247, 0.25) 100%);
+            color: #e0f2fe;
+            padding: 3rem;
+            border-radius: 2.25rem;
+            box-shadow: 0 36px 72px rgba(2, 6, 23, 0.6);
+        }
+        .summary-grid { display: grid; gap: 1.6rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+        .summary-card { background: rgba(168, 85, 247, 0.18); border-radius: 1.7rem; padding: 2rem 1.6rem; backdrop-filter: blur(16px); }
+        .summary-highlight { margin-top: 2.4rem; text-align: center; font-size: 1.7rem; font-weight: 700; padding: 1.4rem; border-radius: 1.2rem; background: rgba(139, 92, 246, 0.26); border: 1px solid rgba(196, 181, 253, 0.38); color: #c084fc; }
+        .footer-section { margin-top: 3.4rem; text-align: center; color: #e9d5ff; }
+        .footer-title { font-size: 3.1rem; font-weight: 800; }
+        .footer-text { font-size: 1.24rem; margin-top: 1rem; }
+        .footer-note { margin-top: 2rem; padding: 1.4rem; border-radius: 1.2rem; background: rgba(168, 85, 247, 0.16); font-weight: 600; color: #0f172a; }
+        ul { list-style: none; }
+        ul li { position: relative; padding-left: 1.35rem; margin-bottom: 0.6rem; }
+        ul li::before { content: '•'; position: absolute; left: 0; color: #a855f7; font-weight: 800; }
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2rem; }
+            .hero-content { padding: 2.8rem 1.7rem; }
+            .section-content { padding: 1.45rem 1.55rem; }
+            .content-box { padding: 1.65rem; }
+            .summary-section { padding: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            <span>මුල් පිටුවට</span>
+        </a>
+
+        <div class="hero-header">
+            <div class="hero-content">
+                <div class="hero-title-section">
+                    <i class="fas fa-gem hero-icon"></i>
+                    <div>
+                        <h1 class="hero-title">ප්‍රථම ධ්‍යාන සෝතාපත්ති ඵල චිත්තය</h1>
+                        <p class="hero-subtitle">ලෝකූත්තර විපාක සිත් – සෝතාපන්න ඵලය: මග්ග චිත්තයට පසුව නිවන අනුභව කරන සිත</p>
+                    </div>
+                </div>
+                <div class="hero-badges">
+                    <span class="hero-badge">ලෝකූත්තර විපාක</span>
+                    <span class="hero-badge">සෝතාපත්ති ඵල (සෝවාන් ඵල)</span>
+                    <span class="hero-badge">ප්‍රථම ධ්‍යාන</span>
+                    <span class="hero-badge">චෛතසික 36</span>
+                    <span class="hero-badge">ත්‍රිහේතුක (අලෝභ • අදෝස • අමෝහ)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 1 -->
+        <div class="section-card">
+            <button class="section-header" onclick="toggleSection('lvl1')">
+                <div class="section-title-content">
+                    <i class="fas fa-lightbulb section-icon"></i>
+                    <h2 class="section-title">මට්ටම 1 • සරලම අර්ථය</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="lvl1">
+                <div class="grid-2">
+                    <div class="content-box">
+                        <h3 class="text-xl font-bold mb-4 text-purple-200">නිවන අනුභව කරන සිත</h3>
+                        <ul>
+                            <li>මග්ග චිත්තයට පසුව, එක් මොහොතකින්ම පැමිණෙන ඵල චිත්තය – නිවන අනුභව කරන සිත.</li>
+                            <li><strong>ඵල චිත්තය:</strong> මග්ග චිත්තය විසින් නැසූ කෙලෙස්වල ප්‍රතිඵලය අනුභව කරන සිත.</li>
+                            <li><strong>නිවන අනුභව:</strong> මග්ග චිත්තය විසින් දක්නා ලද නිවන අරමුණ කරගෙන, එය අනුභව කරන සිත.</li>
+                            <li><strong>පුනරාවර්තනය:</strong> මග්ග චිත්තය එක් වරක් පමණක් පැමිණේ, නමුත් ඵල චිත්තය නැවත නැවත පැමිණිය හැකිය.</li>
+                        </ul>
+                    </div>
+                    <div class="content-box warning">
+                        <h3 class="text-xl font-bold mb-3">උදාහරණයක්</h3>
+                        <p>"මග්ග චිත්තය විසින් සක්කාය දිට්ඨි, විචිකිච්ඡා, සීලබ්බත පරාමාස යන තුන් සංයෝජනයන් නැසූ පසු, එක් මොහොතකින්ම ඵල චිත්තය පැමිණියේය. එම ඵල චිත්තය නිවන අරමුණ කරගෙන, නිවන අනුභව කරන සිතයි."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 2 -->
+        <div class="section-card">
+            <button class="section-header" onclick="toggleSection('lvl2')">
+                <div class="section-title-content">
+                    <i class="fas fa-book-open section-icon"></i>
+                    <h2 class="section-title">මට්ටම 2 • වචන විග්‍රහය</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="lvl2">
+                <div class="grid-2">
+                    <div class="content-box highlight">
+                        <h3 class="font-bold text-lg mb-3">"සෝතාපත්ති ඵල"</h3>
+                        <ul>
+                            <li>සෝතාපත්ති = සෝවාන්; ඵල = ප්‍රතිඵලය.</li>
+                            <li>"Stream-entry fruition" – සෝවාන් මග්ගයේ ප්‍රතිඵලය.</li>
+                            <li>මග්ග චිත්තය විසින් නැසූ කෙලෙස්වල ප්‍රතිඵලය අනුභව කරන සිත.</li>
+                        </ul>
+                    </div>
+                    <div class="content-box highlight">
+                        <h3 class="font-bold text-lg mb-3">"ඵල චිත්තය"</h3>
+                        <ul>
+                            <li>ඵල = ප්‍රතිඵලය; චිත්ත = සිත.</li>
+                            <li>මග්ග චිත්තය විසින් නැසූ කෙලෙස්වල ප්‍රතිඵලය අනුභව කරන සිත.</li>
+                            <li>මග්ග චිත්තයට පසුව පැමිණෙන, නිවන අනුභව කරන සිත.</li>
+                        </ul>
+                    </div>
+                    <div class="content-box">
+                        <h3 class="font-bold text-lg mb-3 text-purple-200">"මග්ග හා ඵල"</h3>
+                        <ul>
+                            <li>මග්ග චිත්තය: කෙලෙස් නසන සිත (එක් වරක් පමණක් පැමිණේ).</li>
+                            <li>ඵල චිත්තය: නිවන අනුභව කරන සිත (නැවත නැවත පැමිණිය හැකිය).</li>
+                            <li>මග්ග චිත්තයට පසුව, එක් මොහොතකින්ම ඵල චිත්තය පැමිණේ.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 3 -->
+        <div class="section-card">
+            <button class="section-header" onclick="toggleSection('lvl3')">
+                <div class="section-title-content">
+                    <i class="fas fa-layer-group section-icon"></i>
+                    <h2 class="section-title">මට්ටම 3 • අභිධර්ම වර්ගීකරණය</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="lvl3">
+                <div class="content-box">
+                    <h3 class="text-2xl font-bold text-center mb-6 text-purple-200">ලෝකූත්තර විපාක සිත්වල තැන</h3>
+                    <div class="grid-3">
+                        <div class="content-box">
+                            <p class="text-5xl font-black mb-2 text-purple-200">40</p>
+                            <p class="font-bold">ලෝකූත්තර සිත්</p>
+                            <p class="text-sm text-slate-200 mt-2">මෙය දෙවැන්න – සෝතාපන්න ඵලය.</p>
+                        </div>
+                        <div class="content-box">
+                            <p class="text-5xl font-black mb-2 text-purple-200">36</p>
+                            <p class="font-bold">චෛතසික සංයුතිය</p>
+                            <p class="text-sm text-slate-200 mt-2">ප්‍රථම ධ්‍යාන සාධාරණ + ලෝකූත්තර විශේෂ.</p>
+                        </div>
+                        <div class="content-box">
+                            <p class="text-5xl font-black mb-2 text-purple-200">89 / 121</p>
+                            <p class="font-bold">සම්පූර්ණ චිත්ත පද්ධතිය</p>
+                        </div>
+                    </div>
+                    <div class="content-box highlight" style="margin-top: 1.6rem;">
+                        <h4 class="font-bold text-lg mb-4">ලෝකූත්තර ඵල සිත් 8</h4>
+                        <div class="grid-4">
+                            <div class="badge" style="background: rgba(168, 85, 247, 0.32); color:#f1f5f9; font-weight:700;">1. සෝතාපන්න (ප්‍රථම) ⭐</div>
+                            <div class="badge">2. සකදාගාමී</div>
+                            <div class="badge">3. අනාගාමී</div>
+                            <div class="badge">4. අරහත්ත</div>
+                        </div>
+                        <p class="text-sm text-slate-200 mt-3">සෝතාපන්න ඵලය – ලෝකූත්තර විපාක සිත්වල ප්‍රථමය. මග්ග චිත්තය විසින් නැසූ කෙලෙස්වල ප්‍රතිඵලය අනුභව කරන, නිවන අනුභව කරන සිත. මග්ග චිත්තයට පසුව, එක් මොහොතකින්ම පැමිණේ.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 4 -->
+        <div class="section-card">
+            <button class="section-header" onclick="toggleSection('lvl4')">
+                <div class="section-title-content">
+                    <i class="fas fa-heart section-icon"></i>
+                    <h2 class="section-title">මට්ටම 4 • චෛතසික සංයුතිය (36)</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="lvl4">
+                <div class="content-box">
+                    <p class="text-center text-lg font-semibold mb-6 text-purple-200">ලෝකූත්තර ඵල චිත්තයේ චෛතසික සංයුතිය – ප්‍රථම ධ්‍යාන සාධාරණ + ලෝකූත්තර විශේෂ චෛතසික. මග්ග චිත්තයට සමාන ව්‍යුහයක්.</p>
+                    <div class="grid-2">
+                        <div class="content-box">
+                            <h4 class="font-bold mb-3 text-purple-200">සබ්බ චිත්ත සාධාරණ 7</h4>
+                            <div class="badge-list">
+                                <span class="badge">ඵස්ස</span>
+                                <span class="badge">සෝමනස්ස වේදනා</span>
+                                <span class="badge">සඤ්ඤා</span>
+                                <span class="badge">චේතනා</span>
+                                <span class="badge">ඒකාග්‍රතා</span>
+                                <span class="badge">ජීවිතින්ද්‍රිය</span>
+                                <span class="badge">මනසිකාර</span>
+                            </div>
+                        </div>
+                        <div class="content-box">
+                            <h4 class="font-bold mb-3 text-purple-200">කුසල සාධාරණ 19</h4>
+                            <div class="grid-3">
+                                <span class="badge">අලෝභ</span>
+                                <span class="badge">අදෝස</span>
+                                <span class="badge">අමෝහ</span>
+                                <span class="badge">සද්ධා</span>
+                                <span class="badge">සති</span>
+                                <span class="badge">හිරි</span>
+                                <span class="badge">ඔත්තප්ප</span>
+                                <span class="badge">කාය පසද්ධි</span>
+                                <span class="badge">චිත්ත පසද්ධි</span>
+                                <span class="badge">කාය ලහුතා</span>
+                                <span class="badge">චිත්ත ලහුතා</span>
+                                <span class="badge">කාය මුදුතා</span>
+                                <span class="badge">චිත්ත මුදුතා</span>
+                                <span class="badge">කාය කම්මඤ්ඤතා</span>
+                                <span class="badge">චිත්ත කම්මඤ්ඤතා</span>
+                                <span class="badge">කාය පාගුඤ්ඤතා</span>
+                                <span class="badge">චිත්ත පාගුඤ්ඤතා</span>
+                                <span class="badge">කායුජුකතා</span>
+                                <span class="badge">චිත්තුජුකතා</span>
+                                <span class="badge">පඤ්ඤින්ද්‍රිය</span>
+                                <span class="badge">ඤාණ</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-box highlight">
+                        <h4 class="font-bold mb-3">ප්‍රථම ධ්‍යාන අංග</h4>
+                        <div class="badge-list">
+                            <span class="badge" style="background: rgba(168, 85, 247, 0.32); color:#0f172a; font-weight:700;">විතර්ක</span>
+                            <span class="badge" style="background: rgba(168, 85, 247, 0.32); color:#0f172a; font-weight:700;">විචාර</span>
+                            <span class="badge" style="background: rgba(168, 85, 247, 0.32); color:#0f172a; font-weight:700;">ප්‍රීති</span>
+                            <span class="badge" style="background: rgba(168, 85, 247, 0.32); color:#0f172a; font-weight:700;">සුඛ</span>
+                            <span class="badge" style="background: rgba(168, 85, 247, 0.32); color:#0f172a; font-weight:700;">ඒකාග්‍රතා</span>
+                            <span class="badge">අධිමොක්ඛ</span>
+                            <span class="badge">විරිය</span>
+                            <span class="badge">ඡන්ද</span>
+                        </div>
+                    </div>
+                    <div class="content-box highlight" style="margin-top: 1.3rem;">
+                        <h4 class="font-bold mb-3">ලෝකූත්තර විශේෂ චෛතසික</h4>
+                        <div class="badge-list">
+                            <span class="badge" style="background: rgba(168, 85, 247, 0.4); color:#0f172a; font-weight:700;">මග්ගංග (මාර්ග අංග 8)</span>
+                        </div>
+                        <p class="text-sm text-slate-200 mt-3">මග්ගංග 8: සම්මා දිට්ඨි, සම්මා සංකප්ප, සම්මා වාචා, සම්මා කම්මන්ත, සම්මා ආජීව, සම්මා වායාම, සම්මා සති, සම්මා සමාධි. මග්ග චිත්තයට සමාන ව්‍යුහයක්, නමුත් මෙහිදී නිවන අනුභව කරන සිතයි.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 5 -->
+        <div class="section-card">
+            <button class="section-header" onclick="toggleSection('lvl5')">
+                <div class="section-title-content">
+                    <i class="fas fa-seedling section-icon"></i>
+                    <h2 class="section-title">මට්ටම 5 • මෙය ඇතිවීමට හේතු සහ උදාහරණ</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="lvl5">
+                <div class="grid-2">
+                    <div class="example-card">1. මග්ග චිත්තය විසින් සක්කාය දිට්ඨි, විචිකිච්ඡා, සීලබ්බත පරාමාස යන තුන් සංයෝජනයන් නැසූ පසු, එක් මොහොතකින්ම ඵල චිත්තය පැමිණීම.</div>
+                    <div class="example-card">2. සෝතාපන්නයෙකු විසින්, නිවන අනුභව කිරීමට අභිලාෂයක් ඇති විට, ඵල සමාපත්තියට පැමිණීම.</div>
+                    <div class="example-card">3. භාවනා කරන විට, මග්ග චිත්තයට පසුව, ඵල චිත්තය නැවත නැවත පැමිණීම.</div>
+                    <div class="example-card">4. සෝතාපන්නයෙකු විසින්, නිවන අනුභව කිරීමට අභිලාෂයක් ඇති විට, ඵල සමාපත්තියට පැමිණීම.</div>
+                    <div class="example-card">5. විදර්ශනා භාවනාවේදී, මග්ග චිත්තයට පසුව, ඵල චිත්තය නැවත නැවත පැමිණීම.</div>
+                    <div class="example-card">6. සෝතාපන්නයෙකු විසින්, නිවන අනුභව කිරීමට අභිලාෂයක් ඇති විට, ඵල සමාපත්තියට පැමිණීම.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 6 -->
+        <div class="section-card">
+            <button class="section-header" onclick="toggleSection('lvl6')">
+                <div class="section-title-content">
+                    <i class="fas fa-chart-line section-icon"></i>
+                    <h2 class="section-title">මට්ටම 6 • ගැඹුරු අභිධර්ම විශ්ලේෂණය</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="lvl6">
+                <div class="content-box">
+                    <h3 class="font-bold text-lg mb-4">ධර්මසංගණී • අභිධම්මත්ථ සංගහ</h3>
+                    <ul>
+                        <li>ලෝකූත්තර විපාක චිත්තයන්ගේ ප්‍රථමය – සෝතාපන්න ඵලය.</li>
+                        <li>මග්ග චිත්තය විසින් නැසූ කෙලෙස්වල ප්‍රතිඵලය අනුභව කරන සිත.</li>
+                        <li>ප්‍රථම ධ්‍යාන සාධාරණ + ලෝකූත්තර විශේෂ චෛතසික සමඟ ඇතිවේ.</li>
+                        <li>මග්ග චිත්තයට පසුව, එක් මොහොතකින්ම පැමිණේ. නැවත නැවත පැමිණිය හැකිය.</li>
+                    </ul>
+                </div>
+                <div class="content-box highlight">
+                    <h3 class="font-bold text-lg mb-4">මග්ග හා ඵල</h3>
+                    <ul>
+                        <li>මග්ග චිත්තය: කෙලෙස් නසන සිත (එක් වරක් පමණක් පැමිණේ).</li>
+                        <li>ඵල චිත්තය: නිවන අනුභව කරන සිත (නැවත නැවත පැමිණිය හැකිය).</li>
+                        <li>මග්ග චිත්තයට පසුව, එක් මොහොතකින්ම ඵල චිත්තය පැමිණේ.</li>
+                        <li>ඵල සමාපත්තිය: ඵල චිත්තය නැවත නැවත පැමිණීමට අභිලාෂයක් ඇති විට.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 7 -->
+        <div class="section-card">
+            <button class="section-header" onclick="toggleSection('lvl7')">
+                <div class="section-title-content">
+                    <i class="fas fa-hand-holding-heart section-icon"></i>
+                    <h2 class="section-title">මට්ටම 7 • ප්‍රතිඵල හා පවත්වා ගැනීම</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="lvl7">
+                <div class="grid-2">
+                    <div class="content-box">
+                        <h3 class="font-bold text-lg mb-3 text-purple-200">ප්‍රතිඵල</h3>
+                        <ul>
+                            <li>නිවන අනුභව කිරීම – මග්ග චිත්තය විසින් දක්නා ලද නිවන අරමුණ කරගෙන, එය අනුභව කරන සිත.</li>
+                            <li>සෝතාපන්න ඵලය අනුභව කිරීම – සක්කාය දිට්ඨි, විචිකිච්ඡා, සීලබ්බත පරාමාස යන තුන් සංයෝජනයන් නැසූ ප්‍රතිඵලය අනුභව කරන සිත.</li>
+                            <li>ඵල සමාපත්තියට පැමිණීම – ඵල චිත්තය නැවත නැවත පැමිණීමට අභිලාෂයක් ඇති විට.</li>
+                        </ul>
+                    </div>
+                    <div class="content-box warning">
+                        <h3 class="font-bold text-lg mb-3">පවත්වා ගැනීම / අවවාද</h3>
+                        <ul>
+                            <li>ඵල චිත්තය නැවත නැවත පැමිණිය හැකිය – ඵල සමාපත්තියට පැමිණීමට අභිලාෂයක් ඇති විට.</li>
+                            <li>විදර්ශනා භාවනාව නොනවත්වා කරගෙන යාම – උත්තරීතර මග්ගයන්ට පැමිණීමට.</li>
+                            <li>ඵල සමාපත්තිය අනුභව කරන විට, නිවන අනුභව කරන සිත පැමිණේ.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary-section">
+            <h2 class="text-3xl font-bold text-center mb-8">සාරාංශයෙන් – ප්‍රථම ධ්‍යාන සෝතාපත්ති ඵල චිත්තය</h2>
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <p class="text-5xl mb-2">💎</p>
+                    <p class="font-bold text-lg">නිවන අනුභව</p>
+                    <p class="text-sm mt-2">මග්ග චිත්තය විසින් දක්නා ලද නිවන අරමුණ කරගෙන, එය අනුභව කරන සිත.</p>
+                </div>
+                <div class="summary-card">
+                    <p class="text-5xl mb-2">🕊️</p>
+                    <p class="font-bold text-lg">සෝතාපන්න ඵලය</p>
+                    <p class="text-sm mt-2">සක්කාය දිට්ඨි, විචිකිච්ඡා, සීලබ්බත පරාමාස යන තුන් සංයෝජනයන් නැසූ ප්‍රතිඵලය අනුභව කරන සිත.</p>
+                </div>
+                <div class="summary-card">
+                    <p class="text-5xl mb-2">🎯</p>
+                    <p class="font-bold text-lg">ප්‍රථම ධ්‍යාන</p>
+                    <p class="text-sm mt-2">විතර්ක, විචාර, ප්‍රීති, සුඛ, ඒකාග්‍රතා සහිත සමාධිය.</p>
+                </div>
+                <div class="summary-card">
+                    <p class="text-5xl mb-2">🔄</p>
+                    <p class="font-bold text-lg">පුනරාවර්තනය</p>
+                    <p class="text-sm mt-2">මග්ග චිත්තය එක් වරක් පමණක් පැමිණේ, නමුත් ඵල චිත්තය නැවත නැවත පැමිණිය හැකිය.</p>
+                </div>
+            </div>
+            <p class="summary-highlight">ලෝකූත්තර විපාක චිත්තය – ප්‍රථම ධ්‍යාන සෝතාපත්ති ඵලය: මග්ග චිත්තය විසින් නැසූ කෙලෙස්වල ප්‍රතිඵලය අනුභව කරන, නිවන අනුභව කරන, ප්‍රථම ධ්‍යාන සාධාරණ + ලෝකූත්තර විශේෂ චෛතසික සමඟ ඇතිවන ත්‍රිහේතුක ලෝකූත්තර විපාක චිත්තයකි!</p>
+        </div>
+
+        <div class="footer-section">
+            <p class="footer-title">සාධු! සාධු! සාධු!</p>
+            <p class="footer-text">ලෝකූත්තර විපාක සිත්වල ප්‍රථමය සම්පූර්ණයි • සෝතාපන්න ඵලය සාක්ෂාත් කර ඇත. ඊළඟට සකදාගාමී මග්ගයට සූදානම් වෙමු.</p>
+            <p class="footer-note">විමර්ශනය: ඵල චිත්තය නැවත නැවත පැමිණිය හැකිය. ඵල සමාපත්තියට පැමිණීමට අභිලාෂයක් ඇති විට, ඵල චිත්තය නැවත නැවත පැමිණ නිවන අනුභව කරන සිත ඇතිවේ.</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleSection(sectionId) {
+            try {
+                const section = document.getElementById(sectionId);
+                if (!section) return;
+                const header = section.previousElementSibling;
+                if (section.classList.contains('expanded')) {
+                    section.classList.remove('expanded');
+                    header.classList.remove('expanded');
+                } else {
+                    section.classList.add('expanded');
+                    header.classList.add('expanded');
+                }
+            } catch (error) {
+                console.error('Error toggling section:', error);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            try { toggleSection('lvl1'); } catch (error) { console.error(error); }
+        });
+    </script>
+</body>
+</html>
+

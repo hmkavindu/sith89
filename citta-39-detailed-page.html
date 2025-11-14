@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ද්විතීය ධ්‍යානයේ සෝතාපත්ති ඵල චිත්තය - විස්තර</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            background: radial-gradient(circle at top, #0b1120 0%, #1d4ed8 45%, #0f172a 100%);
+            min-height: 100vh;
+            color: #e2e8f0;
+            line-height: 1.78;
+        }
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 1.5rem 3.5rem; }
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.75rem 1.6rem;
+            margin: 1.6rem 0;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 0.85rem;
+            text-decoration: none;
+            color: #f8fafc;
+            font-weight: 600;
+            box-shadow: 0 18px 40px rgba(8, 47, 73, 0.32);
+            transition: all 0.25s ease;
+        }
+        .back-button:hover { transform: translateX(-6px); box-shadow: 0 24px 52px rgba(8, 47, 73, 0.45); }
+        .hero-header {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.28) 0%, rgba(129, 140, 248, 0.45) 45%, rgba(34, 197, 94, 0.65) 100%);
+            border-radius: 1.9rem;
+            box-shadow: 0 32px 64px rgba(8, 47, 73, 0.45);
+            margin-bottom: 2.4rem;
+        }
+        .hero-content { padding: 3.8rem 2.2rem; }
+        .hero-title-section { display: flex; gap: 1.6rem; align-items: center; margin-bottom: 2rem; }
+        .hero-icon { width: 4.1rem; height: 4.1rem; color: #38bdf8; animation: pulse 3s ease-in-out infinite; }
+        @keyframes pulse { 0%,100% {opacity:1; transform:scale(1);} 50% {opacity:.84; transform:scale(0.95);} }
+        .hero-title { font-size: 2.45rem; font-weight: 800; line-height: 1.22; color: #f8fafc; }
+        .hero-subtitle { margin-top: 0.75rem; font-size: 1.12rem; color: #e0f2fe; }
+        .hero-badges { display: flex; flex-wrap: wrap; gap: 1rem; }
+        .hero-badge {
+            padding: 0.45rem 1.35rem;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            background: rgba(15, 23, 42, 0.45);
+            color: #bbf7d0;
+            backdrop-filter: blur(12px);
+            box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.32);
+        }
+        .section-card {
+            background: rgba(15, 23, 42, 0.78);
+            border-radius: 1.35rem;
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            box-shadow: 0 24px 48px rgba(2, 6, 23, 0.45);
+            margin-bottom: 1.7rem;
+            overflow: hidden;
+        }
+        .section-header {
+            width: 100%;
+            padding: 1.35rem 1.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            border: none;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.24) 0%, rgba(129, 140, 248, 0.24) 100%);
+            transition: all 0.3s ease;
+        }
+        .section-header:hover { background: linear-gradient(135deg, rgba(56, 189, 248, 0.3) 0%, rgba(129, 140, 248, 0.3) 100%); }
+        .section-header.expanded { box-shadow: inset 0 0 0 2px rgba(56, 189, 248, 0.35); }
+        .section-title-content { display: flex; align-items: center; gap: 1.1rem; }
+        .section-icon { width: 1.9rem; height: 1.9rem; color: #38bdf8; }
+        .section-title { font-size: 1.27rem; font-weight: 700; color: #e0f2fe; }
+        .section-chevron { width: 1.5rem; height: 1.5rem; color: #38bdf8; transition: transform 0.3s ease; }
+        .section-header.expanded .section-chevron { transform: rotate(180deg); }
+        .section-content { padding: 1.8rem 2rem; background: rgba(8, 28, 50, 0.85); display: none; }
+        .section-content.expanded { display: block; }
+        .content-box {
+            padding: 2rem;
+            border-radius: 1.35rem;
+            margin-bottom: 1.3rem;
+            border: 2px solid rgba(56, 189, 248, 0.32);
+            background: rgba(15, 23, 42, 0.68);
+            box-shadow: 0 18px 36px rgba(8, 47, 73, 0.42);
+        }
+        .content-box.highlight { background: linear-gradient(135deg, rgba(56, 189, 248, 0.18) 0%, rgba(129, 140, 248, 0.18) 100%); border-color: rgba(56, 189, 248, 0.48); }
+        .content-box.warning { background: linear-gradient(135deg, rgba(253, 224, 71, 0.14) 0%, rgba(250, 250, 125, 0.2) 100%); border-color: rgba(202, 138, 4, 0.4); color: #0f172a; }
+        .grid-2 { display: grid; gap: 1.6rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+        .grid-3 { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+        .grid-4 { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+        .badge-list { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.45rem 0.9rem;
+            background: rgba(56, 189, 248, 0.2);
+            border-radius: 999px;
+            font-size: 0.86rem;
+            font-weight: 600;
+            color: #f0f9ff;
+        }
+        .example-card {
+            background: rgba(15, 23, 42, 0.78);
+            border-radius: 1.15rem;
+            border-left: 6px solid rgba(56, 189, 248, 0.58);
+            padding: 1.2rem 1.3rem;
+            box-shadow: 0 16px 32px rgba(2, 6, 23, 0.55);
+            font-size: 1.02rem;
+            font-weight: 500;
+            color: #e2e8f0;
+        }
+        .summary-section {
+            margin-top: 3.5rem;
+            background: linear-gradient(135deg, rgba(2, 6, 23, 0.9) 0%, rgba(15, 23, 42, 0.85) 55%, rgba(56, 189, 248, 0.28) 100%);
+            color: #e0f2fe;
+            padding: 3rem;
+            border-radius: 2.25rem;
+            box-shadow: 0 36px 72px rgba(2, 6, 23, 0.6);
+        }
+        .summary-grid { display: grid; gap: 1.6rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+        .summary-card { background: rgba(56, 189, 248, 0.18); border-radius: 1.7rem; padding: 2rem 1.6rem; backdrop-filter: blur(16px); }
+        .summary-highlight { margin-top: 2.4rem; text-align: center; font-size: 1.7rem; font-weight: 700; padding: 1.4rem; border-radius: 1.2rem; background: rgba(56, 189, 248, 0.22); border: 1px solid rgba(56, 189, 248, 0.45); color: #bbf7d0; }
+        .footer-section { margin-top: 3.4rem; text-align: center; color: #bae6fd; }
+        .footer-title { font-size: 3.1rem; font-weight: 800; }
+        .footer-text { font-size: 1.24rem; margin-top: 1rem; }
+        .footer-note { margin-top: 2rem; padding: 1.4rem; border-radius: 1.2rem; background: rgba(56, 189, 248, 0.2); font-weight: 600; color: #0f172a; }
+        ul { list-style: none; }
+        ul li { position: relative; padding-left: 1.35rem; margin-bottom: 0.6rem; }
+        ul li::before { content: '•'; position: absolute; left: 0; color: #38bdf8; font-weight: 800; }
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2rem; }
+            .hero-content { padding: 2.8rem 1.7rem; }
+            .section-content { padding: 1.45rem 1.55rem; }
+            .content-box { padding: 1.65rem; }
+            .summary-section { padding: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            <span>මුල් පිටුවට</span>
+        </a>
+
+        <div class="hero-header">
+            <div class="hero-content">
+                <div class="hero-title-section">
+                    <i class="fas fa-droplet hero-icon"></i>
+                    <div>
+                        <h1 class="hero-title">ද්විතීය ධ්‍යානයේ සෝතාපත්ති ඵල චිත්තය</h1>
+                        <p class="hero-subtitle">ද්විතීය ධ්‍යානයේ විතර්ක රහිත සමාධිය මත, සෝතාපත්ති මග්ගයෙන් පසු නිවන අනුභවය දිගටම පැවැත්වෙන පළමු ලෝකූත්තර ඵලය</p>
+                    </div>
+                </div>
+                <div class="hero-badges">
+                    <span class="hero-badge">ලෝකූත්තර විපාක</span>
+                    <span class="hero-badge">සෝතාපත්ති ඵල (2 වන ධ්‍යානය)</span>
+                    <span class="hero-badge">ද්විතීය ධ්‍යානය</span>
+                    <span class="hero-badge">චෛතසික 35</span>
+                    <span class="hero-badge">ත්‍රිහේතුක</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 1 -->
+        <div class="section-card">
+            <button class="section-header" onclick="toggleSection('lvl1')">
+                <div class="section-title-content">
+                    <i class="fas fa-lightbulb section-icon"></i>
+                    <h2 class="section-title">මට්ටම 1 • සරල අර්ථය</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="lvl1">
+                <div class="grid-2">
+                    <div class="content-box">
+                        <h3 class="text-xl font-bold mb-4 text-blue-200">නිශ්ශබ්ද සමාධියේ නිවන අත්දැකීම</h3>
+                        <ul>
+                            <li>සෝතාපත්ති මග්ගයට වහාම පසුව, දෙවැනි ධ්‍යානයේ සමාධිය මත නිවන අනුභවය දිගටම පැවැත්වෙන සිත.</li>
+                            <li>විතර්කය නැතිවී විචාර-ප්‍රීති-සුඛ-ඒකාග්‍රතා සමඟ සිත නිශ්ශබ්දව ඇති අතර නිවන සැලවීම අඩුයි.</li>
+                            <li>සෝතාපත්ති ඵල සමාපත්තියෙන්, නිවන අත්දැකීම නිතර නිවෙස් වශයෙන් අත්විඳිය හැක.</li>
+                            <li>සක්කාය දිට්ඨි, විචිකිච්ඡා, සීලබ්බත පරාමාස නැවත නැගී නැගීමක් නොවේ; සෝතාපත්ති මට්ටම පිරී ඇත.</li>
+                        </ul>
+                    </div>
+                    <div class="content-box warning">
+                        <h3 class="text-xl font-bold mb-3">උදාහරණයක්</h3>
+                        <p>"සෝතාපත්ති මග්ගයෙන් පූර්ව පළමු ධ්‍යානයේ සිටි භාවනාකරුවෙකු, විතර්කයෙන් ඉවත් වී දෙවැනි ධ්‍යානයට ගිය මොහොතේ, සෝතාපත්ති ඵල චිත්තය අදහස් කළ නිවන සුවය සන්සුන් ස්මෘතියක් ලෙස නිරන්තරයෙන් පවත්වා ගත්තේය."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 2 -->
+        <div class="section-card">
+            <button class="section-header" onclick="toggleSection('lvl2')">
+                <div class="section-title-content">
+                    <i class="fas fa-book-open section-icon"></i>
+                    <h2 class="section-title">මට්ටම 2 • වචන විග්‍රහය</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="lvl2">
+                <div class="grid-2">
+                    <div class="content-box highlight">
+                        <h3 class="font-bold text-lg mb-3">"ව්‍යාවචර ධ්‍යානය"</h3>
+                        <ul>
+                            <li>ද්විතීය ධ්‍යානයේ විශේෂය: විතර්කය අවසන්; සමාධිය නිරන්තර ප්‍රවාහයකින් පිරී ඇත.</li>
+                            <li>සුඛ, ප්‍රීති, ඒකාග්‍රතා සහිත නිර්මල භාවය නිසා නිවන අත්විඳීම සන්සුන් වීමෙන් පිරී ඇත.</li>
+                        </ul>
+                    </div>
+                    <div class="content-box highlight">
+                        <h3 class="font-bold text-lg mb-3">"ඵල"</h3>
+                        <ul>
+                            <li>මග්ගයෙන් නසාගත් කෙලෙස්වල ප්‍රතිඵලය අනුභව කරන ලෝකූත්තර විපාකයි.</li>
+                            <li>දෙවැනි ධ්‍යානයේදී එය ඉතා නිශ්ශබ්ද සතුටක් ලෙස අත්විඳී; නව කර්ම බීජයක් නොසෑදේ.</li>
+                        </ul>
+                    </div>
+                    <div class="content-box">
+                        <h3 class="font-bold text-lg mb-3 text-blue-200">"සෝතාපත්ති"</h3>
+                        <ul>
+                            <li>සංසාරයේ නිරන්තරය දුරලමින්, සක්කාය දිට්ඨි සහ විචිකිච්ඡා වැනි මුල් ඉඳුරම් නසන අවසන් ආරම්භය.</li>
+                            <li>ඵලය තුළින් අරමුණ – නිවන අත්විඳීම හා විවේචනාත්මක සන්සුන් සංහිතාව.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 3 -->
+        <div class="section-card">
+            <button class="section-header" onclick="toggleSection('lvl3')">
+                <div class="section-title-content">
+                    <i class="fas fa-layer-group section-icon"></i>
+                    <h2 class="section-title">මට්ටම 3 • අභිධර්ම වර්ගීකරණය</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="lvl3">
+                <div class="content-box">
+                    <h3 class="text-2xl font-bold text-center mb-6 text-blue-200">ලෝකූත්තර ඵල සිතුවල දෙවැනි ධ්‍යානයේ පැහැදිලි කිරීම</h3>
+                    <div class="grid-3">
+                        <div class="content-box">
+                            <p class="text-5xl font-black mb-2 text-blue-200">40</p>
+                            <p class="font-bold">ලෝකූත්තර සිත්</p>
+                            <p class="text-sm text-slate-200 mt-2">ඵල සිතුවල පළමු අදියර සෝතාපත්ති; ධ්‍යානය අනුව 5 වර්ගයට බෙදේ.</p>
+                        </div>
+                        <div class="content-box">
+                            <p class="text-5xl font-black mb-2 text-blue-200">35</p>
+                            <p class="font-bold">චෛතසික සංයුතිය</p>
+                            <p class="text-sm text-slate-200 mt-2">විචාර-ප්‍රීති-සුඛ-ඒකාග්‍රතා + ලෝකූත්තර විශේෂ; විතර්කය නොමැති නිසා 35.</p>
+                        </div>
+                        <div class="content-box">
+                            <p class="text-5xl font-black mb-2 text-blue-200">89 / 121</p>
+                            <p class="font-bold">සම්පූර්ණ චිත්ත පද්ධතිය</p>
+                            <p class="text-sm text-slate-200 mt-2">මෙය සෝතාපත්ති ඵලවල දෙවැනි ධ්‍යානය – ලෝකූත්තර ව්‍යුහයේ පළමු අදියර.</p>
+                        </div>
+                    </div>
+                    <div class="content-box highlight" style="margin-top: 1.6rem;">
+                        <h4 class="font-bold text-lg mb-4">ද්විතීය ධ්‍යානයේ විශේෂ ලක්ෂණ</h4>
+                        <div class="grid-4">
+                            <span class="badge">විතර්කය නැතිවීම</span>
+                            <span class="badge">විචාර-ප්‍රීති-සුඛ</span>
+                            <span class="badge">තවත් නිශ්ශබ්ද බවක්</span>
+                            <span class="badge">ප්‍රතිඵල</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 4 -->
+        <div class="section-card">
+            <button class="section-header" onclick="toggleSection('lvl4')">
+                <div class="section-title-content">
+                    <i class="fas fa-flask section-icon"></i>
+                    <h2 class="section-title">මට්ටම 4 • ප්‍රතිඵල සහ ප්‍රතිඵල ප්‍රතිඵල</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="lvl4">
+                <div class="grid-2">
+                    <div class="content-box">
+                        <h3 class="font-bold text-lg mb-3 text-blue-200">ප්‍රතිඵල</h3>
+                        <ul>
+                            <li>මග්ගයෙන් නසාගත් කෙලෙස්වල ප්‍රතිඵලය අනුභව කරමින් නිවන සුවය සකස් කරයි.</li>
+                            <li>සෝතාපත්ති නිරෝධය නිසා කාමරාග සහ පටිඝ ශක්තිමත් ලෙස අඩුවෙයි.</li>
+                            <li>දෙවැනි ධ්‍යානයේ සමාධිය නිසා අභ්‍යන්තර සන්සුන් භාවය තවත් ගැඹුරු වෙයි.</li>
+                        </ul>
+                    </div>
+                    <div class="content-box">
+                        <h3 class="font-bold text-lg mb-3 text-blue-200">ප්‍රතිඵල ප්‍රතිඵල</h3>
+                        <ul>
+                            <li>ඵල සමාපත්තිය නිතර භාවිතයෙන් නිවන අත්දැකීම ශක්තිමත් කරගන්න.</li>
+                            <li>විතර්කය නැතිවූ සමාධිය රැක ගැනීමට නිරන්තර සතිපට්ඨාන භාවිතා කරන්න.</li>
+                            <li>අනාගත සකදාගාමී මග්ගයට පහසු වීමට දෛනික වාසියක් ලෙස හිත, වචන, කම්මන්ත පිරිසිදු කිරීම.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 5 -->
+        <div class="section-card">
+            <button class="section-header" onclick="toggleSection('lvl5')">
+                <div class="section-title-content">
+                    <i class="fas fa-hand-sparkles section-icon"></i>
+                    <h2 class="section-title">මට්ටම 5 • ප්‍රායෝගික සටහන්</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="lvl5">
+                <div class="grid-2">
+                    <div class="content-box">
+                        <h3 class="font-bold text-lg mb-3 text-blue-200">ප්‍රායෝගික සටහන්</h3>
+                        <ul>
+                            <li>ඵල සමාපත්තිය තුළින් දෙවැනි ධ්‍යානයේ සමාධිය වඩා ගැඹුරුව යයි; නිවන සුවය ඉතා සැහැල්ලු බවක් ලෙස දැනේ.</li>
+                            <li>සකදාගාමී මග්ගය වෙත ගමන් කරන විට, මෙම ඵල සමාපත්තිය අනුගමනය කළහොත් උසස් සමාධිය රැකගත හැක.</li>
+                            <li>නිවන අත්දැකීම නිතර සිහිපත් කර ගැනීමෙන් සංසර බිය හා සංවේග බොහෝවිට ක්‍රියාවලියට රස දෙයි.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 6 -->
+        <div class="section-card">
+            <button class="section-header" onclick="toggleSection('lvl6')">
+                <div class="section-title-content">
+                    <i class="fas fa-shield-alt section-icon"></i>
+                    <h2 class="section-title">මට්ටම 6 • ප්‍රතිඵල ප්‍රතිඵල</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="lvl6">
+                <div class="grid-2">
+                    <div class="content-box">
+                        <h3 class="font-bold text-lg mb-3 text-blue-200">ප්‍රතිඵල ප්‍රතිඵල</h3>
+                        <ul>
+                            <li>ඵල සමාපත්තිය නිතර භාවිතයෙන් නිවන අත්දැකීම ශක්තිමත් කරගන්න.</li>
+                            <li>විතර්කය නැතිවූ සමාධිය රැක ගැනීමට නිරන්තර සතිපට්ඨාන භාවිතා කරන්න.</li>
+                            <li>අනාගත සකදාගාමී මග්ගයට පහසු වීමට දෛනික වාසියක් ලෙස හිත, වචන, කම්මන්ත පිරිසිදු කිරීම.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="summary-section">
+            <h2 class="text-3xl font-bold text-center mb-8">සාධු! සාධු! සාධු!</h2>
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <p class="text-5xl mb-2">🌊</p>
+                    <p class="text-2xl font-bold">ද්විතීය ධ්‍යානයේ සෝතාපත්ති ඵල චිත්තය</p>
+                    <p class="text-lg">ද්විතීය ධ්‍යානයේ සෝතාපත්ති ඵලය සාර්ථකයි • ඉදිරියට සකදාගාමී මග්ගය වෙත සූදානම.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <p class="footer-title">සාධු! සාධු! සාධු!</p>
+            <p class="footer-text">ද්විතීය ධ්‍යානයේ සෝතාපත්ති ඵලය සාර්ථකයි • ඉදිරියට සකදාගාමී මග්ගය වෙත සූදානම.</p>
+            <p class="footer-note">ඵල සමාපත්තියෙන් නිවන අත්දැකීම නිතර සිහිපත් කරගෙන, නිතර සන්සුන් ජීවිතයක් පවත්වා ගන්න.</p>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const header = section.previousElementSibling;
+            const chevron = header.querySelector('.section-chevron');
+
+            if (section.style.display === 'block') {
+                section.style.display = 'none';
+                chevron.style.transform = 'rotate(0deg)';
+            } else {
+                section.style.display = 'block';
+                chevron.style.transform = 'rotate(180deg)';
+            }
+        }
+    </script>
+</body>
+</html>

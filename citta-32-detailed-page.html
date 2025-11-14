@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ප්‍රථම ධ්‍යාන සකදාගාමී මග්ග චිත්තය - විස්තර</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            background: radial-gradient(circle at top, #0b1120 0%, #312e81 45%, #134e4a 100%);
+            min-height: 100vh;
+            color: #e2e8f0;
+            line-height: 1.78;
+        }
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 1.5rem 3.5rem; }
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.75rem 1.6rem;
+            margin: 1.6rem 0;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 0.85rem;
+            text-decoration: none;
+            color: #f8fafc;
+            font-weight: 600;
+            box-shadow: 0 18px 40px rgba(8, 47, 73, 0.32);
+            transition: all 0.25s ease;
+        }
+        .back-button:hover { transform: translateX(-6px); box-shadow: 0 24px 52px rgba(8, 47, 73, 0.45); }
+        .hero-header {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.28) 0%, rgba(59, 130, 246, 0.48) 45%, rgba(34, 197, 94, 0.72) 100%);
+            border-radius: 1.9rem;
+            box-shadow: 0 32px 64px rgba(8, 47, 73, 0.45);
+            margin-bottom: 2.4rem;
+        }
+        .hero-content { padding: 3.8rem 2.2rem; }
+        .hero-title-section { display: flex; gap: 1.6rem; align-items: center; margin-bottom: 2rem; }
+        .hero-icon { width: 4.1rem; height: 4.1rem; color: #c084fc; animation: pulse 3s ease-in-out infinite; }
+        @keyframes pulse { 0%,100% {opacity:1; transform:scale(1);} 50% {opacity:.84; transform:scale(0.95);} }
+        .hero-title { font-size: 2.45rem; font-weight: 800; line-height: 1.22; color: #f8fafc; }
+        .hero-subtitle { margin-top: 0.75rem; font-size: 1.12rem; color: #e0f2fe; }
+        .hero-badges { display: flex; flex-wrap: wrap; gap: 1rem; }
+        .hero-badge {
+            padding: 0.45rem 1.35rem;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            background: rgba(15, 23, 42, 0.45);
+            color: #e0f2fe;
+            backdrop-filter: blur(12px);
+            box-shadow: inset 0 0 0 1px rgba(226, 232, 240, 0.28);
+        }
+        .section-card {
+            background: rgba(15, 23, 42, 0.78);
+            border-radius: 1.35rem;
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            box-shadow: 0 24px 48px rgba(2, 6, 23, 0.45);
+            margin-bottom: 1.7rem;
+            overflow: hidden;
+        }
+        .section-header {
+            width: 100%;
+            padding: 1.35rem 1.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            border: none;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.28) 0%, rgba(59, 130, 246, 0.24) 100%);
+            transition: all 0.3s ease;
+        }
+        .section-header:hover { background: linear-gradient(135deg, rgba(168, 85, 247, 0.34) 0%, rgba(59, 130, 246, 0.3) 100%); }
+        .section-header.expanded { box-shadow: inset 0 0 0 2px rgba(196, 181, 253, 0.35); }
+        .section-title-content { display: flex; align-items: center; gap: 1.1rem; }
+        .section-icon { width: 1.9rem; height: 1.9rem; color: #c084fc; }
+        .section-title { font-size: 1.27rem; font-weight: 700; color: #e0f2fe; }
+        .section-chevron { width: 1.5rem; height: 1.5rem; color: #c084fc; transition: transform 0.3s ease; }
+        .section-header.expanded .section-chevron { transform: rotate(180deg); }
+        .section-content { padding: 1.8rem 2rem; background: rgba(8, 28, 50, 0.85); display: none; }
+        .section-content.expanded { display: block; }
+        .content-box {
+            padding: 2rem;
+            border-radius: 1.35rem;
+            margin-bottom: 1.3rem;
+            border: 2px solid rgba(168, 85, 247, 0.32);
+            background: rgba(15, 23, 42, 0.68);
+            box-shadow: 0 18px 36px rgba(8, 47, 73, 0.42);
+        }
+        .content-box.highlight { background: linear-gradient(135deg, rgba(168, 85, 247, 0.18) 0%, rgba(59, 130, 246, 0.18) 100%); border-color: rgba(168, 85, 247, 0.52); }
+        .content-box.warning { background: linear-gradient(135deg, rgba(253, 224, 71, 0.14) 0%, rgba(250, 250, 125, 0.18) 100%); border-color: rgba(202, 138, 4, 0.4); color: #0f172a; }
+        .grid-2 { display: grid; gap: 1.6rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+        .grid-3 { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+        .grid-4 { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+        .badge-list { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.45rem 0.9rem;
+            background: rgba(168, 85, 247, 0.2);
+            border-radius: 999px;
+            font-size: 0.86rem;
+            font-weight: 600;
+            color: #f1f5f9;
+        }
+        .example-card {
+            background: rgba(15, 23, 42, 0.78);
+            border-radius: 1.15rem;
+            border-left: 6px solid rgba(168, 85, 247, 0.58);
+            padding: 1.2rem 1.3rem;
+            box-shadow: 0 16px 32px rgba(2, 6, 23, 0.55);
+            font-size: 1.02rem;
+            font-weight: 500;
+            color: #e2e8f0;
+        }
+        .summary-section {
+            margin-top: 3.5rem;
+            background: linear-gradient(135deg, rgba(2, 6, 23, 0.9) 0%, rgba(15, 23, 42, 0.85) 55%, rgba(168, 85, 247, 0.25) 100%);
+            color: #e0f2fe;
+            padding: 3rem;
+            border-radius: 2.25rem;
+            box-shadow: 0 36px 72px rgba(2, 6, 23, 0.6);
+        }
+        .summary-grid { display: grid; gap: 1.6rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+        .summary-card { background: rgba(168, 85, 247, 0.18); border-radius: 1.7rem; padding: 2rem 1.6rem; backdrop-filter: blur(16px); }
+        .summary-highlight { margin-top: 2.4rem; text-align: center; font-size: 1.7rem; font-weight: 700; padding: 1.4rem; border-radius: 1.2rem; background: rgba(139, 92, 246, 0.26); border: 1px solid rgba(196, 181, 253, 0.38); color: #c084fc; }
+        .footer-section { margin-top: 3.4rem; text-align: center; color: #e9d5ff; }
+        .footer-title { font-size: 3.1rem; font-weight: 800; }
+        .footer-text { font-size: 1.24rem; margin-top: 1rem; }
+        .footer-note { margin-top: 2rem; padding: 1.4rem; border-radius: 1.2rem; background: rgba(168, 85, 247, 0.16); font-weight: 600; color: #0f172a; }
+        ul { list-style: none; }
+        ul li { position: relative; padding-left: 1.35rem; margin-bottom: 0.6rem; }
+        ul li::before { content: '•'; position: absolute; left: 0; color: #a855f7; font-weight: 800; }
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2rem; }
+            .hero-content { padding: 2.8rem 1.7rem; }
+            .section-content { padding: 1.45rem 1.55rem; }
+            .content-box { padding: 1.65rem; }
+            .summary-section { padding: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            <span>මුල් පිටුවට</span>
+        </a>
+
+        <div class="hero-header">
+            <div class="hero-content">
+                <div class="hero-title-section">
+                    <i class="fas fa-comet hero-icon"></i>
+                    <div>
+                        <h1 class="hero-title">ප්‍රථම ධ්‍යාන සකදාගාමී මග්ග චිත්තය</h1>
+                        <p class="hero-subtitle">ලෝකූත්තර මග්ග සිත් – සකදාගාමී මග්ගය: සෝතාපන්න සිතෙන් ඉහළට යන මඟ</p>
+                    </div>
+                </div>
+                <div class="hero-badges">
+                    <span class="hero-badge">ලෝකූත්තර මග්ග</span>
+                    <span class="hero-badge">සකදාගාමී මග්ග (දෙවන මග්ග)</span>
+                    <span class="hero-badge">ප්‍රථම ධ්‍යාන</span>
+                    <span class="hero-badge">චෛතසික 36</span>
+                    <span class="hero-badge">ත්‍රිහේතුක (අලෝභ • අදෝස • අමෝහ)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 1 -->
+        <div class="section-card">
+            <button class="section-header" onclick="toggleSection('lvl1')">
+                <div class="section-title-content">
+                    <i class="fas fa-lightbulb section-icon"></i>
+                    <h2 class="section-title">මට්ටම 1 • සරලම අර්ථය</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="lvl1">
+                <div class="grid-2">
+                    <div class="content-box">
+                        <h3 class="text-xl font-bold mb-4 text-purple-200">සෝතාපන්නයෙන් සකදාගාමී වෙත පියවර</h3>
+                        <ul>
+                            <li><strong>සකදාගාමී මග්ගය:</strong> ලෝකූත්තර මග්ග සිතුවල දෙවැනි බව; සෝතාපන්න මග්ගයෙන් පසු උඩට යන මංචු.</li>
+                            <li><strong>එක් මොහොතක් පමණයි:</strong> මග්ග චිත්තය සෑම අවස්ථාවකම එක වරක් පමණක් පැනනගී.</li>
+                            <li><strong>අරමුණ:</strong> රූප රාගය සහ පටිඝය (කේලබල) තදින් දිරවා දුර්වල කිරීම.</li>
+                            <li><strong>නිවන අරමුණ:</strong> පළමුවර සෝතාපත්ති මග්ගයේ දක්න ලද නිවන මත නැවුම් දර්ශනයක් කරමින්, වැඩි හේතුක සමාධියෙන් කෙලෙස් හෙළනු ලබයි.</li>
+                        </ul>
+                    </div>
+                    <div class="content-box warning">
+                        <h3 class="text-xl font-bold mb-3">උදාහරණයක්</h3>
+                        <p>"සෝතාපන්න පිරිසෙහි අධිෂ්ඨාන කළ භාවනාකරුවෙකු, ප්‍රථම ධ්‍යාන සමාධිය පැවැත්වගෙන විදර්ශනා ප්‍රායෝගික ක්‍රියාවක් කරයි. සත්‍යතයන්ට ගායනය කරමින් කෙලෙස් ව්‍යාපාරය දකිති. එම අවසාන මොහොතේ, සකදාගාමී මග්ග චිත්තය එක්තා වූයේ රූපරාගය සහ පටිඝය දැඩිව දිරවා දුර්වල කිරීම සඳහාය."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 2 -->
+        <div class="section-card">
+            <button class="section-header" onclick="toggleSection('lvl2')">
+                <div class="section-title-content">
+                    <i class="fas fa-book-open section-icon"></i>
+                    <h2 class="section-title">මට්ටම 2 • වචන විග්‍රහය</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="lvl2">
+                <div class="grid-2">
+                    <div class="content-box highlight">
+                        <h3 class="font-bold text-lg mb-3">"සකදාගාමී"</h3>
+                        <ul>
+                            <li>සකෘද් + ආගාමී = "එක් වරක්" + "ආගමනය" → එක් වරක් පමණක් මෙ ලොවට නැවත පැමිණෙන කීවිය.</li>
+                            <li>මෙම මග්ග චිත්තය නිසා, රූපරාගය සහ පටිඝය දැඩිව දසනාතුර වෙයි; එමනිසා තවත් වරක් පමණක් සංසාරෙහි ගමනාගමනය සිදුවේ.</li>
+                        </ul>
+                    </div>
+                    <div class="content-box highlight">
+                        <h3 class="font-bold text-lg mb-3">"මග්ග"</h3>
+                        <ul>
+                            <li>මග්ග = මාර්ග; කෙලෙස් නසන මඟ.</li>
+                            <li>ලෝකූත්තර මග්ග පිහිටයි: සම්මා ධර්ම විපස්සනා සත්ත්වයට නිවන දැක්වීම.</li>
+                            <li>තල්මූලික අයුරු: මෙය කෙලෙස් හෙළන උලෙලක්; අදහස් කිරීමට නොව, ක්‍රියාත්මක කරන සච්චිකරණය.</li>
+                        </ul>
+                    </div>
+                    <div class="content-box">
+                        <h3 class="font-bold text-lg mb-3 text-purple-200">"ප්‍රථම ධ්‍යාන"</h3>
+                        <ul>
+                            <li>විතර්ක, විචාර, ප්‍රීති, සුඛ, ඒකාග්‍රතා – ධ්‍යාන අංග 5 හරහා සමාධිය.</li>
+                            <li>ලෝකූත්තර මග්ගයට රූපාවචර මට්ටමේ ශක්තියක් ලබාදෙයි.</li>
+                            <li>සමථ පදවීමෙන් උපරිම ස්ථානයක් ලබා දෙයි.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 3 -->
+        <div class="section-card">
+            <button class="section-header" onclick="toggleSection('lvl3')">
+                <div class="section-title-content">
+                    <i class="fas fa-layer-group section-icon"></i>
+                    <h2 class="section-title">මට්ටම 3 • අභිධර්ම වර්ගීකරණය</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="lvl3">
+                <div class="content-box">
+                    <h3 class="text-2xl font-bold text-center mb-6 text-purple-200">ලෝකූත්තර මග්ග සිත් 8 තුළ තැන</h3>
+                    <div class="grid-3">
+                        <div class="content-box">
+                            <p class="text-5xl font-black mb-2 text-purple-200">40</p>
+                            <p class="font-bold">ලෝකූත්තර සිත්වල ගණන</p>
+                            <p class="text-sm text-slate-200 mt-2">මග්ග 8 • ඵල 8 (සම්භාර සහ විපාක ඇතුළු).</p>
+                        </div>
+                        <div class="content-box">
+                            <p class="text-5xl font-black mb-2 text-purple-200">36</p>
+                            <p class="font-bold">චෛතසික සංයුතිය</p>
+                            <p class="text-sm text-slate-200 mt-2">ප්‍රථම ධ්‍යාන සාධාරණ + ලෝකූත්තර මග්ගංග.</p>
+                        </div>
+                        <div class="content-box">
+                            <p class="text-5xl font-black mb-2 text-purple-200">89 / 121</p>
+                            <p class="font-bold">සම්පූර්ණ චිත්ත පද්ධතිය</p>
+                        </div>
+                    </div>
+                    <div class="content-box highlight" style="margin-top: 1.6rem;">
+                        <h4 class="font-bold text-lg mb-4">ලෝකූත්තර මග්ග සිත් 8</h4>
+                        <div class="grid-4">
+                            <div class="badge">1. සෝතාපත්ති මග්ගය</div>
+                            <div class="badge" style="background: rgba(168, 85, 247, 0.32); color:#0f172a; font-weight:700;">2. සකදාගාමී මග්ගය ⭐</div>
+                            <div class="badge">3. අනාගාමී මග්ගය</div>
+                            <div class="badge">4. අරහත්ත මග්ගය</div>
+                        </div>
+                        <p class="text-sm text-slate-200 mt-3">සකදාගාමී මග්ගය නිසා, කාමරාගය සහ පටිඝය දැඩිව දිරවී දුර්වල වේ. ස්වල්ප සංසාර පාරිභෝගික වශයෙන් තව වරක් පමණක් මෙ ලොවට නැවත පැමිණෙන තත්වය නිර්ණය කරයි.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 4 -->
+        <div class="section-card">
+            <button class="section-header" onclick="toggleSection('lvl4')">
+                <div class="section-title-content">
+                    <i class="fas fa-heart section-icon"></i>
+                    <h2 class="section-title">මට්ටම 4 • චෛතසික සංයුතිය (36)</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="lvl4">
+                <div class="content-box">
+                    <p class="text-center text-lg font-semibold mb-6 text-purple-200">සමඟ සකදාගාමී මග්ගයට, මග්ගංග 8 සහ ප්‍රථම ධ්‍යාන අංග 5 සමඟින් පිරිනැමුණු ලෝකූත්තර චෛතසික ව්‍යුහයක්.</p>
+                    <div class="grid-2">
+                        <div class="content-box">
+                            <h4 class="font-bold mb-3 text-purple-200">සබ්බ චිත්ත සාධාරණ 7</h4>
+                            <div class="badge-list">
+                                <span class="badge">ඵස්ස</span>
+                                <span class="badge">සෝමනස්ස වේදනා</span>
+                                <span class="badge">සඤ්ඤා</span>
+                                <span class="badge">චේතනා</span>
+                                <span class="badge">ඒකාග්‍රතා</span>
+                                <span class="badge">ජීවිතින්ද්‍රිය</span>
+                                <span class="badge">මනසිකාර</span>
+                            </div>
+                        </div>
+                        <div class="content-box">
+                            <h4 class="font-bold mb-3 text-purple-200">කුසල සාධාරණ 19</h4>
+                            <div class="grid-3">
+                                <span class="badge">අලෝභ</span>
+                                <span class="badge">අදෝස</span>
+                                <span class="badge">අමෝහ</span>
+                                <span class="badge">සද්ධා</span>
+                                <span class="badge">සති</span>
+                                <span class="badge">හිරි</span>
+                                <span class="badge">ඔත්තප්ප</span>
+                                <span class="badge">කාය පසද්ධි</span>
+                                <span class="badge">චිත්ත පසද්ධි</span>
+                                <span class="badge">කාය ලහුතා</span>
+                                <span class="badge">චිත්ත ලහුතා</span>
+                                <span class="badge">කාය මුදුතා</span>
+                                <span class="badge">චිත්ත මුදුතා</span>
+                                <span class="badge">කාය කම්මඤ්ඤතා</span>
+                                <span class="badge">චිත්ත කම්මඤ්ඤතා</span>
+                                <span class="badge">කාය පාගුඤ්ඤතා</span>
+                                <span class="badge">චිත්ත පාගුඤ්ඤතා</span>
+                                <span class="badge">කායුජුකතා</span>
+                                <span class="badge">චිත්තුජුකතා</span>
+                                <span class="badge">පඤ්ඤින්ද්‍රිය</span>
+                                <span class="badge">ඤාණ</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-box highlight">
+                        <h4 class="font-bold mb-3">ප්‍රථම ධ්‍යාන අංග</h4>
+                        <div class="badge-list">
+                            <span class="badge" style="background: rgba(168, 85, 247, 0.32); color:#0f172a; font-weight:700;">විතර්ක</span>
+                            <span class="badge" style="background: rgba(168, 85, 247, 0.32); color:#0f172a; font-weight:700;">විචාර</span>
+                            <span class="badge" style="background: rgba(168, 85, 247, 0.32); color:#0f172a; font-weight:700;">ප්‍රීති</span>
+                            <span class="badge" style="background: rgba(168, 85, 247, 0.32); color:#0f172a; font-weight:700;">සුඛ</span>
+                            <span class="badge" style="background: rgba(168, 85, 247, 0.32); color:#0f172a; font-weight:700;">ඒකාග්‍රතා</span>
+                            <span class="badge">අධිමොක්ඛ</span>
+                            <span class="badge">විරිය</span>
+                            <span class="badge">ඡන්ද</span>
+                        </div>
+                    </div>
+                    <div class="content-box highlight" style="margin-top: 1.3rem;">
+                        <h4 class="font-bold mb-3">ලෝකූත්තර මග්ගංග 8</h4>
+                        <div class="badge-list">
+                            <span class="badge" style="background: rgba(168, 85, 247, 0.4); color:#0f172a; font-weight:700;">සම්මා දිට්ඨි</span>
+                            <span class="badge" style="background: rgba(168, 85, 247, 0.4); color:#0f172a; font-weight:700;">සම්මා සංකප්ප</span>
+                            <span class="badge" style="background: rgba(168, 85, 247, 0.4); color:#0f172a; font-weight:700;">සම්මා වාචා</span>
+                            <span class="badge" style="background: rgba(168, 85, 247, 0.4); color:#0f172a; font-weight:700;">සම්මා කම්මන්ත</span>
+                            <span class="badge" style="background: rgba(168, 85, 247, 0.4); color:#0f172a; font-weight:700;">සම්මා ආජීව</span>
+                            <span class="badge" style="background: rgba(168, 85, 247, 0.4); color:#0f172a; font-weight:700;">සම්මා වායාම</span>
+                            <span class="badge" style="background: rgba(168, 85, 247, 0.4); color:#0f172a; font-weight:700;">සම්මා සති</span>
+                            <span class="badge" style="background: rgba(168, 85, 247, 0.4); color:#0f172a; font-weight:700;">සම්මා සමාධි</span>
+                        </div>
+                        <p class="text-sm text-slate-200 mt-3">මෙම මග්ගංගය සියල්ලම සක්‍රීය වන විට, සකදාගාමී මග්ග චිත්තය කාමරාගය සහ පටිඝය දැඩිව දිරවයි. කෙලෙස් මූල සීමාවට ගෙන යයි.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 5 -->
+        <div class="section-card">
+            <button class="section-header" onclick="toggleSection('lvl5')">
+                <div class="section-title-content">
+                    <i class="fas fa-seedling section-icon"></i>
+                    <h2 class="section-title">මට්ටම 5 • මෙය ඇතිවීමට හේතු සහ උදාහරණ</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="lvl5">
+                <div class="grid-2">
+                    <div class="example-card">1. සෝතාපන්න භාවනාකරුවෙකු, ප්‍රථම ධ්‍යාන සමාධිය ගැඹුරු කර ගනිමින් පස් යෝගාවචර කලපරම්පරා යෙදි තුළ විදර්ශනා අභ්‍යසය තවදුරටත් ඉහළ දියත් කිරීම.</div>
+                    <div class="example-card">2. සත්‍යත්‍රය සකස් කර, නාම රූපය වෙන්කිරීමෙන් පසුව උපපාදව ග්‍රහණය කරන විට උදාවන පටිච්ච සමුප්පාද දර්ශනයෙන් රූපරාගය සහ පටිඝය කම්පනය.</div>
+                    <div class="example-card">3. කාමඤ්චා වස්තු වෙත අළුත් අයුරුින් තබන සම්බන්ධතාවය දුර්වල වීම; රූපවස්තු මත සෙමින් ප්‍රීතිය පහව යාම.</div>
+                    <div class="example-card">4. පටිඝය නිරොධය: තර්ජනයකට හේතු වූ දරුණු සිද්ධියක් සිහිකරද්දී, කේළම නගින උණුසුම නැතිව සන්සුන් බවක් පැන නගීම.</div>
+                    <div class="example-card">5. සකදාගාමී මග්ග කාලයේ ඉතුරු වූ කුසල මුල් නිසා, කාය විවරණය හා ශීලය ඉතා දෘඪව පැවැත්වීම, මෙන්ම සමාධි පදවීම වායාමකින් ඉහළට ගනිම.</div>
+                    <div class="example-card">6. අනුස්සති භාවනාවක් (බුද්ධානුස්සති, ධම්මානුස්සති) ලබාගත් නිවන අරමුණ සිහිපත් කරමින් මාර්ග අවස්ථාවට පසුබැසීම.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 6 -->
+        <div class="section-card">
+            <button class="section-header" onclick="toggleSection('lvl6')">
+                <div class="section-title-content">
+                    <i class="fas fa-chart-line section-icon"></i>
+                    <h2 class="section-title">මට්ටම 6 • ගැඹුරු අභිධර්ම විශ්ලේෂණය</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="lvl6">
+                <div class="content-box">
+                    <h3 class="font-bold text-lg mb-4">ධර්මසංගණී • අභිධම්මත්ථ සංගහ</h3>
+                    <ul>
+                        <li>සකදාගාමී මග්ග චිත්තය ලෝකූත්තර මග්ග සිත්තවල දෙවැනි තැන; සෝතාපත්ති මග්ගය හා ඵලය පසුබසී ඇත.</li>
+                        <li>ප්‍රථම ධ්‍යාන අංග හරහා සමාධි ශක්තිය ඉතා පිරිහී නොමිලේ. එය විදර්ශනා ප්‍රඥාවට පදනමක් වේ.</li>
+                        <li>කැමැත්ත සහ ද්වෙෂය දැඩියෙන් දිරවීම නිසා, සත්ත්වයා සෑම විටම සන්සුන්, සාර්ථක වීමේ දුර්වල තත්වයක් පවත්වයි.</li>
+                        <li>කෙලෙස් නසන නියමිත පිළිවෙල: රූපරාගය හා පටිඝය දුර්වල කිරීම → සකදාගාමී දශාවට සුදානම.</li>
+                    </ul>
+                </div>
+                <div class="content-box highlight">
+                    <h3 class="font-bold text-lg mb-4">මග්ග චිත්තයක ප්‍රායෝගික ලක්ෂණ</h3>
+                    <ul>
+                        <li>ඵලයට පූර්වගාමී සිත; ඒ නිසා එක් වරක් පමණක් පැනනගී.</li>
+                        <li>ආයුෂය දිගු කලාතුරකින් ද අනුස්සරණය කිරීමෙන් ඵල සමාපත්තියෙන් පාදක වේ.</li>
+                        <li>සෝතාපන්න සිතට වඩා සම්මා වායාමයෙන් හා සම්මා සමාධියෙන් ජ්‍යාතික ශක්තිය වැඩියෙන් පවතී.</li>
+                        <li>ඉතිරි සංයෝජනන් අවසන් කිරීමට අනාගාමී මග්ගයට යන්න අවශ්‍ය බුද්ධිමය සහ භාවනාමය පදනම මෙයින් සකසයි.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 7 -->
+        <div class="section-card">
+            <button class="section-header" onclick="toggleSection('lvl7')">
+                <div class="section-title-content">
+                    <i class="fas fa-hand-holding-heart section-icon"></i>
+                    <h2 class="section-title">මට්ටම 7 • ප්‍රතිඵල හා පවත්වා ගැනීම</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="lvl7">
+                <div class="grid-2">
+                    <div class="content-box">
+                        <h3 class="font-bold text-lg mb-3 text-purple-200">ප්‍රතිඵල</h3>
+                        <ul>
+                            <li>කාමරාගය හා පටිඝය දැඩිව දිරවා දුර්වල කිරීම; එමනිසා ඇතිවන්නේ සකදාගාමී සත්ත්වත්වය.</li>
+                            <li>සංසාරයට එක් වරක් පමණක් නැවත පැමිණීමක් බවේ විස්වාසය, විදර්ශනා දැඩිවිම.</li>
+                            <li>සමහර පෘෂ්ඨ පුරුෂයාගේ බුද්ධි රසයක්, විදර්ශනා භාවනාවට වැඩි කැමැත්ත.</li>
+                        </ul>
+                    </div>
+                    <div class="content-box warning">
+                        <h3 class="font-bold text-lg mb-3">පවත්වා ගැනීම / අවවාද</h3>
+                        <ul>
+                            <li>අනාගාමී මග්ගයට යාමට, කාමරාගය හුදෙක් දුර්වල කිරීමෙන් මට්ටම් නැවත ඉහළට ගෙන යායුතුය.</li>
+                            <li>සෝතාපන්න වියදීම, ශීල ව්‍යාප්ති, විදර්ශනා නිරන්තර කටයුතු ලෙස පවත්වා ගැනීම.</li>
+                            <li>සමාධි පදවීම (ප්‍රථම ධ්‍යාන) නිසි ලෙස ව්‍යාප්ති කර ගනිමින් වැඩි ධ්‍යාන මට්ටම් වෙත යාම.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary-section">
+            <h2 class="text-3xl font-bold text-center mb-8">සාරාංශයෙන් – ප්‍රථම ධ්‍යාන සකදාගාමී මග්ග චිත්තය</h2>
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <p class="text-5xl mb-2">🚀</p>
+                    <p class="font-bold text-lg">අභිවෘද්ධි මඟ</p>
+                    <p class="text-sm mt-2">සෝතාපත්ති මග්ගයෙන් ඉහළට ගෙන යන, දෙවැනි ලෝකූත්තර මග්ගය.</p>
+                </div>
+                <div class="summary-card">
+                    <p class="text-5xl mb-2">🛡️</p>
+                    <p class="font-bold text-lg">කෙලෙස් දිරවීම</p>
+                    <p class="text-sm mt-2">කාමරාගය සහ පටිඝය දැඩිව දිරවී දුර්වල වෙනවා; සම්පූර්ණ නාශයට පදනම තබයි.</p>
+                </div>
+                <div class="summary-card">
+                    <p class="text-5xl mb-2">🧘</p>
+                    <p class="font-bold text-lg">ප්‍රථම ධ්‍යාන සමාධිය</p>
+                    <p class="text-sm mt-2">විතර්ක, විචාර, ප්‍රීති, සුඛ, ඒකාග්‍රතා යන අංග හරහා ලැබෙන ශක්තිමත් මඟ.</p>
+                </div>
+                <div class="summary-card">
+                    <p class="text-5xl mb-2">🔁</p>
+                    <p class="font-bold text-lg">එක් වරක් පමණක්</p>
+                    <p class="text-sm mt-2">මග්ග චිත්තය වශයෙන් එක් වරක් පමණක් පැනනගි – එහි ප්‍රතිඵලය සකදාගාමී ඵලය.</p>
+                </div>
+            </div>
+            <p class="summary-highlight">ලෝකූත්තර මග්ග චිත්තය – සකදාගාමී මග්ගය: සෝතාපන්න මට්ටමෙන් ඉහළට කෙලෙස් දිරවමින්, එක් වරක් පමණක් ඉදිරියට කාම සංසාරයට යන තත්ත්වය තීරණය කරන, ප්‍රථම ධ්‍යානයේ ශක්තියෙන් යුත් ත්‍රිහේතුක සිතකි!</p>
+        </div>
+
+        <div class="footer-section">
+            <p class="footer-title">සාධු! සාධු! සාධු!</p>
+            <p class="footer-text">ලෝකූත්තර මග්ග සිතුවල දෙවැනි පියවර සම්පූර්ණයි • සකදාගාමී මග්ගය සාක්ෂාත් කර ඇත. ඊළඟට සකදාගාමී ඵලය වෙත යමු.</p>
+            <p class="footer-note">විමර්ශනය: මග්ග චිත්තය එක් වරක් පමණක් පැනනගීම නිසා, දීර්ඝ පැවැත්ම ඵල සමාපත්තියෙන් පවත්වා ගන්න. අනාගාමී මග්ගය සඳහා විදර්ශනා ව්‍යායාම නිරන්තර කරගෙන යන්න.</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleSection(sectionId) {
+            try {
+                const section = document.getElementById(sectionId);
+                if (!section) return;
+                const header = section.previousElementSibling;
+                if (section.classList.contains('expanded')) {
+                    section.classList.remove('expanded');
+                    header.classList.remove('expanded');
+                } else {
+                    section.classList.add('expanded');
+                    header.classList.add('expanded');
+                }
+            } catch (error) {
+                console.error('Error toggling section:', error);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            try { toggleSection('lvl1'); } catch (error) { console.error(error); }
+        });
+    </script>
+</body>
+</html>
+
