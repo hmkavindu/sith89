@@ -552,6 +552,16 @@ function populateTable() {
                     window.location.href = 'citta-43-detailed-page.html';
                     return false;
                 }
+                if (cittaId === 44) {
+                    console.log('Navigating to citta-44-detailed-page.html');
+                    window.location.href = 'citta-44-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 45) {
+                    console.log('Navigating to citta-45-detailed-page.html');
+                    window.location.href = 'citta-45-detailed-page.html';
+                    return false;
+                }
                 // Fallback to old guide pages for other cittas
                 console.log('Navigating to guide page for citta:', cittaId);
                 window.location.href = `citta-${cittaId}-guide.html`;
