@@ -562,6 +562,131 @@ function populateTable() {
                     window.location.href = 'citta-45-detailed-page.html';
                     return false;
                 }
+                if (cittaId === 46) {
+                    console.log('Navigating to citta-46-detailed-page.html');
+                    window.location.href = 'citta-46-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 47) {
+                    console.log('Navigating to citta-47-detailed-page.html');
+                    window.location.href = 'citta-47-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 48) {
+                    console.log('Navigating to citta-48-detailed-page.html');
+                    window.location.href = 'citta-48-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 49) {
+                    console.log('Navigating to citta-49-detailed-page.html');
+                    window.location.href = 'citta-49-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 50) {
+                    console.log('Navigating to citta-50-detailed-page.html');
+                    window.location.href = 'citta-50-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 51) {
+                    console.log('Navigating to citta-51-detailed-page.html');
+                    window.location.href = 'citta-51-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 52) {
+                    console.log('Navigating to citta-52-detailed-page.html');
+                    window.location.href = 'citta-52-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 53) {
+                    console.log('Navigating to citta-53-detailed-page.html');
+                    window.location.href = 'citta-53-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 54) {
+                    console.log('Navigating to citta-54-detailed-page.html');
+                    window.location.href = 'citta-54-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 55) {
+                    console.log('Navigating to citta-55-detailed-page.html');
+                    window.location.href = 'citta-55-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 56) {
+                    console.log('Navigating to citta-56-detailed-page.html');
+                    window.location.href = 'citta-56-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 57) {
+                    console.log('Navigating to citta-57-detailed-page.html');
+                    window.location.href = 'citta-57-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 58) {
+                    console.log('Navigating to citta-58-detailed-page.html');
+                    window.location.href = 'citta-58-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 59) {
+                    console.log('Navigating to citta-59-detailed-page.html');
+                    window.location.href = 'citta-59-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 60) {
+                    console.log('Navigating to citta-60-detailed-page.html');
+                    window.location.href = 'citta-60-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 61) {
+                    console.log('Navigating to citta-61-detailed-page.html');
+                    window.location.href = 'citta-61-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 62) {
+                    console.log('Navigating to citta-62-detailed-page.html');
+                    window.location.href = 'citta-62-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 63) {
+                    console.log('Navigating to citta-63-detailed-page.html');
+                    window.location.href = 'citta-63-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 64) {
+                    console.log('Navigating to citta-64-detailed-page.html');
+                    window.location.href = 'citta-64-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 65) {
+                    console.log('Navigating to citta-65-detailed-page.html');
+                    window.location.href = 'citta-65-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 66) {
+                    console.log('Navigating to citta-66-detailed-page.html');
+                    window.location.href = 'citta-66-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 67) {
+                    console.log('Navigating to citta-67-detailed-page.html');
+                    window.location.href = 'citta-67-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 68) {
+                    console.log('Navigating to citta-68-detailed-page.html');
+                    window.location.href = 'citta-68-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 69) {
+                    console.log('Navigating to citta-69-detailed-page.html');
+                    window.location.href = 'citta-69-detailed-page.html';
+                    return false;
+                }
+                if (cittaId === 70) {
+                    console.log('Navigating to citta-70-detailed-page.html');
+                    window.location.href = 'citta-70-detailed-page.html';
+                    return false;
+                }
                 // Fallback to old guide pages for other cittas
                 console.log('Navigating to guide page for citta:', cittaId);
                 window.location.href = `citta-${cittaId}-guide.html`;

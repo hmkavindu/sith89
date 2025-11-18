@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>තෘතීය ධ්‍යානයේ අරහත්ත ඵල චිත්තය - විස්තර</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            background: radial-gradient(circle at top, #010a11 0%, #05121d 45%, #01070e 100%);
+            min-height: 100vh;
+            color: #e2e8f0;
+            line-height: 1.78;
+        }
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 1.5rem 3.5rem; }
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.75rem 1.6rem;
+            margin: 1.6rem 0;
+            background: rgba(4, 24, 39, 0.75);
+            border-radius: 0.85rem;
+            text-decoration: none;
+            color: #f8fafc;
+            font-weight: 600;
+            box-shadow: 0 18px 40px rgba(120, 53, 15, 0.4);
+            transition: all 0.25s ease;
+        }
+        .back-button:hover { transform: translateX(-6px); box-shadow: 0 24px 52px rgba(120, 53, 15, 0.5); }
+        .hero-header {
+            background: linear-gradient(135deg, rgba(255, 237, 213, 0.48) 0%, rgba(251, 191, 36, 0.5) 45%, rgba(245, 158, 11, 0.48) 100%);
+            border-radius: 1.9rem;
+            box-shadow: 0 32px 64px rgba(120, 53, 15, 0.55);
+            margin-bottom: 2.5rem;
+        }
+        .hero-content { padding: 3.7rem 2.4rem; }
+        .hero-title-section { display: flex; gap: 1.6rem; align-items: center; margin-bottom: 2rem; }
+        .hero-icon { width: 4.1rem; height: 4.1rem; color: #fef9c3; animation: pulse 3s ease-in-out infinite; }
+        @keyframes pulse { 0%,100% {opacity:1; transform:scale(1);} 50% {opacity:.85; transform:scale(0.95);} }
+        .hero-title { font-size: 2.45rem; font-weight: 800; color: #2b1500; line-height: 1.22; }
+        .hero-subtitle { margin-top: 0.75rem; font-size: 1.12rem; color: #381b02; }
+        .hero-badges { display: flex; flex-wrap: wrap; gap: 1rem; }
+        .hero-badge {
+            padding: 0.45rem 1.35rem;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            background: rgba(4, 24, 39, 0.2);
+            color: #2c1602;
+            box-shadow: inset 0 0 0 1px rgba(251, 191, 36, 0.55);
+        }
+        .section-card {
+            background: rgba(3, 8, 15, 0.9);
+            border-radius: 1.35rem;
+            border: 1px solid rgba(251, 191, 36, 0.25);
+            box-shadow: 0 24px 48px rgba(2, 6, 23, 0.55);
+            margin-bottom: 1.7rem;
+            overflow: hidden;
+        }
+        .section-header {
+            width: 100%;
+            padding: 1.25rem 1.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            border: none;
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.22) 0%, rgba(248, 196, 113, 0.28) 100%);
+            transition: all 0.3s ease;
+        }
+        .section-header:hover { background: linear-gradient(135deg, rgba(251, 191, 36, 0.32) 0%, rgba(248, 196, 113, 0.36) 100%); }
+        .section-header.expanded { box-shadow: inset 0 0 0 2px rgba(251, 191, 36, 0.5); }
+        .section-title-content { display: flex; align-items: center; gap: 1.1rem; }
+        .section-icon { width: 1.85rem; height: 1.85rem; color: #fde68a; }
+        .section-title { font-size: 1.26rem; font-weight: 700; color: #fff7ed; }
+        .section-chevron { width: 1.45rem; height: 1.45rem; color: #ffe4b5; transition: transform 0.3s ease; }
+        .section-header.expanded .section-chevron { transform: rotate(180deg); }
+        .section-content { padding: 1.8rem 2rem; background: rgba(2, 13, 20, 0.92); display: none; }
+        .section-content.expanded { display: block; }
+        .content-box {
+            padding: 2rem;
+            border-radius: 1.35rem;
+            margin-bottom: 1.3rem;
+            border: 2px solid rgba(251, 191, 36, 0.32);
+            background: rgba(3, 16, 24, 0.85);
+            box-shadow: 0 18px 36px rgba(2, 8, 16, 0.65);
+        }
+        .content-box.highlight { background: linear-gradient(135deg, rgba(251, 191, 36, 0.28) 0%, rgba(248, 196, 113, 0.3) 100%); border-color: rgba(251, 191, 36, 0.55); color: #1f0d00; }
+        .content-box.warning { background: linear-gradient(135deg, rgba(248, 250, 252, 0.15) 0%, rgba(253, 224, 171, 0.28) 100%); border-color: rgba(251, 191, 36, 0.45); color: #231000; }
+        .grid-2 { display: grid; gap: 1.6rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+        .grid-3 { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+        .badge-list { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.45rem 0.9rem;
+            background: rgba(248, 196, 113, 0.25);
+            border-radius: 999px;
+            font-size: 0.86rem;
+            font-weight: 600;
+            color: #fff7ed;
+        }
+        .example-card {
+            background: rgba(3, 16, 24, 0.9);
+            border-radius: 1.15rem;
+            border-left: 6px solid rgba(251, 191, 36, 0.6);
+            padding: 1.25rem 1.35rem;
+            box-shadow: 0 16px 32px rgba(1, 8, 14, 0.65);
+            font-size: 1.02rem;
+            font-weight: 500;
+        }
+        .summary-section {
+            margin-top: 3.4rem;
+            background: linear-gradient(135deg, rgba(1, 8, 14, 0.92) 0%, rgba(4, 24, 39, 0.88) 55%, rgba(251, 191, 36, 0.32) 100%);
+            color: #fff7ed;
+            padding: 3rem;
+            border-radius: 2.2rem;
+            box-shadow: 0 36px 72px rgba(1, 10, 16, 0.65);
+        }
+        .summary-grid { display: grid; gap: 1.6rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+        .summary-card { background: rgba(234, 179, 8, 0.3); border-radius: 1.7rem; padding: 2rem 1.6rem; backdrop-filter: blur(16px); color: #1d0b00; }
+        .summary-highlight { margin-top: 2.4rem; text-align: center; font-size: 1.65rem; font-weight: 700; padding: 1.4rem; border-radius: 1.2rem; background: rgba(248, 196, 113, 0.34); border: 1px solid rgba(248, 196, 113, 0.5); color: #1f0d00; }
+        .footer-section { margin-top: 3.4rem; text-align: center; color: #fde68a; }
+        .footer-title { font-size: 3rem; font-weight: 800; }
+        .footer-text { font-size: 1.2rem; margin-top: 1rem; }
+        .footer-note { margin-top: 2rem; padding: 1.3rem; border-radius: 1.2rem; background: rgba(248, 196, 113, 0.2); font-weight: 600; color: #1f0d00; }
+        ul { list-style: none; }
+        ul li { position: relative; padding-left: 1.35rem; margin-bottom: 0.6rem; }
+        ul li::before { content: '•'; position: absolute; left: 0; color: #fbbf24; font-weight: 800; }
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2rem; }
+            .hero-content { padding: 2.8rem 1.7rem; }
+            .section-content { padding: 1.45rem 1.55rem; }
+            .content-box { padding: 1.65rem; }
+            .summary-section { padding: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            <span>මුල් පිටුවට</span>
+        </a>
+
+        <div class="hero-header">
+            <div class="hero-content">
+                <div class="hero-title-section">
+                    <i class="fas fa-crown hero-icon"></i>
+                    <div>
+                        <h1 class="hero-title">තෘතීය ධ්‍යානයේ අරහත්ත ඵල චිත්තය</h1>
+                        <p class="hero-subtitle">අරහත් මග්ගයෙන් පසු, සියලු කේලෙස් සදාකාලිකව නිමවූ බව සනාථ කරන්නා වූ නිවන සුව තෘතීය ධ්‍යානයේ නිශ්ශබ්ද සමාධිය මත රසවින්දන අවසන් ලෝකූත්තර සුවය</p>
+                    </div>
+                </div>
+                <div class="hero-badges">
+                    <span class="hero-badge">ලෝකූත්තර විපාක</span>
+                    <span class="hero-badge">අරහත් ඵල (3 වන ධ්‍යානය)</span>
+                    <span class="hero-badge">තෘතීය ධ්‍යානය</span>
+                    <span class="hero-badge">චෛතසික 34</span>
+                    <span class="hero-badge">ත්‍රිහේතුක</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 1 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl1" onclick="toggleSection('lvl1')">
+                <div class="section-title-content">
+                    <i class="fas fa-star section-icon"></i>
+                    <span class="section-title">මට්ටම 1: ඉතා සරල අර්ථය</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl1">
+                <div class="content-box">
+                    <ul>
+                        <li>අරහත් මග්ගයෙන් පසු වහාම උපන්නා වූ අවසන් <strong>ලෝකූත්තර විපාක</strong>ය මෙයයි.</li>
+                        <li>නව කේලෙස් කිසිවිට නැවත නොඇදෙන බව තහවුරු කරමින්, නිවන සුව සදාකාලිකව රසවින්දයි.</li>
+                        <li>තෘතීය ධ්‍යානයේ සුඛ + උපේක්ෂා සමාධිය මත සිත සම්පූර්ණයෙන් නිමාවට ගෙනයයි.</li>
+                        <li>චෛතසික 34ක් (විතර්ක/ප්‍රීති නොමැති) සමඟ ත්‍රිහේතුක විපාකයක්.</li>
+                    </ul>
+                    <div class="content-box highlight" style="margin-top:1.1rem;">
+                        <div class="grid-2">
+                            <div>
+                                <p><strong>ස්වභාවය:</strong> ලෝකූත්තර විපාක • ත්‍රිහේතුක</p>
+                                <p><strong>අරමුණ:</strong> නිබ්බාන ධාතු පමණක්.</p>
+                            </div>
+                            <div>
+                                <p><strong>ඵල කාර්යය:</strong> සංසාරය අවසන් වූ බව සනාථ කිරීම.</p>
+                                <p><strong>ඊළඟ:</strong> අරහත් ඵල සමාපත්තියෙන් නිවන සුව නිතර අත්විඳීම.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 2 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl2" onclick="toggleSection('lvl2')">
+                <div class="section-title-content">
+                    <i class="fas fa-book-open section-icon"></i>
+                    <span class="section-title">මට්ටම 2: පද විග්‍රහය</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl2">
+                <div class="content-box">
+                    <ul>
+                        <li><strong>අරහත්:</strong> සංයෝජන 10ම නසන අවසන් විමුක්ති තත්ත්වය.</li>
+                        <li><strong>ඵල:</strong> මග්ගයේ ක්‍රියාවෙන් උපන් නිවන සුවේ රසවින්දනය.</li>
+                        <li><strong>තෘතීය ධ්‍යානය:</strong> සුඛ සහ උපේක්ෂා පමණක් පවතින නිශ්ශබ්ද සමාධිය.</li>
+                        <li><strong>ත්‍රිහේතුක:</strong> අලෝභ, අදෝස, අමෝහ මූල තුනම සදාකාලිකව පවතින්නාවූ විපාකය.</li>
+                    </ul>
+                    <div class="content-box highlight" style="margin-top:1rem;">
+                        <p>සංග්‍රහ වචනයක් ලෙස – “නිවන සුව සදාකාලිකව රඳවාගන්නා අවසන් විපාකය” යනු අරහත් ඵලය.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 3 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl3" onclick="toggleSection('lvl3')">
+                <div class="section-title-content">
+                    <i class="fas fa-sitemap section-icon"></i>
+                    <span class="section-title">මට්ටම 3: අභිධර්ම වර්ගීකරණය</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl3">
+                <div class="content-box">
+                    <div class="grid-2">
+                        <div>
+                            <h4 class="mb-3">වර්ගීකරණ</h4>
+                            <ul>
+                                <li>අභිධර්ම නාමය: ලෝකූත්තර විපාක (අරහත්).</li>
+                                <li>ජ්හාන වර්ගය: තෘතීය ධ්‍යානය.</li>
+                                <li>අරමුණ: නිබ්බාන ධාතු.</li>
+                                <li>කාලය: අරහත් මග්ගයෙන් වහා පසු.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="mb-3">සම්බන්ධතා</h4>
+                            <ul>
+                                <li>චිත්ත #52 (අරහත් මග්ග) -> චිත්ත #53 (අරහත් ඵල).</li>
+                                <li>ඵල සමාපත්තියෙන් නිවන සුව නිතර රසවින්දිය හැක.</li>
+                                <li>අනාගත උපපත්තියක් නොතිබීම නිසා නිවනම අවසන් අරමුණ.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="content-box highlight" style="margin-top:1.3rem;">
+                        <h4 class="mb-3">අට මග්ගංග සම්පූර්ණ කිරීම</h4>
+                        <div class="badge-list">
+                            <span class="badge">සම්මා දිට්ඨි</span>
+                            <span class="badge">සම්මා සංකප්ප</span>
+                            <span class="badge">සම්මා වාචා</span>
+                            <span class="badge">සම්මා කම්මන්ත</span>
+                            <span class="badge">සම්මා ආජීව</span>
+                            <span class="badge">සම්මා වායාම</span>
+                            <span class="badge">සම්මා සති</span>
+                            <span class="badge">සම්මා සමාධි</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 4 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl4" onclick="toggleSection('lvl4')">
+                <div class="section-title-content">
+                    <i class="fas fa-layer-group section-icon"></i>
+                    <span class="section-title">මට්ටම 4: චෛතසික සංයුතිය (34)</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl4">
+                <div class="content-box">
+                    <p>තෘතීය ධ්‍යානයේ විතර්ක/ප්‍රීති නොමැති නිසා, අරහත් ඵලයේදීද චෛතසික 34ක් පමණි.</p>
+                    <div class="grid-3" style="margin-top:1.4rem;">
+                        <div class="content-box" style="background: rgba(4,24,39,0.65); border-color: rgba(251,191,36,0.35);">
+                            <h4 class="mb-2">සබ්බචිත්ත සාධාරණ 7</h4>
+                            <div class="badge-list">
+                                <span class="badge">ඵස්ස</span>
+                                <span class="badge">සෝමනස්ස වේදනා</span>
+                                <span class="badge">සංඥා</span>
+                                <span class="badge">චේතනා</span>
+                                <span class="badge">ඒකාග්‍රතා</span>
+                                <span class="badge">ජීවිතින්ද්‍රිය</span>
+                                <span class="badge">මනසිකාර</span>
+                            </div>
+                        </div>
+                        <div class="content-box" style="background: rgba(4,24,39,0.65); border-color: rgba(251,191,36,0.35);">
+                            <h4 class="mb-2">සෝභන සමාන 19</h4>
+                            <ul>
+                                <li>අලෝභ, අදෝස, අමෝහ, සද්ධා, සති, හිරි, ඔත්තප්ප</li>
+                                <li>කාය/චිත්ත පසද්ධි, ලහුතා, මුදුතා, කම්මණ්‍යතා, පාගුඤ්ඤතා, උජුකතා</li>
+                                <li>මෛත්‍රී, කරුණා, උපේක්ෂා, පඤ්ඤා, විරිය</li>
+                            </ul>
+                        </div>
+                        <div class="content-box" style="background: rgba(4,24,39,0.65); border-color: rgba(251,191,36,0.35);">
+                            <h4 class="mb-2">තෘතීය ධ්‍යානයේ ජ්හාන අංග</h4>
+                            <div class="badge-list">
+                                <span class="badge">සුඛ</span>
+                                <span class="badge">ඒකාග්‍රතා</span>
+                                <span class="badge">උපේක්ෂා මජ්ඣත්තතා</span>
+                                <span class="badge">චිත්ත ලහුතා</span>
+                                <span class="badge">චිත්ත මුදුතා</span>
+                                <span class="badge">චිත්ත කම්මණ්‍යතා</span>
+                                <span class="badge">මනෝදෝර්ය පසද්ධි</span>
+                                <span class="badge">සමාධි ශක්තිය</span>
+                            </div>
+                            <p class="text-sm mt-3 text-slate-200">සම්මා සමාධිය + සම්මා ප්‍රඥාව එකට ක්‍රියාත්මක ය; නිවන සුව අඛණ්ඩව පවතින හේතු මෙයයි.</p>
+                        </div>
+                    </div>
+                    <div class="content-box highlight" style="margin-top:1.2rem;">
+                        <h4 class="mb-2">ඵල සමාපත්තියට පදනම</h4>
+                        <ul>
+                            <li>සම්මා සමාධිය, සම්මා සති, සම්මා වායාම එකට ක්‍රියාත්මක වීම නිසා නිවන සුව නිතර රඳවයි.</li>
+                            <li>විතර්ක/ප්‍රීති නොමැති නිශ්ශබ්දභාවය නිසා කිසිදු ආවේගික හෑල්ලීමක් නොඇත.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 5 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl5" onclick="toggleSection('lvl5')">
+                <div class="section-title-content">
+                    <i class="fas fa-seedling section-icon"></i>
+                    <span class="section-title">මට්ටම 5: ජීවිතයේ උදාහරණ</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl5">
+                <div class="grid-2">
+                    <div class="example-card">
+                        <strong>1. නිශ්ශබ්ද අරණ්‍ය භික්ෂු</strong><br>
+                        අරහත් මග්ගයෙන් පසු වනයේ නිශ්ශබ්දයෙන් වසන භික්ෂූන් වහන්සේට, ඵල සමාපත්තියෙන් නිවන සුව නිතර රසවින්දිය හැක.
+                    </div>
+                    <div class="example-card">
+                        <strong>2. ධර්ම සේවකයා</strong><br>
+                        සමාජ කටයුතු අතර කාය/වාක් ක්‍රියාවන් සරල කරගෙන, නිරන්තර සමාධියෙන් නිවන සුව පවත්වාගැනීම අත්දැකීමක්.
+                    </div>
+                    <div class="example-card">
+                        <strong>3. හෙවත් අරහත් භාවිතය</strong><br>
+                        නිතර නිශ්ශබ්ද ඵල සමාපත්තියට පිවිස ධර්මය උගන්වන අරහත් භික්ෂුවාට, සදාකාලික කරුණාව හා උපේක්ෂාව පවතී.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 6 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl6" onclick="toggleSection('lvl6')">
+                <div class="section-title-content">
+                    <i class="fas fa-microscope section-icon"></i>
+                    <span class="section-title">මට්ටම 6: ගැඹුරු අභිධර්ම විශ්ලේෂණය</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl6">
+                <div class="content-box">
+                    <ul>
+                        <li>අභිධර්මය අනුව, අරහත් මග්ගය කේලෙස් 10 ම නසන ක්ෂණයකි; ඵල චිත්තය එම ක්‍රියාවේ විපාකය ලෙස දැක්වේ.</li>
+                        <li>චිත්තය පැවතීමේ කාලය තුළ කිසිදු කේලෙස් නැවත නැඟීමේ අවකාශයක් නැත.</li>
+                        <li>ඵල සමාපත්තියෙන් මේ විපාකය නැවත නැවත උත්පන්න කර නිවන සුව දිගටම අත්විඳිය හැක.</li>
+                        <li>සංසාරය අවසන් නිසා, කර්ම බලය නවතී; කාම, රූප, අරූප යන කිසිත් නැවත නොඇදේ.</li>
+                    </ul>
+                    <div class="content-box highlight" style="margin-top:1.2rem;">
+                        <h4 class="mb-3">අරහත් මග්ග-ඵල සම්බන්ධය</h4>
+                        <div class="grid-2">
+                            <div>
+                                <p><strong>චිත්ත #52:</strong> අරහත් මග්ග (තෘතීය ධ්‍යානය)</p>
+                                <p><strong>චිත්ත #53:</strong> අරහත් ඵල (තෘතීය ධ්‍යානය)</p>
+                            </div>
+                            <div>
+                                <p>එකම චෛතසික 34 කට්ටලය යෙදෙයි; මග්ගය කේලෙස් නසයි, ඵලය නිවන සුව සදාකාලිකව රඳවයි.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 7 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl7" onclick="toggleSection('lvl7')">
+                <div class="section-title-content">
+                    <i class="fas fa-compass section-icon"></i>
+                    <span class="section-title">මට්ටම 7: ප්‍රායෝගික මාර්ගෝපදේශ</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl7">
+                <div class="content-box">
+                    <div class="grid-2">
+                        <div>
+                            <h4 class="mb-3">භාවනා ක්‍රියාවලිය</h4>
+                            <ul>
+                                <li>ඵල සමාපත්තිය නිතර අභ්‍යාස කර, නිවන සුව ජීවිතයට ගෙන එන්න.</li>
+                                <li>සතිපට්ඨාන 4 ක් ක්‍රියාත්මකව තබා, සූක්ෂම මනෝද්වේශයන් සොයාගන්න.</li>
+                                <li>අන්‍යයන්ට ධර්මය උගන්වන විට සරලභාවය හා කරුණාව සුරකින්න.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="mb-3">සැලකිලිමත් විය යුතු දෑ</h4>
+                            <ul>
+                                <li>අභිමානයට ඉඩ නොදෙන්න; නිහතමානී ලක්ෂණය තබාගන්න.</li>
+                                <li>සමඟි සමාජසেবা අතරතුර ද නිශ්ශබ්ද සමාධිය අහිමි නොකරන්න.</li>
+                                <li>කේලෙස් නැති වුවද කරුණා-මෛත්‍රී අඛණ්ඩව රඳවන්න.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="content-box highlight" style="margin-top:1.3rem;">
+                        <h4 class="mb-2">මතක සටහන</h4>
+                        <p>අරහත් ඵලය යනු සංසාරය අවසන් වූ බවට සත්‍යයයි. තෘතීය ධ්‍යානයේ නිශ්ශබ්ද සමුද්‍රය මත එය නිතර අත්විඳින්න.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="summary-section">
+            <h2 class="text-3xl font-bold text-center mb-8">සාරාංශයෙන් – තෘතීය ධ්‍යානයේ අරහත්ත ඵල චිත්තය</h2>
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <p class="text-5xl mb-2">🌅</p>
+                    <p class="font-bold text-lg">අවසන් නිමාව</p>
+                    <p class="text-sm mt-2">සංසාරය අවසන් වූ බව ප්‍රකාශ කරන අවසන් විපාකය.</p>
+                </div>
+                <div class="summary-card">
+                    <p class="text-5xl mb-2">🛡️</p>
+                    <p class="font-bold text-lg">කේලෙස් ආරක්ෂාව</p>
+                    <p class="text-sm mt-2">කිසිදු සංයෝජන නැවත නැඟී නොසිටීමට සදාකාලික භාරකාරිය.</p>
+                </div>
+                <div class="summary-card">
+                    <p class="text-5xl mb-2">🧘</p>
+                    <p class="font-bold text-lg">චෛතසික 34</p>
+                    <p class="text-sm mt-2">විතර්ක/ප්‍රීති රහිත ත්‍රිහේතුක සංයුතියෙන් නිර්මාණය.</p>
+                </div>
+                <div class="summary-card">
+                    <p class="text-5xl mb-2">✨</p>
+                    <p class="font-bold text-lg">ඵල සමාපත්තිය</p>
+                    <p class="text-sm mt-2">නිවන සුව නිතර අත්විඳීමට උපකාරී අවසන් භාවිතය.</p>
+                </div>
+            </div>
+            <p class="summary-highlight">තෘතීය ධ්‍යානයේ අරහත්ත ඵල චිත්තය – සංසාරය නිමවූ බව සනාථ කරමින්, නිවන සුව සදාකාලිකව රඳවා ගන්නා ත්‍රිහේතුක ලෝකූත්තර විපාකයකි.</p>
+        </div>
+
+        <div class="footer-section">
+            <p class="footer-title">සාධු! සාධු! සාධු!</p>
+            <p class="footer-text">අරහත් ඵලය සාර්ථකයි • නිවන සුව නිතර සිහිගන්වන්න.</p>
+            <p class="footer-note">ඵල සමාපත්තියෙන් ලැබෙන නිවන සුව ජීවිතයේ සෑම ක්ෂණයකටම අත්වැසි කර, සර්වදා කරුණා-මෛත්‍රී ප්‍රචාරය කරන්න.</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleSection(sectionId) {
+            const content = document.getElementById('content-' + sectionId);
+            const header = document.getElementById('header-' + sectionId);
+            if (!content || !header) return;
+
+            const isExpanded = content.classList.contains('expanded');
+            if (isExpanded) {
+                content.classList.remove('expanded');
+                header.classList.remove('expanded');
+            } else {
+                content.classList.add('expanded');
+                header.classList.add('expanded');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            toggleSection('lvl1');
+        });
+    </script>
+</body>
+</html>
+

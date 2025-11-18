@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>අභිධර්මය - චිත්ත චෛතසික මෙවලම</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Malithi+Web:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iskoola+Pota:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-header">
+                
+                <div class="nav-controls">
+                    <button id="languageSwitcher" class="language-switcher">
+                        <span class="lang-text" data-si="English" data-en="සිංහල">English</span>
+                        <i class="fas fa-globe"></i>
+                    </button>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link" data-si="මුල් පිටුව" data-en="Home">මුල් පිටුව</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#categories" class="nav-link" data-si="මූලික කාණ්ඩ" data-en="Basic Categories">මූලික කාණ්ඩ</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#table" class="nav-link" data-si="චිත්ත චෛතසික වගුව" data-en="Citta Chaithasika Table">චිත්ත චෛතසික වගුව</a>
+                </li>
+                <li class="nav-item">
+                    <a href="citta-index.html" class="nav-link" data-si="සියලුම චිත්ත" data-en="All Cittas">සියලුම චිත්ත</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#analysis" class="nav-link" data-si="චෛතසික විග්‍රහයන්" data-en="Chaithasika Analysis">චෛතසික විග්‍රහයන්</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#comparison" class="nav-link" data-si="සංසන්දනය" data-en="Comparison">සංසන්දනය</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#mental-states" class="nav-link" data-si="ත්‍රිවිද්‍යාව" data-en="Three Poisons">ත්‍රිවිද්‍යාව</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link" data-si="පිළිබඳව" data-en="About">පිළිබඳව</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <!-- Animated Background Slider -->
+        <div class="hero-background-slider">
+            <div class="hero-bg-image active" style="background-image: url('image budda/view-zen-buddha-statue-spirituality-min.jpg'); background-position: center 20%;"></div>
+            <div class="hero-bg-image" style="background-image: url('image budda/view-buddha-statuette-with-incense-min.jpg');"></div>
+            <div class="hero-bg-image" style="background-image: url('image budda/view-buddha-statuette-min.jpg');"></div>
+            <div class="hero-bg-image" style="background-image: url('image budda/view-zen-buddha-statue-spirituality (1).jpg');"></div>
+            <div class="hero-bg-image" style="background-image: url('image budda/freepik__this-is-an-outdoor-photograph-of-a-buddha-statuede__69926.png');"></div>
+            <div class="hero-bg-image" style="background-image: url('image budda/freepik__sunlit-stone-buddha-statue-under-a-sprawling-tree-__9048.png');"></div>
+            <!-- Additional Landscape Images -->
+            <div class="hero-bg-image" style="background-image: url('image budda/Dambulla-Cave-temple-Culturale-Triangle-sri-lanka (1).jpg');"></div>
+            <div class="hero-bg-image" style="background-image: url('image budda/old-vatadage-pillars-anuradhapura-sri-lanka-november-view-preserved-front-ruwanwelisaya-stupa-november-83224462 (1).png');"></div>
+            <div class="hero-bg-image" style="background-image: url('image budda/things-to-do-in-sri-lanka_adams-peak.png');"></div>
+            <div class="hero-bg-image" style="background-image: url('image budda/Why You Should Visit Dambulla Cave Temple in Sri Lanka (1).jpeg');"></div>
+            <div class="hero-bg-image" style="background-image: url('image budda/16344616755_a516594ea7_h.jpg');"></div>
+            <div class="hero-bg-image" style="background-image: url('image budda/ChatGPT Image Nov 6, 2025, 12_40_32 PM.png');"></div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title" data-si="නමෝ තස්ස භගවතෝ අරහතෝ සම්මා සම්බුද්ධස්ස !!!" data-en="Homage to the Blessed One, the Worthy One, the Fully Enlightened One !!!">නමෝ තස්ස භගවතෝ අරහතෝ සම්මා සම්බුද්ධස්ස !!!</h1>
+                <p class="hero-subtitle" data-si="අභිධර්මය - ඔබට දැනුනු තැනින් දකින්න" data-en="Abhidhamma - Citta Chaithasika Tool">අභිධර්මය - ඔබට දැනුනු තැනින් දකින්න</p>
+                <blockquote class="hero-quote">
+                    <span data-si="බුදුවරයන් ලොව පහල වීමෙන් ලෝකයට ලැබෙන විශිෂ්ට ධර්මය අභිධර්ම පිටකය ය" data-en="The excellent Dhamma that the world receives from the appearance of Buddhas is the Abhidhamma Pitaka">"බුදුවරයන් ලොව පහල වීමෙන් ලෝකයට ලැබෙන විශිෂ්ට ධර්මය අභිධර්ම පිටකය ය"</span>
+                </blockquote>
+                <div class="hero-actions">
+                    <a href="#table" class="btn btn-primary" data-si="චිත්ත චෛතසික වගුව" data-en="Citta Chaithasika Table">චිත්ත චෛතසික වගුව</a>
+                    <a href="#comparison" class="btn btn-secondary" data-si="සංසන්දනය" data-en="Comparison">සංසන්දනය</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Mental States Section -->
+    <section id="mental-states" class="mental-states">
+        <div class="container">
+            <h2 class="section-title" data-si="ත්‍රිවිද්‍යාව - රාග ද්වේශ මෝහ" data-en="Three Poisons - Raga Dvesha Moha">ත්‍රිවිද්‍යාව - රාග ද්වේශ මෝහ</h2>
+            <p class="section-description" data-si="ඔබගේ මනසේ ඇතිවන රාග ද්වේශ මෝහ විශ්ලේෂණය කරමින් බුදුවරයන් වහන්සේගේ උගන්වීම් මගින් මනස සන්සුන් කර ගන්න" data-en="Analyze the Raga, Dvesha, and Moha in your mind and achieve mental peace through the Buddha's teachings">
+                ඔබගේ මනසේ ඇතිවන රාග ද්වේශ මෝහ විශ්ලේෂණය කරමින් බුදුවරයන් වහන්සේගේ උගන්වීම් මගින් මනස සන්සුන් කර ගන්න
+            </p>
+
+            <!-- Three Poisons Cards -->
+            <div class="mental-states-grid">
+                <div class="mental-state-card raga-card" id="ragaCard" data-state="raga">
+                    <div class="card-header">
+                        <div class="state-icon">🔥</div>
+                        <h3 data-si="රාග (ලෝභ)" data-en="Raga (Lobha)">රාග (ලෝභ)</h3>
+                    </div>
+                    <div class="card-content">
+                        <p data-si="අල්ලා ගැනීම, ආශා කිරීම, රාගය" data-en="Attachment, desire, greed">අල්ලා ගැනීම, ආශා කිරීම, රාගය</p>
+                        <ul class="state-features">
+                            <li data-si="ලෝභයේ මූලික සිතුවිලි" data-en="Basic thoughts of greed">ලෝභයේ මූලික සිතුවිලි</li>
+                            <li data-si="අනර්ථයන් සහ හේතු" data-en="Causes and consequences">අනර්ථයන් සහ හේතු</li>
+                            <li data-si="නැති කිරීමේ මාර්ගය" data-en="Path to elimination">නැති කිරීමේ මාර්ගය</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="raga-analysis.html" class="explore-btn" data-si="රාගය - විශ්ලේෂණය" data-en="Raga Analysis">රාගය - විශ්ලේෂණය</a>
+                    </div>
+                </div>
+
+                <div class="mental-state-card dvesha-card" id="dveshaCard" data-state="dvesha">
+                    <div class="card-header">
+                        <div class="state-icon">⚡</div>
+                        <h3 data-si="ද්වේශ (පටිඝ) - තරහ" data-en="Dvesha (Patigha) - Anger">ද්වේශ (පටිඝ) - තරහ</h3>
+                    </div>
+                    <div class="card-content">
+                        <p data-si="පටිඝය, කෝපය, ද්වේශය" data-en="Aversion, anger, hatred">පටිඝය, කෝපය, ද්වේශය</p>
+                        <ul class="state-features">
+                            <li data-si="කෝපයේ මූලික සිතුවිලි" data-en="Basic thoughts of anger">කෝපයේ මූලික සිතුවිලි</li>
+                            <li data-si="අනර්ථයන් සහ හේතු" data-en="Causes and consequences">අනර්ථයන් සහ හේතු</li>
+                            <li data-si="නැති කිරීමේ මාර්ගය" data-en="Path to elimination">නැති කිරීමේ මාර්ගය</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="anger-analysis.html" class="explore-btn" data-si="තරහ යෑම - විශ්ලේෂණය" data-en="Anger Analysis">තරහ යෑම - විශ්ලේෂණය</a>
+                    </div>
+                </div>
+
+                <div class="mental-state-card moha-card" id="mohaCard" data-state="moha">
+                    <div class="card-header">
+                        <div class="state-icon">🌫️</div>
+                        <h3 data-si="මෝහ (අවිජ්ජා)" data-en="Moha (Avijja)">මෝහ (අවිජ්ජා)</h3>
+                    </div>
+                    <div class="card-content">
+                        <p data-si="අවිජ්ජාව, මෝහය, මෝඩකම" data-en="Ignorance, delusion, confusion">අවිජ්ජාව, මෝහය, මෝඩකම</p>
+                        <ul class="state-features">
+                            <li data-si="මෝහයේ මූලික සිතුවිලි" data-en="Basic thoughts of delusion">මෝහයේ මූලික සිතුවිලි</li>
+                            <li data-si="අනර්ථයන් සහ හේතු" data-en="Causes and consequences">අනර්ථයන් සහ හේතු</li>
+                            <li data-si="නැති කිරීමේ මාර්ගය" data-en="Path to elimination">නැති කිරීමේ මාර්ගය</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="moha-analysis.html" class="explore-btn" data-si="මෝහය - විශ්ලේෂණය" data-en="Moha Analysis">මෝහය - විශ්ලේෂණය</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="categories">
+        <div class="container">
+            <h2 class="section-title" data-si="චිත්ත චෛතසික මූලික කාණ්ඩ" data-en="Basic Categories of Citta and Chaithasika">චිත්ත චෛතසික මූලික කාණ්ඩ</h2>
+            <p class="section-description" data-si="චිත්ත සහ චෛතසික මූලික කාණ්ඩ වලට බෙදා දැක්වීම" data-en="Classification of consciousness and mental factors into basic categories">
+                චිත්ත සහ චෛතසික මූලික කාණ්ඩ වලට බෙදා දැක්වීම
+            </p>
+            
+            <div class="categories-grid">
+                <div class="category-card">
+                    <h3 data-si="කුසල් චිත්ත" data-en="Wholesome Consciousness">කුසල් චිත්ත</h3>
+                    <p data-si="සුභ කර්මයන් සම්බන්ධ චිත්ත" data-en="Consciousness related to wholesome actions">සුභ කර්මයන් සම්බන්ධ චිත්ත</p>
+                    <div class="category-count">8</div>
+                </div>
+                <div class="category-card">
+                    <h3 data-si="අකුසල් චිත්ත" data-en="Unwholesome Consciousness">අකුසල් චිත්ත</h3>
+                    <p data-si="අසුභ කර්මයන් සම්බන්ධ චිත්ත" data-en="Consciousness related to unwholesome actions">අසුභ කර්මයන් සම්බන්ධ චිත්ත</p>
+                    <div class="category-count">12</div>
+                </div>
+                <div class="category-card">
+                    <h3 data-si="විපාක චිත්ත" data-en="Resultant Consciousness">විපාක චිත්ත</h3>
+                    <p data-si="කර්ම විපාකයන්ගේ ප්‍රතිඵල චිත්ත" data-en="Resultant consciousness from karmic effects">කර්ම විපාකයන්ගේ ප්‍රතිඵල චිත්ත</p>
+                    <div class="category-count">23</div>
+                </div>
+                <div class="category-card">
+                    <h3 data-si="ක්‍රියා චිත්ත" data-en="Functional Consciousness">ක්‍රියා චිත්ත</h3>
+                    <p data-si="ක්‍රියාත්මක චිත්ත" data-en="Functional consciousness">ක්‍රියාත්මක චිත්ත</p>
+                    <div class="category-count">11</div>
+                </div>
+                <div class="category-card">
+                    <h3 data-si="රූපාවචර චිත්ත" data-en="Form Sphere Consciousness">රූපාවචර චිත්ත</h3>
+                    <p data-si="රූප භූමියේ චිත්ත" data-en="Form sphere consciousness">රූප භූමියේ චිත්ත</p>
+                    <div class="category-count">15</div>
+                </div>
+                <div class="category-card">
+                    <h3 data-si="අරූපාවචර චිත්ත" data-en="Formless Sphere Consciousness">අරූපාවචර චිත්ත</h3>
+                    <p data-si="අරූප භූමියේ චිත්ත" data-en="Formless sphere consciousness">අරූප භූමියේ චිත්ත</p>
+                    <div class="category-count">12</div>
+                </div>
+                <div class="category-card">
+                    <h3 data-si="ලෝකෝත්තර චිත්ත" data-en="Supramundane Consciousness">ලෝකෝත්තර චිත්ත</h3>
+                    <p data-si="ලෝකයට ඉහළ චිත්ත" data-en="Supramundane consciousness">ලෝකයට ඉහළ චිත්ත</p>
+                    <div class="category-count">40</div>
+                </div>
+                <div class="category-card">
+                    <h3 data-si="චෛතසික 52" data-en="52 Mental Factors">චෛතසික 52</h3>
+                    <p data-si="මානසික සාධක" data-en="Mental factors">මානසික සාධක</p>
+                    <div class="category-count">52</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Data Table Section -->
+    <section id="table" class="data-table">
+        <div class="container">
+            <h2 class="section-title" data-si="චිත්ත චෛතසික වගුව" data-en="Citta Chaithasika Table">චිත්ත චෛතසික වගුව</h2>
+            <p class="section-description" data-si="සියලුම චිත්ත සහ ඒවා සම්බන්ධ චෛතසික විස්තර" data-en="All consciousness states and their associated mental factors">
+                සියලුම චිත්ත සහ ඒවා සම්බන්ධ චෛතසික විස්තර
+            </p>
+            
+            <div class="table-controls">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="චිත්තයක් සොයන්න..." data-si-placeholder="චිත්තයක් සොයන්න..." data-en-placeholder="Search for a consciousness state...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="filter-controls">
+                    <select id="categoryFilter">
+                        <option value="" data-si="සියලුම කාණ්ඩ" data-en="All Categories">සියලුම කාණ්ඩ</option>
+                        <option value="කුසල්" data-si="කුසල් චිත්ත" data-en="Wholesome Consciousness">කුසල් චිත්ත</option>
+                        <option value="අකුසල්" data-si="අකුසල් චිත්ත" data-en="Unwholesome Consciousness">අකුසල් චිත්ත</option>
+                        <option value="විපාක" data-si="විපාක චිත්ත" data-en="Resultant Consciousness">විපාක චිත්ත</option>
+                        <option value="ක්‍රියා" data-si="ක්‍රියා චිත්ත" data-en="Functional Consciousness">ක්‍රියා චිත්ත</option>
+                        <option value="රූපාවචර" data-si="රූපාවචර චිත්ත" data-en="Form Sphere Consciousness">රූපාවචර චිත්ත</option>
+                        <option value="අරූපාවචර" data-si="අරූපාවචර චිත්ත" data-en="Formless Sphere Consciousness">අරූපාවචර චිත්ත</option>
+                        <option value="ලෝකෝත්තර" data-si="ලෝකෝත්තර චිත්ත" data-en="Supramundane Consciousness">ලෝකෝත්තර චිත්ත</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table id="mainTable" class="data-table">
+                    <thead>
+                        <tr>
+                            <th data-si="අංකය" data-en="Number">අංකය</th>
+                            <th data-si="චිත්තය" data-en="Consciousness">චිත්තය</th>
+                            <th data-si="කාණ්ඩය" data-en="Category">කාණ්ඩය</th>
+                            <th data-si="චෛතසික" data-en="Mental Factors">චෛතසික</th>
+                            <th data-si="විස්තර" data-en="Description">විස්තර</th>
+                            <th data-si="ක්‍රියා" data-en="Actions">ක්‍රියා</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Analysis Section -->
+    <section id="analysis" class="analysis">
+        <div class="container">
+            <h2 class="section-title" data-si="චෛතසික විග්‍රහයන්" data-en="Chaithasika Analysis">චෛතසික විග්‍රහයන්</h2>
+            <p class="section-description" data-si="චෛතසික විස්තර සහ පැහැදිලි කිරීම්" data-en="Mental factors descriptions and explanations">
+                චෛතසික විස්තර සහ පැහැදිලි කිරීම්
+            </p>
+            
+            <div class="analysis-grid">
+                <div class="analysis-card">
+                    <h3 data-si="ඵස්සය" data-en="Contact (Phassa)">ඵස්සය</h3>
+                    <p data-si="ස්පර්ශය" data-en="Contact">ස්පර්ශය</p>
+                    <div class="analysis-details">
+                        <p data-si="ස්පර්ශය යනු චිත්තය සමඟ එක්ව ඇති වන ස්පර්ශයයි." data-en="Contact is the touching that occurs together with consciousness.">ස්පර්ශය යනු චිත්තය සමඟ එක්ව ඇති වන ස්පර්ශයයි.</p>
+                    </div>
+                </div>
+                <div class="analysis-card">
+                    <h3 data-si="වේදනා" data-en="Feeling (Vedana)">වේදනා</h3>
+                    <p data-si="අනුභවය" data-en="Feeling">අනුභවය</p>
+                    <div class="analysis-details">
+                        <p data-si="වේදනා යනු සුඛ, දුක්, උපේක්ෂා යන තුන් අනුභවයයි." data-en="Feeling is the three types of experience: pleasant, unpleasant, and neutral.">වේදනා යනු සුඛ, දුක්, උපේක්ෂා යන තුන් අනුභවයයි.</p>
+                    </div>
+                </div>
+                <div class="analysis-card">
+                    <h3 data-si="සංඤ්ඤා" data-en="Perception (Sanna)">සංඤ්ඤා</h3>
+                    <p data-si="සංඥාව" data-en="Perception">සංඥාව</p>
+                    <div class="analysis-details">
+                        <p data-si="සංඤ්ඤා යනු වස්තුව පිළිබඳ සංඥාවයි." data-en="Perception is the recognition of objects.">සංඤ්ඤා යනු වස්තුව පිළිබඳ සංඥාවයි.</p>
+                    </div>
+                </div>
+                <div class="analysis-card">
+                    <h3 data-si="චේතනා" data-en="Volition (Cetana)">චේතනා</h3>
+                    <p data-si="චේතනාව" data-en="Volition">චේතනාව</p>
+                    <div class="analysis-details">
+                        <p data-si="චේතනා යනු කර්මයන් කිරීමේ චේතනාවයි." data-en="Volition is the intention behind actions.">චේතනා යනු කර්මයන් කිරීමේ චේතනාවයි.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Explanations Section -->
+    <section id="explanations" class="explanations">
+        <div class="container">
+            <h2 class="section-title" data-si="චෛතසික විග්‍රහයන්" data-en="Detailed Explanations">චෛතසික විග්‍රහයන්</h2>
+            <p class="section-description" data-si="චෛතසිකයන් පිළිබඳ විස්තරාත්මක පැහැදිලි කිරීම් සහ උදාහරණ" data-en="Detailed explanations and examples of mental factors">
+                චෛතසිකයන් පිළිබඳ විස්තරාත්මක පැහැදිලි කිරීම් සහ උදාහරණ
+            </p>
+            
+            <div class="explanations-controls">
+                <div class="filter-group">
+                    <label for="explanationCategoryFilter" data-si="කාණ්ඩය අනුව පෙරණය" data-en="Filter by Category">කාණ්ඩය අනුව පෙරණය:</label>
+                    <select id="explanationCategoryFilter">
+                        <option value="" data-si="සියලුම කාණ්ඩ" data-en="All Categories">සියලුම කාණ්ඩ</option>
+                        <option value="සාධාරණ" data-si="සාධාරණ චෛතසික" data-en="Universal Mental Factors">සාධාරණ චෛතසික</option>
+                        <option value="පක්ෂික" data-si="පක්ෂික චෛතසික" data-en="Particular Mental Factors">පක්ෂික චෛතසික</option>
+                        <option value="අකුසල්" data-si="අකුසල් චෛතසික" data-en="Unwholesome Mental Factors">අකුසල් චෛතසික</option>
+                        <option value="සෝබන" data-si="සෝබන චෛතසික" data-en="Beautiful Mental Factors">සෝබන චෛතසික</option>
+                    </select>
+                </div>
+                
+                <div class="search-group">
+                    <input type="text" id="explanationSearch" placeholder="චෛතසිකයන් සොයන්න..." data-si-placeholder="චෛතසිකයන් සොයන්න..." data-en-placeholder="Search mental factors...">
+                </div>
+            </div>
+            
+            <div class="explanations-grid" id="explanationsGrid">
+                <!-- Explanation cards will be populated by JavaScript -->
+            </div>
+            
+            <div class="explanations-stats" id="explanationsStats">
+                <!-- Statistics will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Tool Section -->
+    <section id="comparison" class="comparison">
+        <div class="container">
+            <h2 class="section-title" data-si="චිත්තයන් සංසන්දනය" data-en="Consciousness Comparison">චිත්තයන් සංසන්දනය</h2>
+            <p class="section-description" data-si="විවිධ චිත්තයන් අතර චෛතසික සංසන්දනය" data-en="Comparison of mental factors between different consciousness states">
+                විවිධ චිත්තයන් අතර චෛතසික සංසන්දනය
+            </p>
+            
+            <div class="comparison-tool">
+                <div class="comparison-controls">
+                    <h3 data-si="චිත්තයන් තෝරන්න (උපරිම 5)" data-en="Select Consciousness States (Maximum 5)">චිත්තයන් තෝරන්න (උපරිම 5)</h3>
+                    <div class="selection-grid" id="selectionGrid">
+                        <!-- Selection options will be populated by JavaScript -->
+                    </div>
+                    
+                    <div class="comparison-actions">
+                        <button id="clearSelection" class="btn btn-secondary" data-si="තේරීම මකන්න" data-en="Clear Selection">තේරීම මකන්න</button>
+                        <button id="exportComparison" class="btn btn-primary" data-si="සංසන්දනය අපනයනය" data-en="Export Comparison">සංසන්දනය අපනයනය</button>
+                        <button id="generateChart" class="btn btn-info" data-si="ප්‍රස්ථාරය ජනනය" data-en="Generate Chart">ප්‍රස්ථාරය ජනනය</button>
+                    </div>
+                </div>
+                
+                <div class="comparison-results" id="comparisonResults">
+                    <div class="comparison-header">
+                        <h3 data-si="සංසන්දන ප්‍රතිඵල" data-en="Comparison Results">සංසන්දන ප්‍රතිඵල</h3>
+                        <div class="comparison-stats" id="comparisonStats">
+                            <!-- Statistics will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="comparison-tabs">
+                        <button class="tab-btn active" data-tab="table" data-si="වගුව" data-en="Table">වගුව</button>
+                        <button class="tab-btn" data-tab="chart" data-si="ප්‍රස්ථාරය" data-en="Chart">ප්‍රස්ථාරය</button>
+                        <button class="tab-btn" data-tab="analysis" data-si="විශ්ලේෂණය" data-en="Analysis">විශ්ලේෂණය</button>
+                    </div>
+                    
+                    <div class="tab-content">
+                        <div class="tab-panel active" id="tableTab">
+                            <div class="comparison-table-container">
+                                <table id="comparisonTable" class="comparison-table">
+                                    <thead>
+                                        <tr>
+                                            <th data-si="චෛතසිකය" data-en="Mental Factor">චෛතසිකය</th>
+                                            <th colspan="5" data-si="චිත්තයන්" data-en="Consciousness States">චිත්තයන්</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="comparisonTableBody">
+                                        <!-- Comparison results will be populated by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-panel" id="chartTab">
+                            <div class="chart-container" id="chartContainer">
+                                <!-- Charts will be rendered here -->
+                            </div>
+                        </div>
+                        
+                        <div class="tab-panel" id="analysisTab">
+                            <div class="analysis-container" id="analysisContainer">
+                                <!-- Analysis results will be shown here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Analysis Modal -->
+    <div id="analysisModal" class="analysis-modal" style="display: none;">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">විශ්ලේෂණය</h3>
+                <button id="closeModal" class="close-btn">&times;</button>
+            </div>
+
+            <div class="modal-body" id="modalBody">
+                <!-- Analysis content will be populated here -->
+            </div>
+
+            <div class="modal-footer">
+                <button id="studyDhammaBtn" class="btn btn-info" data-si="ධර්මය අධ්‍යයනය කරන්න" data-en="Study Dhamma">ධර්මය අධ්‍යයනය කරන්න</button>
+                <button id="closeModalBtn" class="btn btn-secondary" data-si="වසන්න" data-en="Close">වසන්න</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title" data-si="මෙවලම පිළිබඳව" data-en="About the Tool">මෙවලම පිළිබඳව</h2>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <p data-si="මෙම මෙවලම ඔබට අභිධර්මයෙහි එන චිත්ත සහ චෛතසික පිළිබඳව අවබෝධය දියුණු කරගැනීමට උපකාරයක් වේවා." data-en="May this tool be helpful in developing your understanding of consciousness and mental factors in Abhidhamma.">
+                        මෙම මෙවලම ඔබට අභිධර්මයෙහි එන චිත්ත සහ චෛතසික පිළිබඳව අවබෝධය දියුණු කරගැනීමට උපකාරයක් වේවා.
+                    </p>
+                    
+                    <h4 data-si="භාවිතා කරන ආකාරය:" data-en="How to Use:">භාවිතා කරන ආකාරය:</h4>
+                    <ul>
+                        <li data-si="චිත්ත චෛතසික මූලික කාණ්ඩ - චිත්ත සහ චෛතසික මූලික කාණ්ඩ වලට බෙදා දැක්වීම" data-en="Basic Categories - Classification of consciousness and mental factors into basic categories">චිත්ත චෛතසික මූලික කාණ්ඩ - චිත්ත සහ චෛතසික මූලික කාණ්ඩ වලට බෙදා දැක්වීම</li>
+                        <li data-si="චිත්ත චෛතසික වගුව - සියලුම චිත්ත සහ චෛතසික විස්තර" data-en="Citta Chaithasika Table - All consciousness states and mental factors details">චිත්ත චෛතසික වගුව - සියලුම චිත්ත සහ චෛතසික විස්තර</li>
+                        <li data-si="චෛතසික විග්‍රහයන් - චෛතසික විස්තර සහ පැහැදිලි කිරීම්" data-en="Chaithasika Analysis - Mental factors descriptions and explanations">චෛතසික විග්‍රහයන් - චෛතසික විස්තර සහ පැහැදිලි කිරීම්</li>
+                        <li data-si="චිත්තයන් සංසන්දනය - විවිධ චිත්තයන් අතර සංසන්දනය" data-en="Consciousness Comparison - Comparison between different consciousness states">චිත්තයන් සංසන්දනය - විවිධ චිත්තයන් අතර සංසන්දනය</li>
+                    </ul>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p data-si="ඔබගේ ධර්මාවබෝධය දියුණු කරගැනීමට මෙය උපකාරකයක්ම වේවා." data-en="May this be helpful in developing your understanding of the Dhamma.">ඔබගේ ධර්මාවබෝධය දියුණු කරගැනීමට මෙය උපකාරකයක්ම වේවා.</p>
+                    <p class="footer-blessing" data-si="තෙරුවන් සරණයි !" data-en="Triple Gem refuge!">තෙරුවන් සරණයි !</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://www.youtube.com/watch?v=O8vow8DuPHQ" target="_blank" class="footer-link">
+                        <i class="fab fa-youtube"></i> <span data-si="YouTube Demo" data-en="YouTube Demo">YouTube Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot Launcher -->
+    <button id="chatbotLauncher" class="chatbot-launcher" aria-expanded="false" aria-controls="chatbotWidget">
+        <span class="chatbot-launcher-icon"><i class="fas fa-comments"></i></span>
+        <span class="chatbot-launcher-label" data-si="දම්ම AI උපකාරක" data-en="Dhamma AI Guide">දම්ම AI උපකාරක</span>
+    </button>
+
+    <!-- Chatbot Widget -->
+    <section id="chatbotWidget" class="chatbot-widget" aria-hidden="true" role="dialog" aria-label="Dhamma AI Chat Assistant">
+        <div class="chatbot-header">
+            <div class="chatbot-title-group">
+                <h3 data-si="ධර්ම දැනුම AI උපකාරක" data-en="Dhamma Knowledge Assistant">ධර්ම දැනුම AI උපකාරක</h3>
+                <p data-si="අභිධර්මය, චිත්ත, චෛතසික පිළිබඳ ප්‍රශ්න කරන්න" data-en="Ask about Abhidhamma, chitta, and cetasika insights">අභිධර්මය, චිත්ත, චෛතසික පිළිබඳ ප්‍රශ්න කරන්න</p>
+            </div>
+            <button id="chatbotClose" class="chatbot-close" aria-label="Close chatbot"><span aria-hidden="true">&times;</span></button>
+        </div>
+
+        <div id="chatbotMessages" class="chatbot-messages" aria-live="polite"></div>
+
+        <form id="chatbotForm" class="chatbot-form" autocomplete="off">
+            <label class="chatbot-input-label" for="chatbotInput" data-si="ඔබේ ප්‍රශ්නය ලියන්න" data-en="Type your question">
+                ඔබේ ප්‍රශ්නය ලියන්න
+            </label>
+            <div class="chatbot-input-row">
+                <textarea id="chatbotInput" class="chatbot-input" rows="2" placeholder="අභිධර්මය පිළිබඳව ඔබට වැරදි නොවන විශ්ලේෂණයක් ලබා ගන්න..." data-si-placeholder="අභිධර්මය පිළිබඳව ඔබේ ප්‍රශ්නය ලියන්න..." data-en-placeholder="Ask your Abhidhamma question..." required></textarea>
+                <button id="chatbotSend" type="submit" class="chatbot-send">
+                    <span class="chatbot-send-text" data-si="නැව්වන්න" data-en="Send">නැව්වන්න</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </form>
+
+        <div id="chatbotStatus" class="chatbot-status" role="status" aria-live="polite"></div>
+    </section>
+
+    <script src="script.js"></script>
+    <script src="hero-background-slider.js"></script>
+    <script src="enhanced-features.js"></script>
+    <script src="mental-states-analysis.js"></script>
+    <script src="load-abhidhamma-data.js"></script>
+    <script src="load-rerukane-data.js"></script>
+    <script src="load-enhanced-citta-data.js"></script>
+    <script src="term-definitions-system.js"></script>
+    <script src="chatbot.js"></script>
+</body>
+</html>
