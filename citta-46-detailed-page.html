@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="si">
 <head>
     <meta charset="UTF-8">
@@ -90,8 +90,18 @@
             background: rgba(15, 23, 42, 0.75);
             box-shadow: 0 18px 36px rgba(2, 6, 23, 0.55);
         }
-        .content-box.highlight { background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(6, 182, 212, 0.2) 100%); border-color: rgba(125, 211, 252, 0.55); color: #052c46; }
-        .content-box.warning { background: linear-gradient(135deg, rgba(248, 250, 252, 0.12) 0%, rgba(186, 230, 253, 0.28) 100%); border-color: rgba(59, 130, 246, 0.4); color: #052c46; }
+                .content-box.highlight {
+            background: linear-gradient(135deg, rgba(34, 211, 238, 0.22) 0%, rgba(56, 189, 248, 0.32) 100%);
+            border-color: rgba(56, 189, 248, 0.65);
+            color: #f2fbff;
+            box-shadow: 0 20px 45px rgba(0, 12, 24, 0.65);
+        }
+                .content-box.warning {
+            background: linear-gradient(135deg, rgba(248, 113, 113, 0.2) 0%, rgba(251, 191, 36, 0.28) 100%);
+            border-color: rgba(248, 181, 121, 0.55);
+            color: #fff8f0;
+            box-shadow: 0 20px 45px rgba(24, 11, 5, 0.55);
+        }
         .grid-2 { display: grid; gap: 1.6rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
         .grid-3 { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
         .grid-4 { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
@@ -125,12 +135,37 @@
             box-shadow: 0 36px 72px rgba(2, 6, 23, 0.7);
         }
         .summary-grid { display: grid; gap: 1.6rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-        .summary-card { background: rgba(59, 130, 246, 0.2); border-radius: 1.7rem; padding: 2rem 1.6rem; backdrop-filter: blur(16px); color: #e0f2fe; }
-        .summary-highlight { margin-top: 2.4rem; text-align: center; font-size: 1.65rem; font-weight: 700; padding: 1.4rem; border-radius: 1.2rem; background: rgba(6, 182, 212, 0.25); border: 1px solid rgba(125, 211, 252, 0.4); color: #0f172a; }
+                .summary-card {
+            background: rgba(8, 47, 73, 0.82);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            color: #e6f6ff;
+            box-shadow: 0 22px 48px rgba(2, 8, 15, 0.65);
+        }
+                .summary-highlight {
+            margin-top: 2.4rem;
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: 700;
+            padding: 1.4rem;
+            border-radius: 1.2rem;
+            background: linear-gradient(135deg, rgba(13, 148, 136, 0.35) 0%, rgba(56, 189, 248, 0.4) 100%);
+            border: 1px solid rgba(56, 189, 248, 0.6);
+            color: #f0faff;
+            box-shadow: 0 24px 52px rgba(0, 8, 16, 0.7);
+        }
         .footer-section { margin-top: 3.4rem; text-align: center; color: #bae6fd; }
         .footer-title { font-size: 3rem; font-weight: 800; }
         .footer-text { font-size: 1.2rem; margin-top: 1rem; }
-        .footer-note { margin-top: 2rem; padding: 1.3rem; border-radius: 1.2rem; background: rgba(125, 211, 252, 0.18); font-weight: 600; color: #052c46; }
+                .footer-note {
+            margin-top: 2rem;
+            padding: 1.4rem;
+            border-radius: 1.25rem;
+            background: linear-gradient(135deg, rgba(6, 17, 32, 0.95) 0%, rgba(8, 47, 73, 0.92) 100%);
+            color: #eff6ff;
+            border: 1px solid rgba(56, 189, 248, 0.5);
+            box-shadow: 0 30px 60px rgba(0, 5, 12, 0.85);
+            font-weight: 600;
+        }
         ul { list-style: none; }
         ul li { position: relative; padding-left: 1.35rem; margin-bottom: 0.6rem; }
         ul li::before { content: '•'; position: absolute; left: 0; color: #7dd3fc; font-weight: 800; }

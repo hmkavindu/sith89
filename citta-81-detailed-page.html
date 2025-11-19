@@ -1,0 +1,477 @@
+﻿<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>සෝමනස්ස සහගත ඥාන විප්‍රයුක්ත සසංස්කාරික ක්‍රියා චිත්තය - විස්තර</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            background: radial-gradient(circle at top, #1a0d2e 0%, #2d1b3d 45%, #0f0518 100%);
+            min-height: 100vh;
+            color: #f3e8ff;
+            line-height: 1.78;
+        }
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 1.5rem 3.5rem; }
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.75rem 1.6rem;
+            margin: 1.6rem 0;
+            background: rgba(139, 92, 246, 0.85);
+            border-radius: 0.85rem;
+            text-decoration: none;
+            color: #f3e8ff;
+            font-weight: 600;
+            box-shadow: 0 18px 40px rgba(139, 92, 246, 0.45);
+            transition: all 0.25s ease;
+        }
+        .back-button:hover { transform: translateX(-6px); box-shadow: 0 24px 52px rgba(139, 92, 246, 0.65); }
+        .hero-header {
+            background: linear-gradient(135deg, rgba(221, 214, 254, 0.45) 0%, rgba(196, 181, 253, 0.5) 45%, rgba(167, 139, 250, 0.5) 100%);
+            border-radius: 1.9rem;
+            box-shadow: 0 32px 64px rgba(15, 5, 24, 0.8);
+            margin-bottom: 2.5rem;
+        }
+        .hero-content { padding: 3.7rem 2.4rem; }
+        .hero-title-section { display: flex; gap: 1.6rem; align-items: center; margin-bottom: 2rem; }
+        .hero-icon { width: 4.1rem; height: 4.1rem; color: #f3e8ff; animation: pulse 3s ease-in-out infinite; }
+        @keyframes pulse { 0%,100% {opacity:1; transform:scale(1);} 50% {opacity:.85; transform:scale(0.95);} }
+        .hero-title { font-size: 2.35rem; font-weight: 800; color: #2d1b3d; line-height: 1.2; }
+        .hero-subtitle { margin-top: 0.75rem; font-size: 1.08rem; color: #3d2a4d; }
+        .hero-badges { display: flex; flex-wrap: wrap; gap: 1rem; }
+        .hero-badge {
+            padding: 0.45rem 1.35rem;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            background: rgba(30, 20, 50, 0.25);
+            color: #2d1b3d;
+            box-shadow: inset 0 0 0 1px rgba(167, 139, 250, 0.5);
+        }
+        .section-card {
+            background: rgba(15, 5, 24, 0.95);
+            border-radius: 1.35rem;
+            border: 1px solid rgba(167, 139, 250, 0.38);
+            box-shadow: 0 24px 48px rgba(5, 2, 10, 0.75);
+            margin-bottom: 1.7rem;
+            overflow: hidden;
+        }
+        .section-header {
+            width: 100%;
+            padding: 1.25rem 1.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            border: none;
+            background: linear-gradient(135deg, rgba(196, 181, 253, 0.2) 0%, rgba(167, 139, 250, 0.32) 100%);
+            transition: all 0.3s ease;
+        }
+        .section-header:hover { background: linear-gradient(135deg, rgba(196, 181, 253, 0.3) 0%, rgba(167, 139, 250, 0.42) 100%); }
+        .section-header.expanded { box-shadow: inset 0 0 0 2px rgba(167, 139, 250, 0.55); }
+        .section-title-content { display: flex; align-items: center; gap: 1.1rem; }
+        .section-icon { width: 1.85rem; height: 1.85rem; color: #ddd6fe; }
+        .section-title { font-size: 1.24rem; font-weight: 700; color: #f3e8ff; }
+        .section-chevron { width: 1.45rem; height: 1.45rem; color: #ddd6fe; transition: transform 0.3s ease; }
+        .section-content { padding: 1.8rem 2rem; background: rgba(10, 3, 18, 0.92); display: none; }
+        .section-content.expanded { display: block; }
+        .content-box {
+            padding: 2rem;
+            border-radius: 1.35rem;
+            margin-bottom: 1.3rem;
+            border: 2px solid rgba(167, 139, 250, 0.38);
+            background: rgba(20, 10, 30, 0.88);
+            box-shadow: 0 18px 36px rgba(5, 2, 10, 0.78);
+        }
+                .content-box.highlight {
+            background: linear-gradient(135deg, rgba(34, 211, 238, 0.22) 0%, rgba(56, 189, 248, 0.32) 100%);
+            border-color: rgba(56, 189, 248, 0.65);
+            color: #f2fbff;
+            box-shadow: 0 20px 45px rgba(0, 12, 24, 0.65);
+        }
+        .grid-2 { display: grid; gap: 1.6rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+        .grid-3 { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+        .badge-list { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.45rem 0.9rem;
+            background: rgba(139, 92, 246, 0.25);
+            border-radius: 999px;
+            font-size: 0.86rem;
+            font-weight: 600;
+            color: #f3e8ff;
+        }
+        .example-card {
+            background: rgba(25, 15, 35, 0.92);
+            border-radius: 1.15rem;
+            border-left: 6px solid rgba(167, 139, 250, 0.6);
+            padding: 1.25rem 1.35rem;
+            box-shadow: 0 16px 32px rgba(5, 2, 10, 0.78);
+            font-size: 1.02rem;
+            font-weight: 500;
+        }
+        .summary-section {
+            margin-top: 3.4rem;
+            background: linear-gradient(135deg, rgba(15, 5, 24, 0.96) 0%, rgba(20, 10, 30, 0.9) 55%, rgba(167, 139, 250, 0.32) 100%);
+            color: #f3e8ff;
+            padding: 3rem;
+            border-radius: 2.2rem;
+            box-shadow: 0 36px 72px rgba(5, 2, 10, 0.85);
+        }
+        .summary-grid { display: grid; gap: 1.6rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+                .summary-card {
+            background: rgba(8, 47, 73, 0.82);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            color: #e6f6ff;
+            box-shadow: 0 22px 48px rgba(2, 8, 15, 0.65);
+        }
+                .summary-highlight {
+            margin-top: 2.4rem;
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: 700;
+            padding: 1.4rem;
+            border-radius: 1.2rem;
+            background: linear-gradient(135deg, rgba(13, 148, 136, 0.35) 0%, rgba(56, 189, 248, 0.4) 100%);
+            border: 1px solid rgba(56, 189, 248, 0.6);
+            color: #f0faff;
+            box-shadow: 0 24px 52px rgba(0, 8, 16, 0.7);
+        }
+        .footer-section { margin-top: 3.4rem; text-align: center; color: #ddd6fe; }
+        .footer-title { font-size: 3rem; font-weight: 800; }
+        .footer-text { font-size: 1.2rem; margin-top: 1rem; }
+                .footer-note {
+            margin-top: 2rem;
+            padding: 1.4rem;
+            border-radius: 1.25rem;
+            background: linear-gradient(135deg, rgba(6, 17, 32, 0.95) 0%, rgba(8, 47, 73, 0.92) 100%);
+            color: #eff6ff;
+            border: 1px solid rgba(56, 189, 248, 0.5);
+            box-shadow: 0 30px 60px rgba(0, 5, 12, 0.85);
+            font-weight: 600;
+        }
+        ul { list-style: none; }
+        ul li { position: relative; padding-left: 1.35rem; margin-bottom: 0.6rem; }
+        ul li::before { content: '•'; position: absolute; left: 0; color: #a78bfa; font-weight: 800; }
+        @media (max-width: 768px) {
+            .hero-title { font-size: 1.9rem; }
+            .hero-content { padding: 2.8rem 1.7rem; }
+            .section-content { padding: 1.45rem 1.55rem; }
+            .content-box { padding: 1.65rem; }
+            .summary-section { padding: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            <span>මුල් පිටුවට</span>
+        </a>
+
+        <div class="hero-header">
+            <div class="hero-content">
+                <div class="hero-title-section">
+                    <i class="fas fa-lightbulb hero-icon"></i>
+                    <div>
+                        <h1 class="hero-title">සෝමනස්ස සහගත ඥාන විප්‍රයුක්ත සසංස්කාරික ක්‍රියා චිත්තය</h1>
+                        <p class="hero-subtitle">කර්මයක් නොකරන, කාර්යයන් පමණක් කරන ක්‍රියා සිත – ඥානයෙන් වෙන්ව (ඥාන විප්‍රයුක්ත) සවුඛ්‍ය සෝමනස්ස සහගත, සසංස්කාරික කාමාවචර ක්‍රියා සිත.</p>
+                    </div>
+                </div>
+                <div class="hero-badges">
+                    <span class="hero-badge">කාමාවචර ක්‍රියා</span>
+                    <span class="hero-badge">සෝමනස්ස සහගත</span>
+                    <span class="hero-badge">ඥාන විප්‍රයුක්ත</span>
+                    <span class="hero-badge">සසංස්කාරික</span>
+                    <span class="hero-badge">චෛතසික 34</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 1 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl1" onclick="toggleSection('lvl1')">
+                <div class="section-title-content">
+                    <i class="fas fa-star section-icon"></i>
+                    <span class="section-title">මට්ටම 1: ඉතා සරල අර්ථය</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl1">
+                <div class="content-box">
+                    <ul>
+                        <li>කර්මයක් නොකරන, කාර්යයන් පමණක් කරන ක්‍රියා සිතකි (අරහන්තයන්ගේ සිත).</li>
+                        <li>ඥාන විප්‍රයුක්ත බව නිසා ඥාණයෙන් වෙන්ව ඇති අතර, කාර්යයන් සරල ආකාරයෙන් කරනු ලබයි.</li>
+                        <li>සසංස්කාරික – යම් යම් සංකල්පනයකින් හෝ අතිරේක ආයාසයකින් උදාවන.</li>
+                        <li>චෛතසික 34ක් සමඟ සෝභන කාමාවචර ක්‍රියා සිතකි; සම්පූර්ණ අලෝභ/අදෝස/අමෝහ මූල නොවූවද සෝභන සංග්‍රහයක්.</li>
+                    </ul>
+                    <div class="content-box highlight" style="margin-top:1.1rem;">
+                        <div class="grid-2">
+                            <div>
+                                <p><strong>භූමිය:</strong> කාම ලෝකය (සත්තලොකය).</p>
+                                <p><strong>උත්පත්තිය:</strong> ත්‍රෛලෝකික සුභ කර්මයේ පලාඵල.</p>
+                            </div>
+                            <div>
+                                <p><strong>අත්දැකීම:</strong> ආත්මසන්තෝෂය + නිර්මාණශීලී පරිණාමයක් + යම් ආයාසයකින්.</p>
+                                <p><strong>රූපය:</strong> දැනුමට සම්බන්ධ ව පසුතැවක් නැති සතුට.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 2 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl2" onclick="toggleSection('lvl2')">
+                <div class="section-title-content">
+                    <i class="fas fa-book-open section-icon"></i>
+                    <span class="section-title">මට්ටම 2: පද විග්‍රහය</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl2">
+                <div class="content-box">
+                    <ul>
+                        <li><strong>සෝමනස්ස:</strong> සතුටේ සුව • සමෘද්ධ සන්තෝෂයේ මනෝවෘත්තිය.</li>
+                        <li><strong>ඥාන විප්‍රයුක්ත:</strong> ඥාණයෙන් වෙන්ව ඇති, දැනුමට සම්බන්ධ නොවන.</li>
+                        <li><strong>සසංස්කාරික:</strong> යම් යම් හේතුකරණයකින් හෝ අතිරික්ත ආයාසයකින් උදාවන.</li>
+                        <li><strong>ක්‍රියා:</strong> කර්මයක් නොකරන, කාර්යයන් පමණක් කරන සිත; නව කර්මයක් නොඋපදවයි.</li>
+                    </ul>
+                    <div class="content-box highlight" style="margin-top:1rem;">
+                        <p>“නිරෝගි සතුට + ඥාණයෙන් වෙන්වීම + ස්වයංක්‍රීය උපදනය” යන එකතුව මෙහි නිරූපණය වේ.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 3 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl3" onclick="toggleSection('lvl3')">
+                <div class="section-title-content">
+                    <i class="fas fa-sitemap section-icon"></i>
+                    <span class="section-title">මට්ටම 3: අභිධර්ම වර්ගීකරණය</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl3">
+                <div class="content-box">
+                    <div class="grid-2">
+                        <div>
+                            <h4 class="mb-3">වර්ගීකරණ</h4>
+                            <ul>
+                                <li>භූමිය: කාමාවචර සෝභන ක්‍රියා.</li>
+                                <li>උත්පත්තිය: අරහන්තයන්ගේ සිත; කර්මයක් නොකරන, කාර්යයන් පමණක් කරන.</li>
+                                <li>අරමුණ: කාම ලෝක අරමුණක් (සුභ දෘශ්‍ය, ශබ්ද, ආදී).</li>
+                                <li>කාලය: කලිෂ්ඨ කර්මයක පසුව හෝ වර්තමාන අතීත කර්මයකට හේතුවෙන්.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="mb-3">සම්බන්ධතා</h4>
+                            <ul>
+                                <li>චිත්ත #81 → කාමාවචර ක්‍රියා කාණ්ඩයේ එකකි.</li>
+                                <li>සෝමනස්ස + ඥාන විප්‍රයුක්ත + සසංස්කාරික ක්‍රියායන්ගේ සමූහයේ එකකි.</li>
+                                <li>#80 (අසංස්කාරික) සමඟ සසංස්කාරික යුගලයක්.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="content-box highlight" style="margin-top:1.3rem;">
+                        <h4 class="mb-3">ක්‍රියා චිත්තයන්ගේ විශේෂත්වය</h4>
+                        <ul>
+                            <li>ක්‍රියා චිත්තයන් කර්මයක් නොකරන බැවින් නව කර්මයක් නොඋපදවයි.</li>
+                            <li>අරහන්තයන්ගේ සිත; කාර්යයන් පමණක් කරන, කර්මයක් නොකරන.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 4 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl4" onclick="toggleSection('lvl4')">
+                <div class="section-title-content">
+                    <i class="fas fa-layer-group section-icon"></i>
+                    <span class="section-title">මට්ටම 4: චෛතසික සංයුතිය (34)</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl4">
+                <div class="content-box">
+                    <p>සෝමනස්ස සහගත ඥාන විප්‍රයුක්ත සසංස්කාරික ක්‍රියායේ චෛතසික 34ක් පවතී.</p>
+                    <div class="grid-3" style="margin-top:1.4rem;">
+                        <div class="content-box" style="background: rgba(20,10,30,0.68); border-color: rgba(167,139,250,0.32);">
+                            <h4 class="mb-2">සබ්බචිත්ත සාධාරණ 7</h4>
+                            <div class="badge-list">
+                                <span class="badge">ඵස්ස</span>
+                                <span class="badge">සෝමනස්ස වේදනා</span>
+                                <span class="badge">සංඥා</span>
+                                <span class="badge">චේතනා</span>
+                                <span class="badge">ඒකාග්‍රතා</span>
+                                <span class="badge">ජීවිතින්ද්‍රිය</span>
+                                <span class="badge">මනසිකාර</span>
+                            </div>
+                        </div>
+                        <div class="content-box" style="background: rgba(20,10,30,0.68); border-color: rgba(167,139,250,0.32);">
+                            <h4 class="mb-2">පකිණ්ණක 13</h4>
+                            <ul>
+                                <li>විතක්ක, විචාර, අධිමොක්ඛ, විරිය, පීති, චන්ද</li>
+                                <li>මනසිකාර, විතක්ක, විචාර, විරිය, පීති, චන්ද, අධිමොක්ඛ</li>
+                            </ul>
+                        </div>
+                        <div class="content-box" style="background: rgba(20,10,30,0.68); border-color: rgba(167,139,250,0.32);">
+                            <h4 class="mb-2">ඥාන විප්‍රයුක්ත</h4>
+                            <div class="badge-list">
+                                <span class="badge">අලෝභ</span>
+                                <span class="badge">අදෝස</span>
+                                <span class="badge">අමෝහ</span>
+                            </div>
+                            <p class="text-sm mt-3" style="color:#ddd6fe;">ඥාන විප්‍රයුක්ත බව නිසා ඤාණ චෛතසිකය නැත. අසංස්කාරික බව නිසා සරල සංයුතියකි.</p>
+                        </div>
+                    </div>
+                    <div class="content-box highlight" style="margin-top:1.2rem;">
+                        <h4 class="mb-2">විපාක චෛතසික විශේෂත්වය</h4>
+                        <ul>
+                            <li>විපාක චිත්තයන් කර්මයක් නොකරන බැවින් නව කර්මයක් නොඋපදවයි.</li>
+                            <li>කුසල කර්මයක පලාඵලයක් ලෙස උපදින අතර, එය අත්විඳීම පමණක් කරයි.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 5 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl5" onclick="toggleSection('lvl5')">
+                <div class="section-title-content">
+                    <i class="fas fa-seedling section-icon"></i>
+                    <span class="section-title">මට්ටම 5: ජීවිතයේ උදාහරණ</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl5">
+                <div class="grid-2">
+                    <div class="example-card">
+                        <strong>1. දානයක් දීමෙන් පසු</strong><br>
+                        යම් කෙනෙකුට දානයක් දීමෙන් පසු, කිසිදු සංකල්පනයකින් හෝ අතිරේක ආයාසයකින් තොරව ස්වයංක්‍රීයව සතුටු වන අවස්ථාවක මෙය උපදී.
+                    </div>
+                    <div class="example-card">
+                        <strong>2. සිල් රැකීමෙන් පසු</strong><br>
+                        සිල් රැකීමෙන් පසු, යම් යම් සංකල්පනයකින් හෝ අතිරේක ආයාසයකින් සතුටු වන අවස්ථාවක මෙය උපදී.
+                    </div>
+                    <div class="example-card">
+                        <strong>3. භාවනාවෙන් පසු</strong><br>
+                        භාවනාවෙන් පසු, යම් යම් සංකල්පනයකින් හෝ අතිරේක ආයාසයකින් සතුටු වන අවස්ථාවක මෙය උපදී.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 6 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl6" onclick="toggleSection('lvl6')">
+                <div class="section-title-content">
+                    <i class="fas fa-microscope section-icon"></i>
+                    <span class="section-title">මට්ටම 6: ගැඹුරු අභිධර්ම විශ්ලේෂණය</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl6">
+                <div class="content-box">
+                        <h4 class="mb-3">ක්‍රියා චිත්තයන්ගේ විශේෂත්වය</h4>
+                        <ul>
+                            <li>ක්‍රියා චිත්තයන් කර්මයක් නොකරන බැවින් නව කර්මයක් නොඋපදවයි.</li>
+                            <li>අරහන්තයන්ගේ සිත; කාර්යයන් පමණක් කරන, කර්මයක් නොකරන.</li>
+                            <li>අසංස්කාරික බව නිසා කිසිදු සංකල්පනයකින් හෝ අතිරේක ආයාසයකින් තොරව ස්වයංක්‍රීයව උපදින බැවින් සරල සංයුතියකි.</li>
+                        </ul>
+                    <div class="content-box highlight" style="margin-top:1.3rem;">
+                        <h4 class="mb-3">සසංස්කාරික vs අසංස්කාරික</h4>
+                        <ul>
+                            <li><strong>සසංස්කාරික:</strong> යම් යම් හේතුකරණයකින් හෝ අතිරික්ත ආයාසයකින් උපදින.</li>
+                            <li><strong>අසංස්කාරික:</strong> කිසිදු සංකල්පනයකින් හෝ අතිරේක ආයාසයකින් තොරව ස්වයංක්‍රීයව උදාවක්.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 7 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl7" onclick="toggleSection('lvl7')">
+                <div class="section-title-content">
+                    <i class="fas fa-compass section-icon"></i>
+                    <span class="section-title">මට්ටම 7: සාරාංශය</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl7">
+                <div class="content-box">
+                    <p>සෝමනස්ස සහගත ඥාන විප්‍රයුක්ත සසංස්කාරික ක්‍රියා චිත්තය – කර්මයක් නොකරන, කාර්යයන් පමණක් කරන සිතකි. ඥාන විප්‍රයුක්ත බව නිසා ඥාණයෙන් වෙන්ව ඇති අතර, කාර්යයන් සරල ආකාරයෙන් කරනු ලබයි. සසංස්කාරික බව නිසා යම් යම් හේතුකරණයකින් හෝ අතිරික්ත ආයාසයකින් උපදින බැවින් අතිරික්ත චෛතසික ඇත.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="summary-section">
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <h3 class="font-bold mb-2">වර්ගය</h3>
+                    <p>කාමාවචර ක්‍රියා</p>
+                </div>
+                <div class="summary-card">
+                    <h3 class="font-bold mb-2">වේදනා</h3>
+                    <p>සෝමනස්ස</p>
+                </div>
+                <div class="summary-card">
+                    <h3 class="font-bold mb-2">ඥාණ</h3>
+                    <p>විප්‍රයුක්ත</p>
+                </div>
+                <div class="summary-card">
+                    <h3 class="font-bold mb-2">සංස්කාර</h3>
+                    <p>සසංස්කාරික</p>
+                </div>
+                <div class="summary-card">
+                    <h3 class="font-bold mb-2">චෛතසික</h3>
+                    <p>34</p>
+                </div>
+            </div>
+            <div class="summary-highlight">
+                <p>සෝමනස්ස සහගත ඥාන විප්‍රයුක්ත සසංස්කාරික ක්‍රියා චිත්තය – කර්මයක් නොකරන, කාර්යයන් පමණක් කරන සිතකි.</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-section">
+            <div class="footer-title">අභිධර්මයේ මූලික කරුණු</div>
+            <div class="footer-text">සියලුම චිත්තවල සවිස්තර පැහැදිලි කිරීම්</div>
+            <div class="footer-note">මෙම චිත්තය කර්මයක් නොකරන, කාර්යයන් පමණක් කරන ක්‍රියා සිතකි.</div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSection(level) {
+            const content = document.getElementById(`content-${level}`);
+            const header = document.getElementById(`header-${level}`);
+            const chevron = header.querySelector('.section-chevron');
+            
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                header.classList.remove('expanded');
+                chevron.style.transform = 'rotate(0deg)';
+            } else {
+                content.classList.add('expanded');
+                header.classList.add('expanded');
+                chevron.style.transform = 'rotate(180deg)';
+            }
+        }
+    </script>
+</body>
+</html>
+

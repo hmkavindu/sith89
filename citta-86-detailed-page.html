@@ -1,0 +1,511 @@
+﻿<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>විතර්ක විචාර ප්‍රීති සුඛ ඒකාග්‍රතා සහිත ප්‍රථම ධ්‍යාන විපාක සිත - විස්තර</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            background: radial-gradient(circle at top, #001427 0%, #001c31 45%, #00060d 100%);
+            min-height: 100vh;
+            color: #e0f2fe;
+            line-height: 1.78;
+        }
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 1.5rem 3.5rem; }
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.75rem 1.6rem;
+            margin: 1.6rem 0;
+            background: rgba(14, 165, 233, 0.85);
+            border-radius: 0.85rem;
+            text-decoration: none;
+            color: #e0f2fe;
+            font-weight: 600;
+            box-shadow: 0 18px 40px rgba(14, 165, 233, 0.45);
+            transition: all 0.25s ease;
+        }
+        .back-button:hover { transform: translateX(-6px); box-shadow: 0 24px 52px rgba(14, 165, 233, 0.65); }
+        .hero-header {
+            background: linear-gradient(135deg, rgba(191, 219, 254, 0.45) 0%, rgba(96, 165, 250, 0.5) 45%, rgba(14, 165, 233, 0.5) 100%);
+            border-radius: 1.9rem;
+            box-shadow: 0 32px 64px rgba(0, 9, 18, 0.8);
+            margin-bottom: 2.5rem;
+        }
+        .hero-content { padding: 3.7rem 2.4rem; }
+        .hero-title-section { display: flex; gap: 1.6rem; align-items: center; margin-bottom: 2rem; }
+        .hero-icon { width: 4.1rem; height: 4.1rem; color: #e0f2fe; animation: pulse 3s ease-in-out infinite; }
+        @keyframes pulse { 0%,100% {opacity:1; transform:scale(1);} 50% {opacity:.85; transform:scale(0.95);} }
+        .hero-title { font-size: 2.35rem; font-weight: 800; color: #021931; line-height: 1.2; }
+        .hero-subtitle { margin-top: 0.75rem; font-size: 1.08rem; color: #0f2c4a; }
+        .hero-badges { display: flex; flex-wrap: wrap; gap: 1rem; }
+        .hero-badge {
+            padding: 0.45rem 1.35rem;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            background: rgba(2, 26, 43, 0.25);
+            color: #082f49;
+            box-shadow: inset 0 0 0 1px rgba(14, 165, 233, 0.5);
+        }
+        .section-card {
+            background: rgba(1, 12, 23, 0.95);
+            border-radius: 1.35rem;
+            border: 1px solid rgba(56, 189, 248, 0.38);
+            box-shadow: 0 24px 48px rgba(0, 4, 8, 0.75);
+            margin-bottom: 1.7rem;
+            overflow: hidden;
+        }
+        .section-header {
+            width: 100%;
+            padding: 1.25rem 1.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            border: none;
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.2) 0%, rgba(14, 165, 233, 0.32) 100%);
+            transition: all 0.3s ease;
+        }
+        .section-header:hover { background: linear-gradient(135deg, rgba(96, 165, 250, 0.3) 0%, rgba(14, 165, 233, 0.42) 100%); }
+        .section-header.expanded { box-shadow: inset 0 0 0 2px rgba(14, 165, 233, 0.55); }
+        .section-title-content { display: flex; align-items: center; gap: 1.1rem; }
+        .section-icon { width: 1.85rem; height: 1.85rem; color: #bae6fd; }
+        .section-title { font-size: 1.24rem; font-weight: 700; color: #e0f2fe; }
+        .section-chevron { width: 1.45rem; height: 1.45rem; color: #bae6fd; transition: transform 0.3s ease; }
+        .section-content { padding: 1.8rem 2rem; background: rgba(0, 9, 18, 0.92); display: none; }
+        .section-content.expanded { display: block; }
+        .content-box {
+            padding: 2rem;
+            border-radius: 1.35rem;
+            margin-bottom: 1.3rem;
+            border: 2px solid rgba(56, 189, 248, 0.38);
+            background: rgba(0, 18, 33, 0.88);
+            box-shadow: 0 18px 36px rgba(0, 5, 11, 0.78);
+            color: #e0f2fe;
+        }
+                .content-box.highlight {
+            background: linear-gradient(135deg, rgba(34, 211, 238, 0.22) 0%, rgba(56, 189, 248, 0.32) 100%);
+            border-color: rgba(56, 189, 248, 0.65);
+            color: #f2fbff;
+            box-shadow: 0 20px 45px rgba(0, 12, 24, 0.65);
+        }
+        .grid-2 { display: grid; gap: 1.6rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+        .grid-3 { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+        .badge-list { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.45rem 0.9rem;
+            background: rgba(56, 189, 248, 0.25);
+            border-radius: 999px;
+            font-size: 0.86rem;
+            font-weight: 600;
+            color: #e0f2fe;
+        }
+        .example-card {
+            background: rgba(0, 19, 34, 0.92);
+            border-radius: 1.15rem;
+            border-left: 6px solid rgba(56, 189, 248, 0.6);
+            padding: 1.25rem 1.35rem;
+            box-shadow: 0 16px 32px rgba(0, 4, 9, 0.78);
+            font-size: 1.02rem;
+            font-weight: 500;
+            color: #e0f2fe;
+        }
+        .summary-section {
+            margin-top: 3.4rem;
+            background: linear-gradient(135deg, rgba(1, 8, 15, 0.96) 0%, rgba(0, 16, 30, 0.9) 55%, rgba(56, 189, 248, 0.32) 100%);
+            color: #e0f2fe;
+            padding: 3rem;
+            border-radius: 2.2rem;
+            box-shadow: 0 36px 72px rgba(0, 4, 8, 0.85);
+        }
+        .summary-grid { display: grid; gap: 1.6rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+                .summary-card {
+            background: rgba(8, 47, 73, 0.82);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            color: #e6f6ff;
+            box-shadow: 0 22px 48px rgba(2, 8, 15, 0.65);
+        }
+                .summary-highlight {
+            margin-top: 2.4rem;
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: 700;
+            padding: 1.4rem;
+            border-radius: 1.2rem;
+            background: linear-gradient(135deg, rgba(13, 148, 136, 0.35) 0%, rgba(56, 189, 248, 0.4) 100%);
+            border: 1px solid rgba(56, 189, 248, 0.6);
+            color: #f0faff;
+            box-shadow: 0 24px 52px rgba(0, 8, 16, 0.7);
+        }
+        .footer-section { margin-top: 3.4rem; text-align: center; color: #bae6fd; }
+        .footer-title { font-size: 3rem; font-weight: 800; }
+        .footer-text { font-size: 1.2rem; margin-top: 1rem; }
+                .footer-note {
+            margin-top: 2rem;
+            padding: 1.4rem;
+            border-radius: 1.25rem;
+            background: linear-gradient(135deg, rgba(6, 17, 32, 0.95) 0%, rgba(8, 47, 73, 0.92) 100%);
+            color: #eff6ff;
+            border: 1px solid rgba(56, 189, 248, 0.5);
+            box-shadow: 0 30px 60px rgba(0, 5, 12, 0.85);
+            font-weight: 600;
+        }
+        ul { list-style: none; }
+        ul li { position: relative; padding-left: 1.35rem; margin-bottom: 0.6rem; }
+        ul li::before { content: '•'; position: absolute; left: 0; color: #38bdf8; font-weight: 800; }
+        @media (max-width: 768px) {
+            .hero-title { font-size: 1.9rem; }
+            .hero-content { padding: 2.8rem 1.7rem; }
+            .section-content { padding: 1.45rem 1.55rem; }
+            .content-box { padding: 1.65rem; }
+            .summary-section { padding: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            <span>මුල් පිටුවට</span>
+        </a>
+
+        <div class="hero-header">
+            <div class="hero-content">
+                <div class="hero-title-section">
+                    <i class="fas fa-water hero-icon"></i>
+                    <div>
+                        <h1 class="hero-title">විතර්ක විචාර ප්‍රීති සුඛ ඒකාග්‍රතා සහිත ප්‍රථම ධ්‍යාන විපාක සිත</h1>
+                        <p class="hero-subtitle">රූපාවචර කුසල කර්මයක විපාක – ප්‍රථම ධ්‍යානයේ (විතර්ක, විචාර, ප්‍රීති, සුඛ, ඒකාග්‍රතා සහිත) රූපාවචර විපාක සිත.</p>
+                    </div>
+                </div>
+                <div class="hero-badges">
+                    <span class="hero-badge">රූපාවචර විපාක</span>
+                    <span class="hero-badge">ප්‍රථම ධ්‍යාන</span>
+                    <span class="hero-badge">විතර්ක විචාර</span>
+                    <span class="hero-badge">ප්‍රීති සුඛ</span>
+                    <span class="hero-badge">චෛතසික 35</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 1 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl1" onclick="toggleSection('lvl1')">
+                <div class="section-title-content">
+                    <i class="fas fa-star section-icon"></i>
+                    <span class="section-title">මට්ටම 1: ඉතා සරල අර්ථය</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl1">
+                <div class="content-box">
+                    <ul>
+                        <li>රූපාවචර කුසල කර්මයක (ප්‍රථම ධ්‍යාන කුසල) විපාකයකි.</li>
+                        <li>ප්‍රථම ධ්‍යානයේ සියලු අංග සහිත: විතර්ක, විචාර, ප්‍රීති, සුඛ, ඒකාග්‍රතා.</li>
+                        <li>රූප ලෝකයේ (රූප බ්‍රහ්ම ලෝකයේ) උපදින විපාක සිතකි.</li>
+                        <li>චෛතසික 35ක් සමඟ රූපාවචර විපාකයක්; ධ්‍යාන අංග 5ක් සහිත.</li>
+                    </ul>
+                    <div class="content-box highlight" style="margin-top:1.1rem;">
+                        <div class="grid-2">
+                            <div>
+                                <p><strong>භූමිය:</strong> රූප ලෝකය (රූප බ්‍රහ්ම ලෝකය).</p>
+                                <p><strong>උත්පත්තිය:</strong> රූපාවචර ප්‍රථම ධ්‍යාන කුසල කර්මයේ පලාඵල.</p>
+                            </div>
+                            <div>
+                                <p><strong>අත්දැකීම:</strong> ආත්මසන්තෝෂය + නිර්මාණශීලී පරිණාමයක්.</p>
+                                <p><strong>රූපය:</strong> දැනුමට සම්බන්ධ ව පසුතැවක් නැති සතුට.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 2 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl2" onclick="toggleSection('lvl2')">
+                <div class="section-title-content">
+                    <i class="fas fa-book-open section-icon"></i>
+                    <span class="section-title">මට්ටම 2: පද විග්‍රහය</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl2">
+                <div class="content-box">
+                    <ul>
+                        <li><strong>සෝමනස්ස:</strong> සතුටේ සුව • සමෘද්ධ සන්තෝෂයේ මනෝවෘත්තිය.</li>
+                        <li><strong>ඤාණ සම්ප්‍රයුක්ත:</strong> දැනුමට සම්බන්ධ, නිවැරදි අවබෝධයක් ඇති.</li>
+                        <li><strong>අසංස්කාරික:</strong> අතිරික්ත හේතුකරණයක් නැතිව ස්වයංක්‍රීයව උදාවන.</li>
+                        <li><strong>රූපාවචර විපාක:</strong> රූපාවචර කුසල කර්මයක අත්දැකුණු පල; නව කර්මයක් නොකෙරේ.</li>
+                        <li><strong>ප්‍රථම ධ්‍යාන:</strong> විතර්ක, විචාර, ප්‍රීති, සුඛ, ඒකාග්‍රතා – ධ්‍යාන අංග 5ක් සහිත.</li>
+                    </ul>
+                    <div class="content-box highlight" style="margin-top:1rem;">
+                        <p>“නිරෝගි සතුට + දැනුම + ස්වයංක්‍රීය උපදනය” යන එකතුව මෙහි නිරූපණය වේ.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 3 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl3" onclick="toggleSection('lvl3')">
+                <div class="section-title-content">
+                    <i class="fas fa-sitemap section-icon"></i>
+                    <span class="section-title">මට්ටම 3: අභිධර්ම වර්ගීකරණය</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl3">
+                <div class="content-box">
+                    <div class="grid-2">
+                        <div>
+                            <h4 class="mb-3">වර්ගීකරණ</h4>
+                            <ul>
+                                <li>භූමිය: රූපාවචර විපාක.</li>
+                                <li>උත්පත්තිය: රූපාවචර ප්‍රථම ධ්‍යාන කුසල චිත්තයන්ගේ ප්‍රතිඵලය.</li>
+                                <li>අරමුණ: රූප ලෝක අරමුණක් (කසිණ ආදී).</li>
+                                <li>කාලය: කලිෂ්ඨ කර්මයක පසුව හෝ වර්තමාන අතීත කර්මයකට හේතුවෙන්.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="mb-3">සම්බන්ධතා</h4>
+                            <ul>
+                                <li>චිත්ත #86 → රූපාවචර විපාක කාණ්ඩයේ එකකි.</li>
+                                <li>ප්‍රථම ධ්‍යාන විපාකයන්ගේ සමූහයේ එකකි.</li>
+                                <li>#87, #88, #89 සමඟ ධ්‍යාන විපාක සමූහය.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="content-box highlight" style="margin-top:1.3rem;">
+                        <h4 class="mb-3">කාර්ය 3ක</h4>
+                        <div class="badge-list">
+                            <span class="badge">පට්ටිසන්ධි (අයහපත් නොවන උපපත්තිය)</span>
+                            <span class="badge">භවඟ (දෛනික මූල)</span>
+                            <span class="badge">විපාක විඤ්ඤාණ (ඵස්ස/උපාධි)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 4 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl4" onclick="toggleSection('lvl4')">
+                <div class="section-title-content">
+                    <i class="fas fa-layer-group section-icon"></i>
+                    <span class="section-title">මට්ටම 4: චෛතසික සංයුතිය (35)</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl4">
+                <div class="content-box">
+                    <p>ප්‍රථම ධ්‍යාන විපාකයේ චෛතසික 35ක් පවතී: සබ්බචිත්ත සාධාරණ 7 + ධ්‍යාන අංග 5 (විතර්ක, විචාර, ප්‍රීති, සුඛ, ඒකාග්‍රතා) + අනිත්‍ය චෛතසික.</p>
+                    <div class="grid-3" style="margin-top:1.4rem;">
+                        <div class="content-box" style="background: rgba(0,27,45,0.65); border-color: rgba(14,165,233,0.35);">
+                            <h4 class="mb-2">සබ්බචිත්ත සාධාරණ 7</h4>
+                            <div class="badge-list">
+                                <span class="badge">ඵස්ස</span>
+                                <span class="badge">වේදනා (සෝමනස්ස)</span>
+                                <span class="badge">සංඥා</span>
+                                <span class="badge">චේතනා</span>
+                                <span class="badge">ඒකාග්‍රතා</span>
+                                <span class="badge">ජීවිතින්ද්‍රිය</span>
+                                <span class="badge">මනසිකාර</span>
+                            </div>
+                        </div>
+                        <div class="content-box" style="background: rgba(0,27,45,0.65); border-color: rgba(14,165,233,0.35);">
+                            <h4 class="mb-2">පාකිණ්ණක 6</h4>
+                            <div class="badge-list">
+                                <span class="badge">විතක්ක</span>
+                                <span class="badge">විචාර</span>
+                                <span class="badge">අධිමොක්ඛ</span>
+                                <span class="badge">විරිය</span>
+                                <span class="badge">පීති</span>
+                                <span class="badge">ඡන්ද</span>
+                            </div>
+                        </div>
+                        <div class="content-box" style="background: rgba(0,27,45,0.65); border-color: rgba(14,165,233,0.35);">
+                            <h4 class="mb-2">සෝභන සමාන 19</h4>
+                            <ul>
+                                <li>අලෝභ, අදෝස, අමෝහ, සද්ධා, සති, හිරි, ඔත්තප්ප</li>
+                                <li>කාය/චිත්ත පසද්ධි, ලහුතා, මුදුතා, කම්මණ්‍යතා, පාගුඤ්ඤතා, උජුකතා</li>
+                                <li>සමාධි ශක්තිය, කරුණා, මෛත්‍රී, උපේක්ෂා, පඤ්ඤා, විරිය</li>
+                            </ul>
+                        </div>
+                        <div class="content-box" style="grid-column: span 3; background: rgba(0,27,45,0.65); border-color: rgba(14,165,233,0.35);">
+                            <h4 class="mb-2">කාර්යමය ජ්හාන අංග 5</h4>
+                            <div class="badge-list">
+                                <span class="badge">විතක්ක</span>
+                                <span class="badge">විචාර</span>
+                                <span class="badge">ප්‍රීති</span>
+                                <span class="badge">සුඛ</span>
+                                <span class="badge">ඒකාග්‍රතා</span>
+                            </div>
+                            <p class="text-sm mt-3 text-sky-100">කාම ලෝකයේ වුවත් සෝභන චිත්තයට ජ්හාන අංග අඩංගුවේ.</p>
+                        </div>
+                    </div>
+                    <div class="content-box highlight" style="margin-top:1.2rem;">
+                        <h4 class="mb-2">විපාකයේ දී ප්‍රමුඛත්වය</h4>
+                        <ul>
+                            <li>විතක්ක/විචාර අඩංගුවීම නිසා දැනුමට යොමු කරයි.</li>
+                            <li>සෝමනස්ස + පඤ්ඤා → සමාජීය خوبی සම්ප්‍රේෂණයට උචිත අයුරින් ප්‍රතිචාර දීමට උපකාරී.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 5 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl5" onclick="toggleSection('lvl5')">
+                <div class="section-title-content">
+                    <i class="fas fa-seedling section-icon"></i>
+                    <span class="section-title">මට්ටම 5: ජීවිතයේ උදාහරණ</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl5">
+                <div class="grid-2">
+                    <div class="example-card">
+                        <strong>1. ධර්ම දායකයාට අයත් සතුට</strong><br>
+                        දානයක් සිදුකළ අයෙකුට වහා ඇතිවන හිරි/සතුට සහිත සිත මෙයයි.
+                    </div>
+                    <div class="example-card">
+                        <strong>2. භාවනා භික්ෂුවගේ වෛරයායක මත රහස</strong><br>
+                        සත්තවෙක් නිවේලිතය පවත්වන විට සමාජය වටහාගෙන වටින සතුට මෙයයි.</div>
+                    <div class="example-card">
+                        <strong>3. නිවැරදි තීරණයක පසු සතුට</strong><br>
+                        නායකයෙකු විසින් උතුම් නීතියක් ක්‍රියාත්මක කළ විට උපදින නිර්භීත සතුට මෙයින් පැහැදිලිය.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 6 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl6" onclick="toggleSection('lvl6')">
+                <div class="section-title-content">
+                    <i class="fas fa-microscope section-icon"></i>
+                    <span class="section-title">මට්ටම 6: ගැඹුරු අභිධර්ම විශ්ලේෂණය</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl6">
+                <div class="content-box">
+                    <ul>
+                        <li>මෙය පට්ටිසන්ධි චිත්තයකි (සුදුසු උපපත්තියකට මග දක්වයි) හෝ භවඟ/විපාක වර්ගයෙන් උදාවෙන පුන්‍යමය චිත්තයකි.</li>
+                        <li>ඤාණ සම්ප්‍රයුක්ත බව නිසා අවිජ්ජා පසුබායි; නමුත් තවම සංයෝජන පවතී.</li>
+                        <li>අසංස්කාරික – සිරුරට/කල්පනාවට වැඩිපුර දඬුවම් නොදී ස්වයංක්‍රීයවක්.</li>
+                        <li>අවිද්‍යා නිරෝධයට පදනම් විය හැකි හොඳ මොහොතක් – නිවැරදි විමර්ශනයකට පාලමක්.</li>
+                    </ul>
+                    <div class="content-box highlight" style="margin-top:1.2rem;">
+                        <h4 class="mb-3">පටිසන්ධි භූමිකාව</h4>
+                        <p>සෝමනස්ස සහගත ඤාණ සම්ප්‍රයුක්ත විපාකය සාක්ශාත් සුවඳු උපපත්තියකට පදනමයි (මානුෂික/දෙව් ලෝකය).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- මට්ටම 7 -->
+        <div class="section-card">
+            <button class="section-header" id="header-lvl7" onclick="toggleSection('lvl7')">
+                <div class="section-title-content">
+                    <i class="fas fa-compass section-icon"></i>
+                    <span class="section-title">මට්ටම 7: ප්‍රායෝගික මාර්ගෝපදේශ</span>
+                </div>
+                <i class="fas fa-chevron-down section-chevron"></i>
+            </button>
+            <div class="section-content" id="content-lvl7">
+                <div class="content-box">
+                    <div class="grid-2">
+                        <div>
+                            <h4 class="mb-3">භාවනා/අභ්‍යාසය</h4>
+                            <ul>
+                                <li>දිනපතා මෛත්‍රී/කරුණා භාවනා සිදුකර සෝමනස්ස විපාකය නායකත්වය කරනු.</li>
+                                <li>ඤාණයට සම්බන්ධ සතුට නිවැරදිව භාවිතට ගෙන යාමට ධම්ම දැනුම වඩාත් වැඩි කරන්න.</li>
+                                <li>සතුට හඳුනාගෙන කුසල ක්‍රියාවලියක් වෙත මාරු කරගන්න.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="mb-3">සැලකිලිමත් විය යුතු දෑ</h4>
+                            <ul>
+                                <li>විපාකය තුළ මතුවන සතුට අසාධාරණ ගොඩනැගීමකට භාවිතා නොකරන්න.</li>
+                                <li>කල්පිත “මම” බවට අමාරු වෙමින් අත්ත, සෙවුම් ත්‍යාග කරන්න.</li>
+                                <li>විපාක සතුට යළි කුසල ක්‍රියාවකට පවත්වන්න (දාන, සෙවිලි, මෛත්‍රී).</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="content-box highlight" style="margin-top:1.3rem;">
+                        <h4 class="mb-2">මතක සටහන</h4>
+                        <p>“සුභකර්මයක සෞම්‍ය සතුට – පසුවත් නිරෝගී දැනුමට පදනමක් කරගන්න.”</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="summary-section">
+            <h2 class="text-3xl font-bold text-center mb-8">සාරාංශයෙන් – ප්‍රථම ධ්‍යාන විපාක සිත</h2>
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <p class="text-5xl mb-2">🧘</p>
+                    <p class="font-bold text-lg">ප්‍රථම ධ්‍යාන</p>
+                    <p class="text-sm mt-2">විතර්ක, විචාර, ප්‍රීති, සුඛ, ඒකාග්‍රතා.</p>
+                </div>
+                <div class="summary-card">
+                    <p class="text-5xl mb-2">🌌</p>
+                    <p class="font-bold text-lg">රූපාවචර</p>
+                    <p class="text-sm mt-2">රූප බ්‍රහ්ම ලෝකයේ විපාකය.</p>
+                </div>
+                <div class="summary-card">
+                    <p class="text-5xl mb-2">✨</p>
+                    <p class="font-bold text-lg">විපාක</p>
+                    <p class="text-sm mt-2">රූපාවචර කුසල කර්මයේ පල.</p>
+                </div>
+                <div class="summary-card">
+                    <p class="text-5xl mb-2">🔢</p>
+                    <p class="font-bold text-lg">චෛතසික 35</p>
+                    <p class="text-sm mt-2">ධ්‍යාන අංග 5ක් සහිත.</p>
+                </div>
+            </div>
+            <p class="summary-highlight">ප්‍රථම ධ්‍යාන විපාක චිත්තය – රූපාවචර කුසල කර්මයක විපාකයකි; විතර්ක, විචාර, ප්‍රීති, සුඛ, ඒකාග්‍රතා සහිත.</p>
+        </div>
+
+        <div class="footer-section">
+            <p class="footer-title">සාධු! සාධු! සාධු!</p>
+            <p class="footer-text">ප්‍රථම ධ්‍යාන විපාකය රූප ලෝකයේ උපදින ධ්‍යාන ඵලයකි.</p>
+            <p class="footer-note">මෙම චිත්තය රූපාවචර ප්‍රථම ධ්‍යාන කුසල කර්මයක විපාකයකි.</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleSection(sectionId) {
+            const content = document.getElementById('content-' + sectionId);
+            const header = document.getElementById('header-' + sectionId);
+            if (!content || !header) return;
+
+            const isExpanded = content.classList.contains('expanded');
+            if (isExpanded) {
+                content.classList.remove('expanded');
+                header.classList.remove('expanded');
+            } else {
+                content.classList.add('expanded');
+                header.classList.add('expanded');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            toggleSection('lvl1');
+        });
+    </script>
+</body>
+</html>
+

@@ -88,6 +88,65 @@ p, .section-description, .hero-description {
     -ms-hyphens: auto;
 }
 
+/* Utility helpers for consistent text sizing (used by inner pages) */
+.text-xs { font-size: 0.75rem; line-height: 1rem; }
+.text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+.text-base { font-size: 1rem; line-height: 1.5rem; }
+.text-lg { font-size: 1.125rem; line-height: 1.65rem; }
+.text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+.text-2xl { font-size: 1.5rem; line-height: 1.9rem; }
+.text-3xl { font-size: 1.875rem; line-height: 2.1rem; }
+.text-4xl { font-size: 2.25rem; line-height: 2.4rem; }
+.text-5xl { font-size: 3rem; line-height: 1.1; }
+.text-6xl { font-size: 3.75rem; line-height: 1.05; }
+
+.font-thin { font-weight: 200; }
+.font-light { font-weight: 300; }
+.font-normal { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.font-black { font-weight: 900; }
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.uppercase { text-transform: uppercase; }
+.lowercase { text-transform: lowercase; }
+.capitalize { text-transform: capitalize; }
+
+/* Shared hero styling across inner pages */
+.hero-header {
+    background: #061a2c !important;
+    border: 1px solid rgba(148, 163, 184, 0.25) !important;
+    color: #e2e8f0 !important;
+    box-shadow: 0 28px 60px rgba(6, 10, 19, 0.45) !important;
+}
+
+.hero-content {
+    color: inherit;
+}
+
+.hero-title {
+    color: #f8fafc !important;
+}
+
+.hero-subtitle {
+    color: #cbd5f5 !important;
+}
+
+.hero-badge {
+    background: rgba(15, 118, 210, 0.15) !important;
+    color: #e0f2fe !important;
+    border: 1px solid rgba(59, 130, 246, 0.4) !important;
+}
+
+/* Consistent footer heading size across inner pages */
+.footer-title {
+    font-size: 1.875rem !important;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -646,17 +705,22 @@ section {
 /* Ensure section with data-table class has proper padding */
 section.data-table {
     padding-bottom: 50px;
+    display: block;
+    width: 100%;
+    min-width: 0 !important;
 }
 
 @media (max-width: 768px) {
     section.data-table {
         padding-bottom: 40px;
+        width: 100%;
     }
 }
 
 @media (max-width: 480px) {
     section.data-table {
         padding-bottom: 35px;
+        width: 100%;
     }
 }
 
