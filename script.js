@@ -240,6 +240,7 @@ document.addEventListener('DOMContentLoaded', function() {
     populateSelectionGrid();
     setupEventListeners();
     initializeLanguageSwitcher();
+    initializeFeedbackWidget();
 });
 
 // Navigation functionality
@@ -1312,6 +1313,40 @@ function updateDynamicContent() {
         if (siText && enText) {
             button.textContent = currentLanguage === 'si' ? siText : enText;
         }
+    });
+}
+
+function initializeFeedbackWidget() {
+    const toggle = document.getElementById('feedbackToggle');
+    const form = document.getElementById('feedbackForm');
+    const sendBtn = document.getElementById('feedbackSend');
+    const messageBox = document.getElementById('feedbackMessage');
+
+    if (!toggle || !form || !sendBtn || !messageBox) {
+        return;
+    }
+
+    toggle.addEventListener('click', () => {
+        form.classList.toggle('active');
+        const expanded = form.classList.contains('active');
+        form.setAttribute('aria-hidden', expanded ? 'false' : 'true');
+        if (expanded) {
+            messageBox.focus();
+        }
+    });
+
+    sendBtn.addEventListener('click', () => {
+        const value = messageBox.value.trim();
+        if (!value) {
+            messageBox.focus();
+            return;
+        }
+
+        console.log('Feedback submitted:', value);
+        messageBox.value = '';
+        form.classList.remove('active');
+        form.setAttribute('aria-hidden', 'true');
+        alert('Thank you for helping us improve!');
     });
 }
 
