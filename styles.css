@@ -1586,66 +1586,6 @@ section.data-table {
     transform: translateY(-2px);
     box-shadow: 0 12px 24px rgba(56, 189, 248, 0.35);
 }
-
-.resource-links {
-    padding: 4rem 0;
-    background: linear-gradient(135deg, #f7f9fc 0%, #e0e7ff 100%);
-}
-
-.resource-button-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.25rem;
-    margin-top: 2rem;
-}
-
-.resource-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.85rem;
-    padding: 1.1rem 1.4rem;
-    border-radius: 1.2rem;
-    color: #0f172a;
-    text-decoration: none;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
-    border: 1px solid rgba(15, 23, 42, 0.05);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
-}
-
-.resource-button:hover,
-.resource-button:focus-visible {
-    transform: translateY(-3px);
-    box-shadow: 0 25px 55px rgba(15, 23, 42, 0.22);
-    filter: brightness(1.05);
-}
-
-.resource-button i {
-    margin-left: auto;
-    font-size: 1rem;
-}
-
-.resource-button.fb-link {
-    background: linear-gradient(135deg, #2563eb, #0f172a);
-    color: #f8fafc;
-}
-
-.resource-button.reference-link {
-    background: linear-gradient(135deg, #ec4899, #a21caf);
-    color: #fff4fb;
-}
-
-.resource-button.margas-youtube {
-    background: linear-gradient(135deg, #f97316, #c2410c);
-    color: #fff8f3;
-}
-
-.resource-button.inner-realm-link {
-    background: linear-gradient(135deg, #22c55e, #15803d);
-    color: #f0fff4;
-}
     
     .comparison-table {
         min-width: 600px;
