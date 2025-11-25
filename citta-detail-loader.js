@@ -449,7 +449,9 @@ function createLevel8Section(level) {
             
             ${level.textReferences.dhammasangani ? `
                 <div style="background: white; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                    <h4 style="font-weight: 700; color: #2563eb; margin-bottom: 0.5rem;">ධම්මසඞ්ගණී පාලි:</h4>
+                    <h4 style="font-weight: 700; color: #2563eb; margin-bottom: 0.5rem;">
+                        <a href="https://tipitaka.lk/" target="_blank" rel="noopener noreferrer" style="color: #2563eb; text-decoration: none; border-bottom: 1px dotted #2563eb;">ධම්මසඞ්ගණී පාලි</a>:
+                    </h4>
                     <p style="font-style: italic; color: #374151; margin-bottom: 0.5rem; font-size: 0.9rem;">
                         "${level.textReferences.dhammasangani.pali}"
                     </p>
@@ -459,14 +461,18 @@ function createLevel8Section(level) {
             
             ${level.textReferences.abhidhammatthasangaha ? `
                 <div style="background: white; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                    <h4 style="font-weight: 700; color: #2563eb; margin-bottom: 0.5rem;">අභිධම්මත්ථ සඞ්ගහ:</h4>
+                    <h4 style="font-weight: 700; color: #2563eb; margin-bottom: 0.5rem;">
+                        <a href="https://tipitaka.lk/" target="_blank" rel="noopener noreferrer" style="color: #2563eb; text-decoration: none; border-bottom: 1px dotted #2563eb;">අභිධම්මත්ථ සඞ්ගහ</a>:
+                    </h4>
                     <p style="font-size: 0.9rem; color: #374151;">${level.textReferences.abhidhammatthasangaha}</p>
                 </div>
             ` : ''}
             
             ${level.textReferences.visuddhimagga ? `
                 <div style="background: white; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                    <h4 style="font-weight: 700; color: #2563eb; margin-bottom: 0.5rem;">විසුද්ධිමග්ග:</h4>
+                    <h4 style="font-weight: 700; color: #2563eb; margin-bottom: 0.5rem;">
+                        <a href="https://tipitaka.lk/" target="_blank" rel="noopener noreferrer" style="color: #2563eb; text-decoration: none; border-bottom: 1px dotted #2563eb;">විසුද්ධිමග්ග</a>:
+                    </h4>
                     <p style="font-size: 0.9rem; color: #374151;">${level.textReferences.visuddhimagga}</p>
                 </div>
             ` : ''}
@@ -717,6 +723,7 @@ window.cittaDetailLoader = {
     load: renderCittaDetailPage,
     getCittaId: getCittaIdFromURL
 };
+
 
 
 

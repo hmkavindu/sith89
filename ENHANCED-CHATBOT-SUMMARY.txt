@@ -1,0 +1,112 @@
+═══════════════════════════════════════════════════════════════
+   🧠 CHATBOT ENHANCED - NOW MUCH SMARTER! 🧠
+═══════════════════════════════════════════════════════════════
+
+✅ WHAT'S NEW:
+
+1. **බුදු දහම දැනුම** (Buddhist Knowledge)
+   - 89 චිත්ත සම්පූර්ණ විග්‍රහය
+   - 52 චෛතසික විස්තර
+   - ත්‍රිපිටක සම්බන්ධතා
+   - සූත්‍ර උපුටා දැක්වීම්
+
+2. **බි-භාෂා ප්‍රතිචාර** (Bilingual Responses)
+   - සිංහල + English හැම පිළිතුරකම
+   - Pali පද පැහැදිලි කිරීම්
+   - tipitaka.lk style references
+
+3. **ව්‍යුහගත පිළිතුරු** (Structured Answers)
+   - Main Explanation
+   - Translation
+   - Tipitaka Reference
+   - Practical Application
+   - Further Study
+
+4. **භාවනා උපදෙස්** (Meditation Guidance)
+   - සමථ භාවනාව
+   - විදර්ශනා භාවනාව
+   - Step-by-step instructions
+
+═══════════════════════════════════════════════════════════════
+
+🚀 HOW TO USE:
+
+STEP 1: RESTART SERVER
+----------------------
+cd "E:\chiththa chaithasika චිත්ත චෛතසික\abidharma-sith"
+npm run dev
+
+STEP 2: OPEN WEBSITE
+--------------------
+http://localhost:8888
+
+STEP 3: CLICK CHATBOT
+---------------------
+Bottom-right corner → "දම්ම AI උපකාරක"
+
+STEP 4: ASK INTELLIGENT QUESTIONS
+----------------------------------
+Try these:
+- "අභිධම්මය පැහැදිලි කරන්න"
+- "Teach me Anapanasati meditation"
+- "ප්‍රතීත්‍ය සමුත්පාදය මොකද්ද?"
+- "What are the Four Noble Truths?"
+
+═══════════════════════════════════════════════════════════════
+
+📚 ENHANCED KNOWLEDGE BASE:
+
+✅ Complete Tipitaka understanding
+✅ All Abhidhamma texts
+✅ 89 Cittas detailed
+✅ 52 Cetasikas explained
+✅ Four Noble Truths
+✅ Noble Eightfold Path
+✅ Paticca Samuppada
+✅ Meditation instructions
+✅ Sutta references
+✅ Practical Buddhist wisdom
+
+═══════════════════════════════════════════════════════════════
+
+🎯 FILES CREATED/UPDATED:
+
+1. chatbot.js - Enhanced with Buddhist knowledge
+2. buddhist-knowledge-base.js - Complete reference (NEW)
+3. index.html - Loads knowledge base
+4. ENHANCED-CHATBOT-GUIDE.md - Full guide (NEW)
+5. TEST-ENHANCED-CHATBOT.md - Test questions (NEW)
+
+═══════════════════════════════════════════════════════════════
+
+🔥 EXAMPLE QUESTION & RESPONSE:
+
+Q: "චිත්ත කීයක් තිබේද?"
+
+A: 
+සිංහල පැහැදිලි කිරීම:
+චිත්ත 89ක් තිබේ. ඒවා කාණ්ඩ 4කට බෙදේ:
+1. කාමාවචර චිත්ත 54
+2. රූපාවචර චිත්ත 15
+3. අරූපාවචර චිත්ත 12
+4. ලෝකෝත්තර චිත්ත 8
+
+English Summary:
+There are 89 types of consciousness divided into 4 planes...
+
+ත්‍රිපිටක සම්බන්ධතාව:
+- අභිධම්ම පිටකය: ධම්මසංගණී
+- විභංග
+
+ප්‍රායෝගික යෙදවීම:
+දෛනික ජීවිතයේදී මෙම චිත්ත හඳුනාගැනීමෙන්...
+
+═══════════════════════════════════════════════════════════════
+
+✨ YOUR CHATBOT IS NOW A BUDDHIST SCHOLAR! ✨
+
+**RESTART SERVER AND TEST IT!**
+
+තෙරුවන් සරණයි! 🙏
+
+

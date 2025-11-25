@@ -1,6 +1,128 @@
 // Enhanced Features for Abhidhamma Website
 // Based on Google Sheets analysis and improvements
 
+// Source URL Mapping for References
+// Make it globally available
+window.sourceUrls = {
+    // Tipitaka - General
+    'ත්‍රිපිටකය': 'https://tipitaka.lk/',
+    'Tipitaka': 'https://tipitaka.lk/',
+    
+    // Abhidhamma Pitaka - Specific section (links to Tipitaka.lk Abhidhamma section)
+    'අභිධර්ම පිටකය': 'https://tipitaka.lk/',
+    'Abhidhamma Pitaka': 'https://tipitaka.lk/',
+    
+    // Specific Abhidhamma texts - Cetasikas are primarily in these
+    'ධම්මසඞ්ගණී': 'https://tipitaka.lk/abhidhamma',
+    'Dhammasangani': 'https://tipitaka.lk/abhidhamma',
+    'ධම්මසංගණී': 'https://tipitaka.lk/abhidhamma',
+    'අට්ඨසාලිනී': 'https://tipitaka.lk/abhidhamma',
+    'Atthasalini': 'https://tipitaka.lk/abhidhamma',
+    'අභිධම්මත්ථ සඞ්ගහ': 'https://tipitaka.lk/abhidhamma',
+    'Abhidhammatthasangaha': 'https://tipitaka.lk/abhidhamma',
+    'විසුද්ධිමග්ග': 'https://tipitaka.lk/abhidhamma',
+    'Visuddhimagga': 'https://tipitaka.lk/abhidhamma',
+    
+    // Rerukane Chandawimala Thero's Books - Archive.org link
+    'රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ': 'https://archive.org/details/books-on-buddhism-by-ven.-rerukane-chandawimala-thero/%E0%B6%BB%E0%B7%9A%E0%B6%BB%E0%B7%94%E0%B6%9A%E0%B7%8F%E0%B6%B1%E0%B7%9A%20%E0%B6%A0%E0%B6%B1%E0%B7%8A%E0%B6%AF%E0%B7%80%E0%B7%92%E0%B6%B8%E0%B6%BD%20%E0%B6%B8%E0%B7%84%E0%B6%B1%E0%B7%8F%E0%B7%84%E0%B7%92%E0%B6%B8%E0%B7%92%20-%20%E0%B6%85%E0%B6%B7%E0%B7%92%E0%B6%B0%E0%B6%BB%E0%B7%8A%E0%B6%B8%20%E0%B6%B8%E0%B7%8F%E0%B6%BB%E0%B7%8A%E0%B6%9C%E0%B6%BA/',
+    'රේනුකානේ චන්දවිමල හිමි': 'https://archive.org/details/books-on-buddhism-by-ven.-rerukane-chandawimala-thero/%E0%B6%BB%E0%B7%9A%E0%B6%BB%E0%B7%94%E0%B6%9A%E0%B7%8F%E0%B6%B1%E0%B7%9A%20%E0%B6%A0%E0%B6%B1%E0%B7%8A%E0%B6%AF%E0%B7%80%E0%B7%92%E0%B6%B8%E0%B6%BD%20%E0%B6%B8%E0%B7%84%E0%B6%B1%E0%B7%8F%E0%B7%84%E0%B7%92%E0%B6%B8%E0%B7%92%20-%20%E0%B6%85%E0%B6%B7%E0%B7%92%E0%B6%B0%E0%B6%BB%E0%B7%8A%E0%B6%B8%20%E0%B6%B8%E0%B7%8F%E0%B6%BB%E0%B7%8A%E0%B6%9C%E0%B6%BA/',
+    'Rerukane Chandawimala Thero': 'https://archive.org/details/books-on-buddhism-by-ven.-rerukane-chandawimala-thero/%E0%B6%BB%E0%B7%9A%E0%B6%BB%E0%B7%94%E0%B6%9A%E0%B7%8F%E0%B6%B1%E0%B7%9A%20%E0%B6%A0%E0%B6%B1%E0%B7%8A%E0%B6%AF%E0%B7%80%E0%B7%92%E0%B6%B8%E0%B6%BD%20%E0%B6%B8%E0%B7%84%E0%B6%B1%E0%B7%8F%E0%B7%84%E0%B7%92%E0%B6%B8%E0%B7%92%20-%20%E0%B6%85%E0%B6%B7%E0%B7%92%E0%B6%B0%E0%B6%BB%E0%B7%8A%E0%B6%B8%20%E0%B6%B8%E0%B7%8F%E0%B6%BB%E0%B7%8A%E0%B6%9C%E0%B6%BA/',
+    'Ven. Rerukane Chandawimala Thero': 'https://archive.org/details/books-on-buddhism-by-ven.-rerukane-chandawimala-thero/%E0%B6%BB%E0%B7%9A%E0%B6%BB%E0%B7%94%E0%B6%9A%E0%B7%8F%E0%B6%B1%E0%B7%9A%20%E0%B6%A0%E0%B6%B1%E0%B7%8A%E0%B6%AF%E0%B7%80%E0%B7%92%E0%B6%B8%E0%B6%BD%20%E0%B6%B8%E0%B7%84%E0%B6%B1%E0%B7%8F%E0%B7%84%E0%B7%92%E0%B6%B8%E0%B7%92%20-%20%E0%B6%85%E0%B6%B7%E0%B7%92%E0%B6%B0%E0%B6%BB%E0%B7%8A%E0%B6%B8%20%E0%B6%B8%E0%B7%8F%E0%B6%BB%E0%B7%8A%E0%B6%9C%E0%B6%BA/',
+    
+    // Abhidhamma Marga - Specific book link (pitaka.lk version)
+    'අභිධර්ම මාර්ගය': 'https://pitaka.lk/books/abhidharma-margaya/index.html',
+    'Abhidhamma Marga': 'https://pitaka.lk/books/abhidharma-margaya/index.html',
+    
+    // Keles Ekadasa Pansiyaya - Specific book link
+    'කෙලෙස් එකදහස් පන්සියය': 'https://pitaka.lk/books/keles-1500/index.html',
+    'Keles Ekadasa Pansiyaya': 'https://pitaka.lk/books/keles-1500/index.html'
+};
+
+const sourceUrls = window.sourceUrls;
+
+// Function to parse bookReference and create clickable links
+function createReferenceLinks(referenceText) {
+    if (!referenceText) return null;
+    
+    const container = document.createElement('div');
+    container.className = 'explanation-reference';
+    
+    const referenceStrong = document.createElement('strong');
+    referenceStrong.textContent = currentLanguage === 'si' ? 'මුලාශ්‍ර: ' : 'References: ';
+    container.appendChild(referenceStrong);
+    
+    // Split by comma and process each source
+    const sources = referenceText.split(',').map(s => s.trim());
+    const links = [];
+    const urlMap = window.sourceUrls || sourceUrls;
+    
+    sources.forEach((source, index) => {
+        // Handle combined formats like "ත්‍රිපිටකය - අභිධර්ම පිටකය"
+        if (source.includes(' - ')) {
+            const parts = source.split(' - ').map(p => p.trim());
+            
+            parts.forEach((part, partIndex) => {
+                const url = urlMap[part] || null;
+                
+                if (url) {
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.target = '_blank';
+                    link.rel = 'noopener noreferrer';
+                    link.className = 'reference-link';
+                    link.textContent = part;
+                    link.title = currentLanguage === 'si' ? `${part} වෙත යන්න` : `Go to ${part}`;
+                    links.push(link);
+                } else {
+                    const span = document.createElement('span');
+                    span.textContent = part;
+                    span.className = 'reference-text';
+                    links.push(span);
+                }
+                
+                // Add dash separator between parts (except for last part)
+                if (partIndex < parts.length - 1) {
+                    const dashSeparator = document.createTextNode(' - ');
+                    links.push(dashSeparator);
+                }
+            });
+        } else {
+            // Direct source without dash separator
+            const url = urlMap[source] || null;
+            
+            if (url) {
+                const link = document.createElement('a');
+                link.href = url;
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                link.className = 'reference-link';
+                link.textContent = source;
+                link.title = currentLanguage === 'si' ? `${source} වෙත යන්න` : `Go to ${source}`;
+                links.push(link);
+            } else {
+                // If no URL found, show as plain text
+                const span = document.createElement('span');
+                span.textContent = source;
+                span.className = 'reference-text';
+                links.push(span);
+            }
+        }
+        
+        // Add separator (comma) except for last item
+        if (index < sources.length - 1) {
+            const separator = document.createTextNode(', ');
+            links.push(separator);
+        }
+    });
+    
+    // Append all links to container
+    links.forEach(item => {
+        container.appendChild(item);
+    });
+    
+    return container;
+}
+
 // Enhanced Explanations Management
 class ExplanationsManager {
     constructor() {
@@ -62,18 +184,15 @@ class ExplanationsManager {
         detailsP.textContent = chaithasika.detailedExplanation || 'Detailed explanation coming soon...';
         detailsDiv.appendChild(detailsP);
         
-        const referenceDiv = document.createElement('div');
-        referenceDiv.className = 'explanation-reference';
-        const referenceStrong = document.createElement('strong');
-        referenceStrong.textContent = 'Reference: ';
-        const referenceText = document.createTextNode(chaithasika.bookReference || 'Ven. Rerukane Chandawimala Thero');
-        referenceDiv.appendChild(referenceStrong);
-        referenceDiv.appendChild(referenceText);
+        // Create reference links
+        const referenceDiv = createReferenceLinks(chaithasika.bookReference || 'Ven. Rerukane Chandawimala Thero');
         
         card.appendChild(header);
         card.appendChild(descriptionDiv);
         card.appendChild(detailsDiv);
-        card.appendChild(referenceDiv);
+        if (referenceDiv) {
+            card.appendChild(referenceDiv);
+        }
         
         return card;
     }

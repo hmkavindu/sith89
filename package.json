@@ -3,14 +3,11 @@
   "version": "1.0.0",
   "description": "Local development server for the Abhidhamma Citta Chaithasika tool with Groq chatbot integration.",
   "scripts": {
-    "start": "node local-server.js"
+    "start": "node local-server.js",
+    "dev": "node local-server.js"
   },
   "dependencies": {
-    "express": "^4.19.2"
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2"
   }
 }
-
-
-
-
-

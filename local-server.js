@@ -1,3 +1,4 @@
+require('dotenv').config();
 const path = require('path');
 const express = require('express');
 
@@ -63,7 +64,8 @@ app.get('*', (_req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`[local-server] Serving Abhidhamma site on http://localhost:${PORT}`);
+    console.log(`[local-server] Network access: Find your IP with 'ipconfig' and use http://YOUR_IP:${PORT}`);
 });
 

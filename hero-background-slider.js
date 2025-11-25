@@ -23,21 +23,30 @@
         let current = 0;
         const interval = 12000; // 12 seconds per image
 
-        function setSlide(index) {
+        function setSlide(index, previousIndex) {
+
             slides.forEach((slide, i) => {
                 if (i === index) {
                     slide.classList.add('active');
+                    slide.classList.remove('fading-out');
                 } else {
                     slide.classList.remove('active');
                 }
             });
+
+            if (previousIndex !== undefined && slides[previousIndex] && previousIndex !== index) {
+                const previousSlide = slides[previousIndex];
+                previousSlide.classList.add('fading-out');
+                setTimeout(() => previousSlide.classList.remove('fading-out'), 9000);
+            }
         }
 
         setSlide(current);
 
         setInterval(() => {
+            const previous = current;
             current = (current + 1) % slides.length;
-            setSlide(current);
+            setSlide(current, previous);
         }, interval);
     });
 })();

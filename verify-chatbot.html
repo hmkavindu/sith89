@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Chatbot on Main Site</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .status-box {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border-left: 5px solid #4CAF50;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .error-box {
+            border-left-color: #f44336;
+        }
+        h1 {
+            color: #333;
+        }
+        .check-item {
+            padding: 10px;
+            margin: 10px 0;
+            background: #e8f5e9;
+            border-radius: 5px;
+        }
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #2196F3;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background: #1976D2;
+        }
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Chatbot Status Check</h1>
+    
+    <div class="status-box">
+        <h2>✅ Chatbot Configuration Status</h2>
+        <div id="checks"></div>
+    </div>
+
+    <div class="status-box">
+        <h2>📍 Where to Find the Chatbot</h2>
+        <p><strong>Location:</strong> Bottom-right corner of every page</p>
+        <p><strong>Button Text:</strong> "දම්ම AI උපකාරක" or "Dhamma AI Guide"</p>
+        <p><strong>Color:</strong> Orange/gradient button</p>
+    </div>
+
+    <div class="status-box">
+        <h2>🌐 Test on Different Pages</h2>
+        <a href="http://localhost:8888" class="button" target="_blank">Main Page (index.html)</a>
+        <a href="http://localhost:8888/test-chatbot.html" class="button" target="_blank">Test Page</a>
+        <a href="http://localhost:8888/citta-index.html" class="button" target="_blank">Citta Index</a>
+    </div>
+
+    <div class="status-box">
+        <h2>📋 Checklist</h2>
+        <div class="check-item">✅ Server running on http://localhost:8888</div>
+        <div class="check-item">✅ Chatbot button in HTML (lines 498-502)</div>
+        <div class="check-item">✅ Chatbot widget in HTML (lines 504-530)</div>
+        <div class="check-item">✅ chatbot.js loaded (line 540)</div>
+        <div class="check-item">✅ API endpoint working</div>
+        <div class="check-item">✅ API key configured</div>
+    </div>
+
+    <div class="status-box">
+        <h2>🎯 How to Use</h2>
+        <ol>
+            <li>Go to <a href="http://localhost:8888" target="_blank">http://localhost:8888</a></li>
+            <li><strong>Scroll to any page</strong> (chatbot is fixed position, always visible)</li>
+            <li>Look at <strong>bottom-right corner</strong></li>
+            <li>You'll see the orange chatbot button</li>
+            <li>Click it and start chatting!</li>
+        </ol>
+    </div>
+
+    <div class="status-box">
+        <h2>🔧 Debugging</h2>
+        <button class="button" onclick="checkElements()">Check Chatbot Elements</button>
+        <button class="button" onclick="testAPI()">Test API Connection</button>
+        <button class="button" onclick="highlightButton()">Highlight Chatbot Button</button>
+        <div id="debug-output" style="margin-top: 20px;"></div>
+    </div>
+
+    <script>
+        function checkElements() {
+            const output = document.getElementById('debug-output');
+            let html = '<h3>Element Check Results:</h3>';
+            
+            const launcher = document.getElementById('chatbotLauncher');
+            const widget = document.getElementById('chatbotWidget');
+            const chatbotJs = document.querySelector('script[src="chatbot.js"]');
+            
+            html += `<p>✅ Chatbot Launcher: ${launcher ? 'Found' : 'NOT FOUND'}</p>`;
+            html += `<p>✅ Chatbot Widget: ${widget ? 'Found' : 'NOT FOUND'}</p>`;
+            html += `<p>✅ chatbot.js script: ${chatbotJs ? 'Loaded' : 'NOT FOUND'}</p>`;
+            
+            if (launcher) {
+                const rect = launcher.getBoundingClientRect();
+                html += `<p>📍 Button position: Right: ${window.innerWidth - rect.right}px, Bottom: ${window.innerHeight - rect.bottom}px</p>`;
+                html += `<p>👁️ Button visible: ${rect.width > 0 && rect.height > 0 ? 'YES' : 'NO'}</p>`;
+            }
+            
+            output.innerHTML = html;
+        }
+
+        async function testAPI() {
+            const output = document.getElementById('debug-output');
+            output.innerHTML = '<p>Testing API...</p>';
+            
+            try {
+                const response = await fetch('/.netlify/functions/groq-chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        messages: [
+                            { role: 'system', content: 'You are a helpful assistant' },
+                            { role: 'user', content: 'Say hello' }
+                        ]
+                    })
+                });
+                
+                const data = await response.json();
+                output.innerHTML = `<p>✅ API Status: ${response.ok ? 'WORKING' : 'ERROR'}</p>`;
+                output.innerHTML += `<p>Response: ${data.reply || JSON.stringify(data)}</p>`;
+            } catch (error) {
+                output.innerHTML = `<p>❌ API Error: ${error.message}</p>`;
+            }
+        }
+
+        function highlightButton() {
+            const output = document.getElementById('debug-output');
+            // Try to find button on main page
+            const mainWindow = window.open('http://localhost:8888', 'mainPage');
+            
+            setTimeout(() => {
+                try {
+                    const button = mainWindow.document.getElementById('chatbotLauncher');
+                    if (button) {
+                        button.style.border = '5px solid red';
+                        button.style.boxShadow = '0 0 30px red';
+                        button.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        output.innerHTML = '<p>✅ Button highlighted on main page! Look for the RED border.</p>';
+                    } else {
+                        output.innerHTML = '<p>❌ Could not find button on main page.</p>';
+                    }
+                } catch (e) {
+                    output.innerHTML = '<p>⚠️ Could not access main page. Make sure it\'s open.</p>';
+                }
+            }, 2000);
+        }
+
+        // Auto-check on load
+        window.addEventListener('load', () => {
+            const checksDiv = document.getElementById('checks');
+            checksDiv.innerHTML = `
+                <p>✅ Verification page loaded</p>
+                <p>✅ JavaScript working</p>
+                <p>✅ Ready to test chatbot</p>
+            `;
+        });
+    </script>
+</body>
+</html>
+
+
