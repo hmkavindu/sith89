@@ -99,6 +99,7 @@
                 ඔබගේ මනසේ ඇතිවන රාග ද්වේශ මෝහ විශ්ලේෂණය කරමින් බුදුවරයන් වහන්සේගේ උගන්වීම් මගින් මනස සන්සුන් කර ගන්න
             </p>
 
+
             <!-- Three Poisons Cards -->
             <div class="mental-states-grid">
                 <div class="mental-state-card raga-card" id="ragaCard" data-state="raga">
@@ -427,7 +428,6 @@
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
-            <h2 class="section-title" data-si="මෙවලම පිළිබඳව" data-en="About the Tool">මෙවලම පිළිබඳව</h2>
             
             <div class="about-content">
                 <div class="about-text">
@@ -449,20 +449,6 @@
         </div>
     </section>
 
-    <section class="feedback-section" id="feedback">
-        <div class="container">
-            <div class="feedback-card">
-                <button type="button" class="feedback-toggle" id="feedbackToggle">
-                    If you see any mismatches help us to correct
-                </button>
-                <div class="feedback-form" id="feedbackForm" aria-hidden="true">
-                    <textarea id="feedbackMessage" placeholder="Type anything you want to let us know..."></textarea>
-                    <button type="button" class="feedback-send" id="feedbackSend">Send</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -473,19 +459,19 @@
                 </div>
                 <div class="footer-links">
                     <div class="social-buttons">
-                        <a href="https://www.youtube.com/@margasakachcha" class="social-button" target="_blank">
+                        <a href="https://www.youtube.com/@margasakachcha" class="social-button" target="_blank" rel="noopener noreferrer">
                             <img src="https://www.freeiconspng.com/uploads/youtube-logo-png-transparent-image-5.png" alt="YouTube Icon" class="social-icon">
                             <span class="social-text" data-si="YouTube" data-en="YouTube">YouTube</span>
                         </a>
-                        <a href="https://www.facebook.com/groups/1536202133918487/" class="social-button" target="_blank">
+                        <a href="https://www.facebook.com/groups/1536202133918487/" class="social-button" target="_blank" rel="noopener noreferrer">
                             <img src="https://www.freeiconspng.com/thumbs/facebook-logo-png/photos-facebook-logo-png-transparent-background-13.png" alt="Facebook Icon" class="social-icon">
                             <span class="social-text" data-si="Facebook" data-en="Facebook">Facebook</span>
                         </a>
-                        <a href="https://github.com/dinukx/dhamma-notes/blob/main/Reference_list.md" class="social-button" target="_blank">
+                        <a href="https://github.com/dinukx/dhamma-notes/blob/main/Reference_list.md" class="social-button" target="_blank" rel="noopener noreferrer">
                             <img src="https://www.clipartmax.com/png/middle/418-4180491_notebook-icon-school-education-icons-in-svg-notebook-icon-png.png" alt="Reference Note Icon" class="social-icon">
                             <span class="social-text" data-si="Reference Note" data-en="Reference Note">Reference Note</span>
                         </a>
-                        <a href="https://www.machineworld.io/inner-realm" class="social-button" target="_blank">
+                        <a href="https://www.machineworld.io/inner-realm" class="social-button" target="_blank" rel="noopener noreferrer">
                             <img src="public/images/icons/inner-realm-icon.png" alt="Inner Realm Icon" class="social-icon" onerror="this.src='https://thumbs.dreamstime.com/b/digital-meditation-futuristic-human-form-lotus-pose-striking-artwork-depicts-figure-position-radiating-energy-light-407975513.jpg'">
                             <span class="social-text" data-si="Inner Realm" data-en="Inner Realm">Inner Realm</span>
                         </a>
@@ -537,7 +523,37 @@
     <script src="load-rerukane-data.js"></script>
     <script src="load-enhanced-citta-data.js"></script>
     <script src="term-definitions-system.js"></script>
-    <script src="buddhist-knowledge-base.js"></script>
     <script src="chatbot.js"></script>
+    
+    <!-- Visual Navigation Graph -->
+    <script src="https://unpkg.com/cytoscape@3.26.0/dist/cytoscape.min.js"></script>
+    <script src="visual-navigation/graph-visualizer.js"></script>
+    <link rel="stylesheet" href="visual-navigation/graph-styles.css">
+
+    <!-- Feedback Box Section -->
+    <section id="feedbackBox" class="feedback-box-section">
+        <div class="feedback-container">
+            <h2 class="feedback-title">If you see any mismatch, tell us</h2>
+            <p class="feedback-subtext">Help us correct mistakes you notice on this website</p>
+            <form id="feedbackForm" class="feedback-form">
+                <textarea 
+                    id="feedbackMessage" 
+                    class="feedback-textarea" 
+                    placeholder="Describe the mismatch you found..." 
+                    rows="5"
+                    required></textarea>
+                <input 
+                    type="email" 
+                    id="feedbackEmail" 
+                    class="feedback-email" 
+                    placeholder="Your email (optional)">
+                <button type="submit" class="feedback-submit-btn">
+                    Send Report
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <script src="feedback-box.js"></script>
 </body>
 </html>

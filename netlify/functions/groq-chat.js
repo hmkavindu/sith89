@@ -76,10 +76,14 @@ exports.handler = async (event) => {
 
         if (!response.ok) {
             console.error('Groq API error response:', data);
+            const errorMessage = data.error?.message || data.error?.code || JSON.stringify(data.error) || 'API request failed';
             return {
                 statusCode: response.status,
                 headers: CORS_HEADERS,
-                body: JSON.stringify({ error: data })
+                body: JSON.stringify({ 
+                    error: errorMessage,
+                    details: data 
+                })
             };
         }
 
@@ -102,7 +106,10 @@ exports.handler = async (event) => {
         return {
             statusCode: 500,
             headers: CORS_HEADERS,
-            body: JSON.stringify({ error: 'Failed to reach Groq API' })
+            body: JSON.stringify({ 
+                error: 'Failed to reach Groq API',
+                message: error.message || 'Network or server error'
+            })
         };
     }
 };

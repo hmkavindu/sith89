@@ -1,0 +1,94 @@
+warning: in the working copy of 'index.html', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/index.html b/index.html[m
+[1mindex 34133c9..a96b810 100644[m
+[1m--- a/index.html[m
+[1m+++ b/index.html[m
+[36m@@ -61,19 +61,19 @@[m
+     <section id="home" class="hero">[m
+         <!-- Animated Background Slider -->[m
+         <div class="hero-background-slider">[m
+[31m-            <div class="hero-bg-image active" style="background-image: url('public/images/image-budda/view-zen-buddha-statue-spirituality-min.jpg'); background-position: center 20%;"></div>[m
+[31m-            <div class="hero-bg-image" style="background-image: url('public/images/image-budda/view-buddha-statuette-with-incense-min.jpg');"></div>[m
+[31m-            <div class="hero-bg-image" style="background-image: url('public/images/image-budda/view-buddha-statuette-min.jpg');"></div>[m
+[31m-            <div class="hero-bg-image" style="background-image: url('public/images/image-budda/view-zen-buddha-statue-spirituality (1).jpg');"></div>[m
+[31m-            <div class="hero-bg-image" style="background-image: url('public/images/image-budda/freepik__this-is-an-outdoor-photograph-of-a-buddha-statuede__69926.png');"></div>[m
+[31m-            <div class="hero-bg-image" style="background-image: url('public/images/image-budda/freepik__sunlit-stone-buddha-statue-under-a-sprawling-tree-__9048.png');"></div>[m
+[32m+[m[32m            <div class="hero-bg-image active" style="background-image: url('image budda/view-zen-buddha-statue-spirituality-min.jpg'); background-position: center 20%;"></div>[m
+[32m+[m[32m            <div class="hero-bg-image" style="background-image: url('image budda/view-buddha-statuette-with-incense-min.jpg');"></div>[m
+[32m+[m[32m            <div class="hero-bg-image" style="background-image: url('image budda/view-buddha-statuette-min.jpg');"></div>[m
+[32m+[m[32m            <div class="hero-bg-image" style="background-image: url('image budda/view-zen-buddha-statue-spirituality (1).jpg');"></div>[m
+[32m+[m[32m            <div class="hero-bg-image" style="background-image: url('image budda/freepik__this-is-an-outdoor-photograph-of-a-buddha-statuede__69926.png');"></div>[m
+[32m+[m[32m            <div class="hero-bg-image" style="background-image: url('image budda/freepik__sunlit-stone-buddha-statue-under-a-sprawling-tree-__9048.png');"></div>[m
+             <!-- Additional Landscape Images -->[m
+[31m-            <div class="hero-bg-image" style="background-image: url('public/images/image-budda/Dambulla-Cave-temple-Culturale-Triangle-sri-lanka (1).jpg');"></div>[m
+[31m-            <div class="hero-bg-image" style="background-image: url('public/images/image-budda/old-vatadage-pillars-anuradhapura-sri-lanka-november-view-preserved-front-ruwanwelisaya-stupa-november-83224462 (1).png');"></div>[m
+[31m-            <div class="hero-bg-image" style="background-image: url('public/images/image-budda/things-to-do-in-sri-lanka_adams-peak.png');"></div>[m
+[31m-            <div class="hero-bg-image" style="background-image: url('public/images/image-budda/Why You Should Visit Dambulla Cave Temple in Sri Lanka (1).jpeg');"></div>[m
+[31m-            <div class="hero-bg-image" style="background-image: url('public/images/image-budda/16344616755_a516594ea7_h.jpg');"></div>[m
+[31m-            <div class="hero-bg-image" style="background-image: url('public/images/image-budda/ChatGPT Image Nov 6, 2025, 12_40_32 PM.png');"></div>[m
+[32m+[m[32m            <div class="hero-bg-image" style="background-image: url('image budda/Dambulla-Cave-temple-Culturale-Triangle-sri-lanka (1).jpg');"></div>[m
+[32m+[m[32m            <div class="hero-bg-image" style="background-image: url('image budda/old-vatadage-pillars-anuradhapura-sri-lanka-november-view-preserved-front-ruwanwelisaya-stupa-november-83224462 (1).png');"></div>[m
+[32m+[m[32m            <div class="hero-bg-image" style="background-image: url('image budda/things-to-do-in-sri-lanka_adams-peak.png');"></div>[m
+[32m+[m[32m            <div class="hero-bg-image" style="background-image: url('image budda/Why You Should Visit Dambulla Cave Temple in Sri Lanka (1).jpeg');"></div>[m
+[32m+[m[32m            <div class="hero-bg-image" style="background-image: url('image budda/16344616755_a516594ea7_h.jpg');"></div>[m
+[32m+[m[32m            <div class="hero-bg-image" style="background-image: url('image budda/ChatGPT Image Nov 6, 2025, 12_40_32 PM.png');"></div>[m
+         </div>[m
+         <div class="hero-overlay"></div>[m
+         <div class="hero-container">[m
+[36m@@ -449,20 +449,6 @@[m
+         </div>[m
+     </section>[m
+ [m
+[31m-    <section class="feedback-section" id="feedback">[m
+[31m-        <div class="container">[m
+[31m-            <div class="feedback-card">[m
+[31m-                <button type="button" class="feedback-toggle" id="feedbackToggle">[m
+[31m-                    If you see any mismatches help us to correct[m
+[31m-                </button>[m
+[31m-                <div class="feedback-form" id="feedbackForm" aria-hidden="true">[m
+[31m-                    <textarea id="feedbackMessage" placeholder="Type anything you want to let us know..."></textarea>[m
+[31m-                    <button type="button" class="feedback-send" id="feedbackSend">Send</button>[m
+[31m-                </div>[m
+[31m-            </div>[m
+[31m-        </div>[m
+[31m-    </section>[m
+[31m-[m
+     <!-- Footer -->[m
+     <footer class="footer">[m
+         <div class="container">[m
+[36m@@ -472,24 +458,9 @@[m
+                     <p class="footer-blessing" data-si="තෙරුවන් සරණයි !" data-en="Triple Gem refuge!">තෙරුවන් සරණයි !</p>[m
+                 </div>[m
+                 <div class="footer-links">[m
+[31m-                    <div class="social-buttons">[m
+[31m-                        <a href="https://www.youtube.com/@margasakachcha" class="social-button" target="_blank">[m
+[31m-                            <img src="https://www.freeiconspng.com/uploads/youtube-logo-png-transparent-image-5.png" alt="YouTube Icon" class="social-icon">[m
+[31m-                            <span class="social-text" data-si="YouTube" data-en="YouTube">YouTube</span>[m
+[31m-                        </a>[m
+[31m-                        <a href="https://www.facebook.com/groups/1536202133918487/" class="social-button" target="_blank">[m
+[31m-                            <img src="https://www.freeiconspng.com/thumbs/facebook-logo-png/photos-facebook-logo-png-transparent-background-13.png" alt="Facebook Icon" class="social-icon">[m
+[31m-                            <span class="social-text" data-si="Facebook" data-en="Facebook">Facebook</span>[m
+[31m-                        </a>[m
+[31m-                        <a href="https://github.com/dinukx/dhamma-notes/blob/main/Reference_list.md" class="social-button" target="_blank">[m
+[31m-                            <img src="https://www.clipartmax.com/png/middle/418-4180491_notebook-icon-school-education-icons-in-svg-notebook-icon-png.png" alt="Reference Note Icon" class="social-icon">[m
+[31m-                            <span class="social-text" data-si="Reference Note" data-en="Reference Note">Reference Note</span>[m
+[31m-                        </a>[m
+[31m-                        <a href="https://www.machineworld.io/inner-realm" class="social-button" target="_blank">[m
+[31m-                            <img src="public/images/icons/inner-realm-icon.png" alt="Inner Realm Icon" class="social-icon" onerror="this.src='https://thumbs.dreamstime.com/b/digital-meditation-futuristic-human-form-lotus-pose-striking-artwork-depicts-figure-position-radiating-energy-light-407975513.jpg'">[m
+[31m-                            <span class="social-text" data-si="Inner Realm" data-en="Inner Realm">Inner Realm</span>[m
+[31m-                        </a>[m
+[31m-                    </div>[m
+[32m+[m[32m                    <a href="https://www.youtube.com/watch?v=O8vow8DuPHQ" target="_blank" class="footer-link">[m
+[32m+[m[32m                        <i class="fab fa-youtube"></i> <span data-si="YouTube Demo" data-en="YouTube Demo">YouTube Demo</span>[m
+[32m+[m[32m                    </a>[m
+                 </div>[m
+             </div>[m
+         </div>[m
+[36m@@ -537,7 +508,6 @@[m
+     <script src="load-rerukane-data.js"></script>[m
+     <script src="load-enhanced-citta-data.js"></script>[m
+     <script src="term-definitions-system.js"></script>[m
+[31m-    <script src="buddhist-knowledge-base.js"></script>[m
+     <script src="chatbot.js"></script>[m
+ </body>[m
+ </html>[m

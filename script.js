@@ -822,6 +822,7 @@ function populateTable() {
 // Make populateTable globally available
 window.populateTable = populateTable;
 
+
 // Populate the selection grid for comparison
 function populateSelectionGrid() {
     selectionGrid.innerHTML = '';

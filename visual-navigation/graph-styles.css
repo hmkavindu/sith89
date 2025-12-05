@@ -1,0 +1,447 @@
+/**
+ * Visual Navigation Graph Styles
+ * Styles for the Abhidhamma graph visualization
+ */
+
+.graph-container {
+    width: 100%;
+    height: 700px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    background: #fafafa;
+    position: relative;
+    overflow: hidden;
+}
+
+.graph-container.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10000;
+    border: none;
+    border-radius: 0;
+}
+
+.graph-controls {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.graph-controls button {
+    padding: 10px 20px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Noto Sans Sinhala', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.graph-controls button:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.graph-controls button:active {
+    transform: translateY(0);
+}
+
+.graph-controls button.active {
+    background: #f39c12;
+}
+
+.graph-filters {
+    margin-top: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.graph-filters label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Noto Sans Sinhala', sans-serif;
+    color: #2c3e50;
+    user-select: none;
+}
+
+.graph-filters input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #3498db;
+}
+
+.graph-filters label:hover {
+    color: #3498db;
+}
+
+.graph-search {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.graph-search input {
+    padding: 10px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: 'Noto Sans Sinhala', sans-serif;
+    width: 300px;
+    max-width: 100%;
+}
+
+.graph-search input:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.graph-info {
+    margin-top: 15px;
+    padding: 15px;
+    background: #ecf0f1;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: 'Noto Sans Sinhala', sans-serif;
+    color: #2c3e50;
+}
+
+.graph-info strong {
+    color: #34495e;
+}
+
+.graph-legend {
+    margin-top: 15px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.graph-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+}
+
+.graph-legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.graph-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 700px;
+    font-size: 16px;
+    color: #7f8c8d;
+}
+
+.graph-error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 700px;
+    color: #e74c3c;
+    font-size: 16px;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .graph-container {
+        height: 500px;
+    }
+    
+    .graph-controls {
+        flex-direction: column;
+    }
+    
+    .graph-controls button {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .graph-filters {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .graph-search input {
+        width: 100%;
+    }
+    
+    .graph-legend {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* Graph modal overlay */
+.graph-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+    padding: 20px;
+}
+
+.graph-modal.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.graph-modal-content {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 95%;
+    max-height: 95%;
+    width: 1400px;
+    position: relative;
+}
+
+.graph-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.graph-modal-close:hover {
+    background: #c0392b;
+    transform: rotate(90deg);
+}
+
+/* Node tooltip */
+.cy-tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    pointer-events: none;
+    z-index: 10001;
+    max-width: 200px;
+    font-family: 'Noto Sans Sinhala', sans-serif;
+}
+
+/* Animation classes */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.node-pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Enhanced styles for Comprehensive Knowledge Mesh */
+
+/* Learning path controls */
+.learning-path-controls {
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.learning-path-controls button:hover {
+    background: rgba(255,255,255,0.9) !important;
+    color: #333 !important;
+}
+
+/* Content filter controls */
+.content-filter-controls {
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.content-filter-controls label {
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.content-filter-controls label:hover {
+    color: #3498db;
+}
+
+/* Node details panel */
+.node-details-panel {
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    font-family: 'Noto Sans Sinhala', sans-serif;
+}
+
+.node-details-panel a {
+    color: #3498db !important;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.node-details-panel a:hover {
+    color: #2980b9 !important;
+    text-decoration: underline;
+}
+
+/* Enhanced node highlighting */
+.related-highlight {
+    border-color: #f39c12 !important;
+    border-width: 3px !important;
+    background-color: rgba(243, 156, 18, 0.1) !important;
+}
+
+/* Learning path animations */
+@keyframes learning-path-glow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(255, 152, 0, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(255, 152, 0, 0.8);
+    }
+}
+
+.learning-path-active {
+    animation: learning-path-glow 2s infinite;
+}
+
+/* Navigation hub special styling */
+.navigation-hub-node {
+    border-color: #2c3e50 !important;
+    border-width: 4px !important;
+    background-color: rgba(44, 62, 80, 0.1) !important;
+}
+
+/* Mental state connection highlights */
+.mental-state-connection {
+    line-style: dashed;
+    line-dash-pattern: [5, 5];
+}
+
+/* Enhanced tooltip for mesh navigation */
+.mesh-tooltip {
+    background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    max-width: 280px;
+    font-family: 'Noto Sans Sinhala', sans-serif;
+}
+
+.mesh-tooltip-title {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #2c3e50;
+}
+
+.mesh-tooltip-content {
+    font-size: 12px;
+    line-height: 1.4;
+    color: #555;
+}
+
+.mesh-tooltip-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 8px;
+}
+
+.mesh-tooltip-actions button {
+    padding: 4px 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f9f9f9;
+    cursor: pointer;
+    font-size: 11px;
+    transition: all 0.2s ease;
+}
+
+.mesh-tooltip-actions button:hover {
+    background: #e9e9e9;
+    border-color: #bbb;
+}
+
+/* Responsive enhancements for mesh controls */
+@media (max-width: 768px) {
+    .learning-path-controls,
+    .content-filter-controls,
+    .node-details-panel {
+        position: static !important;
+        margin: 10px;
+        width: calc(100% - 20px);
+        max-width: none;
+    }
+
+    .graph-container {
+        height: 400px;
+    }
+}
+
+/* Print styles */
+@media print {
+    .graph-controls,
+    .graph-search,
+    .graph-info,
+    .learning-path-controls,
+    .content-filter-controls,
+    .node-details-panel {
+        display: none;
+    }
+
+    .graph-container {
+        height: auto;
+        min-height: 600px;
+    }
+}
+
+

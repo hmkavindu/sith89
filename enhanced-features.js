@@ -40,6 +40,48 @@ window.sourceUrls = {
 
 const sourceUrls = window.sourceUrls;
 
+// Function to create source links from sources array
+function createSourceLinks(sources) {
+    if (!sources || !Array.isArray(sources) || sources.length === 0) {
+        return null;
+    }
+    
+    const container = document.createElement('div');
+    container.className = 'explanation-reference';
+    
+    const referenceStrong = document.createElement('strong');
+    referenceStrong.textContent = currentLanguage === 'si' ? 'මුලාශ්‍ර: ' : 'References: ';
+    container.appendChild(referenceStrong);
+    
+    const links = [];
+    
+    sources.forEach((source, index) => {
+        if (source && source.url && source.label) {
+            const link = document.createElement('a');
+            link.href = source.url;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.className = 'reference-link';
+            link.textContent = source.label;
+            link.title = currentLanguage === 'si' ? `${source.label} වෙත යන්න` : `Go to ${source.label}`;
+            links.push(link);
+            
+            // Add separator (comma) except for last item
+            if (index < sources.length - 1) {
+                const separator = document.createTextNode(', ');
+                links.push(separator);
+            }
+        }
+    });
+    
+    // Append all links to container
+    links.forEach(item => {
+        container.appendChild(item);
+    });
+    
+    return links.length > 0 ? container : null;
+}
+
 // Function to parse bookReference and create clickable links
 function createReferenceLinks(referenceText) {
     if (!referenceText) return null;
@@ -123,6 +165,17 @@ function createReferenceLinks(referenceText) {
     return container;
 }
 
+// Helper function to get chaithasika data source
+function getChaithasikaSource() {
+    if (window.chaithasikaData && window.chaithasikaData.length > 0) {
+        return window.chaithasikaData;
+    }
+    if (meditationData && meditationData.chaithasikas) {
+        return meditationData.chaithasikas;
+    }
+    return [];
+}
+
 // Enhanced Explanations Management
 class ExplanationsManager {
     constructor() {
@@ -130,7 +183,8 @@ class ExplanationsManager {
         this.categoryFilter = document.getElementById('explanationCategoryFilter');
         this.searchInput = document.getElementById('explanationSearch');
         this.statsContainer = document.getElementById('explanationsStats');
-        this.filteredChaithasikas = [...meditationData.chaithasikas];
+        // Use window.chaithasikaData if available, otherwise fall back to meditationData.chaithasikas
+        this.filteredChaithasikas = [...getChaithasikaSource()];
         
         this.initialize();
     }
@@ -184,8 +238,11 @@ class ExplanationsManager {
         detailsP.textContent = chaithasika.detailedExplanation || 'Detailed explanation coming soon...';
         detailsDiv.appendChild(detailsP);
         
-        // Create reference links
-        const referenceDiv = createReferenceLinks(chaithasika.bookReference || 'Ven. Rerukane Chandawimala Thero');
+        // Create reference links from sources array (fallback to legacy reference text)
+        let referenceDiv = createSourceLinks(chaithasika.sources);
+        if (!referenceDiv && chaithasika.bookReference) {
+            referenceDiv = createReferenceLinks(chaithasika.bookReference);
+        }
         
         card.appendChild(header);
         card.appendChild(descriptionDiv);
@@ -213,12 +270,16 @@ class ExplanationsManager {
     
     filterByCategory() {
         const selectedCategory = this.categoryFilter.value;
+        const chaithasikaSource = getChaithasikaSource();
         
         if (selectedCategory === '') {
-            this.filteredChaithasikas = [...meditationData.chaithasikas];
+            this.filteredChaithasikas = [...chaithasikaSource];
         } else {
-            this.filteredChaithasikas = meditationData.chaithasikas.filter(
-                chaithasika => chaithasika.category === selectedCategory
+            this.filteredChaithasikas = chaithasikaSource.filter(
+                chaithasika => {
+                    const category = chaithasika.category || chaithasika.categorySi || '';
+                    return category.includes(selectedCategory);
+                }
             );
         }
         
@@ -228,8 +289,9 @@ class ExplanationsManager {
     
     filterBySearch() {
         const searchTerm = this.searchInput.value.toLowerCase();
+        const chaithasikaSource = getChaithasikaSource();
         
-        this.filteredChaithasikas = meditationData.chaithasikas.filter(chaithasika => {
+        this.filteredChaithasikas = chaithasikaSource.filter(chaithasika => {
             const nameMatch = chaithasika.name.toLowerCase().includes(searchTerm) ||
                             chaithasika.nameEn.toLowerCase().includes(searchTerm);
             const descMatch = chaithasika.description.toLowerCase().includes(searchTerm) ||
@@ -352,14 +414,16 @@ class ComparisonManager {
         this.comparisonTableBody.appendChild(headerRow);
         
         // Create data rows for each chaithasika
-        meditationData.chaithasikas.forEach(chaithasika => {
+        const chaithasikaSource = getChaithasikaSource();
+        chaithasikaSource.forEach(chaithasika => {
             const row = document.createElement('tr');
-            const displayName = currentLanguage === 'si' ? chaithasika.name : chaithasika.nameEn;
+            const displayName = currentLanguage === 'si' ? (chaithasika.nameSi || chaithasika.name) : (chaithasika.nameEn || chaithasika.name);
             row.innerHTML = `<td>${displayName}</td>`;
             
             this.selectedCittas.forEach(cittaId => {
                 const associations = meditationData.associations[cittaId] || [];
-                const isPresent = associations.includes(chaithasika.id);
+                const chaithasikaId = chaithasika.id || chaithasika.nameSi || chaithasika.name;
+                const isPresent = associations.includes(chaithasikaId);
                 
                 const cell = document.createElement('td');
                 cell.textContent = isPresent ? '✓' : '✗';
@@ -374,7 +438,8 @@ class ComparisonManager {
     updateComparisonStats() {
         if (!this.comparisonStats) return;
         
-        const totalChaithasikas = meditationData.chaithasikas.length;
+        const chaithasikaSource = getChaithasikaSource();
+        const totalChaithasikas = chaithasikaSource.length;
         const commonFactors = this.findCommonFactors();
         const uniqueFactors = this.findUniqueFactors();
         
@@ -456,15 +521,19 @@ class ComparisonManager {
     }
     
     prepareChartData() {
+        const chaithasikaSource = getChaithasikaSource();
         const data = {
-            labels: meditationData.chaithasikas.map(c => currentLanguage === 'si' ? c.name : c.nameEn),
+            labels: chaithasikaSource.map(c => currentLanguage === 'si' ? (c.nameSi || c.name) : (c.nameEn || c.name)),
             datasets: this.selectedCittas.map(cittaId => {
                 const citta = meditationData.cittas.find(c => c.id === cittaId);
                 const associations = meditationData.associations[cittaId] || [];
                 
                 return {
                     label: currentLanguage === 'si' ? citta.name : citta.nameEn,
-                    data: meditationData.chaithasikas.map(c => associations.includes(c.id) ? 1 : 0),
+                    data: chaithasikaSource.map(c => {
+                        const chaithasikaId = c.id || c.nameSi || c.name;
+                        return associations.includes(chaithasikaId) ? 1 : 0;
+                    }),
                     backgroundColor: this.getRandomColor()
                 };
             })

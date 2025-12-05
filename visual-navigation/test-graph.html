@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>අභිධර්ම නැවුම් ජාලය - සම්පූර්ණ අභිධර්ම දත්ත සම්බන්ධ කිරීම</title>
+    <script src="https://unpkg.com/cytoscape@3.26.0/dist/cytoscape.min.js"></script>
+    <link rel="stylesheet" href="graph-styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+        
+        #cy {
+            width: 100%;
+            height: 700px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+        
+        .controls {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        button:hover {
+            background: #2980b9;
+        }
+        
+        .info {
+            margin-top: 20px;
+            padding: 15px;
+            background: #ecf0f1;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-section" style="text-align: center; margin-bottom: 30px; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px;">
+            <h1 style="margin: 0 0 10px 0; font-size: 2.2rem;">අභිධර්ම නැවුම් ජාලය</h1>
+            <p style="margin: 0; font-size: 1.1rem; opacity: 0.9;">සම්පූර්ණ අභිධර්ම දත්ත සම්බන්ධ කරන ඉගෙනීමේ මාර්ග සොයා ගන්න</p>
+            <div style="margin-top: 15px; font-size: 0.9rem;">
+                🧠 191 නෝඩ් | 🔗 3,687 සම්බන්ධතා | 📚 ඉගෙනීමේ මාර්ග 3ක්
+            </div>
+        </div>
+
+        <div class="features-overview" style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+            <h3 style="margin-top: 0; color: #2c3e50;">✨ නැවුම් ජාල විශේෂාංග</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 10px;">
+                <div style="background: white; padding: 12px; border-radius: 6px; border-left: 4px solid #3498db;">
+                    <strong>📚 ඉගෙනීමේ මාර්ග:</strong> අභිධර්මය ඉගෙනීම සඳහා ව්‍යුහගත මාර්ග 3ක්
+                </div>
+                <div style="background: white; padding: 12px; border-radius: 6px; border-left: 4px solid #27ae60;">
+                    <strong>🔍 අන්තර්ගත පෙරීම:</strong> චිත්ත, චෛතසික, විශ්ලේෂණ අනුව පෙරීම
+                </div>
+                <div style="background: white; padding: 12px; border-radius: 6px; border-left: 4px solid #e74c3c;">
+                    <strong>🧘 සම්බන්ධ නැවුම:</strong> සියලුම දත්ත අතර සම්බන්ධතාවලට පිවිසීම
+                </div>
+                <div style="background: white; padding: 12px; border-radius: 6px; border-left: 4px solid #f39c12;">
+                    <strong>🎯 ස්මාර්ට් නැවුම:</strong> ක්ලික් කිරීමෙන් ආශ්‍රිත අන්තර්ගතයට යාම
+                </div>
+            </div>
+        </div>
+
+        <div id="cy"></div>
+
+        <div class="instructions" style="background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 8px; padding: 15px; margin: 20px 0;">
+            <h4 style="margin-top: 0; color: #856404;">📖 භාවිතා කිරීමේ මාර්ගෝපදේශ</h4>
+            <ul style="margin: 0; padding-left: 20px; line-height: 1.6;">
+                <li><strong>නෝඩ් ක්ලික් කිරීම:</strong> විස්තර බැලීමට සහ සම්බන්ධ අන්තර්ගතයට යාමට</li>
+                <li><strong>ඉගෙනීමේ මාර්ග:</strong> වම් පැත්තේ බටන් මගින් විශේෂිත ඉගෙනීමේ මාර්ග නැවුම් කිරීම</li>
+                <li><strong>අන්තර්ගත පෙරීම:</strong> වම් පහළින් චිත්ත, චෛතසික ආදිය පෙරීමට</li>
+                <li><strong>සම්බන්ධතා නැවුම් කිරීම:</strong> නෝඩ් මත මවුස් රඳවා ගැනීමෙන් සම්බන්ධතා බැලීමට</li>
+            </ul>
+        </div>
+
+        <div class="controls">
+            <button onclick="resetLayout()">සැකසුම් නැවත සකසන්න</button>
+            <button onclick="focusRaga()">රාගය කේන්ද්‍රගත කරන්න</button>
+            <button onclick="focusDwesha()">ද්වේශය කේන්ද්‍රගත කරන්න</button>
+            <button onclick="focusMoha()">මෝහය කේන්ද්‍රගත කරන්න</button>
+            <button onclick="focusNavigationHub()">නැවුම් කේන්ද්‍රය කේන්ද්‍රගත කරන්න</button>
+        </div>
+    </div>
+
+    <script src="graph-visualizer.js"></script>
+    <script>
+        // Initialize the comprehensive knowledge mesh when DOM is loaded
+        document.addEventListener('DOMContentLoaded', async function() {
+            const visualizer = new AbhidhammaGraphVisualizer('cy', 'graph-data.json');
+            const success = await visualizer.init();
+
+            if (success) {
+                console.log('🎉 Comprehensive Knowledge Mesh loaded successfully!');
+                console.log('🧠 Nodes:', visualizer.cy.nodes().length);
+                console.log('🔗 Edges:', visualizer.cy.edges().length);
+            }
+        });
+
+        // Enhanced global functions for the new mesh
+        function resetLayout() {
+            if (window.visualizer && window.visualizer.cy) {
+                window.visualizer.cy.layout({
+                    name: 'breadthfirst',
+                    roots: '#navigation-hub',
+                    directed: true,
+                    spacingFactor: 1.2,
+                    padding: 30
+                }).run();
+            }
+        }
+
+        function focusRaga() {
+            if (window.visualizer && window.visualizer.cy) {
+                const ragaNode = window.visualizer.cy.getElementById('raga-analysis-page');
+                if (ragaNode.length > 0) {
+                    window.visualizer.cy.animate({
+                        center: { eles: ragaNode },
+                        zoom: 1.5
+                    }, { duration: 500 });
+                    ragaNode.select();
+                }
+            }
+        }
+
+        function focusDwesha() {
+            if (window.visualizer && window.visualizer.cy) {
+                const dweshaNode = window.visualizer.cy.getElementById('dwesha-analysis-page');
+                if (dweshaNode.length > 0) {
+                    window.visualizer.cy.animate({
+                        center: { eles: dweshaNode },
+                        zoom: 1.5
+                    }, { duration: 500 });
+                    dweshaNode.select();
+                }
+            }
+        }
+
+        function focusMoha() {
+            if (window.visualizer && window.visualizer.cy) {
+                const mohaNode = window.visualizer.cy.getElementById('moha-analysis-page');
+                if (mohaNode.length > 0) {
+                    window.visualizer.cy.animate({
+                        center: { eles: mohaNode },
+                        zoom: 1.5
+                    }, { duration: 500 });
+                    mohaNode.select();
+                }
+            }
+        }
+
+        function focusNavigationHub() {
+            if (window.visualizer && window.visualizer.cy) {
+                const hubNode = window.visualizer.cy.getElementById('navigation-hub');
+                if (hubNode.length > 0) {
+                    window.visualizer.cy.animate({
+                        center: { eles: hubNode },
+                        zoom: 1.2
+                    }, { duration: 500 });
+                    hubNode.select();
+                }
+            }
+        }
+
+        // Listen for graph navigation events
+        document.addEventListener('graphNodeClick', function(event) {
+            const { nodeId, url, label, type } = event.detail;
+            console.log('📍 Navigating from graph node:', { nodeId, url, label, type });
+
+            // Store navigation context for learning continuity
+            sessionStorage.setItem('graphNavigationContext', JSON.stringify({
+                fromNode: nodeId,
+                timestamp: new Date().toISOString(),
+                type: type
+            }));
+        });
+    </script>
+</body>
+</html>
+
+
+
+

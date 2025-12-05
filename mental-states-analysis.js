@@ -5,8 +5,12 @@ class MentalStatesAnalyzer {
     constructor() {
         this.mentalStatesData = null;
         this.currentState = null;
+        this.initialize(); // Initialize asynchronously
+    }
+
+    async initialize() {
+        await this.loadMentalStatesData();
         this.initializeEventListeners();
-        this.loadMentalStatesData();
     }
 
     async loadMentalStatesData() {
@@ -359,8 +363,9 @@ class MentalStatesAnalyzer {
 }
 
 // Initialize the mental states analyzer when the page loads
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     const mentalStatesAnalyzer = new MentalStatesAnalyzer();
+    await mentalStatesAnalyzer.initialize(); // Wait for initialization
 
     // Make it globally available for language switching
     window.mentalStatesAnalyzer = mentalStatesAnalyzer;

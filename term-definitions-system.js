@@ -339,23 +339,26 @@ function processElementForTerms(element) {
                         });
                         
                         // Only replace if we actually found a match
-                        if (newText !== nodeText) {
-                            const tempDiv = document.createElement('div');
-                            tempDiv.innerHTML = newText;
-                            
-                            // Replace text node with new content
-                            while (tempDiv.firstChild) {
-                                parent.insertBefore(tempDiv.firstChild, textNode);
-                            }
-                            parent.removeChild(textNode);
-                            
-                            // Make spans clickable
-                            parent.querySelectorAll('.term-clickable[data-term="' + term + '"]').forEach(span => {
-                                if (termDefinitions[term]) {
-                                    makeTermClickable(span, term, termDefinitions[term]);
-                                }
-                            });
-                        }
+        if (newText !== nodeText && parent) {
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = newText;
+            
+            try {
+                while (tempDiv.firstChild) {
+                    parent.insertBefore(tempDiv.firstChild, textNode);
+                }
+                parent.removeChild(textNode);
+                
+                // Make spans clickable
+                parent.querySelectorAll('.term-clickable[data-term="' + term + '"]').forEach(span => {
+                    if (termDefinitions && termDefinitions[term]) {
+                        makeTermClickable(span, term, termDefinitions[term]);
+                    }
+                });
+            } catch (e) {
+                console.warn('Term replacement error:', e);
+            }
+        }
                     }
                 }
             });
@@ -704,5 +707,3 @@ window.termDefinitionsSystem = {
     initializeTermClickHandlers,
     cleanupBrokenHTML
 };
-
-

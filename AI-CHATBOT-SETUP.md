@@ -119,3 +119,16 @@ If you don't want to use the chatbot feature, you can still use all other featur
 - Create an issue on GitHub if you encounter problems
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
