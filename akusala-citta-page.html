@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>අකුසල් සිත - අභිධර්මයේ රාග ද්වේශ මෝහ</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Malithi+Web:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iskoola+Pota:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .akusala-hero {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .akusala-hero h1 {
+            color: #c62828;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .akusala-hero p {
+            color: #d32f2f;
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .roots-section {
+            background: white;
+            padding: 3rem 0;
+            border-bottom: 3px solid #f44336;
+        }
+
+        .roots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .root-card {
+            background: #ffebee;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid #f44336;
+            transition: all 0.3s ease;
+        }
+
+        .root-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(244, 67, 54, 0.3);
+        }
+
+        .root-icon {
+            font-size: 3rem;
+            color: #c62828;
+            margin-bottom: 1rem;
+        }
+
+        .root-card h3 {
+            color: #c62828;
+            margin-bottom: 1rem;
+        }
+
+        .root-card p {
+            color: #424242;
+            line-height: 1.6;
+        }
+
+        .causes-section {
+            padding: 4rem 0;
+            background: #fafafa;
+        }
+
+        .cause-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .cause-tab {
+            padding: 1rem 2rem;
+            background: white;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            margin: 0 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .cause-tab.active {
+            background: #f44336;
+            color: white;
+            border-color: #f44336;
+        }
+
+        .cause-content {
+            display: none;
+        }
+
+        .cause-content.active {
+            display: block;
+        }
+
+        .cause-details {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .citta-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .citta-example {
+            background: #ffebee;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 4px solid #f44336;
+        }
+
+        .citta-example h4 {
+            margin-top: 0;
+            color: #c62828;
+        }
+
+        .citta-example p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .remedy-section {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .remedy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .remedy-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .remedy-card h3 {
+            color: #c62828;
+            margin-bottom: 1rem;
+        }
+
+        .remedy-card ul {
+            text-align: left;
+            padding-left: 1.5rem;
+        }
+
+        .remedy-card li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .understanding-section {
+            background: white;
+            padding: 3rem 0;
+            border-top: 3px solid #f44336;
+        }
+
+        .understanding-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .understanding-card {
+            background: #f5f5f5;
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .understanding-card h3 {
+            color: #c62828;
+            margin-bottom: 1rem;
+        }
+
+        .understanding-card p {
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .source-section {
+            background: #fafafa;
+            padding: 3rem 0;
+            border-top: 3px solid #f44336;
+        }
+
+        .source-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .source-link {
+            background: #ffebee;
+            padding: 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #c62828;
+            transition: all 0.3s ease;
+            border: 2px solid #f44336;
+        }
+
+        .source-link:hover {
+            background: #f44336;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .source-link i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .source-link h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .akusala-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .roots-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .remedy-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .understanding-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .source-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-header">
+                <div class="nav-controls">
+                    <button id="languageSwitcher" class="language-switcher">
+                        <span class="lang-text" data-si="English" data-en="සිංහල">English</span>
+                        <i class="fas fa-globe"></i>
+                    </button>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link" data-si="මුල් පිටුව" data-en="Home">මුල් පිටුව</a>
+                </li>
+                <li class="nav-item">
+                    <a href="sitha-mind-page.html" class="nav-link" data-si="සිත - මූලික සිදුවීම" data-en="Citta - Fundamental">සිත - මූලික සිදුවීම</a>
+                </li>
+                <li class="nav-item">
+                    <a href="citta-fishbone-diagram.html" class="nav-link" data-si="චිත්ත බෙදීම් ජාලය" data-en="Citta Network">චිත්ත බෙදීම් ජාලය</a>
+                </li>
+                <li class="nav-item">
+                    <a href="kusala-citta-page.html" class="nav-link" data-si="කුසල් සිතුවිලි" data-en="Kusala Citta">කුසල් සිතුවිලි</a>
+                </li>
+                <li class="nav-item">
+                    <a href="citta-index.html" class="nav-link" data-si="සියලුම චිත්ත" data-en="All Cittas">සියලුම චිත්ත</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="akusala-hero">
+        <div class="container">
+            <h1 data-si="අකුසල් සිත" data-en="Akusala Citta">අකුසල් සිත</h1>
+            <p data-si="රාගය, ද්වේශය සහ මෝහය යන අකුසල මූලයන්ගෙන් සමන්විත අකුසල් සිතුවිලි වල ගැඹුරු විශ්ලේෂණය" data-en="Deep analysis of unwholesome consciousness composed of the unwholesome roots of greed, hatred, and delusion">
+                රාගය, ද්වේශය සහ මෝහය යන අකුසල මූලයන්ගෙන් සමන්විත අකුසල් සිතුවිලි වල ගැඹුරු විශ්ලේෂණය
+            </p>
+        </div>
+    </section>
+
+    <!-- Three Roots Section -->
+    <section class="roots-section">
+        <div class="container">
+            <h2 class="section-title" data-si="අකුසල් සිතේ තුන් මූලයන්" data-en="Three Roots of Akusala Citta">අකුසල් සිතේ තුන් මූලයන්</h2>
+            <p class="section-description" data-si="අකුසල් සිතුවිලි රාගය, ද්වේශය සහ මෝහය යන අකුසල මූලයන්ගෙන් සමන්විත වේ. මෙම මූලයන් දුක් සහ දුක් ඇති වීමේ මූලාරම්භය වේ." data-en="Unwholesome consciousness is composed of the unwholesome roots of greed, hatred, and delusion. These roots are the origin of suffering and the arising of suffering.">
+                අකුසල් සිතුවිලි රාගය, ද්වේශය සහ මෝහය යන අකුසල මූලයන්ගෙන් සමන්විත වේ. මෙම මූලයන් දුක් සහ දුක් ඇති වීමේ මූලාරම්භය වේ.
+            </p>
+
+            <div class="roots-grid">
+                <div class="root-card">
+                    <div class="root-icon">🔥</div>
+                    <h3 data-si="ලෝභය (රාගය) - ලෝභ මූලය" data-en="Lobha (Greed) - Lobha Mula">ලෝභය (රාගය) - ලෝභ මූලය</h3>
+                    <p data-si="අල්ලා ගැනීම, ආශා කිරීම සහ රාගය මුල් කරගත් අකුසල් සිතුවිලි. මෙය දුක් ඇති වීමේ ප්‍රධාන හේතුවකි. ලෝභය මගින් මනස රාගයෙන් සම්පූර්ණ වේ." data-en="Unwholesome consciousness rooted in attachment, desire, and greed. This is a primary cause of suffering. Through greed, the mind becomes completely filled with lust.">
+                        අල්ලා ගැනීම, ආශා කිරීම සහ රාගය මුල් කරගත් අකුසල් සිතුවිලි. මෙය දුක් ඇති වීමේ ප්‍රධාන හේතුවකි. ලෝභය මගින් මනස රාගයෙන් සම්පූර්ණ වේ.
+                    </p>
+                </div>
+
+                <div class="root-card">
+                    <div class="root-icon">⚡</div>
+                    <h3 data-si="දෝසය (ද්වේශය) - දෝස මූලය" data-en="Dosa (Hatred) - Dosa Mula">දෝසය (ද්වේශය) - දෝස මූලය</h3>
+                    <p data-si="පටිඝය, කෝපය සහ ද්වේශය මුල් කරගත් අකුසල් සිතුවිලි. මෙය මනසේ දුක් සහ අසහනය ඇති කරයි. දෝසය මගින් සත්වයින්ට සහ තමන්ටම හානියක් සිදු කරයි." data-en="Unwholesome consciousness rooted in aversion, anger, and hatred. This creates suffering and intolerance in the mind. Through hatred, harm is caused to others and oneself.">
+                        පටිඝය, කෝපය සහ ද්වේශය මුල් කරගත් අකුසල් සිතුවිලි. මෙය මනසේ දුක් සහ අසහනය ඇති කරයි. දෝසය මගින් සත්වයින්ට සහ තමන්ටම හානියක් සිදු කරයි.
+                    </p>
+                </div>
+
+                <div class="root-card">
+                    <div class="root-icon">🌫️</div>
+                    <h3 data-si="මෝහය (අවිජ්ජාව) - මෝහ මූලය" data-en="Moha (Delusion) - Moha Mula">මෝහය (අවිජ්ජාව) - මෝහ මූලය</h3>
+                    <p data-si="අවිජ්ජාව, මෝහය සහ මෝඩකම මුල් කරගත් අකුසල් සිතුවිලි. මෙය සත්‍යයන් පිළිබඳව වැරදි අවබෝධය ඇති කරයි. මෝහය මගින් ධර්මයේ සත්‍යයන් අඳුරු වේ." data-en="Unwholesome consciousness rooted in ignorance, delusion, and foolishness. This creates wrong understanding about the truths. Through delusion, the truths of Dhamma become obscured.">
+                        අවිජ්ජාව, මෝහය සහ මෝඩකම මුල් කරගත් අකුසල් සිතුවිලි. මෙය සත්‍යයන් පිළිබඳව වැරදි අවබෝධය ඇති කරයි. මෝහය මගින් ධර්මයේ සත්‍යයන් අඳුරු වේ.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Causes and Examples Section -->
+    <section class="causes-section">
+        <div class="container">
+            <h2 class="section-title" data-si="අකුසල් මූලයන්ගේ විස්තර සහ උදාහරණ" data-en="Details and Examples of Unwholesome Roots">අකුසල් මූලයන්ගේ විස්තර සහ උදාහරණ</h2>
+
+            <div class="cause-tabs">
+                <button class="cause-tab active" onclick="showCause('lobha')" data-si="ලෝභ මූලය (8)" data-en="Lobha Mula (8)">ලෝභ මූලය (8)</button>
+                <button class="cause-tab" onclick="showCause('dosa')" data-si="දෝස මූලය (2)" data-en="Dosa Mula (2)">දෝස මූලය (2)</button>
+                <button class="cause-tab" onclick="showCause('moha')" data-si="මෝහ මූලය (2)" data-en="Moha Mula (2)">මෝහ මූලය (2)</button>
+            </div>
+
+            <div id="lobha" class="cause-content active">
+                <div class="cause-details">
+                    <h3 data-si="ලෝභ මූල අකුසල් සිතුවිලි" data-en="Lobha Mula Akusala Consciousness">ලෝභ මූල අකුසල් සිතුවිලි</h3>
+                    <p data-si="ලෝභය මුල් කරගත් අකුසල් සිතුවිලි මනසේ රාගයෙන් සම්පූර්ණ වීම මගින් දුක් ඇති කරයි. මෙම සිතුවිලි දෘෂ්ටිගත සම්ප්‍රයුක්ත සහ දෘෂ්ටි විප්‍රයුක්ත ලෙස බෙදේ." data-en="Unwholesome consciousness rooted in greed creates suffering by completely filling the mind with lust. These consciousness states are divided into those associated with wrong view and those dissociated from wrong view.">
+                        ලෝභය මුල් කරගත් අකුසල් සිතුවිලි මනසේ රාගයෙන් සම්පූර්ණ වීම මගින් දුක් ඇති කරයි. මෙම සිතුවිලි දෘෂ්ටිගත සම්ප්‍රයුක්ත සහ දෘෂ්ටි විප්‍රයුක්ත ලෙස බෙදේ.
+                    </p>
+
+                    <div class="citta-examples">
+                        <div class="citta-example">
+                            <h4 data-si="දෘෂ්ටිගත සම්ප්‍රයුක්ත අකුසල් සිත" data-en="Wrong View Associated Unwholesome Consciousness">දෘෂ්ටිගත සම්ප්‍රයුක්ත අකුසල් සිත</h4>
+                            <p data-si="මිච්ඡාදෘෂ්ටිය සමඟ රාගය සහ මෝහය ඇති වන අකුසල් සිතුවිල්ල" data-en="Unwholesome consciousness where greed and delusion arise with wrong view">මිච්ඡාදෘෂ්ටිය සමඟ රාගය සහ මෝහය ඇති වන අකුසල් සිතුවිල්ල</p>
+                        </div>
+                        <div class="citta-example">
+                            <h4 data-si="දෘෂ්ටි විප්‍රයුක්ත අකුසල් සිත" data-en="Wrong View Dissociated Unwholesome Consciousness">දෘෂ්ටි විප්‍රයුක්ත අකුසල් සිත</h4>
+                            <p data-si="මිච්ඡාදෘෂ්ටියෙන් තොරව රාගය සහ මෝහය ඇති වන අකුසල් සිතුවිල්ල" data-en="Unwholesome consciousness where greed and delusion arise without wrong view">මිච්ඡාදෘෂ්ටියෙන් තොරව රාගය සහ මෝහය ඇති වන අකුසල් සිතුවිල්ල</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="dosa" class="cause-content">
+                <div class="cause-details">
+                    <h3 data-si="දෝස මූල අකුසල් සිතුවිලි" data-en="Dosa Mula Akusala Consciousness">දෝස මූල අකුසල් සිතුවිලි</h3>
+                    <p data-si="දෝසය මුල් කරගත් අකුසල් සිතුවිලි කෝපය සහ ද්වේශය මගින් දුක් ඇති කරයි. මෙම සිතුවිලි අසංස්කාරික සහ සසංස්කාරික ලෙස බෙදේ." data-en="Unwholesome consciousness rooted in hatred creates suffering through anger and aversion. These consciousness states are divided into unprompted and prompted.">
+                        දෝසය මුල් කරගත් අකුසල් සිතුවිලි කෝපය සහ ද්වේශය මගින් දුක් ඇති කරයි. මෙම සිතුවිලි අසංස්කාරික සහ සසංස්කාරික ලෙස බෙදේ.
+                    </p>
+
+                    <div class="citta-examples">
+                        <div class="citta-example">
+                            <h4 data-si="දෝමනස්ස සහගත පටිඝ සම්ප්යුත්ත අසංස්කාරික අකුසල් සිත" data-en="Unpleasant Aversion Associated Unprompted Unwholesome Consciousness">දෝමනස්ස සහගත පටිඝ සම්ප්යුත්ත අසංස්කාරික අකුසල් සිත</h4>
+                            <p data-si="දුක් සහ පටිඝය සමඟ ස්වභාවිකව ඇති වන කෝපය" data-en="Natural arising of anger with suffering and aversion">දුක් සහ පටිඝය සමඟ ස්වභාවිකව ඇති වන කෝපය</p>
+                        </div>
+                        <div class="citta-example">
+                            <h4 data-si="දෝමනස්ස සහගත පටිඝ සම්ප්යුත්ත සසංස්කාරික අකුසල් සිත" data-en="Unpleasant Aversion Associated Prompted Unwholesome Consciousness">දෝමනස්ස සහගත පටිඝ සම්ප්යුත්ත සසංස්කාරික අකුසල් සිත</h4>
+                            <p data-si="දුක් සහ පටිඝය සමඟ ප්‍රචාලිතව ඇති වන කෝපය" data-en="Prompted arising of anger with suffering and aversion">දුක් සහ පටිඝය සමඟ ප්‍රචාලිතව ඇති වන කෝපය</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="moha" class="cause-content">
+                <div class="cause-details">
+                    <h3 data-si="මෝහ මූල අකුසල් සිතුවිලි" data-en="Moha Mula Akusala Consciousness">මෝහ මූල අකුසල් සිතුවිලි</h3>
+                    <p data-si="මෝහය මුල් කරගත් අකුසල් සිතුවිලි අවිජ්ජාව මගින් ධර්මයේ සත්‍යයන් අඳුරු කරයි. මෙම සිතුවිලි උද්ධච්ච සම්ප්යුත්ත සහ විචිකිච්ඡා සම්ප්යුත්ත ලෙස බෙදේ." data-en="Unwholesome consciousness rooted in delusion obscures the truths of Dhamma through ignorance. These consciousness states are divided into those associated with restlessness and those associated with doubt.">
+                        මෝහය මුල් කරගත් අකුසල් සිතුවිලි අවිජ්ජාව මගින් ධර්මයේ සත්‍යයන් අඳුරු කරයි. මෙම සිතුවිලි උද්ධච්ච සම්ප්යුත්ත සහ විචිකිච්ඡා සම්ප්යුත්ත ලෙස බෙදේ.
+                    </p>
+
+                    <div class="citta-examples">
+                        <div class="citta-example">
+                            <h4 data-si="උපේක්ෂා සහගත උද්ධච්ච සම්ප්යුත්ත අකුසල් සිත" data-en="Equanimity Associated Restlessness Unwholesome Consciousness">උපේක්ෂා සහගත උද්ධච්ච සම්ප්යුත්ත අකුසල් සිත</h4>
+                            <p data-si="උපේක්ෂාව සහ උද්ධච්චය සමඟ ඇති වන මෝහය" data-en="Delusion arising with equanimity and restlessness">උපේක්ෂාව සහ උද්ධච්චය සමඟ ඇති වන මෝහය</p>
+                        </div>
+                        <div class="citta-example">
+                            <h4 data-si="උපේක්ෂා සහගත විචිකිච්ඡා සම්ප්යුත්ත අකුසල් සිත" data-en="Equanimity Associated Doubt Unwholesome Consciousness">උපේක්ෂා සහගත විචිකිච්ඡා සම්ප්යුත්ත අකුසල් සිත</h4>
+                            <p data-si="උපේක්ෂාව සහ විචිකිච්ඡාව සමඟ ඇති වන මෝහය" data-en="Delusion arising with equanimity and doubt">උපේක්ෂාව සහ විචිකිච්ඡාව සමඟ ඇති වන මෝහය</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Understanding Section -->
+    <section class="understanding-section">
+        <div class="container">
+            <h2 class="section-title" data-si="අකුසල් සිතේ වැදගත්කම සහ විශ්ලේෂණය" data-en="Importance and Analysis of Akusala Citta">අකුසල් සිතේ වැදගත්කම සහ විශ්ලේෂණය</h2>
+
+            <div class="understanding-grid">
+                <div class="understanding-card">
+                    <h3 data-si="දුක් ඇති වීමේ හේතු" data-en="Causes of Suffering">දුක් ඇති වීමේ හේතු</h3>
+                    <p data-si="අකුසල් සිතුවිලි ධර්මයේ දෙවන සත්‍යය වන දුක් සමුදය සත්‍යයේ මූලික හේතුව වේ. රාගය, ද්වේශය සහ මෝහය මගින් කර්මයන් ඇති වී දුක් ඇති කරයි." data-en="Unwholesome consciousness is the primary cause of the second noble truth, the truth of the origin of suffering. Through greed, hatred, and delusion, kamma arises and creates suffering.">
+                        අකුසල් සිතුවිලි ධර්මයේ දෙවන සත්‍යය වන දුක් සමුදය සත්‍යයේ මූලික හේතුව වේ. රාගය, ද්වේශය සහ මෝහය මගින් කර්මයන් ඇති වී දුක් ඇති කරයි.
+                    </p>
+                </div>
+
+                <div class="understanding-card">
+                    <h3 data-si="නැති කිරීමේ මාර්ගය" data-en="Path to Elimination">නැති කිරීමේ මාර්ගය</h3>
+                    <p data-si="අකුසල් සිතුවිලි නැති කිරීම සඳහා ධර්මයේ අටශ්භාවික මාර්ගය අනුගමනය කළ යුතුය. විරාගය, අද්වේශය සහ අමෝහය වැඩිදියුණු කිරීම මගින් මෙම අකුසල මූලයන් දුරු කර හැකි වේ." data-en="To eliminate unwholesome consciousness, one must follow the Noble Eightfold Path of Dhamma. By developing non-attachment, non-aversion, and non-delusion, these unwholesome roots can be eradicated.">
+                        අකුසල් සිතුවිලි නැති කිරීම සඳහා ධර්මයේ අටශ්භාවික මාර්ගය අනුගමනය කළ යුතුය. විරාගය, අද්වේශය සහ අමෝහය වැඩිදියුණු කිරීම මගින් මෙම අකුසල මූලයන් දුරු කර හැකි වේ.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Remedy Section -->
+    <section class="remedy-section">
+        <div class="container">
+            <h2 class="section-title" data-si="අකුසල් සිත නැති කිරීමේ ප්‍රතිපත්තිය" data-en="Practice for Eliminating Akusala Citta">අකුසල් සිත නැති කිරීමේ ප්‍රතිපත්තිය</h2>
+
+            <div class="remedy-grid">
+                <div class="remedy-card">
+                    <h3 data-si="ලෝභයට විරුද්ධ ප්‍රතිපත්තිය" data-en="Practice Against Greed">ලෝභයට විරුද්ධ ප්‍රතිපත්තිය</h3>
+                    <ul>
+                        <li data-si="අල්ලා ගැනීමෙන් මිදුන සිතුවිල්ලක් ඇති කිරීම සඳහා දානය කිරීම" data-en="Practicing generosity to create consciousness free from attachment">අල්ලා ගැනීමෙන් මිදුන සිතුවිල්ලක් ඇති කිරීම සඳහා දානය කිරීම</li>
+                        <li data-si="අනිත්‍ය සංඥාව සහ දුක්ක සංඥාව වැඩිදියුණු කිරීම" data-en="Developing perception of impermanence and suffering">අනිත්‍ය සංඥාව සහ දුක්ක සංඥාව වැඩිදියුණු කිරීම</li>
+                        <li data-si="නෙකඳෙහි සිතුවිලි වැඩිදියුණු කිරීම" data-en="Developing contentment in one's own state">නෙකඳෙහි සිතුවිලි වැඩිදියුණු කිරීම</li>
+                    </ul>
+                </div>
+
+                <div class="remedy-card">
+                    <h3 data-si="දෝසයට විරුද්ධ ප්‍රතිපත්තිය" data-en="Practice Against Hatred">දෝසයට විරුද්ධ ප්‍රතිපත්තිය</h3>
+                    <ul>
+                        <li data-si="මෛත්‍රී සහ කරුණා භාවනාව කිරීම" data-en="Practicing loving-kindness and compassion meditation">මෛත්‍රී සහ කරුණා භාවනාව කිරීම</li>
+                        <li data-si="ඛන්ති සහ සොරොත්තු ගුණයන් වැඩිදියුණු කිරීම" data-en="Developing patience and forbearance">ඛන්ති සහ සොරොත්තු ගුණයන් වැඩිදියුණු කිරීම</li>
+                        <li data-si="පටිඝයට හේතුවන කාරණා ඉවත් කිරීම" data-en="Removing causes that lead to aversion">පටිඝයට හේතුවන කාරණා ඉවත් කිරීම</li>
+                    </ul>
+                </div>
+
+                <div class="remedy-card">
+                    <h3 data-si="මෝහයට විරුද්ධ ප්‍රතිපත්තිය" data-en="Practice Against Delusion">මෝහයට විරුද්ධ ප්‍රතිපත්තිය</h3>
+                    <ul>
+                        <li data-si="ධර්මය අධ්‍යනය කිරීම සහ ගැඹුරින් අවබෝධ කිරීම" data-en="Studying Dhamma and understanding deeply">ධර්මය අධ්‍යනය කිරීම සහ ගැඹුරින් අවබෝධ කිරීම</li>
+                        <li data-si="විපස්සනා භාවනාව මගින් යථාභූත ඥානය ලබා ගැනීම" data-en="Gaining right understanding through insight meditation">විපස්සනා භාවනාව මගින් යථාභෂ්ට ඥානය ලබා ගැනීම</li>
+                        <li data-si="කල්‍යාණ මිත්‍රයින්ගෙන් උපදෙස් ලබා ගැනීම" data-en="Receiving guidance from good friends">කල්‍යාණ මිත්‍රයින්ගෙන් උපදෙස් ලබා ගැනීම</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Source References -->
+    <section class="source-section">
+        <div class="container">
+            <h2 class="section-title" data-si="මූලාශ්‍ර ග්‍රන්ථ සහ යොමු කිරීම්" data-en="Source Texts and References">මූලාශ්‍ර ග්‍රන්ථ සහ යොමු කිරීම්</h2>
+
+            <div class="source-links">
+                <a href="https://tipitaka.lk/sinhala/sutta-pitaka/abhidhamma-pitaka/dhammasangani/2-dhammasangani-hetu/" class="source-link" target="_blank">
+                    <i class="fas fa-book-open"></i>
+                    <h4 data-si="ධම්මසංගණි - හේතු කාණ්ඩය" data-en="Dhammasangani - Hetu Section">ධම්මසංගණි - හේතු කාණ්ඩය</h4>
+                    <p data-si="අභිධර්මයේ අකුසල මූලයන් පිළිබඳ විස්තරාත්මක විස්තර" data-en="Detailed explanations of unwholesome roots in Abhidhamma">අභිධර්මයේ අකුසල මූලයන් පිළිබඳ විස්තරාත්මක විස්තර</p>
+                </a>
+
+                <a href="https://pitaka.lk/books/abhidharma-margaya/chapter-4.html" class="source-link" target="_blank">
+                    <i class="fas fa-book"></i>
+                    <h4 data-si="අභිධර්ම මාර්ගය" data-en="Abhidharma Margaya">අභිධර්ම මාර්ගය</h4>
+                    <p data-si="අකුසල සිතුවිලි වල මාර්ගෝපදේශ සහ නැති කිරීමේ මාර්ගය" data-en="Guide and path to elimination of unwholesome consciousness">අකුසල සිතුවිලි වල මාර්ගෝපදේශ සහ නැති කිරීමේ මාර්ගය</p>
+                </a>
+
+                <a href="https://pitaka.lk/books/abhidharmaye-mulika-karunu/chapter-4.html" class="source-link" target="_blank">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h4 data-si="අභිධර්මයේ මුලික කරුණු" data-en="Basic Principles of Abhidhamma">අභිධර්මයේ මුලික කරුණු</h4>
+                    <p data-si="අකුසල මූලයන්ගේ මූලික සිදුවීම් සහ කරුණු" data-en="Basic principles and facts of unwholesome roots">අකුසල මූලයන්ගේ මූලික සිදුවීම් සහ කරුණු</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function showCause(causeId) {
+            // Hide all cause contents
+            const contents = document.querySelectorAll('.cause-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.cause-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Show selected cause content
+            document.getElementById(causeId).classList.add('active');
+
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Language switching functionality
+        document.getElementById('languageSwitcher').addEventListener('click', function() {
+            // Toggle between Sinhala and English
+            const currentLang = this.querySelector('.lang-text').textContent;
+            if (currentLang === 'English') {
+                this.querySelector('.lang-text').textContent = 'සිංහල';
+            } else {
+                this.querySelector('.lang-text').textContent = 'English';
+            }
+        });
+    </script>
+</body>
+</html>

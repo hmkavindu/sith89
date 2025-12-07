@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>කුසල් සිත - අභිධර්මයේ විරාගය, අද්වේශය, අමෝහය</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Malithi+Web:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iskoola+Pota:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .kusala-hero {
+            background: linear-gradient(135deg, #e8f5e8 0%, #f1f8e9 100%);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .kusala-hero h1 {
+            color: #2e7d32;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .kusala-hero p {
+            color: #388e3c;
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .qualities-section {
+            background: white;
+            padding: 3rem 0;
+            border-bottom: 3px solid #4caf50;
+        }
+
+        .qualities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quality-card {
+            background: #f1f8e9;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid #4caf50;
+            transition: all 0.3s ease;
+        }
+
+        .quality-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+        }
+
+        .quality-icon {
+            font-size: 3rem;
+            color: #2e7d32;
+            margin-bottom: 1rem;
+        }
+
+        .quality-card h3 {
+            color: #2e7d32;
+            margin-bottom: 1rem;
+        }
+
+        .quality-card p {
+            color: #424242;
+            line-height: 1.6;
+        }
+
+        .spheres-section {
+            padding: 4rem 0;
+            background: #f5f5f5;
+        }
+
+        .sphere-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .sphere-tab {
+            padding: 1rem 2rem;
+            background: white;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            margin: 0 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .sphere-tab.active {
+            background: #4caf50;
+            color: white;
+            border-color: #4caf50;
+        }
+
+        .sphere-content {
+            display: none;
+        }
+
+        .sphere-content.active {
+            display: block;
+        }
+
+        .sphere-details {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .citta-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .citta-example {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 4px solid #4caf50;
+        }
+
+        .citta-example h4 {
+            margin-top: 0;
+            color: #2e7d32;
+        }
+
+        .citta-example p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .practice-section {
+            background: linear-gradient(135deg, #e8f5e8 0%, #f1f8e9 100%);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .practice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .practice-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .practice-card h3 {
+            color: #2e7d32;
+            margin-bottom: 1rem;
+        }
+
+        .practice-card ul {
+            text-align: left;
+            padding-left: 1.5rem;
+        }
+
+        .practice-card li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .source-section {
+            background: white;
+            padding: 3rem 0;
+            border-top: 3px solid #4caf50;
+        }
+
+        .source-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .source-link {
+            background: #f1f8e9;
+            padding: 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #2e7d32;
+            transition: all 0.3s ease;
+            border: 2px solid #4caf50;
+        }
+
+        .source-link:hover {
+            background: #4caf50;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .source-link i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .source-link h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .kusala-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .qualities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .practice-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .source-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-header">
+                <div class="nav-controls">
+                    <button id="languageSwitcher" class="language-switcher">
+                        <span class="lang-text" data-si="English" data-en="සිංහල">English</span>
+                        <i class="fas fa-globe"></i>
+                    </button>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link" data-si="මුල් පිටුව" data-en="Home">මුල් පිටුව</a>
+                </li>
+                <li class="nav-item">
+                    <a href="sitha-mind-page.html" class="nav-link" data-si="සිත - මූලික සිදුවීම" data-en="Citta - Fundamental">සිත - මූලික සිදුවීම</a>
+                </li>
+                <li class="nav-item">
+                    <a href="citta-fishbone-diagram.html" class="nav-link" data-si="චිත්ත බෙදීම් ජාලය" data-en="Citta Network">චිත්ත බෙදීම් ජාලය</a>
+                </li>
+                <li class="nav-item">
+                    <a href="akusala-citta-page.html" class="nav-link" data-si="අකුසල් සිතුවිලි" data-en="Akusala Citta">අකුසල් සිතුවිලි</a>
+                </li>
+                <li class="nav-item">
+                    <a href="citta-index.html" class="nav-link" data-si="සියලුම චිත්ත" data-en="All Cittas">සියලුම චිත්ත</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="kusala-hero">
+        <div class="container">
+            <h1 data-si="කුසල් සිත" data-en="Kusala Citta">කුසල් සිත</h1>
+            <p data-si="විරාගය, අද්වේශය සහ අමෝහය යන ගුණාත්මක භාවයන්ගෙන් සමන්විත කුසල් සිතුවිලි වල ගැඹුරු අධ්‍යනය" data-en="Deep study of wholesome consciousness composed of the qualities of non-attachment, non-aversion, and non-delusion">
+                විරාගය, අද්වේශය සහ අමෝහය යන ගුණාත්මක භාවයන්ගෙන් සමන්විත කුසල් සිතුවිලි වල ගැඹුරු අධ්‍යනය
+            </p>
+        </div>
+    </section>
+
+    <!-- Three Qualities Section -->
+    <section class="qualities-section">
+        <div class="container">
+            <h2 class="section-title" data-si="කුසල් සිතේ තුන් ගුණාත්මක භාවයන්" data-en="Three Qualities of Kusala Citta">කුසල් සිතේ තුන් ගුණාත්මක භාවයන්</h2>
+            <p class="section-description" data-si="කුසල් සිතුවිලි විරාගය, අද්වේශය සහ අමෝහය යන ගුණාත්මක භාවයන්ගෙන් සමන්විත වේ." data-en="Wholesome consciousness is composed of the qualities of non-attachment, non-aversion, and non-delusion.">
+                කුසල් සිතුවිලි විරාගය, අද්වේශය සහ අමෝහය යන ගුණාත්මක භාවයන්ගෙන් සමන්විත වේ.
+            </p>
+
+            <div class="qualities-grid">
+                <div class="quality-card">
+                    <div class="quality-icon">🌸</div>
+                    <h3 data-si="විරාගය (නොඅල්ලා ගැනීම)" data-en="Viraga (Non-attachment)">විරාගය (නොඅල්ලා ගැනීම)</h3>
+                    <p data-si="රාගයට විරුද්ධ වන ගුණය වන විරාගය මගින් ලෝභයෙන් මිදුන සිතුවිල්ලක් ඇති වේ. මෙය සියලු කුසල් සිතුවිලි වල මූලික ගුණයකි." data-en="Viraga, the quality opposite to greed, creates consciousness free from attachment. This is a fundamental quality in all wholesome consciousness.">
+                        රාගයට විරුද්ධ වන ගුණය වන විරාගය මගින් ලෝභයෙන් මිදුන සිතුවිල්ලක් ඇති වේ. මෙය සියලු කුසල් සිතුවිලි වල මූලික ගුණයකි.
+                    </p>
+                </div>
+
+                <div class="quality-card">
+                    <div class="quality-icon">⚡</div>
+                    <h3 data-si="අද්වේශය (නොපටිඝය)" data-en="Advesha (Non-aversion)">අද්වේශය (නොපටිඝය)</h3>
+                    <p data-si="ද්වේශයට විරුද්ධ වන අද්වේශය මගින් කෝපයෙන් සහ ද්වේශයෙන් මිදුන සිතුවිල්ලක් ඇති වේ. මෙය මෛත්‍රිය සහ කරුණාවේ මූලය වේ." data-en="Advesha, opposite to hatred, creates consciousness free from anger and aversion. This is the foundation of loving-kindness and compassion.">
+                        ද්වේශයට විරුද්ධ වන අද්වේශය මගින් කෝපයෙන් සහ ද්වේශයෙන් මිදුන සිතුවිල්ලක් ඇති වේ. මෙය මෛත්‍රිය සහ කරුණාවේ මූලය වේ.
+                    </p>
+                </div>
+
+                <div class="quality-card">
+                    <div class="quality-icon">💡</div>
+                    <h3 data-si="අමෝහය (නොමෝහය)" data-en="Amoha (Non-delusion)">අමෝහය (නොමෝහය)</h3>
+                    <p data-si="මෝහයට විරුද්ධ වන අමෝහය මගින් අවිජ්ජාවෙන් මිදුන සිතුවිල්ලක් ඇති වේ. මෙය ප්‍රඥාවේ සහ ඥානයේ මූලය වේ." data-en="Amoha, opposite to delusion, creates consciousness free from ignorance. This is the foundation of wisdom and knowledge.">
+                        මෝහයට විරුද්ධ වන අමෝහය මගින් අවිජ්ජාවෙන් මිදුන සිතුවිල්ලක් ඇති වේ. මෙය ප්‍රඥාවේ සහ ඥානයේ මූලය වේ.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spheres Section -->
+    <section class="spheres-section">
+        <div class="container">
+            <h2 class="section-title" data-si="කුසල් සිතේ භූමි වැඩිදියුණු කිරීම්" data-en="Spheres of Kusala Citta">කුසල් සිතේ භූමි වැඩිදියුණු කිරීම්</h2>
+
+            <div class="sphere-tabs">
+                <button class="sphere-tab active" onclick="showSphere('kamavacara')" data-si="කාමාවචර (8)" data-en="Kamavacara (8)">කාමාවචර (8)</button>
+                <button class="sphere-tab" onclick="showSphere('rupavacara')" data-si="රූපාවචර (15)" data-en="Rupavacara (15)">රූපාවචර (15)</button>
+                <button class="sphere-tab" onclick="showSphere('arupavacara')" data-si="අරූපාවචර (12)" data-en="Arupavacara (12)">අරූපාවචර (12)</button>
+                <button class="sphere-tab" onclick="showSphere('lokuttara')" data-si="ලෝකෝත්තර (8)" data-en="Lokuttara (8)">ලෝකෝත්තර (8)</button>
+            </div>
+
+            <div id="kamavacara" class="sphere-content active">
+                <div class="sphere-details">
+                    <h3 data-si="කාමාවචර කුසල් සිතුවිලි" data-en="Kamavacara Kusala Consciousness">කාමාවචර කුසල් සිතුවිලි</h3>
+                    <p data-si="කාම භූමියේ සිදුවන කුසල් සිතුවිලි දානමය කුසල් කර්මයන්, සීලමය කුසල් කර්මයන් සහ භාවනාමය කුසල් කර්මයන් ලෙස බෙදේ." data-en="Wholesome consciousness occurring in the sensual sphere is divided into generosity-based wholesome actions, morality-based wholesome actions, and meditation-based wholesome actions.">
+                        කාම භූමියේ සිදුවන කුසල් සිතුවිලි දානමය කුසල් කර්මයන්, සීලමය කුසල් කර්මයන් සහ භාවනාමය කුසල් කර්මයන් ලෙස බෙදේ.
+                    </p>
+
+                    <div class="citta-examples">
+                        <div class="citta-example">
+                            <h4 data-si="සෝමනස්ස සහගත ඤාණ සම්ප්යුත්ත අසංස්කාරික කුසල් සිත" data-en="Pleasant wholesome consciousness with knowledge, unprompted">සෝමනස්ස සහගත ඤාණ සම්ප්යුත්ත අසංස්කාරික කුසල් සිත</h4>
+                            <p data-si="ප්‍රීතිය සහ ඥානය සහිත ස්වභාවික කුසල් ක්‍රියාවන්" data-en="Natural wholesome actions with pleasure and knowledge">ප්‍රීතිය සහ ඥානය සහිත ස්වභාවික කුසල් ක්‍රියාවන්</p>
+                        </div>
+                        <div class="citta-example">
+                            <h4 data-si="උපේක්ෂා සහගත ඤාණ සම්ප්යුත්ත සසංස්කාරික කුසල් සිත" data-en="Neutral wholesome consciousness with knowledge, prompted">උපේක්ෂා සහගත ඤාණ සම්ප්යුත්ත සසංස්කාරික කුසල් සිත</h4>
+                            <p data-si="උපේක්ෂාව සහ ඥානය සහිත ප්‍රචාලිත කුසල් ක්‍රියාවන්" data-en="Prompted wholesome actions with equanimity and knowledge">උපේක්ෂාව සහ ඥානය සහිත ප්‍රචාලිත කුසල් ක්‍රියාවන්</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="rupavacara" class="sphere-content">
+                <div class="sphere-details">
+                    <h3 data-si="රූපාවචර කුසල් සිතුවිලි" data-en="Rupavacara Kusala Consciousness">රූපාවචර කුසල් සිතුවිලි</h3>
+                    <p data-si="රූප භූමියේ ධ්‍යාන තුළ සිදුවන කුසල් සිතුවිලි පඨමජ්ඣානයෙන් පඤ්චමජ්ඣානය දක්වා වැඩිදියුණු වේ." data-en="Wholesome consciousness occurring in the form sphere develops from the first jhana to the fifth jhana.">
+                        රූප භූමියේ ධ්‍යාන තුළ සිදුවන කුසල් සිතුවිලි පඨමජ්ඣානයෙන් පඤ්චමජ්ඣානය දක්වා වැඩිදියුණු වේ.
+                    </p>
+
+                    <div class="citta-examples">
+                        <div class="citta-example">
+                            <h4 data-si="පඨමජ්ඣාන කුසල් සිත" data-en="First Jhana Wholesome Consciousness">පඨමජ්ඣාන කුසල් සිත</h4>
+                            <p data-si="විතර්කය, විචාරය, පීතිය සහ සුඛය සහිත පළමු ධ්‍යානය" data-en="First meditation with initial application, sustained application, joy, and happiness">විතර්කය, විචාරය, පීතිය සහ සුඛය සහිත පළමු ධ්‍යානය</p>
+                        </div>
+                        <div class="citta-example">
+                            <h4 data-si="දුතියජ්ඣාන කුසල් සිත" data-en="Second Jhana Wholesome Consciousness">දුතියජ්ඣාන කුසල් සිත</h4>
+                            <p data-si="විචාරය, පීතිය සහ සුඛය සහිත දෙවන ධ්‍යානය" data-en="Second meditation with sustained application, joy, and happiness">විචාරය, පීතිය සහ සුඛය සහිත දෙවන ධ්‍යානය</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="arupavacara" class="sphere-content">
+                <div class="sphere-details">
+                    <h3 data-si="අරූපාවචර කුසල් සිතුවිලි" data-en="Arupavacara Kusala Consciousness">අරූපාවචර කුසල් සිතුවිලි</h3>
+                    <p data-si="අරූප භූමියේ ධ්‍යාන තුළ සිදුවන කුසල් සිතුවිලි ආකාසානඤ්චායතනයෙන් නෙවසඤ්ඤානාසඤ්ඤායතනය දක්වා වැඩිදියුණු වේ." data-en="Wholesome consciousness occurring in the formless sphere develops from the base of infinite space to the base of neither-perception-nor-non-perception.">
+                        අරූප භූමියේ ධ්‍යාන තුළ සිදුවන කුසල් සිතුවිලි ආකාසානඤ්චායතනයෙන් නෙවසඤ්ඤානාසඤ්ඤායතනය දක්වා වැඩිදියුණු වේ.
+                    </p>
+
+                    <div class="citta-examples">
+                        <div class="citta-example">
+                            <h4 data-si="ආකාසානඤ්චායතන කුසල් සිත" data-en="Base of Infinite Space Wholesome Consciousness">ආකාසානඤ්චායතන කුසල් සිත</h4>
+                            <p data-si="අනන්ත ආකාශය පිළිබඳව සඳහන් කිරීමේ කුසල් සිතුවිල්ල" data-en="Wholesome consciousness contemplating infinite space">අනන්ත ආකාශය පිළිබඳව සඳහන් කිරීමේ කුසල් සිතුවිල්ල</p>
+                        </div>
+                        <div class="citta-example">
+                            <h4 data-si="විඤ්ඤාණඤ්චායතන කුසල් සිත" data-en="Base of Infinite Consciousness Wholesome Consciousness">විඤ්ඤාණඤ්චායතන කුසල් සිත</h4>
+                            <p data-si="අනන්ත විඤ්ඤාණය පිළිබඳව සඳහන් කිරීමේ කුසල් සිතුවිල්ල" data-en="Wholesome consciousness contemplating infinite consciousness">අනන්ත විඤ්ඤාණය පිළිබඳව සඳහන් කිරීමේ කුසල් සිතුවිල්ල</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="lokuttara" class="sphere-content">
+                <div class="sphere-details">
+                    <h3 data-si="ලෝකෝත්තර කුසල් සිතුවිලි" data-en="Lokuttara Kusala Consciousness">ලෝකෝත්තර කුසල් සිතුවිලි</h3>
+                    <p data-si="ලෝකෝත්තර මාර්ගඵලයන් තුළ සිදුවන කුසල් සිතුවිලි සෝතාපත්ති මාර්ගයෙන් අර්හත් මාර්ගය දක්වා වැඩිදියුණු වේ." data-en="Wholesome consciousness occurring in supramundane paths and fruits develops from the stream-entry path to the arahant path.">
+                        ලෝකෝත්තර මාර්ගඵලයන් තුළ සිදුවන කුසල් සිතුවිලි සෝතාපත්ති මාර්ගයෙන් අර්හත් මාර්ගය දක්වා වැඩිදියුණු වේ.
+                    </p>
+
+                    <div class="citta-examples">
+                        <div class="citta-example">
+                            <h4 data-si="සෝතාපත්ති මාර්ග කුසල් සිත" data-en="Stream-entry Path Wholesome Consciousness">සෝතාපත්ති මාර්ග කුසල් සිත</h4>
+                            <p data-si="සෝතාපත්ති මාර්ගඵලය ලබන කුසල් මාර්ග චිත්තය" data-en="Wholesome path consciousness that achieves stream-entry">සෝතාපත්ති මාර්ගඵලය ලබන කුසල් මාර්ග චිත්තය</p>
+                        </div>
+                        <div class="citta-example">
+                            <h4 data-si="අර්හත් මාර්ග කුසල් සිත" data-en="Arahant Path Wholesome Consciousness">අර්හත් මාර්ග කුසල් සිත</h4>
+                            <p data-si="අර්හත් මාර්ගඵලය ලබන කුසල් මාර්ග චිත්තය" data-en="Wholesome path consciousness that achieves arahantship">අර්හත් මාර්ගඵලය ලබන කුසල් මාර්ග චිත්තය</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Practice Section -->
+    <section class="practice-section">
+        <div class="container">
+            <h2 class="section-title" data-si="කුසල් සිත වැඩිදියුණු කිරීමේ ප්‍රතිපත්තිය" data-en="Practice for Developing Kusala Citta">කුසල් සිත වැඩිදියුණු කිරීමේ ප්‍රතිපත්තිය</h2>
+
+            <div class="practice-grid">
+                <div class="practice-card">
+                    <h3 data-si="දානමය කුසල් කර්මයන්" data-en="Generosity-based Wholesome Actions">දානමය කුසල් කර්මයන්</h3>
+                    <ul>
+                        <li data-si="දානය දීම සහ පුණ්‍ය කිරීම්" data-en="Giving alms and performing meritorious deeds">දානය දීම සහ පුණ්‍ය කිරීම්</li>
+                        <li data-si="අල්ලා ගැනීමෙන් මිදුන සිතුවිල්ලක් ඇති කිරීම" data-en="Creating consciousness free from attachment">අල්ලා ගැනීමෙන් මිදුන සිතුවිල්ලක් ඇති කිරීම</li>
+                        <li data-si="දානයේ අනුස්සරණය සහ ප්‍රතිඵල" data-en="Reflection on generosity and its results">දානයේ අනුස්සරණය සහ ප්‍රතිඵල</li>
+                    </ul>
+                </div>
+
+                <div class="practice-card">
+                    <h3 data-si="සීලමය කුසල් කර්මයන්" data-en="Morality-based Wholesome Actions">සීලමය කුසල් කර්මයන්</h3>
+                    <ul>
+                        <li data-si="පඤ්චසීලය රැකීම සහ අටසීලය රැකීම" data-en="Observing five precepts and eight precepts">පඤ්චසීලය රැකීම සහ අටසීලය රැකීම</li>
+                        <li data-si="කායික සහ වාච්සික සීලයන් රැකීම" data-en="Maintaining bodily and verbal morality">කායික සහ වාච්සික සීලයන් රැකීම</li>
+                        <li data-si="සීලයේ ආනිශංස සහ වැදගත්කම" data-en="Benefits and importance of morality">සීලයේ ආනිශංස සහ වැදගත්කම</li>
+                    </ul>
+                </div>
+
+                <div class="practice-card">
+                    <h3 data-si="භාවනාමය කුසල් කර්මයන්" data-en="Meditation-based Wholesome Actions">භාවනාමය කුසල් කර්මයන්</h3>
+                    <ul>
+                        <li data-si="සමථ භාවනාව සහ විපස්සනා භාවනාව" data-en="Calm meditation and insight meditation">සමථ භාවනාව සහ විපස්සනා භාවනාව</li>
+                        <li data-si="බ්‍රහ්මවිහාර භාවනාව (මෛත්‍රී, කරුණා, මුදිතා, උපේක්ෂා)" data-en="Brahma vihara meditation (loving-kindness, compassion, sympathetic joy, equanimity)">බ්‍රහ්මවිහාර භාවනාව (මෛත්‍රී, කරුණා, මුදිතා, උපේක්ෂා)</li>
+                        <li data-si="ධ්‍යාන භූමි වල වැඩිදියුණු කිරීම්" data-en="Developments in meditation spheres">ධ්‍යාන භූමි වල වැඩිදියුණු කිරීම්</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Source References -->
+    <section class="source-section">
+        <div class="container">
+            <h2 class="section-title" data-si="මූලාශ්‍ර ග්‍රන්ථ සහ යොමු කිරීම්" data-en="Source Texts and References">මූලාශ්‍ර ග්‍රන්ථ සහ යොමු කිරීම්</h2>
+
+            <div class="source-links">
+                <a href="https://tipitaka.lk/sinhala/sutta-pitaka/abhidhamma-pitaka/dhammasangani/1-dhammasangani-matika/" class="source-link" target="_blank">
+                    <i class="fas fa-book-open"></i>
+                    <h4 data-si="ධම්මසංගණි - කුසල් කාණ්ඩය" data-en="Dhammasangani - Kusala Section">ධම්මසංගණි - කුසල් කාණ්ඩය</h4>
+                    <p data-si="අභිධර්මයේ කුසල් චිත්ත පිළිබඳ විස්තරාත්මක විස්තර" data-en="Detailed explanations of wholesome consciousness in Abhidhamma">අභිධර්මයේ කුසල් චිත්ත පිළිබඳ විස්තරාත්මක විස්තර</p>
+                </a>
+
+                <a href="https://pitaka.lk/books/abhidharma-margaya/chapter-2.html" class="source-link" target="_blank">
+                    <i class="fas fa-book"></i>
+                    <h4 data-si="අභිධර්ම මාර්ගය" data-en="Abhidharma Margaya">අභිධර්ම මාර්ගය</h4>
+                    <p data-si="කුසල් සිතුවිලි වල මාර්ගෝපදේශ සහ පැහැදිලි කිරීම්" data-en="Guide and explanations of wholesome consciousness">කුසල් සිතුවිලි වල මාර්ගෝපදේශ සහ පැහැදිලි කිරීම්</p>
+                </a>
+
+                <a href="https://pitaka.lk/books/abhidharmaye-mulika-karunu/chapter-3.html" class="source-link" target="_blank">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h4 data-si="අභිධර්මයේ මුලික කරුණු" data-en="Basic Principles of Abhidhamma">අභිධර්මයේ මුලික කරුණු</h4>
+                    <p data-si="කුසල් සිතේ මූලික සිදුවීම් සහ කරුණු" data-en="Basic principles and facts of wholesome consciousness">කුසල් සිතේ මූලික සිදුවීම් සහ කරුණු</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function showSphere(sphereId) {
+            // Hide all sphere contents
+            const contents = document.querySelectorAll('.sphere-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.sphere-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Show selected sphere content
+            document.getElementById(sphereId).classList.add('active');
+
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Language switching functionality
+        document.getElementById('languageSwitcher').addEventListener('click', function() {
+            // Toggle between Sinhala and English
+            const currentLang = this.querySelector('.lang-text').textContent;
+            if (currentLang === 'English') {
+                this.querySelector('.lang-text').textContent = 'සිංහල';
+            } else {
+                this.querySelector('.lang-text').textContent = 'English';
+            }
+        });
+    </script>
+</body>
+</html>

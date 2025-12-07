@@ -491,7 +491,7 @@
             <div class="chatbot-input-row">
                 <textarea id="chatbotInput" class="chatbot-input" rows="2" placeholder="අභිධර්මය පිළිබඳව ඔබට වැරදි නොවන විශ්ලේෂණයක් ලබා ගන්න..." data-si-placeholder="අභිධර්මය පිළිබඳව ඔබේ ප්‍රශ්නය ලියන්න..." data-en-placeholder="Ask your Abhidhamma question..." required></textarea>
                 <button id="chatbotSend" type="submit" class="chatbot-send">
-                    <span class="chatbot-send-text" data-si="නැව්වන්න" data-en="Send">නැව්වන්න</span>
+                    <span class="chatbot-send-text" data-si="නැව්වන්න" data-en="Send"></span>
                     <i class="fas fa-paper-plane"></i>
                 </button>
             </div>

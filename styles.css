@@ -594,7 +594,7 @@ p, .section-description, .hero-description {
 
 /* Section Styles */
 section {
-    padding: 80px 0;
+    padding: 60px 0 0;
     width: 100%;
     box-sizing: border-box;
     overflow-x: hidden;
@@ -2751,6 +2751,173 @@ a.explore-btn:hover {
     filter: brightness(1.1);
 }
 
+/* Mind Section Styles */
+.mind-section {
+    background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+    padding: 4rem 0;
+    position: relative;
+}
+
+.mind-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #2196f3, #9c27b0, #4caf50);
+}
+
+.mind-card-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.mind-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    border: 3px solid transparent;
+    max-width: 500px;
+    width: 100%;
+}
+
+.mind-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    border-color: #2196f3;
+}
+
+.mind-card .card-header {
+    background: linear-gradient(135deg, #2196f3 0%, #21cbf3 100%);
+    color: white;
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.mind-card .state-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.mind-card .card-header h3 {
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+}
+
+.mind-card .card-content {
+    padding: 2.5rem 2rem;
+}
+
+.mind-card .card-content p {
+    color: #424242;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+.mind-card .state-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mind-card .state-features li {
+    background: linear-gradient(135deg, #f3e5f5 0%, #e3f2fd 100%);
+    margin-bottom: 1rem;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    border-left: 5px solid #2196f3;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.mind-card .state-features li:hover {
+    background: linear-gradient(135deg, #e1f5fe 0%, #f3e5f5 100%);
+    transform: translateX(8px);
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.2);
+}
+
+.mind-card .card-footer {
+    padding: 2rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+    text-align: center;
+    border-top: 2px solid #e3f2fd;
+}
+
+.mind-card .explore-btn {
+    background: linear-gradient(135deg, #2196f3 0%, #21cbf3 100%);
+    color: white;
+    border: none;
+    padding: 1rem 3rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+}
+
+.mind-card .explore-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(33, 150, 243, 0.4);
+    filter: brightness(1.1);
+}
+
+/* Responsive adjustments for mind card */
+@media (max-width: 768px) {
+    .mind-card-container {
+        padding: 0 1rem;
+    }
+
+    .mind-card {
+        max-width: 100%;
+    }
+
+    .mind-card .card-header {
+        padding: 2rem 1.5rem 1.5rem;
+    }
+
+    .mind-card .state-icon {
+        font-size: 3rem;
+    }
+
+    .mind-card .card-header h3 {
+        font-size: 1.8rem;
+    }
+
+    .mind-card .card-content {
+        padding: 2rem 1.5rem;
+    }
+
+    .mind-card .explore-btn {
+        padding: 0.875rem 2rem;
+        font-size: 1rem;
+    }
+}
+
 /* Analysis Modal Styles */
 .analysis-modal {
     position: fixed;
@@ -3609,7 +3776,7 @@ a.explore-btn:hover {
     justify-content: space-between;
     align-items: flex-start;
     gap: 1rem;
-    padding: 1.1rem 1.35rem 1rem;
+    padding: .35rem 1.35rem .35rem;
     background: linear-gradient(135deg, rgba(252, 74, 26, 0.14), rgba(247, 183, 51, 0.14));
     border-top-left-radius: 18px;
     border-top-right-radius: 18px;
@@ -3736,6 +3903,7 @@ a.explore-btn:hover {
 }
 
 .chatbot-send {
+    min-height: 45px;
     display: flex;
     align-items: center;
     gap: 0.5rem;
