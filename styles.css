@@ -2133,6 +2133,87 @@ html, body {
     margin: 0 0.2rem;
 }
 
+/* Expandable Card Styles for Universal Cetasikas */
+.explanation-card.expandable {
+    cursor: pointer;
+    position: relative;
+}
+
+.explanation-card.expandable:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.expand-indicator {
+    font-size: 0.9em;
+    color: #28a745;
+    transition: transform 0.3s ease;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.explanation-card.expanded .expand-indicator {
+    transform: rotate(180deg);
+}
+
+.deep-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+    margin-top: 0;
+}
+
+.explanation-card.expanded .deep-content {
+    max-height: 3000px;
+    margin-top: 20px;
+    transition: max-height 0.6s ease-in;
+}
+
+.deep-content-text {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #28a745;
+    font-family: 'Noto Sans Sinhala', sans-serif;
+    font-size: 0.95em;
+    line-height: 1.8;
+    color: #212529;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    margin: 0;
+}
+
+.explanation-card.expandable .explanation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Responsive adjustments for expandable cards */
+@media (max-width: 768px) {
+    .deep-content-text {
+        padding: 15px;
+        font-size: 0.9em;
+        line-height: 1.7;
+    }
+    
+    .explanation-card.expanded .deep-content {
+        max-height: 5000px;
+    }
+}
+
+@media (max-width: 480px) {
+    .deep-content-text {
+        padding: 12px;
+        font-size: 0.85em;
+        line-height: 1.6;
+    }
+}
+
+
 .explanations-stats {
     background: white;
     padding: 20px;

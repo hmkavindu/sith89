@@ -47,49 +47,98 @@ const universals = [
     nameSi: 'ඵස්ස',
     nameEn: 'Contact',
     summarySi: 'චිත්තය, ඉන්ද්‍රිය හා වස්තුව එකට ගෙන ඒමෙන් සංවේදනය ආරම්භ කරන සම්බන්ධතාවය.',
-    summaryEn: 'Binds consciousness, sense base, and object so experience can arise.'
+    summaryEn: 'Binds consciousness, sense base, and object so experience can arise.',
+    descriptionSi: 'සියලු චිත්තවෙලාවල වස්තුව, ඉන්ද්‍රිය හා චිත්තය එකට ගසන සම්බන්ධක ක්‍රියා. ඵස්සය නැත්නම් අනෙකුත් චෛතසිකයන්ට කටයුතු කිරීමට අසු නොවේ.',
+    descriptionEn: 'In every mind-moment, contact yokes object, sense base, and consciousness so the rest of the factors can engage.',
+    detailedExplanation: 'ඵස්ස තමයි චිත්තයේ පළමු දොරටුව. ඵස්ස නැතිව: - වේදනා නැගෙන්නේ නැහැ - සඤ්ඤා හඳුනන්නේ නැහැ - චෙතනා කැමතියක් දක්වන්නේ නැහැ. උදාහරණය: ශරීරය නිරුද්ධ වුණාට පස්සේ (මළ වුණාම) ඉන්ද්‍රිය තියෙනවා, ආරම්මණ තියෙනවා, ඒත් විඤ්ඤාණ නැහැ. එතකොට ඵස්ස නැහැ, ස්පර්ශය වෙන්නේ නැහැ.',
+    sources: [
+      SOURCE_TIPITAKA,
+      { label: 'අට්ඨසාලිනී – ඵස්ස විවරණ', url: 'https://tipitaka.lk/abhidhamma' }
+    ]
   },
   {
     id: 'vedana',
     nameSi: 'වේදනා',
     nameEn: 'Feeling',
     summarySi: 'සුඛ, දුක් හෝ උපේක්ෂක අත්දැකීම ලෙස ප්‍රතිචාරය වෙයි.',
-    summaryEn: 'Registers experience as pleasant, painful, or neutral feeling.'
+    summaryEn: 'Registers experience as pleasant, painful, or neutral feeling.',
+    descriptionSi: 'චිත්තය මතුවෙමින් වහාම වස්තුවට අදාළ අරමුණේ හැඟීමක් සලසයි. සුඛ, දුක්, උපේක්ෂා යන ත්‍රිවිධ හැඟීම් සියලු චිත්තවෙලාවල පවතී.',
+    descriptionEn: 'Immediately notes the felt tone—pleasant, painful, or neutral—in every consciousness moment.',
+    detailedExplanation: 'සෑම චිත්ත ක්ෂණයකම වේදනාවක් තියෙනවා: - අකුසල චිත්ත 12 = දෝමනස්ස/උපේක්ඛා - කුසල චිත්ත = සෝමනස්ස - විපාක චිත්ත = සුඛ/දුක්ඛ/උපේක්ඛා. අරහත් වූවත් වේදනා තියෙනවා, ඒත් තණ්හාව නැහැ!',
+    sources: [
+      SOURCE_TIPITAKA,
+      { label: 'අභිධම්මත්ථසංගහ (චෛතසික නිර්දේශ)', url: 'https://pitaka.lk/books/abhidhamma-margaya/index.html#3-10' }
+    ]
   },
   {
     id: 'sanna',
     nameSi: 'සංඤ්ඤා',
     nameEn: 'Perception',
     summarySi: 'වස්තුවේ ලක්ෂණ සටහන් කර නැවත හඳුනා ගැනීමට උපකාරී මතක සලකුණු.',
-    summaryEn: 'Marks the object with a sign so it can be recognized again.'
+    summaryEn: 'Marks the object with a sign so it can be recognized again.',
+    descriptionSi: 'ලක්ෂණ සටහන් කිරීම (සඤ්ඤාණ ලක්ෂණ) මගින් වස්තු වෙනස්කම් අතරින් පෙර අත්දැකීම් සමග සම්බන්ධ කරයි. සෑම චිත්තයකම එය මතක සටහන් තැබීමේ සේවය ඉටු කරයි.',
+    descriptionEn: 'Impresses the object with a sign (nimitta) so future moments can re-recognize it; present in all cittas.',
+    detailedExplanation: 'අට්ඨසාලිනී හා ධම්මසංගණී අනුව සඤ්ඤා වස්තුවේ රූපලක්ෂණ ග්‍රහණය කර නිමිත පිළිබඳ සටහන තබයි. මෙය නොමැතිනම් මතක හා හඳුනාගැනීම සිදු නොවේ.',
+    sources: [
+      SOURCE_TIPITAKA,
+      { label: 'ධම්මසංගණී – සඤ්ඤා නිර්දේශ', url: 'https://tipitaka.lk/abhidhamma' }
+    ]
   },
   {
     id: 'cetana',
     nameSi: 'චේතනා',
     nameEn: 'Volition',
     summarySi: 'සියලු චෛතසිකයන් සමඟ කර්මය සඳහා පූර්ව සූදානම සහ තීරණය සැලසයි.',
-    summaryEn: 'Coordinates associated factors and drives intentional action.'
+    summaryEn: 'Coordinates associated factors and drives intentional action.',
+    descriptionSi: 'සහභාගී චෛතසිකයන් ගැළපී කටයුතු කිරීමට සංවිධානය කරන “කර්මසංඛාරය”. බුදුදේශනාවේ කර්මය ලෙසින් සලකන්නේ මේ චේතනාවයි.',
+    descriptionEn: 'The organizing conation that marshals accompanying factors; identified as kamma in the Buddha’s teaching.',
+    detailedExplanation: 'අභිධම්මත්ථසංගහ අනුව චේතනා සියලු චිත්තවෙලාවලම “සමවෙති” (සමවය) කරයි. විනයපිටකයෙහි “චේතනාහං භික්ඛවෙ කම්මං වදාමි” යනුවෙන් කර්මය ලෙස සවිස්තර කරයි.',
+    sources: [
+      SOURCE_TIPITAKA,
+      { label: 'විනයපිටක (අභිධම්ම අත්සහයක)', url: 'https://tipitaka.lk' }
+    ]
   },
   {
     id: 'ekaggata',
     nameSi: 'ඒකග්ගතා',
     nameEn: 'One-pointedness',
     summarySi: 'චිත්තය වස්තුවකට එකකර තබා මූලික සමාධිය සකස් කරයි.',
-    summaryEn: 'Keeps the mind collected on a single object, providing basic concentration.'
+    summaryEn: 'Keeps the mind collected on a single object, providing basic concentration.',
+    descriptionSi: 'සෑම චිත්තයකම මූලික ඒකාග්‍රතාව (පරික්කාර සමාධි) සපයමින් වස්තුවෙන් අතහැරී නොයෑමට උපකාරී වේ.',
+    descriptionEn: 'Supplies the basic unification (parikamma-samadhi) that holds the object in every citta.',
+    detailedExplanation: 'අට්ඨසාලිනී අනුව ඒකග්ගතා “සමනතා” හැඟීමක් ඇති කරයි; චිත්තය විචලිත නොවී වස්තුවේ සිටීමේ බලය. ධ්‍යානයේ උසස් අවස්ථා වලේ මේක වැඩි ව්‍යාප්තියක් ලබයි.',
+    sources: [
+      SOURCE_TIPITAKA,
+      { label: 'විරුපකා විවරණ (අට්ඨසාලිනී)', url: 'https://tipitaka.lk/abhidhamma' }
+    ]
   },
   {
     id: 'jivitindriya',
     nameSi: 'ජීවිත්තින්ද්‍රිය',
     nameEn: 'Life faculty (mental)',
     summarySi: 'සම්බන්ධ චෛතසිකයන් පවත්වාගෙන යන ජීවන බලය.',
-    summaryEn: 'Sustains each accompanying mental factor for the full thought-moment.'
+    summaryEn: 'Sustains each accompanying mental factor for the full thought-moment.',
+    descriptionSi: 'මනෝ සතරිද්‍රියන් අතරේ මනෝජීවිත රැඳවීමේ බලය ලෙස සලකයි. චිත්ත වියුක්ත නොවී සියලු චෛතසිකයන් සම්පූර්ණ කල් පවත්වා ගනියි.',
+    descriptionEn: 'The mental life faculty among the five spiritual faculties, maintaining the citta and its factors through the moment.',
+    detailedExplanation: 'ධම්මසංගණී ජීවිතින්ද්‍රිය වර්ගයේදී “පාලන රස” ලෙස දක්වයි: අසෝධන වීමෙන් සමානගත චෛතසිකයන් නිශ්චල නොවී පවත්වා ගැනීම.',
+    sources: [
+      SOURCE_TIPITAKA,
+      { label: 'ධම්මසංගණී – ජීවිතින්ද්‍රිය වර්ගය', url: 'https://tipitaka.lk/abhidhamma' }
+    ]
   },
   {
     id: 'manasikara',
     nameSi: 'මනසිකාර',
     nameEn: 'Attention',
     summarySi: 'වස්තුව වෙත මනස යොමු කර තැබීමේ නිරන්තර උත්සාහය.',
-    summaryEn: 'Turns the mind toward the object and keeps it engaged.'
+    summaryEn: 'Turns the mind toward the object and keeps it engaged.',
+    descriptionSi: 'අභිධම්ම වගුවෙන් “අවජ්ජන” ලෙස දක්වන මෙය වස්තුව වෙත දිගටම සැලකුම් බලාපොරොත්තුව තබයි. සරල අවධානය නැතිනම් චිත්තය විචලිත වේ.',
+    descriptionEn: 'Also called avajjana: the turning-toward and keeping-on-the-object; without it the mind would drift.',
+    detailedExplanation: 'අට්ඨසාලිනී විවරණය අනුව මනසිකාරය “අනුපනිධාන” ක්‍රියාකාරකම් සිදු කරයි—අනෙකුත් චෛතසිකයන්ට වස්තුව මත තබා ගැනීමට මඟ පෙන්වයි.',
+    sources: [
+      SOURCE_TIPITAKA,
+      { label: 'අට්ඨසාලිනී – මනසිකාර විවරණ', url: 'https://tipitaka.lk/abhidhamma' }
+    ]
   }
 ];
 
@@ -209,6 +258,3 @@ window.chaithasikaData = [
   ...mapCategory(appamanna, 'අප්පමාණ චෛතසික', 'Immeasurable mental factor'),
   ...panna
 ];
-
-
-
