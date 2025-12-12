@@ -231,15 +231,6 @@ class ExplanationsManager {
         header.appendChild(title);
         header.appendChild(categorySpan);
 
-        // Add expand indicator for universal cetasikas
-        if (isUniversal) {
-            const expandIndicator = document.createElement('span');
-            expandIndicator.className = 'expand-indicator';
-            expandIndicator.innerHTML = '▼';
-            header.appendChild(expandIndicator);
-            card.classList.add('expandable');
-        }
-
         const descriptionDiv = document.createElement('div');
         descriptionDiv.className = 'explanation-description';
         descriptionDiv.textContent = displayDescription || '';
@@ -268,6 +259,8 @@ class ExplanationsManager {
             const deepContent = window.getUniversalCetasikaDeepContent(chaithasika.name);
 
             if (deepContent) {
+                card.classList.add('expandable');
+
                 const deepContentDiv = document.createElement('div');
                 deepContentDiv.className = 'deep-content';
 
@@ -278,11 +271,20 @@ class ExplanationsManager {
                 deepContentDiv.appendChild(deepContentPre);
                 card.appendChild(deepContentDiv);
 
-                // Add click handler to toggle expansion
-                card.style.cursor = 'pointer';
-                card.addEventListener('click', (e) => {
-                    // Don't toggle if clicking on a link
-                    if (e.target.tagName === 'A') return;
+                // Create footer with expand button at the bottom
+                const footer = document.createElement('div');
+                footer.className = 'card-footer';
+
+                const expandButton = document.createElement('button');
+                expandButton.className = 'expand-button';
+                expandButton.innerHTML = '<span class="expand-text">ගැඹුරු විග්‍රහය බලන්න</span> <span class="expand-indicator">▼</span>';
+
+                footer.appendChild(expandButton);
+                card.appendChild(footer);
+
+                // Add click handler to the button only
+                expandButton.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent card click
 
                     const isExpanded = card.classList.contains('expanded');
 
@@ -290,23 +292,85 @@ class ExplanationsManager {
                     document.querySelectorAll('.explanation-card.expanded').forEach(otherCard => {
                         if (otherCard !== card) {
                             otherCard.classList.remove('expanded');
-                            const otherIndicator = otherCard.querySelector('.expand-indicator');
-                            if (otherIndicator) otherIndicator.innerHTML = '▼';
+                            const otherButton = otherCard.querySelector('.expand-button');
+                            if (otherButton) {
+                                otherButton.innerHTML = '<span class="expand-text">ගැඹුරු විග්‍රහය බලන්න</span> <span class="expand-indicator">▼</span>';
+                            }
                         }
                     });
 
                     // Toggle this card
                     card.classList.toggle('expanded');
-                    const indicator = card.querySelector('.expand-indicator');
-                    if (indicator) {
-                        indicator.innerHTML = isExpanded ? '▼' : '▲';
+                    if (card.classList.contains('expanded')) {
+                        expandButton.innerHTML = '<span class="expand-text">හකුළන්න</span> <span class="expand-indicator">▲</span>';
+                    } else {
+                        expandButton.innerHTML = '<span class="expand-text">ගැඹුරු විග්‍රහය බලන්න</span> <span class="expand-indicator">▼</span>';
                     }
                 });
             }
         }
 
+        // Add deep content section for particular cetasikas (පක්ෂික)
+        const isParticular = chaithasika.category === 'පක්ෂික' || chaithasika.categoryEn === 'Particular';
+        if (isParticular && window.getParticularCetasikaDeepContent) {
+            const deepContent = window.getParticularCetasikaDeepContent(chaithasika.name);
+
+            if (deepContent) {
+                card.classList.add('expandable');
+
+                const deepContentDiv = document.createElement('div');
+                deepContentDiv.className = 'deep-content';
+
+                const deepContentPre = document.createElement('pre');
+                deepContentPre.className = 'deep-content-text';
+                deepContentPre.textContent = deepContent;
+
+                deepContentDiv.appendChild(deepContentPre);
+                card.appendChild(deepContentDiv);
+
+                // Create footer with expand button at the bottom
+                const footer = document.createElement('div');
+                footer.className = 'card-footer';
+
+                const expandButton = document.createElement('button');
+                expandButton.className = 'expand-button';
+                expandButton.innerHTML = '<span class="expand-text">ගැඹුරු විග්‍රහය බලන්න</span> <span class="expand-indicator">▼</span>';
+
+                footer.appendChild(expandButton);
+                card.appendChild(footer);
+
+                // Add click handler to the button only
+                expandButton.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent card click
+
+                    const isExpanded = card.classList.contains('expanded');
+
+                    // Close all other expanded cards
+                    document.querySelectorAll('.explanation-card.expanded').forEach(otherCard => {
+                        if (otherCard !== card) {
+                            otherCard.classList.remove('expanded');
+                            const otherButton = otherCard.querySelector('.expand-button');
+                            if (otherButton) {
+                                otherButton.innerHTML = '<span class="expand-text">ගැඹුරු විග්‍රහය බලන්න</span> <span class="expand-indicator">▼</span>';
+                            }
+                        }
+                    });
+
+                    // Toggle this card
+                    card.classList.toggle('expanded');
+                    if (card.classList.contains('expanded')) {
+                        expandButton.innerHTML = '<span class="expand-text">හකුළන්න</span> <span class="expand-indicator">▲</span>';
+                    } else {
+                        expandButton.innerHTML = '<span class="expand-text">ගැඹුරු විග්‍රහය බලන්න</span> <span class="expand-indicator">▼</span>';
+                    }
+                });
+            }
+        }
+
+
         return card;
     }
+
 
 
     setupEventListeners() {

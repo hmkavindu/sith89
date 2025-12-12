@@ -485,6 +485,6 @@ window.universalCetasikaDeepContent = {
 };
 
 // Make it globally accessible
-window.getUniversalCetasikaDeepContent = function(cetasikaName) {
+window.getUniversalCetasikaDeepContent = function (cetasikaName) {
     return window.universalCetasikaDeepContent[cetasikaName] || null;
 };
