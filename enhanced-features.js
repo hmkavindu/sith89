@@ -367,6 +367,66 @@ class ExplanationsManager {
             }
         }
 
+        // Add deep content section for Akusala cetasikas (Unwholesome)
+        const isAkusala = chaithasika.category === 'අකුසල්' || chaithasika.categoryEn === 'Unwholesome';
+        if (isAkusala && window.getAkusalaCetasikaDeepContent) {
+            const deepContent = window.getAkusalaCetasikaDeepContent(chaithasika.name);
+
+            if (deepContent) {
+                card.classList.add('expandable');
+
+                const deepContentDiv = document.createElement('div');
+                deepContentDiv.className = 'deep-content';
+
+                const deepContentPre = document.createElement('pre');
+                deepContentPre.className = 'deep-content-text';
+                deepContentPre.textContent = deepContent;
+
+                deepContentDiv.appendChild(deepContentPre);
+                card.appendChild(deepContentDiv);
+
+                // Create footer with expand button at the bottom
+                const footer = document.createElement('div');
+                footer.className = 'card-footer';
+
+                // Use a different color for Akusala buttons (Reddish/Orange) to distinguish
+                const expandButton = document.createElement('button');
+                expandButton.className = 'expand-button akusala-button';
+                expandButton.style.background = 'linear-gradient(135deg, #dc3545 0%, #c82333 100%)';
+                expandButton.style.boxShadow = '0 2px 8px rgba(220, 53, 69, 0.3)';
+                expandButton.innerHTML = '<span class="expand-text">ගැඹුරු විග්‍රහය බලන්න</span> <span class="expand-indicator">▼</span>';
+
+                footer.appendChild(expandButton);
+                card.appendChild(footer);
+
+                // Add click handler to the button only
+                expandButton.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent card click
+
+                    const isExpanded = card.classList.contains('expanded');
+
+                    // Close all other expanded cards
+                    document.querySelectorAll('.explanation-card.expanded').forEach(otherCard => {
+                        if (otherCard !== card) {
+                            otherCard.classList.remove('expanded');
+                            const otherButton = otherCard.querySelector('.expand-button');
+                            if (otherButton) {
+                                otherButton.innerHTML = '<span class="expand-text">ගැඹුරු විග්‍රහය බලන්න</span> <span class="expand-indicator">▼</span>';
+                            }
+                        }
+                    });
+
+                    // Toggle this card
+                    card.classList.toggle('expanded');
+                    if (card.classList.contains('expanded')) {
+                        expandButton.innerHTML = '<span class="expand-text">හකුළන්න</span> <span class="expand-indicator">▲</span>';
+                    } else {
+                        expandButton.innerHTML = '<span class="expand-text">ගැඹුරු විග්‍රහය බලන්න</span> <span class="expand-indicator">▼</span>';
+                    }
+                });
+            }
+        }
+
 
         return card;
     }
