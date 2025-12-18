@@ -427,6 +427,80 @@ class ExplanationsManager {
             }
         }
 
+        // Add deep content section for Sobana cetasikas (Beautiful)
+        const isSobana = (chaithasika.category && (
+            chaithasika.category.includes('සෝබන') ||
+            chaithasika.category.includes('විරති') ||
+            chaithasika.category.includes('අප්පමාණ') ||
+            chaithasika.category.includes('පඤ්ඤින්ද්‍රිය')
+        )) || (chaithasika.categoryEn && (
+            chaithasika.categoryEn.includes('Beautiful') ||
+            chaithasika.categoryEn.includes('Abstinence') ||
+            chaithasika.categoryEn.includes('Illimitable') ||
+            chaithasika.categoryEn.includes('Wisdom')
+        ));
+
+        if (isSobana && window.getSobanaCetasikaDeepContent) {
+            const deepContent = window.getSobanaCetasikaDeepContent(chaithasika.name) ||
+                window.getSobanaCetasikaDeepContent(chaithasika.nameSi);
+
+            if (deepContent) {
+                card.classList.add('expandable');
+
+                const deepContentDiv = document.createElement('div');
+                deepContentDiv.className = 'deep-content';
+
+                const deepContentPre = document.createElement('pre');
+                deepContentPre.className = 'deep-content-text';
+
+                // Remove any remaining * symbols just in case
+                deepContentPre.textContent = deepContent.replace(/\*/g, '');
+
+                deepContentDiv.appendChild(deepContentPre);
+                card.appendChild(deepContentDiv);
+
+                // Create footer with expand button at the bottom
+                const footer = document.createElement('div');
+                footer.className = 'card-footer';
+
+                // Use a different color for Sobana buttons (Gold/Yellow)
+                const expandButton = document.createElement('button');
+                expandButton.className = 'expand-button sobana-button';
+                expandButton.style.background = 'linear-gradient(135deg, #ffc107 0%, #ffdb4d 100%)';
+                expandButton.style.color = '#333'; // Dark text for contrast on yellow
+                expandButton.style.boxShadow = '0 2px 8px rgba(255, 193, 7, 0.3)';
+                expandButton.innerHTML = '<span class="expand-text">ගැඹුරු විග්‍රහය බලන්න</span> <span class="expand-indicator">▼</span>';
+
+                footer.appendChild(expandButton);
+                card.appendChild(footer);
+
+                // Add click handler to the button only
+                expandButton.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent card click
+
+                    const isExpanded = card.classList.contains('expanded');
+
+                    // Close all other expanded cards
+                    document.querySelectorAll('.explanation-card.expanded').forEach(otherCard => {
+                        if (otherCard !== card) {
+                            otherCard.classList.remove('expanded');
+                            const otherButton = otherCard.querySelector('.expand-button');
+                            if (otherButton) {
+                                otherButton.innerHTML = '<span class="expand-text">ගැඹුරු විග්‍රහය බලන්න</span> <span class="expand-indicator">▼</span>';
+                            }
+                        }
+                    });
+
+                    // Toggle this card
+                    card.classList.toggle('expanded');
+                    if (card.classList.contains('expanded')) {
+                        expandButton.innerHTML = '<span class="expand-text">හකුළන්න</span> <span class="expand-indicator">▲</span>';
+                    } else {
+                        expandButton.innerHTML = '<span class="expand-text">ගැඹුරු විග්‍රහය බලන්න</span> <span class="expand-indicator">▼</span>';
+                    }
+                });
+            }
+        }
 
         return card;
     }
