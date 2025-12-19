@@ -12,11 +12,11 @@ const meditationData = {
         { id: 6, name: "උපේක්ෂා සහගත දෘෂ්ටිගත සම්ප්‍රයුක්ත සසංස්කාරික සිත", nameEn: "Equanimity with wrong view, accompanied, with prompting consciousness", category: "අකුසල්", categoryEn: "Unwholesome", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "ලෝභ මූල", subcategoryEn: "Greed Root", chaithasikaCount: 20, descriptionSi: "උපේක්ෂාව සහිත දෘෂ්ටිය සමඟ එක්ව ඇති සසංස්කාරික සිත", descriptionEn: "Equanimity with wrong view, accompanied, with prompting consciousness" },
         { id: 7, name: "උපේක්ෂා සහගත දෘෂ්ටිගත විප්‍රයුක්ත අසංස්කාරික සිත", nameEn: "Equanimity with wrong view, dissociated, rootless consciousness", category: "අකුසල්", categoryEn: "Unwholesome", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "ලෝභ මූල", subcategoryEn: "Greed Root", chaithasikaCount: 18, descriptionSi: "උපේක්ෂාව සහිත දෘෂ්ටිය සමඟ වෙන්ව ඇති මූල නැති සිත", descriptionEn: "Equanimity with wrong view, dissociated, rootless consciousness" },
         { id: 8, name: "උපේක්ෂා සහගත දෘෂ්ටිගත විප්‍රයුක්ත සසංස්කාරික සිත", nameEn: "Equanimity with wrong view, dissociated, with prompting consciousness", category: "අකුසල්", categoryEn: "Unwholesome", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "ලෝභ මූල", subcategoryEn: "Greed Root", chaithasikaCount: 20, descriptionSi: "උපේක්ෂාව සහිත දෘෂ්ටිය සමඟ වෙන්ව ඇති සසංස්කාරික සිත", descriptionEn: "Equanimity with wrong view, dissociated, with prompting consciousness" },
-        
+
         // ද්වේශ මූල චිත්ත (Hatred Root Consciousness) - 2 cittas
         { id: 9, name: "දෝමනස්ස සහගත පටිඝ සම්ප්‍රයුක්ත අසංස්කාරික සිත", nameEn: "Unpleasant feeling with aversion, accompanied, rootless consciousness", category: "අකුසල්", categoryEn: "Unwholesome", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "ද්වේශ මූල", subcategoryEn: "Hatred Root", chaithasikaCount: 20, descriptionSi: "දුක් වේදනාව සහිත පටිඝය සමඟ එක්ව ඇති මූල නැති සිත", descriptionEn: "Unpleasant feeling with aversion, accompanied, rootless consciousness" },
         { id: 10, name: "දෝමනස්ස සහගත පටිඝ සම්ප්‍රයුක්ත සසංස්කාරික සිත", nameEn: "Unpleasant feeling with aversion, accompanied, with prompting consciousness", category: "අකුසල්", categoryEn: "Unwholesome", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "ද්වේශ මූල", subcategoryEn: "Hatred Root", chaithasikaCount: 22, descriptionSi: "දුක් වේදනාව සහිත පටිඝය සමඟ එක්ව ඇති සසංස්කාරික සිත", descriptionEn: "Unpleasant feeling with aversion, accompanied, with prompting consciousness" },
-        
+
         // මෝහ මූල චිත්ත (Delusion Root Consciousness) - 2 cittas
         { id: 11, name: "උපේක්ෂා සහගත විචිකිච්ඡා සම්ප්‍රයුක්ත අසංස්කාරික සිත", nameEn: "Equanimity with doubt, accompanied, rootless consciousness", category: "අකුසල්", categoryEn: "Unwholesome", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "මෝහ මූල", subcategoryEn: "Delusion Root", chaithasikaCount: 18, descriptionSi: "උපේක්ෂාව සහිත විචිකිච්ඡාව සමඟ එක්ව ඇති මූල නැති සිත", descriptionEn: "Equanimity with doubt, accompanied, rootless consciousness" },
         { id: 12, name: "උපේක්ෂා සහගත උද්ධච්ච සම්ප්‍රයුක්ත අසංස්කාරික සිත", nameEn: "Equanimity with restlessness, accompanied, rootless consciousness", category: "අකුසල්", categoryEn: "Unwholesome", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "මෝහ මූල", subcategoryEn: "Delusion Root", chaithasikaCount: 18, descriptionSi: "උපේක්ෂාව සහිත උද්ධච්චය සමඟ එක්ව ඇති මූල නැති සිත", descriptionEn: "Equanimity with restlessness, accompanied, rootless consciousness" },
@@ -52,78 +52,78 @@ const meditationData = {
         { id: 34, name: "ප්‍රථම ධ්‍යාන අනාගාමි මග්ග චිත්තය", nameEn: "First jhana non-returner path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 36, descriptionSi: "ප්‍රථම ධ්‍යාන අනාගාමි මග්ග චිත්තය", descriptionEn: "First jhana non-returner path consciousness" },
         { id: 35, name: "ප්‍රථම ධ්‍යාන අනාගාමි ඵල චිත්තය", nameEn: "First jhana non-returner fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 36, descriptionSi: "ප්‍රථම ධ්‍යාන අනාගාමි ඵල චිත්තය", descriptionEn: "First jhana non-returner fruition consciousness" },
         { id: 36, name: "ප්‍රථම ධ්‍යාන අරහත්ත මග්ග චිත්තය", nameEn: "First jhana arahant path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 36, descriptionSi: "ප්‍රථම ධ්‍යාන අරහත්ත මග්ග චිත්තය", descriptionEn: "First jhana arahant path consciousness" },
-                { id: 37, name: "ප්‍රථම ධ්‍යාන අරහත්ත ඵල චිත්තය", nameEn: "First jhana arahant fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 36, descriptionSi: "ප්‍රථම ධ්‍යාන අරහත්ත ඵල චිත්තය", descriptionEn: "First jhana arahant fruition consciousness" },
+        { id: 37, name: "ප්‍රථම ධ්‍යාන අරහත්ත ඵල චිත්තය", nameEn: "First jhana arahant fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 36, descriptionSi: "ප්‍රථම ධ්‍යාන අරහත්ත ඵල චිත්තය", descriptionEn: "First jhana arahant fruition consciousness" },
 
-                // Additional Supramundane Cittas (remaining 40 cittas)
-                { id: 38, name: "ද්විතීය ධ්‍යාන සෝතාපත්ති මග්ග චිත්තය", nameEn: "Second jhana stream-enterer path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 34, descriptionSi: "ද්විතීය ධ්‍යාන සෝතාපත්ති මග්ග චිත්තය", descriptionEn: "Second jhana stream-enterer path consciousness" },
-                { id: 39, name: "ද්විතීය ධ්‍යාන සෝතාපත්ති ඵල චිත්තය", nameEn: "Second jhana stream-enterer fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 34, descriptionSi: "ද්විතීය ධ්‍යාන සෝතාපත්ති ඵල චිත්තය", descriptionEn: "Second jhana stream-enterer fruition consciousness" },
-                { id: 40, name: "ද්විතීය ධ්‍යාන සකදාගාමී මග්ග චිත්තය", nameEn: "Second jhana once-returner path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 34, descriptionSi: "ද්විතීය ධ්‍යාන සකදාගාමී මග්ග චිත්තය", descriptionEn: "Second jhana once-returner path consciousness" },
-                { id: 41, name: "ද්විතීය ධ්‍යාන සකදාගාමී ඵල චිත්තය", nameEn: "Second jhana once-returner fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 34, descriptionSi: "ද්විතීය ධ්‍යාන සකදාගාමී ඵල චිත්තය", descriptionEn: "Second jhana once-returner fruition consciousness" },
-                { id: 42, name: "ද්විතීය ධ්‍යාන අනාගාමි මග්ග චිත්තය", nameEn: "Second jhana non-returner path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 34, descriptionSi: "ද්විතීය ධ්‍යාන අනාගාමි මග්ග චිත්තය", descriptionEn: "Second jhana non-returner path consciousness" },
-                { id: 43, name: "ද්විතීය ධ්‍යාන අනාගාමි ඵල චිත්තය", nameEn: "Second jhana non-returner fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 34, descriptionSi: "ද්විතීය ධ්‍යාන අනාගාමි ඵල චිත්තය", descriptionEn: "Second jhana non-returner fruition consciousness" },
-                { id: 44, name: "ද්විතීය ධ්‍යාන අරහත්ත මග්ග චිත්තය", nameEn: "Second jhana arahant path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 34, descriptionSi: "ද්විතීය ධ්‍යාන අරහත්ත මග්ග චිත්තය", descriptionEn: "Second jhana arahant path consciousness" },
-                { id: 45, name: "ද්විතීය ධ්‍යාන අරහත්ත ඵල චිත්තය", nameEn: "Second jhana arahant fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 34, descriptionSi: "ද්විතීය ධ්‍යාන අරහත්ත ඵල චිත්තය", descriptionEn: "Second jhana arahant fruition consciousness" },
+        // Additional Supramundane Cittas (remaining 40 cittas)
+        { id: 38, name: "ද්විතීය ධ්‍යාන සෝතාපත්ති මග්ග චිත්තය", nameEn: "Second jhana stream-enterer path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 34, descriptionSi: "ද්විතීය ධ්‍යාන සෝතාපත්ති මග්ග චිත්තය", descriptionEn: "Second jhana stream-enterer path consciousness" },
+        { id: 39, name: "ද්විතීය ධ්‍යාන සෝතාපත්ති ඵල චිත්තය", nameEn: "Second jhana stream-enterer fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 34, descriptionSi: "ද්විතීය ධ්‍යාන සෝතාපත්ති ඵල චිත්තය", descriptionEn: "Second jhana stream-enterer fruition consciousness" },
+        { id: 40, name: "ද්විතීය ධ්‍යාන සකදාගාමී මග්ග චිත්තය", nameEn: "Second jhana once-returner path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 34, descriptionSi: "ද්විතීය ධ්‍යාන සකදාගාමී මග්ග චිත්තය", descriptionEn: "Second jhana once-returner path consciousness" },
+        { id: 41, name: "ද්විතීය ධ්‍යාන සකදාගාමී ඵල චිත්තය", nameEn: "Second jhana once-returner fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 34, descriptionSi: "ද්විතීය ධ්‍යාන සකදාගාමී ඵල චිත්තය", descriptionEn: "Second jhana once-returner fruition consciousness" },
+        { id: 42, name: "ද්විතීය ධ්‍යාන අනාගාමි මග්ග චිත්තය", nameEn: "Second jhana non-returner path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 34, descriptionSi: "ද්විතීය ධ්‍යාන අනාගාමි මග්ග චිත්තය", descriptionEn: "Second jhana non-returner path consciousness" },
+        { id: 43, name: "ද්විතීය ධ්‍යාන අනාගාමි ඵල චිත්තය", nameEn: "Second jhana non-returner fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 34, descriptionSi: "ද්විතීය ධ්‍යාන අනාගාමි ඵල චිත්තය", descriptionEn: "Second jhana non-returner fruition consciousness" },
+        { id: 44, name: "ද්විතීය ධ්‍යාන අරහත්ත මග්ග චිත්තය", nameEn: "Second jhana arahant path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 34, descriptionSi: "ද්විතීය ධ්‍යාන අරහත්ත මග්ග චිත්තය", descriptionEn: "Second jhana arahant path consciousness" },
+        { id: 45, name: "ද්විතීය ධ්‍යාන අරහත්ත ඵල චිත්තය", nameEn: "Second jhana arahant fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 34, descriptionSi: "ද්විතීය ධ්‍යාන අරහත්ත ඵල චිත්තය", descriptionEn: "Second jhana arahant fruition consciousness" },
 
-                // Third Jhana Supramundane Cittas
-                { id: 46, name: "තෘතීය ධ්‍යාන සෝතාපත්ති මග්ග චිත්තය", nameEn: "Third jhana stream-enterer path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 33, descriptionSi: "තෘතීය ධ්‍යාන සෝතාපත්ති මග්ග චිත්තය", descriptionEn: "Third jhana stream-enterer path consciousness" },
-                { id: 47, name: "තෘතීය ධ්‍යාන සෝතාපත්ති ඵල චිත්තය", nameEn: "Third jhana stream-enterer fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 33, descriptionSi: "තෘතීය ධ්‍යාන සෝතාපත්ති ඵල චිත්තය", descriptionEn: "Third jhana stream-enterer fruition consciousness" },
-                { id: 48, name: "තෘතීය ධ්‍යාන සකදාගාමී මග්ග චිත්තය", nameEn: "Third jhana once-returner path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 33, descriptionSi: "තෘතීය ධ්‍යාන සකදාගාමී මග්ග චිත්තය", descriptionEn: "Third jhana once-returner path consciousness" },
-                { id: 49, name: "තෘතීය ධ්‍යාන සකදාගාමී ඵල චිත්තය", nameEn: "Third jhana once-returner fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 33, descriptionSi: "තෘතීය ධ්‍යාන සකදාගාමී ඵල චිත්තය", descriptionEn: "Third jhana once-returner fruition consciousness" },
-                { id: 50, name: "තෘතීය ධ්‍යාන අනාගාමි මග්ග චිත්තය", nameEn: "Third jhana non-returner path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 33, descriptionSi: "තෘතීය ධ්‍යාන අනාගාමි මග්ග චිත්තය", descriptionEn: "Third jhana non-returner path consciousness" },
-                { id: 51, name: "තෘතීය ධ්‍යාන අනාගාමි ඵල චිත්තය", nameEn: "Third jhana non-returner fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 33, descriptionSi: "තෘතීය ධ්‍යාන අනාගාමි ඵල චිත්තය", descriptionEn: "Third jhana non-returner fruition consciousness" },
-                { id: 52, name: "තෘතීය ධ්‍යාන අරහත්ත මග්ග චිත්තය", nameEn: "Third jhana arahant path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 33, descriptionSi: "තෘතීය ධ්‍යාන අරහත්ත මග්ග චිත්තය", descriptionEn: "Third jhana arahant path consciousness" },
-                { id: 53, name: "තෘතීය ධ්‍යාන අරහත්ත ඵල චිත්තය", nameEn: "Third jhana arahant fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 33, descriptionSi: "තෘතීය ධ්‍යාන අරහත්ත ඵල චිත්තය", descriptionEn: "Third jhana arahant fruition consciousness" },
+        // Third Jhana Supramundane Cittas
+        { id: 46, name: "තෘතීය ධ්‍යාන සෝතාපත්ති මග්ග චිත්තය", nameEn: "Third jhana stream-enterer path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 33, descriptionSi: "තෘතීය ධ්‍යාන සෝතාපත්ති මග්ග චිත්තය", descriptionEn: "Third jhana stream-enterer path consciousness" },
+        { id: 47, name: "තෘතීය ධ්‍යාන සෝතාපත්ති ඵල චිත්තය", nameEn: "Third jhana stream-enterer fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 33, descriptionSi: "තෘතීය ධ්‍යාන සෝතාපත්ති ඵල චිත්තය", descriptionEn: "Third jhana stream-enterer fruition consciousness" },
+        { id: 48, name: "තෘතීය ධ්‍යාන සකදාගාමී මග්ග චිත්තය", nameEn: "Third jhana once-returner path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 33, descriptionSi: "තෘතීය ධ්‍යාන සකදාගාමී මග්ග චිත්තය", descriptionEn: "Third jhana once-returner path consciousness" },
+        { id: 49, name: "තෘතීය ධ්‍යාන සකදාගාමී ඵල චිත්තය", nameEn: "Third jhana once-returner fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 33, descriptionSi: "තෘතීය ධ්‍යාන සකදාගාමී ඵල චිත්තය", descriptionEn: "Third jhana once-returner fruition consciousness" },
+        { id: 50, name: "තෘතීය ධ්‍යාන අනාගාමි මග්ග චිත්තය", nameEn: "Third jhana non-returner path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 33, descriptionSi: "තෘතීය ධ්‍යාන අනාගාමි මග්ග චිත්තය", descriptionEn: "Third jhana non-returner path consciousness" },
+        { id: 51, name: "තෘතීය ධ්‍යාන අනාගාමි ඵල චිත්තය", nameEn: "Third jhana non-returner fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 33, descriptionSi: "තෘතීය ධ්‍යාන අනාගාමි ඵල චිත්තය", descriptionEn: "Third jhana non-returner fruition consciousness" },
+        { id: 52, name: "තෘතීය ධ්‍යාන අරහත්ත මග්ග චිත්තය", nameEn: "Third jhana arahant path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 33, descriptionSi: "තෘතීය ධ්‍යාන අරහත්ත මග්ග චිත්තය", descriptionEn: "Third jhana arahant path consciousness" },
+        { id: 53, name: "තෘතීය ධ්‍යාන අරහත්ත ඵල චිත්තය", nameEn: "Third jhana arahant fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 33, descriptionSi: "තෘතීය ධ්‍යාන අරහත්ත ඵල චිත්තය", descriptionEn: "Third jhana arahant fruition consciousness" },
 
-                // Fourth Jhana Supramundane Cittas
-                { id: 54, name: "චතුර්ථ ධ්‍යාන සෝතාපත්ති මග්ග චිත්තය", nameEn: "Fourth jhana stream-enterer path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 32, descriptionSi: "චතුර්ථ ධ්‍යාන සෝතාපත්ති මග්ග චිත්තය", descriptionEn: "Fourth jhana stream-enterer path consciousness" },
-                { id: 55, name: "චතුර්ථ ධ්‍යාන සෝතාපත්ති ඵල චිත්තය", nameEn: "Fourth jhana stream-enterer fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 32, descriptionSi: "චතුර්ථ ධ්‍යාන සෝතාපත්ති ඵල චිත්තය", descriptionEn: "Fourth jhana stream-enterer fruition consciousness" },
-                { id: 56, name: "චතුර්ථ ධ්‍යාන සකදාගාමී මග්ග චිත්තය", nameEn: "Fourth jhana once-returner path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 32, descriptionSi: "චතුර්ථ ධ්‍යාන සකදාගාමී මග්ග චිත්තය", descriptionEn: "Fourth jhana once-returner path consciousness" },
-                { id: 57, name: "චතුර්ථ ධ්‍යාන සකදාගාමී ඵල චිත්තය", nameEn: "Fourth jhana once-returner fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 32, descriptionSi: "චතුර්ථ ධ්‍යාන සකදාගාමී ඵල චිත්තය", descriptionEn: "Fourth jhana once-returner fruition consciousness" },
-                { id: 58, name: "චතුර්ථ ධ්‍යාන අනාගාමි මග්ග චිත්තය", nameEn: "Fourth jhana non-returner path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 32, descriptionSi: "චතුර්ථ ධ්‍යාන අනාගාමි මග්ග චිත්තය", descriptionEn: "Fourth jhana non-returner path consciousness" },
-                { id: 59, name: "චතුර්ථ ධ්‍යාන අනාගාමි ඵල චිත්තය", nameEn: "Fourth jhana non-returner fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 32, descriptionSi: "චතුර්ථ ධ්‍යාන අනාගාමි ඵල චිත්තය", descriptionEn: "Fourth jhana non-returner fruition consciousness" },
-                { id: 60, name: "චතුර්ථ ධ්‍යාන අරහත්ත මග්ග චිත්තය", nameEn: "Fourth jhana arahant path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 32, descriptionSi: "චතුර්ථ ධ්‍යාන අරහත්ත මග්ග චිත්තය", descriptionEn: "Fourth jhana arahant path consciousness" },
-                { id: 61, name: "චතුර්ථ ධ්‍යාන අරහත්ත ඵල චිත්තය", nameEn: "Fourth jhana arahant fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 32, descriptionSi: "චතුර්ථ ධ්‍යාන අරහත්ත ඵල චිත්තය", descriptionEn: "Fourth jhana arahant fruition consciousness" },
+        // Fourth Jhana Supramundane Cittas
+        { id: 54, name: "චතුර්ථ ධ්‍යාන සෝතාපත්ති මග්ග චිත්තය", nameEn: "Fourth jhana stream-enterer path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 32, descriptionSi: "චතුර්ථ ධ්‍යාන සෝතාපත්ති මග්ග චිත්තය", descriptionEn: "Fourth jhana stream-enterer path consciousness" },
+        { id: 55, name: "චතුර්ථ ධ්‍යාන සෝතාපත්ති ඵල චිත්තය", nameEn: "Fourth jhana stream-enterer fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 32, descriptionSi: "චතුර්ථ ධ්‍යාන සෝතාපත්ති ඵල චිත්තය", descriptionEn: "Fourth jhana stream-enterer fruition consciousness" },
+        { id: 56, name: "චතුර්ථ ධ්‍යාන සකදාගාමී මග්ග චිත්තය", nameEn: "Fourth jhana once-returner path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 32, descriptionSi: "චතුර්ථ ධ්‍යාන සකදාගාමී මග්ග චිත්තය", descriptionEn: "Fourth jhana once-returner path consciousness" },
+        { id: 57, name: "චතුර්ථ ධ්‍යාන සකදාගාමී ඵල චිත්තය", nameEn: "Fourth jhana once-returner fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 32, descriptionSi: "චතුර්ථ ධ්‍යාන සකදාගාමී ඵල චිත්තය", descriptionEn: "Fourth jhana once-returner fruition consciousness" },
+        { id: 58, name: "චතුර්ථ ධ්‍යාන අනාගාමි මග්ග චිත්තය", nameEn: "Fourth jhana non-returner path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 32, descriptionSi: "චතුර්ථ ධ්‍යාන අනාගාමි මග්ග චිත්තය", descriptionEn: "Fourth jhana non-returner path consciousness" },
+        { id: 59, name: "චතුර්ථ ධ්‍යාන අනාගාමි ඵල චිත්තය", nameEn: "Fourth jhana non-returner fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 32, descriptionSi: "චතුර්ථ ධ්‍යාන අනාගාමි ඵල චිත්තය", descriptionEn: "Fourth jhana non-returner fruition consciousness" },
+        { id: 60, name: "චතුර්ථ ධ්‍යාන අරහත්ත මග්ග චිත්තය", nameEn: "Fourth jhana arahant path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 32, descriptionSi: "චතුර්ථ ධ්‍යාන අරහත්ත මග්ග චිත්තය", descriptionEn: "Fourth jhana arahant path consciousness" },
+        { id: 61, name: "චතුර්ථ ධ්‍යාන අරහත්ත ඵල චිත්තය", nameEn: "Fourth jhana arahant fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 32, descriptionSi: "චතුර්ථ ධ්‍යාන අරහත්ත ඵල චිත්තය", descriptionEn: "Fourth jhana arahant fruition consciousness" },
 
-                // Fifth Jhana Supramundane Cittas
-                { id: 62, name: "පංචම ධ්‍යාන සෝතාපත්ති මග්ග චිත්තය", nameEn: "Fifth jhana stream-enterer path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 30, descriptionSi: "පංචම ධ්‍යාන සෝතාපත්ති මග්ග චිත්තය", descriptionEn: "Fifth jhana stream-enterer path consciousness" },
-                { id: 63, name: "පංචම ධ්‍යාන සෝතාපත්ති ඵල චිත්තය", nameEn: "Fifth jhana stream-enterer fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 30, descriptionSi: "පංචම ධ්‍යාන සෝතාපත්ති ඵල චිත්තය", descriptionEn: "Fifth jhana stream-enterer fruition consciousness" },
-                { id: 64, name: "පංචම ධ්‍යාන සකදාගාමී මග්ග චිත්තය", nameEn: "Fifth jhana once-returner path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 30, descriptionSi: "පංචම ධ්‍යාන සකදාගාමී මග්ග චිත්තය", descriptionEn: "Fifth jhana once-returner path consciousness" },
-                { id: 65, name: "පංචම ධ්‍යාන සකදාගාමී ඵල චිත්තය", nameEn: "Fifth jhana once-returner fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 30, descriptionSi: "පංචම ධ්‍යාන සකදාගාමී ඵල චිත්තය", descriptionEn: "Fifth jhana once-returner fruition consciousness" },
-                { id: 66, name: "පංචම ධ්‍යාන අනාගාමි මග්ග චිත්තය", nameEn: "Fifth jhana non-returner path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 30, descriptionSi: "පංචම ධ්‍යාන අනාගාමි මග්ග චිත්තය", descriptionEn: "Fifth jhana non-returner path consciousness" },
-                { id: 67, name: "පංචම ධ්‍යාන අනාගාමි ඵල චිත්තය", nameEn: "Fifth jhana non-returner fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 30, descriptionSi: "පංචම ධ්‍යාන අනාගාමි ඵල චිත්තය", descriptionEn: "Fifth jhana non-returner fruition consciousness" },
-                { id: 68, name: "පංචම ධ්‍යාන අරහත්ත මග්ග චිත්තය", nameEn: "Fifth jhana arahant path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 30, descriptionSi: "පංචම ධ්‍යාන අරහත්ත මග්ග චිත්තය", descriptionEn: "Fifth jhana arahant path consciousness" },
-                { id: 69, name: "පංචම ධ්‍යාන අරහත්ත ඵල චිත්තය", nameEn: "Fifth jhana arahant fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 30, descriptionSi: "පංචම ධ්‍යාන අරහත්ත ඵල චිත්තය", descriptionEn: "Fifth jhana arahant fruition consciousness" },
+        // Fifth Jhana Supramundane Cittas
+        { id: 62, name: "පංචම ධ්‍යාන සෝතාපත්ති මග්ග චිත්තය", nameEn: "Fifth jhana stream-enterer path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 30, descriptionSi: "පංචම ධ්‍යාන සෝතාපත්ති මග්ග චිත්තය", descriptionEn: "Fifth jhana stream-enterer path consciousness" },
+        { id: 63, name: "පංචම ධ්‍යාන සෝතාපත්ති ඵල චිත්තය", nameEn: "Fifth jhana stream-enterer fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 30, descriptionSi: "පංචම ධ්‍යාන සෝතාපත්ති ඵල චිත්තය", descriptionEn: "Fifth jhana stream-enterer fruition consciousness" },
+        { id: 64, name: "පංචම ධ්‍යාන සකදාගාමී මග්ග චිත්තය", nameEn: "Fifth jhana once-returner path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 30, descriptionSi: "පංචම ධ්‍යාන සකදාගාමී මග්ග චිත්තය", descriptionEn: "Fifth jhana once-returner path consciousness" },
+        { id: 65, name: "පංචම ධ්‍යාන සකදාගාමී ඵල චිත්තය", nameEn: "Fifth jhana once-returner fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 30, descriptionSi: "පංචම ධ්‍යාන සකදාගාමී ඵල චිත්තය", descriptionEn: "Fifth jhana once-returner fruition consciousness" },
+        { id: 66, name: "පංචම ධ්‍යාන අනාගාමි මග්ග චිත්තය", nameEn: "Fifth jhana non-returner path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 30, descriptionSi: "පංචම ධ්‍යාන අනාගාමි මග්ග චිත්තය", descriptionEn: "Fifth jhana non-returner path consciousness" },
+        { id: 67, name: "පංචම ධ්‍යාන අනාගාමි ඵල චිත්තය", nameEn: "Fifth jhana non-returner fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 30, descriptionSi: "පංචම ධ්‍යාන අනාගාමි ඵල චිත්තය", descriptionEn: "Fifth jhana non-returner fruition consciousness" },
+        { id: 68, name: "පංචම ධ්‍යාන අරහත්ත මග්ග චිත්තය", nameEn: "Fifth jhana arahant path consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "මග්ග", typeEn: "Path", subcategory: "ලෝකෝත්තර මග්ග", subcategoryEn: "Supramundane Path", chaithasikaCount: 30, descriptionSi: "පංචම ධ්‍යාන අරහත්ත මග්ග චිත්තය", descriptionEn: "Fifth jhana arahant path consciousness" },
+        { id: 69, name: "පංචම ධ්‍යාන අරහත්ත ඵල චිත්තය", nameEn: "Fifth jhana arahant fruition consciousness", category: "ලෝකෝත්තර", categoryEn: "Supramundane", type: "ඵල", typeEn: "Fruition", subcategory: "ලෝකෝත්තර ඵල", subcategoryEn: "Supramundane Fruition", chaithasikaCount: 30, descriptionSi: "පංචම ධ්‍යාන අරහත්ත ඵල චිත්තය", descriptionEn: "Fifth jhana arahant fruition consciousness" },
 
-                // Kamavacara Vipaka Cittas (Resultant Consciousness) - 23 cittas
-                { id: 70, name: "සෝමනස්ස සහගත ඤාණ සම්ප්‍රයුක්ත අසංස්කාරික විපාක සිත", nameEn: "Pleasant feeling with knowledge, accompanied, rootless resultant consciousness", category: "විපාක", categoryEn: "Resultant", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර විපාක", subcategoryEn: "Sensuous Sphere Resultant", chaithasikaCount: 33, descriptionSi: "සුඛ වේදනාව සහිත ඤාණය සමඟ එක්ව ඇති මූල නැති විපාක සිත", descriptionEn: "Pleasant feeling with knowledge, accompanied, rootless resultant consciousness" },
-                { id: 71, name: "සෝමනස්ස සහගත ඤාණ සම්ප්‍රයුක්ත සසංස්කාරික විපාක සිත", nameEn: "Pleasant feeling with knowledge, accompanied, with prompting resultant consciousness", category: "විපාක", categoryEn: "Resultant", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර විපාක", subcategoryEn: "Sensuous Sphere Resultant", chaithasikaCount: 33, descriptionSi: "සුඛ වේදනාව සහිත ඤාණය සමඟ එක්ව ඇති සසංස්කාරික විපාක සිත", descriptionEn: "Pleasant feeling with knowledge, accompanied, with prompting resultant consciousness" },
-                { id: 72, name: "සෝමනස්ස සහගත ඥාන විප්‍රයුක්ත අසංස්කාරික විපාක සිත", nameEn: "Pleasant feeling with knowledge, dissociated, rootless resultant consciousness", category: "විපාක", categoryEn: "Resultant", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර විපාක", subcategoryEn: "Sensuous Sphere Resultant", chaithasikaCount: 32, descriptionSi: "සුඛ වේදනාව සහිත ඥානය සමඟ වෙන්ව ඇති මූල නැති විපාක සිත", descriptionEn: "Pleasant feeling with knowledge, dissociated, rootless resultant consciousness" },
-                { id: 73, name: "සෝමනස්ස සහගත ඥාන විප්‍රයුක්ත සසංස්කාරික විපාක සිත", nameEn: "Pleasant feeling with knowledge, dissociated, with prompting resultant consciousness", category: "විපාක", categoryEn: "Resultant", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර විපාක", subcategoryEn: "Sensuous Sphere Resultant", chaithasikaCount: 32, descriptionSi: "සුඛ වේදනාව සහිත ඥානය සමඟ වෙන්ව ඇති සසංස්කාරික විපාක සිත", descriptionEn: "Pleasant feeling with knowledge, dissociated, with prompting resultant consciousness" },
-                { id: 74, name: "උපේක්ෂා සහගත ඤාණ සම්ප්‍රයුක්ත අසංස්කාරික විපාක සිත", nameEn: "Equanimity with knowledge, accompanied, rootless resultant consciousness", category: "විපාක", categoryEn: "Resultant", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර විපාක", subcategoryEn: "Sensuous Sphere Resultant", chaithasikaCount: 32, descriptionSi: "උපේක්ෂාව සහිත ඤාණය සමඟ එක්ව ඇති මූල නැති විපාක සිත", descriptionEn: "Equanimity with knowledge, accompanied, rootless resultant consciousness" },
-                { id: 75, name: "උපේක්ෂා සහගත ඤාණ සම්ප්‍රයුක්ත සසංස්කාරික විපාක සිත", nameEn: "Equanimity with knowledge, accompanied, with prompting resultant consciousness", category: "විපාක", categoryEn: "Resultant", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර විපාක", subcategoryEn: "Sensuous Sphere Resultant", chaithasikaCount: 32, descriptionSi: "උපේක්ෂාව සහිත ඤාණය සමඟ එක්ව ඇති සසංස්කාරික විපාක සිත", descriptionEn: "Equanimity with knowledge, accompanied, with prompting resultant consciousness" },
-                { id: 76, name: "උපේක්ෂා සහගත ඥාන විප්‍රයුක්ත අසංස්කාරික විපාක සිත", nameEn: "Equanimity with knowledge, dissociated, rootless resultant consciousness", category: "විපාක", categoryEn: "Resultant", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර විපාක", subcategoryEn: "Sensuous Sphere Resultant", chaithasikaCount: 31, descriptionSi: "උපේක්ෂාව සහිත ඥානය සමඟ වෙන්ව ඇති මූල නැති විපාක සිත", descriptionEn: "Equanimity with knowledge, dissociated, rootless resultant consciousness" },
-                { id: 77, name: "උපේක්ෂා සහගත ඥාන විප්‍රයුක්ත සසංස්කාරික විපාක සිත", nameEn: "Equanimity with knowledge, dissociated, with prompting resultant consciousness", category: "විපාක", categoryEn: "Resultant", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර විපාක", subcategoryEn: "Sensuous Sphere Resultant", chaithasikaCount: 31, descriptionSi: "උපේක්ෂාව සහිත ඥානය සමඟ වෙන්ව ඇති සසංස්කාරික විපාක සිත", descriptionEn: "Equanimity with knowledge, dissociated, with prompting resultant consciousness" },
+        // Kamavacara Vipaka Cittas (Resultant Consciousness) - 23 cittas
+        { id: 70, name: "සෝමනස්ස සහගත ඤාණ සම්ප්‍රයුක්ත අසංස්කාරික විපාක සිත", nameEn: "Pleasant feeling with knowledge, accompanied, rootless resultant consciousness", category: "විපාක", categoryEn: "Resultant", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර විපාක", subcategoryEn: "Sensuous Sphere Resultant", chaithasikaCount: 33, descriptionSi: "සුඛ වේදනාව සහිත ඤාණය සමඟ එක්ව ඇති මූල නැති විපාක සිත", descriptionEn: "Pleasant feeling with knowledge, accompanied, rootless resultant consciousness" },
+        { id: 71, name: "සෝමනස්ස සහගත ඤාණ සම්ප්‍රයුක්ත සසංස්කාරික විපාක සිත", nameEn: "Pleasant feeling with knowledge, accompanied, with prompting resultant consciousness", category: "විපාක", categoryEn: "Resultant", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර විපාක", subcategoryEn: "Sensuous Sphere Resultant", chaithasikaCount: 33, descriptionSi: "සුඛ වේදනාව සහිත ඤාණය සමඟ එක්ව ඇති සසංස්කාරික විපාක සිත", descriptionEn: "Pleasant feeling with knowledge, accompanied, with prompting resultant consciousness" },
+        { id: 72, name: "සෝමනස්ස සහගත ඥාන විප්‍රයුක්ත අසංස්කාරික විපාක සිත", nameEn: "Pleasant feeling with knowledge, dissociated, rootless resultant consciousness", category: "විපාක", categoryEn: "Resultant", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර විපාක", subcategoryEn: "Sensuous Sphere Resultant", chaithasikaCount: 32, descriptionSi: "සුඛ වේදනාව සහිත ඥානය සමඟ වෙන්ව ඇති මූල නැති විපාක සිත", descriptionEn: "Pleasant feeling with knowledge, dissociated, rootless resultant consciousness" },
+        { id: 73, name: "සෝමනස්ස සහගත ඥාන විප්‍රයුක්ත සසංස්කාරික විපාක සිත", nameEn: "Pleasant feeling with knowledge, dissociated, with prompting resultant consciousness", category: "විපාක", categoryEn: "Resultant", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර විපාක", subcategoryEn: "Sensuous Sphere Resultant", chaithasikaCount: 32, descriptionSi: "සුඛ වේදනාව සහිත ඥානය සමඟ වෙන්ව ඇති සසංස්කාරික විපාක සිත", descriptionEn: "Pleasant feeling with knowledge, dissociated, with prompting resultant consciousness" },
+        { id: 74, name: "උපේක්ෂා සහගත ඤාණ සම්ප්‍රයුක්ත අසංස්කාරික විපාක සිත", nameEn: "Equanimity with knowledge, accompanied, rootless resultant consciousness", category: "විපාක", categoryEn: "Resultant", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර විපාක", subcategoryEn: "Sensuous Sphere Resultant", chaithasikaCount: 32, descriptionSi: "උපේක්ෂාව සහිත ඤාණය සමඟ එක්ව ඇති මූල නැති විපාක සිත", descriptionEn: "Equanimity with knowledge, accompanied, rootless resultant consciousness" },
+        { id: 75, name: "උපේක්ෂා සහගත ඤාණ සම්ප්‍රයුක්ත සසංස්කාරික විපාක සිත", nameEn: "Equanimity with knowledge, accompanied, with prompting resultant consciousness", category: "විපාක", categoryEn: "Resultant", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර විපාක", subcategoryEn: "Sensuous Sphere Resultant", chaithasikaCount: 32, descriptionSi: "උපේක්ෂාව සහිත ඤාණය සමඟ එක්ව ඇති සසංස්කාරික විපාක සිත", descriptionEn: "Equanimity with knowledge, accompanied, with prompting resultant consciousness" },
+        { id: 76, name: "උපේක්ෂා සහගත ඥාන විප්‍රයුක්ත අසංස්කාරික විපාක සිත", nameEn: "Equanimity with knowledge, dissociated, rootless resultant consciousness", category: "විපාක", categoryEn: "Resultant", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර විපාක", subcategoryEn: "Sensuous Sphere Resultant", chaithasikaCount: 31, descriptionSi: "උපේක්ෂාව සහිත ඥානය සමඟ වෙන්ව ඇති මූල නැති විපාක සිත", descriptionEn: "Equanimity with knowledge, dissociated, rootless resultant consciousness" },
+        { id: 77, name: "උපේක්ෂා සහගත ඥාන විප්‍රයුක්ත සසංස්කාරික විපාක සිත", nameEn: "Equanimity with knowledge, dissociated, with prompting resultant consciousness", category: "විපාක", categoryEn: "Resultant", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර විපාක", subcategoryEn: "Sensuous Sphere Resultant", chaithasikaCount: 31, descriptionSi: "උපේක්ෂාව සහිත ඥානය සමඟ වෙන්ව ඇති සසංස්කාරික විපාක සිත", descriptionEn: "Equanimity with knowledge, dissociated, with prompting resultant consciousness" },
 
-                // Kamavacara Kriya Cittas (Functional Consciousness) - 11 cittas
-                { id: 78, name: "සෝමනස්ස සහගත ඤාණ සම්ප්‍රයුක්ත අසංස්කාරික ක්‍රියා සිත", nameEn: "Pleasant feeling with knowledge, accompanied, rootless functional consciousness", category: "ක්‍රියා", categoryEn: "Functional", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර ක්‍රියා", subcategoryEn: "Sensuous Sphere Functional", chaithasikaCount: 35, descriptionSi: "සුඛ වේදනාව සහිත ඤාණය සමඟ එක්ව ඇති මූල නැති ක්‍රියා සිත", descriptionEn: "Pleasant feeling with knowledge, accompanied, rootless functional consciousness" },
-                { id: 79, name: "සෝමනස්ස සහගත ඤාණ සම්ප්‍රයුක්ත සසංස්කාරික ක්‍රියා සිත", nameEn: "Pleasant feeling with knowledge, accompanied, with prompting functional consciousness", category: "ක්‍රියා", categoryEn: "Functional", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර ක්‍රියා", subcategoryEn: "Sensuous Sphere Functional", chaithasikaCount: 35, descriptionSi: "සුඛ වේදනාව සහිත ඤාණය සමඟ එක්ව ඇති සසංස්කාරික ක්‍රියා සිත", descriptionEn: "Pleasant feeling with knowledge, accompanied, with prompting functional consciousness" },
-                { id: 80, name: "සෝමනස්ස සහගත ඥාන විප්‍රයුක්ත අසංස්කාරික ක්‍රියා සිත", nameEn: "Pleasant feeling with knowledge, dissociated, rootless functional consciousness", category: "ක්‍රියා", categoryEn: "Functional", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර ක්‍රියා", subcategoryEn: "Sensuous Sphere Functional", chaithasikaCount: 34, descriptionSi: "සුඛ වේදනාව සහිත ඥානය සමඟ වෙන්ව ඇති මූල නැති ක්‍රියා සිත", descriptionEn: "Pleasant feeling with knowledge, dissociated, rootless functional consciousness" },
-                { id: 81, name: "සෝමනස්ස සහගත ඥාන විප්‍රයුක්ත සසංස්කාරික ක්‍රියා සිත", nameEn: "Pleasant feeling with knowledge, dissociated, with prompting functional consciousness", category: "ක්‍රියා", categoryEn: "Functional", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර ක්‍රියා", subcategoryEn: "Sensuous Sphere Functional", chaithasikaCount: 34, descriptionSi: "සුඛ වේදනාව සහිත ඥානය සමඟ වෙන්ව ඇති සසංස්කාරික ක්‍රියා සිත", descriptionEn: "Pleasant feeling with knowledge, dissociated, with prompting functional consciousness" },
-                { id: 82, name: "උපේක්ෂා සහගත ඤාණ සම්ප්‍රයුක්ත අසංස්කාරික ක්‍රියා සිත", nameEn: "Equanimity with knowledge, accompanied, rootless functional consciousness", category: "ක්‍රියා", categoryEn: "Functional", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර ක්‍රියා", subcategoryEn: "Sensuous Sphere Functional", chaithasikaCount: 34, descriptionSi: "උපේක්ෂාව සහිත ඤාණය සමඟ එක්ව ඇති මූල නැති ක්‍රියා සිත", descriptionEn: "Equanimity with knowledge, accompanied, rootless functional consciousness" },
-                { id: 83, name: "උපේක්ෂා සහගත ඤාණ සම්ප්‍රයුක්ත සසංස්කාරික ක්‍රියා සිත", nameEn: "Equanimity with knowledge, accompanied, with prompting functional consciousness", category: "ක්‍රියා", categoryEn: "Functional", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර ක්‍රියා", subcategoryEn: "Sensuous Sphere Functional", chaithasikaCount: 34, descriptionSi: "උපේක්ෂාව සහිත ඤාණය සමඟ එක්ව ඇති සසංස්කාරික ක්‍රියා සිත", descriptionEn: "Equanimity with knowledge, accompanied, with prompting functional consciousness" },
-                { id: 84, name: "උපේක්ෂා සහගත ඥාන විප්‍රයුක්ත අසංස්කාරික ක්‍රියා සිත", nameEn: "Equanimity with knowledge, dissociated, rootless functional consciousness", category: "ක්‍රියා", categoryEn: "Functional", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර ක්‍රියා", subcategoryEn: "Sensuous Sphere Functional", chaithasikaCount: 33, descriptionSi: "උපේක්ෂාව සහිත ඥානය සමඟ වෙන්ව ඇති මූල නැති ක්‍රියා සිත", descriptionEn: "Equanimity with knowledge, dissociated, rootless functional consciousness" },
-                { id: 85, name: "උපේක්ෂා සහගත ඥාන විප්‍රයුක්ත සසංස්කාරික ක්‍රියා සිත", nameEn: "Equanimity with knowledge, dissociated, with prompting functional consciousness", category: "ක්‍රියා", categoryEn: "Functional", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර ක්‍රියා", subcategoryEn: "Sensuous Sphere Functional", chaithasikaCount: 33, descriptionSi: "උපේක්ෂාව සහිත ඥානය සමඟ වෙන්ව ඇති සසංස්කාරික ක්‍රියා සිත", descriptionEn: "Equanimity with knowledge, dissociated, with prompting functional consciousness" },
+        // Kamavacara Kriya Cittas (Functional Consciousness) - 11 cittas
+        { id: 78, name: "සෝමනස්ස සහගත ඤාණ සම්ප්‍රයුක්ත අසංස්කාරික ක්‍රියා සිත", nameEn: "Pleasant feeling with knowledge, accompanied, rootless functional consciousness", category: "ක්‍රියා", categoryEn: "Functional", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර ක්‍රියා", subcategoryEn: "Sensuous Sphere Functional", chaithasikaCount: 35, descriptionSi: "සුඛ වේදනාව සහිත ඤාණය සමඟ එක්ව ඇති මූල නැති ක්‍රියා සිත", descriptionEn: "Pleasant feeling with knowledge, accompanied, rootless functional consciousness" },
+        { id: 79, name: "සෝමනස්ස සහගත ඤාණ සම්ප්‍රයුක්ත සසංස්කාරික ක්‍රියා සිත", nameEn: "Pleasant feeling with knowledge, accompanied, with prompting functional consciousness", category: "ක්‍රියා", categoryEn: "Functional", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර ක්‍රියා", subcategoryEn: "Sensuous Sphere Functional", chaithasikaCount: 35, descriptionSi: "සුඛ වේදනාව සහිත ඤාණය සමඟ එක්ව ඇති සසංස්කාරික ක්‍රියා සිත", descriptionEn: "Pleasant feeling with knowledge, accompanied, with prompting functional consciousness" },
+        { id: 80, name: "සෝමනස්ස සහගත ඥාන විප්‍රයුක්ත අසංස්කාරික ක්‍රියා සිත", nameEn: "Pleasant feeling with knowledge, dissociated, rootless functional consciousness", category: "ක්‍රියා", categoryEn: "Functional", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර ක්‍රියා", subcategoryEn: "Sensuous Sphere Functional", chaithasikaCount: 34, descriptionSi: "සුඛ වේදනාව සහිත ඥානය සමඟ වෙන්ව ඇති මූල නැති ක්‍රියා සිත", descriptionEn: "Pleasant feeling with knowledge, dissociated, rootless functional consciousness" },
+        { id: 81, name: "සෝමනස්ස සහගත ඥාන විප්‍රයුක්ත සසංස්කාරික ක්‍රියා සිත", nameEn: "Pleasant feeling with knowledge, dissociated, with prompting functional consciousness", category: "ක්‍රියා", categoryEn: "Functional", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර ක්‍රියා", subcategoryEn: "Sensuous Sphere Functional", chaithasikaCount: 34, descriptionSi: "සුඛ වේදනාව සහිත ඥානය සමඟ වෙන්ව ඇති සසංස්කාරික ක්‍රියා සිත", descriptionEn: "Pleasant feeling with knowledge, dissociated, with prompting functional consciousness" },
+        { id: 82, name: "උපේක්ෂා සහගත ඤාණ සම්ප්‍රයුක්ත අසංස්කාරික ක්‍රියා සිත", nameEn: "Equanimity with knowledge, accompanied, rootless functional consciousness", category: "ක්‍රියා", categoryEn: "Functional", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර ක්‍රියා", subcategoryEn: "Sensuous Sphere Functional", chaithasikaCount: 34, descriptionSi: "උපේක්ෂාව සහිත ඤාණය සමඟ එක්ව ඇති මූල නැති ක්‍රියා සිත", descriptionEn: "Equanimity with knowledge, accompanied, rootless functional consciousness" },
+        { id: 83, name: "උපේක්ෂා සහගත ඤාණ සම්ප්‍රයුක්ත සසංස්කාරික ක්‍රියා සිත", nameEn: "Equanimity with knowledge, accompanied, with prompting functional consciousness", category: "ක්‍රියා", categoryEn: "Functional", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර ක්‍රියා", subcategoryEn: "Sensuous Sphere Functional", chaithasikaCount: 34, descriptionSi: "උපේක්ෂාව සහිත ඤාණය සමඟ එක්ව ඇති සසංස්කාරික ක්‍රියා සිත", descriptionEn: "Equanimity with knowledge, accompanied, with prompting functional consciousness" },
+        { id: 84, name: "උපේක්ෂා සහගත ඥාන විප්‍රයුක්ත අසංස්කාරික ක්‍රියා සිත", nameEn: "Equanimity with knowledge, dissociated, rootless functional consciousness", category: "ක්‍රියා", categoryEn: "Functional", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර ක්‍රියා", subcategoryEn: "Sensuous Sphere Functional", chaithasikaCount: 33, descriptionSi: "උපේක්ෂාව සහිත ඥානය සමඟ වෙන්ව ඇති මූල නැති ක්‍රියා සිත", descriptionEn: "Equanimity with knowledge, dissociated, rootless functional consciousness" },
+        { id: 85, name: "උපේක්ෂා සහගත ඥාන විප්‍රයුක්ත සසංස්කාරික ක්‍රියා සිත", nameEn: "Equanimity with knowledge, dissociated, with prompting functional consciousness", category: "ක්‍රියා", categoryEn: "Functional", type: "කාමාවචර", typeEn: "Sensuous Sphere", subcategory: "කාමාවචර ක්‍රියා", subcategoryEn: "Sensuous Sphere Functional", chaithasikaCount: 33, descriptionSi: "උපේක්ෂාව සහිත ඥානය සමඟ වෙන්ව ඇති සසංස්කාරික ක්‍රියා සිත", descriptionEn: "Equanimity with knowledge, dissociated, with prompting functional consciousness" },
 
-                // Rupavacara Vipaka and Kriya Cittas - 10 cittas
-                { id: 86, name: "විතර්ක විචාර ප්‍රීති සුඛ ඒකාග්‍රතා සහිත ප්‍රථම ධ්‍යාන විපාක සිතය", nameEn: "First jhana resultant consciousness with initial and sustained application", category: "විපාක", categoryEn: "Resultant", type: "රූපාවචර", typeEn: "Form Sphere", subcategory: "රූපාවචර විපාක", subcategoryEn: "Form Sphere Resultant", chaithasikaCount: 35, descriptionSi: "විතර්ක විචාර ප්‍රීති සුඛ ඒකාග්‍රතා සහිත ප්‍රථම ධ්‍යාන විපාක සිත", descriptionEn: "First jhana resultant consciousness with initial and sustained application" },
-                { id: 87, name: "විචාර ප්‍රීති සුඛ ඒකාග්‍රතා සහිත ද්විතීය ධ්‍යාන විපාක සිතය", nameEn: "Second jhana resultant consciousness with sustained application", category: "විපාක", categoryEn: "Resultant", type: "රූපාවචර", typeEn: "Form Sphere", subcategory: "රූපාවචර විපාක", subcategoryEn: "Form Sphere Resultant", chaithasikaCount: 34, descriptionSi: "විචාර ප්‍රීති සුඛ ඒකාග්‍රතා සහිත ද්විතීය ධ්‍යාන විපාක සිත", descriptionEn: "Second jhana resultant consciousness with sustained application" },
-                { id: 88, name: "ප්‍රීති සුඛ ඒකාග්‍රතා සහිත තෘතීය ධ්‍යාන විපාක සිතය", nameEn: "Third jhana resultant consciousness with joy", category: "විපාක", categoryEn: "Resultant", type: "රූපාවචර", typeEn: "Form Sphere", subcategory: "රූපාවචර විපාක", subcategoryEn: "Form Sphere Resultant", chaithasikaCount: 33, descriptionSi: "ප්‍රීති සුඛ ඒකාග්‍රතා සහිත තෘතීය ධ්‍යාන විපාක සිත", descriptionEn: "Third jhana resultant consciousness with joy" },
-                { id: 89, name: "සුඛ ඒකාග්‍රතා සහිත චතුර්ථ ධ්‍යාන විපාක සිතය", nameEn: "Fourth jhana resultant consciousness with happiness", category: "විපාක", categoryEn: "Resultant", type: "රූපාවචර", typeEn: "Form Sphere", subcategory: "රූපාවචර විපාක", subcategoryEn: "Form Sphere Resultant", chaithasikaCount: 32, descriptionSi: "සුඛ ඒකාග්‍රතා සහිත චතුර්ථ ධ්‍යාන විපාක සිත", descriptionEn: "Fourth jhana resultant consciousness with happiness" }
+        // Rupavacara Vipaka and Kriya Cittas - 10 cittas
+        { id: 86, name: "විතර්ක විචාර ප්‍රීති සුඛ ඒකාග්‍රතා සහිත ප්‍රථම ධ්‍යාන විපාක සිතය", nameEn: "First jhana resultant consciousness with initial and sustained application", category: "විපාක", categoryEn: "Resultant", type: "රූපාවචර", typeEn: "Form Sphere", subcategory: "රූපාවචර විපාක", subcategoryEn: "Form Sphere Resultant", chaithasikaCount: 35, descriptionSi: "විතර්ක විචාර ප්‍රීති සුඛ ඒකාග්‍රතා සහිත ප්‍රථම ධ්‍යාන විපාක සිත", descriptionEn: "First jhana resultant consciousness with initial and sustained application" },
+        { id: 87, name: "විචාර ප්‍රීති සුඛ ඒකාග්‍රතා සහිත ද්විතීය ධ්‍යාන විපාක සිතය", nameEn: "Second jhana resultant consciousness with sustained application", category: "විපාක", categoryEn: "Resultant", type: "රූපාවචර", typeEn: "Form Sphere", subcategory: "රූපාවචර විපාක", subcategoryEn: "Form Sphere Resultant", chaithasikaCount: 34, descriptionSi: "විචාර ප්‍රීති සුඛ ඒකාග්‍රතා සහිත ද්විතීය ධ්‍යාන විපාක සිත", descriptionEn: "Second jhana resultant consciousness with sustained application" },
+        { id: 88, name: "ප්‍රීති සුඛ ඒකාග්‍රතා සහිත තෘතීය ධ්‍යාන විපාක සිතය", nameEn: "Third jhana resultant consciousness with joy", category: "විපාක", categoryEn: "Resultant", type: "රූපාවචර", typeEn: "Form Sphere", subcategory: "රූපාවචර විපාක", subcategoryEn: "Form Sphere Resultant", chaithasikaCount: 33, descriptionSi: "ප්‍රීති සුඛ ඒකාග්‍රතා සහිත තෘතීය ධ්‍යාන විපාක සිත", descriptionEn: "Third jhana resultant consciousness with joy" },
+        { id: 89, name: "සුඛ ඒකාග්‍රතා සහිත චතුර්ථ ධ්‍යාන විපාක සිතය", nameEn: "Fourth jhana resultant consciousness with happiness", category: "විපාක", categoryEn: "Resultant", type: "රූපාවචර", typeEn: "Form Sphere", subcategory: "රූපාවචර විපාක", subcategoryEn: "Form Sphere Resultant", chaithasikaCount: 32, descriptionSi: "සුඛ ඒකාග්‍රතා සහිත චතුර්ථ ධ්‍යාන විපාක සිත", descriptionEn: "Fourth jhana resultant consciousness with happiness" }
 
         // Note: This is a partial implementation showing the structure
         // The complete dataset would include all 89 cittas with proper IDs and associations
     ],
-    
+
     chaithasikas: [
         // සාධාරණ චෛතසික (Universal Mental Factors) - 7 factors
         { id: 1, name: "ඵස්සය", nameEn: "Contact (Phassa)", category: "සාධාරණ", categoryEn: "Universal", description: "ස්පර්ශය - චිත්තය සමඟ එක්ව ඇති වන ස්පර්ශයයි", descriptionEn: "Contact - the touching that occurs together with consciousness", detailedExplanation: "ඵස්සය යනු චිත්තය, අරමුණ සහ ඉන්ද්‍රියය යන තුනෙහි සම්මිශ්‍රණයෙන් හටගන්නා ස්පර්ශයයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, ඵස්සය යනු සියලුම චිත්තයන්හි අනිවාර්යයෙන්ම පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, ඵස්සය යනු චිත්තයට අරමුණ හඳුනාගැනීමට උපකාරී වන මූලික සාධකයකි. අභිධර්ම මාර්ගයේ දක්වා ඇති පරිදි, ඵස්සය නැතිව චිත්තයක් උපදින්නට නොහැකිය.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, අභිධර්ම මාර්ගය" },
@@ -159,60 +159,60 @@ const meditationData = {
         { id: 27, name: "විචිකිච්ඡාව", nameEn: "Doubt (Vicikiccha)", category: "අකුසල්", categoryEn: "Unwholesome", description: "විචිකිච්ඡාව - සැකයයි", descriptionEn: "Doubt - uncertainty and skepticism", detailedExplanation: "විචිකිච්ඡාව යනු සැකයයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, විචිකිච්ඡාව යනු අකුසල් චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, විචිකිච්ඡාව යනු සැකයයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, විචිකිච්ඡාව යනු අකුසල් චිත්තයන්හි පවතින චෛතසිකයකි. අභිධර්ම මාර්ගයේ දක්වා ඇති පරිදි, විචිකිච්ඡාව නැතිව මෝහ මූල චිත්තයක් උපදින්නට නොහැකිය.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය, අභිධර්ම මාර්ගය" },
 
         // සෝබන චෛතසික (Beautiful Mental Factors) - 25 factors
-        { id: 28, name: "සද්ධාව", nameEn: "Faith (Saddha)", category: "සෝබන", categoryEn: "Beautiful", description: "සද්ධාව - විශ්වාසයයි", descriptionEn: "Faith - confidence and trust", detailedExplanation: "සද්ධාව යනු විශ්වාසයයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, සද්ධාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, සද්ධාව යනු බුදු, ධර්ම, සංඝ යන තෙරුවන් කෙරෙහි විශ්වාසයයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, සද්ධාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. අභිධර්ම මාර්ගයේ දක්වා ඇති පරිදි, සද්ධාව යනු කුසල් චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය, අභිධර්ම මාර්ගය" },
-        { id: 29, name: "සතිය", nameEn: "Mindfulness (Sati)", category: "සෝබන", categoryEn: "Beautiful", description: "සතිය - සිහියයි", descriptionEn: "Mindfulness - awareness and recollection", detailedExplanation: "සතිය යනු සිහියයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, සතිය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, සතිය යනු සිහියයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, සතිය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. අභිධර්ම මාර්ගයේ දක්වා ඇති පරිදි, සතිය යනු කුසල් චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය, අභිධර්ම මාර්ගය" },
-        { id: 30, name: "හිරිය", nameEn: "Moral Shame (Hiri)", category: "සෝබන", categoryEn: "Beautiful", description: "හිරිය - ලජ්ජාවයි", descriptionEn: "Moral Shame - sense of shame", detailedExplanation: "හිරිය යනු ලජ්ජාවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, හිරිය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, හිරිය යනු ලජ්ජාවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, හිරිය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
-        { id: 31, name: "ඔත්තප්පය", nameEn: "Moral Dread (Ottappa)", category: "සෝබන", categoryEn: "Beautiful", description: "ඔත්තප්පය - භයයි", descriptionEn: "Moral Dread - fear of wrongdoing", detailedExplanation: "ඔත්තප්පය යනු භයයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, ඔත්තප්පය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, ඔත්තප්පය යනු භයයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, ඔත්තප්පය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
-        { id: 32, name: "අලෝභය", nameEn: "Non-greed (Alobha)", category: "සෝබන", categoryEn: "Beautiful", description: "අලෝභය - ලෝභ නැතිකමයි", descriptionEn: "Non-greed - freedom from attachment", detailedExplanation: "අලෝභය යනු ලෝභ නැතිකමයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, අලෝභය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, අලෝභය යනු ලෝභ නැතිකමයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, අලෝභය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. අභිධර්ම මාර්ගයේ දක්වා ඇති පරිදි, අලෝභය යනු කුසල් චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය, අභිධර්ම මාර්ගය" },
-        { id: 33, name: "අදෝසය (මෛත්‍රිය)", nameEn: "Non-hatred (Adosa - Metta)", category: "සෝබන", categoryEn: "Beautiful", description: "අදෝසය (මෛත්‍රිය) - දෝස නැතිකමයි", descriptionEn: "Non-hatred (Loving-kindness) - freedom from aversion", detailedExplanation: "අදෝසය (මෛත්‍රිය) යනු දෝස නැතිකමයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, අදෝසය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, අදෝසය යනු මෛත්‍රියයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, අදෝසය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. අභිධර්ම මාර්ගයේ දක්වා ඇති පරිදි, අදෝසය යනු කුසල් චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය, අභිධර්ම මාර්ගය" },
-        { id: 34, name: "තත්‍රමජ්ඣත්තථාව", nameEn: "Equanimity (Tatramajjhattata)", category: "සෝබන", categoryEn: "Beautiful", description: "තත්‍රමජ්ඣත්තථාව - උපේක්ෂාවයි", descriptionEn: "Equanimity - mental balance", detailedExplanation: "තත්‍රමජ්ඣත්තථාව යනු උපේක්ෂාවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, තත්‍රමජ්ඣත්තථාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, තත්‍රමජ්ඣත්තථාව යනු උපේක්ෂාවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, තත්‍රමජ්ඣත්තථාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
-        { id: 35, name: "කායපස්සද්ධිය", nameEn: "Bodily Tranquility (Kayapassaddhi)", category: "සෝබන", categoryEn: "Beautiful", description: "කායපස්සද්ධිය - කයේ සන්සුන් බවයි", descriptionEn: "Bodily Tranquility - calmness of body", detailedExplanation: "කායපස්සද්ධිය යනු කයේ සන්සුන් බවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, කායපස්සද්ධිය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, කායපස්සද්ධිය යනු කයේ සන්සුන් බවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, කායපස්සද්ධිය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
-        { id: 36, name: "චිත්තපස්සද්ධිය", nameEn: "Mental Tranquility (Cittapassaddhi)", category: "සෝබන", categoryEn: "Beautiful", description: "චිත්තපස්සද්ධිය - සිතේ සන්සුන් බවයි", descriptionEn: "Mental Tranquility - calmness of mind", detailedExplanation: "චිත්තපස්සද්ධිය යනු සිතේ සන්සුන් බවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, චිත්තපස්සද්ධිය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, චිත්තපස්සද්ධිය යනු සිතේ සන්සුන් බවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, චිත්තපස්සද්ධිය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
-        { id: 37, name: "කායලහුතාව", nameEn: "Bodily Lightness (Kayalahuta)", category: "සෝබන", categoryEn: "Beautiful", description: "කායලහුතාව - කයේ සැහැල්ලු බවයි", descriptionEn: "Bodily Lightness - lightness of body", detailedExplanation: "කායලහුතාව යනු කයේ සැහැල්ලු බවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, කායලහුතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, කායලහුතාව යනු කයේ සැහැල්ලු බවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, කායලහුතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
-        { id: 38, name: "චිත්තලහුතාව", nameEn: "Mental Lightness (Cittalahuta)", category: "සෝබන", categoryEn: "Beautiful", description: "චිත්තලහුතාව - සිතේ සැහැල්ලු බවයි", descriptionEn: "Mental Lightness - lightness of mind", detailedExplanation: "චිත්තලහුතාව යනු සිතේ සැහැල්ලු බවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, චිත්තලහුතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, චිත්තලහුතාව යනු සිතේ සැහැල්ලු බවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, චිත්තලහුතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
-        { id: 39, name: "කායමුදුතාව", nameEn: "Bodily Malleability (Kayamuduta)", category: "සෝබන", categoryEn: "Beautiful", description: "කායමුදුතාව - කයේ මෘදු බවයි", descriptionEn: "Bodily Malleability - softness of body", detailedExplanation: "කායමුදුතාව යනු කයේ මෘදු බවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, කායමුදුතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, කායමුදුතාව යනු කයේ මෘදු බවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, කායමුදුතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
-        { id: 40, name: "චිත්තමුදුතාව", nameEn: "Mental Malleability (Cittamuduta)", category: "සෝබන", categoryEn: "Beautiful", description: "චිත්තමුදුතාව - සිතේ මෘදු බවයි", descriptionEn: "Mental Malleability - softness of mind", detailedExplanation: "චිත්තමුදුතාව යනු සිතේ මෘදු බවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, චිත්තමුදුතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, චිත්තමුදුතාව යනු සිතේ මෘදු බවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, චිත්තමුදුතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
-        { id: 41, name: "කායකම්මඤ්ඤතාව", nameEn: "Bodily Workability (Kayakammannata)", category: "සෝබන", categoryEn: "Beautiful", description: "කායකම්මඤ්ඤතාව - කයේ කර්මාන්‍ය බවයි", descriptionEn: "Bodily Workability - workability of body", detailedExplanation: "කායකම්මඤ්ඤතාව යනු කයේ කර්මාන්‍ය බවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, කායකම්මඤ්ඤතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, කායකම්මඤ්ඤතාව යනු කයේ කර්මාන්‍ය බවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, කායකම්මඤ්ඤතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
-        { id: 42, name: "චිත්තකම්මඤ්ඤතාව", nameEn: "Mental Workability (Cittakammannata)", category: "සෝබන", categoryEn: "Beautiful", description: "චිත්තකම්මඤ්ඤතාව - සිතේ කර්මාන්‍ය බවයි", descriptionEn: "Mental Workability - workability of mind", detailedExplanation: "චිත්තකම්මඤ්ඤතාව යනු සිතේ කර්මාන්‍ය බවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, චිත්තකම්මඤ්ඤතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, චිත්තකම්මඤ්ඤතාව යනු සිතේ කර්මාන්‍ය බවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, චිත්තකම්මඤ්ඤතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
-        { id: 43, name: "කායපාගුඤ්ඤතාව", nameEn: "Bodily Proficiency (Kayapagunnata)", category: "සෝබන", categoryEn: "Beautiful", description: "කායපාගුඤ්ඤතාව - කයේ ප්‍රගුණ බවයි", descriptionEn: "Bodily Proficiency - proficiency of body", detailedExplanation: "කායපාගුඤ්ඤතාව යනු කයේ ප්‍රගුණ බවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, කායපාගුඤ්ඤතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, කායපාගුඤ්ඤතාව යනු කයේ ප්‍රගුණ බවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, කායපාගුඤ්ඤතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
-        { id: 44, name: "චිත්තපාගුඤ්ඤතාව", nameEn: "Mental Proficiency (Cittapagunnata)", category: "සෝබන", categoryEn: "Beautiful", description: "චිත්තපාගුඤ්ඤතාව - සිතේ ප්‍රගුණ බවයි", descriptionEn: "Mental Proficiency - proficiency of mind", detailedExplanation: "චිත්තපාගුඤ්ඤතාව යනු සිතේ ප්‍රගුණ බවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, චිත්තපාගුඤ්ඤතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, චිත්තපාගුඤ්ඤතාව යනු සිතේ ප්‍රගුණ බවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, චිත්තපාගුඤ්ඤතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
-        { id: 45, name: "උපෙක්ඛා", nameEn: "Equanimity (Upekkha)", category: "සෝබන", categoryEn: "Beautiful", description: "උපෙක්ඛා - උපේක්ෂාවයි", descriptionEn: "Equanimity - mental balance", detailedExplanation: "උපෙක්ඛා යනු උපේක්ෂාවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, උපෙක්ඛා යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, උපෙක්ඛා යනු උපේක්ෂාවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, උපෙක්ඛා යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. අභිධර්ම මාර්ගයේ දක්වා ඇති පරිදි, උපෙක්ඛා යනු චතුර්ථ ධ්‍යානයේ අංගයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය, අභිධර්ම මාර්ගය" },
-        { id: 46, name: "කරුණාව", nameEn: "Compassion (Karuna)", category: "සෝබන", categoryEn: "Beautiful", description: "කරුණාව - කරුණාවයි", descriptionEn: "Compassion - sympathy for others' suffering", detailedExplanation: "කරුණාව යනු කරුණාවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, කරුණාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, කරුණාව යනු අනුන්ගේ දුක්ඛය කෙරෙහි කරුණාවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, කරුණාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. අභිධර්ම මාර්ගයේ දක්වා ඇති පරිදි, කරුණාව යනු අප්පමාඤ්ඤාවකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය, අභිධර්ම මාර්ගය" },
-        { id: 47, name: "මුදිතාව", nameEn: "Appreciative Joy (Mudita)", category: "සෝබන", categoryEn: "Beautiful", description: "මුදිතාව - මුදිතාවයි", descriptionEn: "Appreciative Joy - joy in others' success", detailedExplanation: "මුදිතාව යනු මුදිතාවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, මුදිතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, මුදිතාව යනු අනුන්ගේ සම්පත්තිය කෙරෙහි සතුටයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, මුදිතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. අභිධර්ම මාර්ගයේ දක්වා ඇති පරිදි, මුදිතාව යනු අප්පමාඤ්ඤාවකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය, අභිධර්ම මාර්ගය" },
-        { id: 48, name: "ප්‍රඥාව (අමෝහය)", nameEn: "Wisdom (Panna - Amoha)", category: "සෝබන", categoryEn: "Beautiful", description: "ප්‍රඥාව (අමෝහය) - ප්‍රඥාවයි", descriptionEn: "Wisdom (Non-delusion) - understanding and insight", detailedExplanation: "ප්‍රඥාව (අමෝහය) යනු ප්‍රඥාවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, ප්‍රඥාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, ප්‍රඥාව යනු අමෝහයයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, ප්‍රඥාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. අභිධර්ම මාර්ගයේ දක්වා ඇති පරිදි, ප්‍රඥාව යනු කුසල් චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය, අභිධර්ම මාර්ගය" },
-        { id: 49, name: "අප්පමාදය", nameEn: "Heedfulness (Appamada)", category: "සෝබන", categoryEn: "Beautiful", description: "අප්පමාදය - අප්පමාදයයි", descriptionEn: "Heedfulness - carefulness and diligence", detailedExplanation: "අප්පමාදය යනු අප්පමාදයයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, අප්පමාදය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, අප්පමාදය යනු අප්පමාදයයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, අප්පමාදය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
-        { id: 50, name: "සම්මාවායාමය", nameEn: "Right Effort (Sammavayama)", category: "සෝබන", categoryEn: "Beautiful", description: "සම්මාවායාමය - සම්මාවායාමයයි", descriptionEn: "Right Effort - correct exertion", detailedExplanation: "සම්මාවායාමය යනු සම්මාවායාමයයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, සම්මාවායාමය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, සම්මාවායාමය යනු සම්මාවායාමයයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, සම්මාවායාමය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. අභිධර්ම මාර්ගයේ දක්වා ඇති පරිදි, සම්මාවායාමය යනු අෂ්ටාංගික මාර්ගයේ අංගයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය, අභිධර්ම මාර්ගය" },
-        { id: 51, name: "සම්මාසතිය", nameEn: "Right Mindfulness (Sammasati)", category: "සෝබන", categoryEn: "Beautiful", description: "සම්මාසතිය - සම්මාසතියයි", descriptionEn: "Right Mindfulness - correct awareness", detailedExplanation: "සම්මාසතිය යනු සම්මාසතියයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, සම්මාසතිය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, සම්මාසතිය යනු සම්මාසතියයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, සම්මාසතිය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. අභිධර්ම මාර්ගයේ දක්වා ඇති පරිදි, සම්මාසතිය යනු අෂ්ටාංගික මාර්ගයේ අංගයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය, අභිධර්ම මාර්ගය" },
-        { id: 52, name: "සම්මාසමාධිය", nameEn: "Right Concentration (Sammasamadhi)", category: "සෝබන", categoryEn: "Beautiful", description: "සම්මාසමාධිය - සම්මාසමාධියයි", descriptionEn: "Right Concentration - correct concentration", detailedExplanation: "සම්මාසමාධිය යනු සම්මාසමාධියයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, සම්මාසමාධිය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, සම්මාසමාධිය යනු සම්මාසමාධියයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, සම්මාසමාධිය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. අභිධර්ම මාර්ගයේ දක්වා ඇති පරිදි, සම්මාසමාධිය යනු අෂ්ටාංගික මාර්ගයේ අංගයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය, අභිධර්ම මාර්ගය" }
+        { id: 28, name: "සද්ධා", nameEn: "Faith (Saddha)", category: "සෝබන", categoryEn: "Beautiful", description: "සද්ධාව - විශ්වාසයයි", descriptionEn: "Faith - confidence and trust", detailedExplanation: "සද්ධාව යනු විශ්වාසයයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, සද්ධාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, සද්ධාව යනු බුදු, ධර්ම, සංඝ යන තෙරුවන් කෙරෙහි විශ්වාසයයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, සද්ධාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. අභිධර්ම මාර්ගයේ දක්වා ඇති පරිදි, සද්ධාව යනු කුසල් චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය, අභිධර්ම මාර්ගය" },
+        { id: 29, name: "සති", nameEn: "Mindfulness (Sati)", category: "සෝබන", categoryEn: "Beautiful", description: "සතිය - සිහියයි", descriptionEn: "Mindfulness - awareness and recollection", detailedExplanation: "සතිය යනු සිහියයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, සතිය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, සතිය යනු සිහියයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, සතිය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. අභිධර්ම මාර්ගයේ දක්වා ඇති පරිදි, සතිය යනු කුසල් චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය, අභිධර්ම මාර්ගය" },
+        { id: 30, name: "හිරි", nameEn: "Moral Shame (Hiri)", category: "සෝබන", categoryEn: "Beautiful", description: "හිරිය - ලජ්ජාවයි", descriptionEn: "Moral Shame - sense of shame", detailedExplanation: "හිරිය යනු ලජ්ජාවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, හිරිය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, හිරිය යනු ලජ්ජාවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, හිරිය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
+        { id: 31, name: "ඔත්තප්ප", nameEn: "Moral Dread (Ottappa)", category: "සෝබන", categoryEn: "Beautiful", description: "ඔත්තප්පය - භයයි", descriptionEn: "Moral Dread - fear of wrongdoing", detailedExplanation: "ඔත්තප්පය යනු භයයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, ඔත්තප්පය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, ඔත්තප්පය යනු භයයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, ඔත්තප්පය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
+        { id: 32, name: "අලෝභ", nameEn: "Non-greed (Alobha)", category: "සෝබන", categoryEn: "Beautiful", description: "අලෝභය - ලෝභ නැතිකමයි", descriptionEn: "Non-greed - freedom from attachment", detailedExplanation: "අලෝභය යනු ලෝභ නැතිකමයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, අලෝභය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, අලෝභය යනු ලෝභ නැතිකමයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, අලෝභය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. අභිධර්ම මාර්ගයේ දක්වා ඇති පරිදි, අලෝභය යනු කුසල් චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය, අභිධර්ම මාර්ගය" },
+        { id: 33, name: "අදෝස", nameEn: "Non-hatred (Adosa - Metta)", category: "සෝබන", categoryEn: "Beautiful", description: "අදෝසය (මෛත්‍රිය) - දෝස නැතිකමයි", descriptionEn: "Non-hatred (Loving-kindness) - freedom from aversion", detailedExplanation: "අදෝසය (මෛත්‍රිය) යනු දෝස නැතිකමයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, අදෝසය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, අදෝසය යනු මෛත්‍රියයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, අදෝසය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. අභිධර්ම මාර්ගයේ දක්වා ඇති පරිදි, අදෝසය යනු කුසල් චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය, අභිධර්ම මාර්ගය" },
+        { id: 34, name: "තත්‍රමජ්ඣත්තතා", nameEn: "Equanimity (Tatramajjhattata)", category: "සෝබන", categoryEn: "Beautiful", description: "තත්‍රමජ්ඣත්තතා - උපේක්ෂාවයි", descriptionEn: "Equanimity - mental balance", detailedExplanation: "තත්‍රමජ්ඣත්තතා යනු උපේක්ෂාවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, තත්‍රමජ්ඣත්තතා යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, තත්‍රමජ්ඣත්තතා යනු උපේක්ෂාවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, තත්‍රමජ්ඣත්තතා යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
+        { id: 35, name: "කායපස්සද්ධි", nameEn: "Bodily Tranquility (Kayapassaddhi)", category: "සෝබන", categoryEn: "Beautiful", description: "කායපස්සද්ධිය - කයේ සන්සුන් බවයි", descriptionEn: "Bodily Tranquility - calmness of body", detailedExplanation: "කායපස්සද්ධිය යනු කයේ සන්සුන් බවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, කායපස්සද්ධිය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, කායපස්සද්ධිය යනු කයේ සන්සුන් බවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, කායපස්සද්ධිය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
+        { id: 36, name: "චිත්තපස්සද්ධි", nameEn: "Mental Tranquility (Cittapassaddhi)", category: "සෝබන", categoryEn: "Beautiful", description: "චිත්තපස්සද්ධිය - සිතේ සන්සුන් බවයි", descriptionEn: "Mental Tranquility - calmness of mind", detailedExplanation: "චිත්තපස්සද්ධිය යනු සිතේ සන්සුන් බවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, චිත්තපස්සද්ධිය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, චිත්තපස්සද්ධිය යනු සිතේ සන්සුන් බවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, චිත්තපස්සද්ධිය යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
+        { id: 37, name: "කායලහුතා", nameEn: "Bodily Lightness (Kayalahuta)", category: "සෝබන", categoryEn: "Beautiful", description: "කායලහුතාව - කයේ සැහැල්ලු බවයි", descriptionEn: "Bodily Lightness - lightness of body", detailedExplanation: "කායලහුතාව යනු කයේ සැහැල්ලු බවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, කායලහුතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, කායලහුතාව යනු කයේ සැහැල්ලු බවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, කායලහුතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
+        { id: 38, name: "චිත්තලහුතා", nameEn: "Mental Lightness (Cittalahuta)", category: "සෝබන", categoryEn: "Beautiful", description: "චිත්තලහුතාව - සිතේ සැහැල්ලු බවයි", descriptionEn: "Mental Lightness - lightness of mind", detailedExplanation: "චිත්තලහුතාව යනු සිතේ සැහැල්ලු බවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, චිත්තලහුතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, චිත්තලහුතාව යනු සිතේ සැහැල්ලු බවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, චිත්තලහුතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
+        { id: 39, name: "කායමුදුතා", nameEn: "Bodily Malleability (Kayamuduta)", category: "සෝබන", categoryEn: "Beautiful", description: "කායමුදුතාව - කයේ මෘදු බවයි", descriptionEn: "Bodily Malleability - softness of body", detailedExplanation: "කායමුදුතාව යනු කයේ මෘදු බවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, කායමුදුතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, කායමුදුතාව යනු කයේ මෘදු බවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, කායමුදුතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
+        { id: 40, name: "චිත්තමුදුතා", nameEn: "Mental Malleability (Cittamuduta)", category: "සෝබන", categoryEn: "Beautiful", description: "චිත්තමුදුතාව - සිතේ මෘදු බවයි", descriptionEn: "Mental Malleability - softness of mind", detailedExplanation: "චිත්තමුදුතාව යනු සිතේ මෘදු බවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, චිත්තමුදුතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, චිත්තමුදුතාව යනු සිතේ මෘදු බවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, චිත්තමුදුතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
+        { id: 41, name: "කායකම්මඤ්ඤතා", nameEn: "Bodily Workability (Kayakammannata)", category: "සෝබන", categoryEn: "Beautiful", description: "කායකම්මඤ්ඤතාව - කයේ කර්මාන්‍ය බවයි", descriptionEn: "Bodily Workability - workability of body", detailedExplanation: "කායකම්මඤ්ඤතාව යනු කයේ කර්මාන්‍ය බවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, කායකම්මඤ්ඤතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, කායකම්මඤ්ඤතාව යනු කයේ කර්මාන්‍ය බවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, කායකම්මඤ්ඤතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
+        { id: 42, name: "චිත්තකම්මඤ්ඤතා", nameEn: "Mental Workability (Cittakammannata)", category: "සෝබන", categoryEn: "Beautiful", description: "චිත්තකම්මඤ්ඤතාව - සිතේ කර්මාන්‍ය බවයි", descriptionEn: "Mental Workability - workability of mind", detailedExplanation: "චිත්තකම්මඤ්ඤතාව යනු සිතේ කර්මාන්‍ය බවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, චිත්තකම්මඤ්ඤතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, චිත්තකම්මඤ්ඤතාව යනු සිතේ කර්මාන්‍ය බවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, චිත්තකම්මඤ්ඤතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
+        { id: 43, name: "කායපාගුඤ්ඤතා", nameEn: "Bodily Proficiency (Kayapagunnata)", category: "සෝබන", categoryEn: "Beautiful", description: "කායපාගුඤ්ඤතාව - කයේ ප්‍රගුණ බවයි", descriptionEn: "Bodily Proficiency - proficiency of body", detailedExplanation: "කායපාගුඤ්ඤතාව යනු කයේ ප්‍රගුණ බවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, කායපාගුඤ්ඤතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, කායපාගුඤ්ඤතාව යනු කයේ ප්‍රගුණ බවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, කායපාගුඤ්ඤතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
+        { id: 44, name: "චිත්තපාගුඤ්ඤතා", nameEn: "Mental Proficiency (Cittapagunnata)", category: "සෝබන", categoryEn: "Beautiful", description: "චිත්තපාගුඤ්ඤතාව - සිතේ ප්‍රගුණ බවයි", descriptionEn: "Mental Proficiency - proficiency of mind", detailedExplanation: "චිත්තපාගුඤ්ඤතාව යනු සිතේ ප්‍රගුණ බවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, චිත්තපාගුඤ්ඤතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, චිත්තපාගුඤ්ඤතාව යනු සිතේ ප්‍රගුණ බවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, චිත්තපාගුඤ්ඤතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
+        { id: 45, name: "කායුජුකතා", nameEn: "Rectitude of mental body (Kayujukata)", category: "සෝබන", categoryEn: "Beautiful", description: "කායුජුකතා - චෛතසික කාය සහ චිත්තයේ ඍජු බව", descriptionEn: "Uprightness of mental body", detailedExplanation: "කායුජුකතා යනු චෛතසික කාය සහ චිත්තයේ ඍජු බවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, කායුජුකතා යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, කායුජුකතා යනු සෘජු බවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, කායුජුකතා යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
+        { id: 46, name: "චිත්තුජුකතා", nameEn: "Rectitude of consciousness (Cittujukata)", category: "සෝබන", categoryEn: "Beautiful", description: "චිත්තුජුකතා - චෛතසික කාය සහ චිත්තයේ ඍජු බව", descriptionEn: "Uprightness of consciousness", detailedExplanation: "චිත්තුජුකතා යනු චෛතසික කාය සහ චිත්තයේ ඍජු බවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, චිත්තුජුකතා යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, චිත්තුජුකතා යනු සෘජු බවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, චිත්තුජුකතා යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
+        { id: 47, name: "සම්මාවාචා", nameEn: "Right Speech (Sammavaca)", category: "සෝබන", categoryEn: "Beautiful", description: "සම්මාවාචා - නිවැරදි වචන, වචනයෙන් පව් වැළැකීම", descriptionEn: "Right Speech - abstaining from wrong speech", detailedExplanation: "සම්මාවාචා යනු නිවැරදි වචන කතා කිරීමයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, සම්මාවාචා යනු විරති චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, සම්මාවාචා යනු බොරු කීම, කේලම් කීම, පරුෂ වචන කීම සහ සම්ප්‍රලාප දෙඩීම යන හතරෙන් වැළකීමයි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
+        { id: 48, name: "සම්මාකම්මන්ත", nameEn: "Right Action (Sammakammanta)", category: "සෝබන", categoryEn: "Beautiful", description: "සම්මාකම්මන්ත - නිවැරදි ක්‍රියා, කායකර්මයෙන් පව් වැළැකීම", descriptionEn: "Right Action - abstaining from wrong action", detailedExplanation: "සම්මාකම්මන්ත යනු නිවැරදි ක්‍රියා කිරීමයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, සම්මාවාචා යනු විරති චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, සම්මාකම්මන්ත යනු සතුන් මැරීම, සොරකම් කිරීම සහ කාමයේ වරදවා හැසිරීම යන තුනෙන් වැළකීමයි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
+        { id: 49, name: "සම්මාආජීව", nameEn: "Right Livelihood (Sammaajiva)", category: "සෝබන", categoryEn: "Beautiful", description: "සම්මාආජීව - නිවැරදි ජීවනෝපාය", descriptionEn: "Right Livelihood - abstaining from wrong livelihood", detailedExplanation: "සම්මාආජීව යනු නිවැරදි ජීවනෝපායයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, සම්මාආජීව යනු විරති චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, සම්මාආජීව යනු වෙළඳාම් පහෙන් සහ වැරදි ජීවනෝපායන්ගෙන් වැළකීමයි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය" },
+        { id: 50, name: "කරුණා", nameEn: "Compassion (Karuna)", category: "සෝබන", categoryEn: "Beautiful", description: "කරුණාව - කරුණාවයි", descriptionEn: "Compassion - sympathy for others' suffering", detailedExplanation: "කරුණාව යනු කරුණාවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, කරුණාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, කරුණාව යනු අනුන්ගේ දුක්ඛය කෙරෙහි කරුණාවයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, කරුණාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. අභිධර්ම මාර්ගයේ දක්වා ඇති පරිදි, කරුණාව යනු අප්පමාඤ්ඤාවකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය, අභිධර්ම මාර්ගය" },
+        { id: 51, name: "මුදිතා", nameEn: "Appreciative Joy (Mudita)", category: "සෝබන", categoryEn: "Beautiful", description: "මුදිතාව - මුදිතාවයි", descriptionEn: "Appreciative Joy - joy in others' success", detailedExplanation: "මුදිතාව යනු මුදිතාවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, මුදිතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, මුදිතාව යනු අනුන්ගේ සම්පත්තිය කෙරෙහි සතුටයි. කෙලෙස් එකදහස් පන්සියයේ දක්වා ඇති පරිදි, මුදිතාව යනු සෝබන චිත්තයන්හි පවතින චෛතසිකයකි. අභිධර්ම මාර්ගයේ දක්වා ඇති පරිදි, මුදිතාව යනු අප්පමාඤ්ඤාවකි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය, අභිධර්ම මාර්ගය" },
+        { id: 52, name: "පඤ්ඤා", nameEn: "Wisdom (Panna)", category: "සෝබන", categoryEn: "Beautiful", description: "පඤ්ඤා - ප්‍රඥාවයි", descriptionEn: "Wisdom - understanding and insight", detailedExplanation: "පඤ්ඤා යනු ප්‍රඥාවයි. ත්‍රිපිටකයේ අභිධර්ම පිටකයේ දක්වා ඇති පරිදි, පඤ්ඤා යනු සෝබන චිත්තයන්හි අනිවාර්යයෙන්ම නොපවතින නමුත්, ඤාණ සම්ප්‍රයුක්ත චිත්තවල පවතින චෛතසිකයකි. රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථයන්හි දක්වා ඇති පරිදි, පඤ්ඤා යනු අමෝහයයි.", bookReference: "ත්‍රිපිටකය - අභිධර්ම පිටකය, රේනුකානේ චන්දවිමල හිමිගේ ග්‍රන්ථ, කෙලෙස් එකදහස් පන්සියය, අභිධර්ම මාර්ගය" }
     ],
-    
+
     // Chaithasika associations with different cittas
     associations: {
-        1: [1, 2, 3, 4, 5, 6, 7], // සාධාරණ චෛතසික
-        2: [1, 2, 3, 4, 5, 6, 7],
-        3: [1, 2, 3, 4, 5, 6, 7],
-        4: [1, 2, 3, 4, 5, 6, 7],
-        5: [1, 2, 3, 4, 5, 6, 7, 14, 15, 16, 17], // අකුසල් චිත්ත
-        6: [1, 2, 3, 4, 5, 6, 7, 14, 15, 16, 17],
-        7: [1, 2, 3, 4, 5, 6, 7, 14, 15, 16, 17],
-        8: [1, 2, 3, 4, 5, 6, 7, 14, 15, 16, 17],
-        9: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], // රූපාවචර චිත්ත
-        10: [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12],
-        11: [1, 2, 3, 4, 5, 6, 7, 10, 11, 12],
-        12: [1, 2, 3, 4, 5, 6, 7, 11, 12],
-        13: [1, 2, 3, 4, 5, 6, 7, 12],
-        14: [1, 2, 3, 4, 5, 6, 7, 12], // අරූපාවචර චිත්ත
-        15: [1, 2, 3, 4, 5, 6, 7, 12],
-        16: [1, 2, 3, 4, 5, 6, 7, 12],
-        17: [1, 2, 3, 4, 5, 6, 7, 12],
-        18: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], // ලෝකෝත්තර චිත්ත
-        19: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-        20: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-        21: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-        22: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-        23: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-        24: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-        25: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+        1: [1, 2, 3, 4, 5, 6, 7, 14, 15, 16, 17, 18, 19], // අකුසල් - ලෝභ
+        2: [1, 2, 3, 4, 5, 6, 7, 8, 9, 14, 15, 16, 17, 18, 19, 25, 26], // අකුසල් - ලෝභ (සසංස්කාරික)
+        3: [1, 2, 3, 4, 5, 6, 7, 14, 15, 16, 17, 18], // අකුසල් - ලෝභ (දිට්ඨි විප්)
+        4: [1, 2, 3, 4, 5, 6, 7, 8, 9, 14, 15, 16, 17, 18, 25, 26], // අකුසල් - ලෝභ (දිට්ඨි විප්, සසං)
+        5: [1, 2, 3, 4, 5, 6, 7, 14, 15, 16, 17, 18, 19], // අකුසල් - ලෝභ (උපේක්ෂා)
+        6: [1, 2, 3, 4, 5, 6, 7, 8, 9, 14, 15, 16, 17, 18, 19, 25, 26], // අකුසල් - ලෝභ (උපේක්ෂා, සසං)
+        7: [1, 2, 3, 4, 5, 6, 7, 14, 15, 16, 17, 18], // අකුසල් - ලෝභ (උපේක්ෂා, දිට්ඨි විප්)
+        8: [1, 2, 3, 4, 5, 6, 7, 8, 9, 14, 15, 16, 17, 18, 25, 26], // අකුසල් - ලෝභ (උපේක්ෂා, දිට්ඨි විප්, සසං)
+        9: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 16, 17, 21, 22, 23, 24], // අකුසල් - ද්වේශ
+        10: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 16, 17, 21, 22, 23, 24, 25, 26], // අකුසල් - ද්වේශ (සසං)
+        11: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 16, 17, 27], // අකුසල් - මෝහ (විචිකිච්ඡා)
+        12: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 16, 17, 17], // අකුසල් - මෝහ (උද්ධච්ච)
+        13: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52], // කුසල් - ඤාණ සම් (38)
+        14: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52], // කුසල් - ඤාණ සම් (සසං)
+        15: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51], // කුසල් - ඤාණ විප් (37)
+        16: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51], // කුසල් - ඤාණ විප් (සසං)
+        17: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52], // කුසල් - උපේක්ෂා ඤාණ සම් (37) - No Piti (12)
+        18: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52], // කුසල් - උපේක්ෂා (සසං)
+        19: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51], // කුසල් - උපේක්ෂා ඤාණ විප් (36) - No Piti, No Panna
+        20: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51], // කුසල් - උපේක්ෂා ඤාණ විප් (සසං)
+        21: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 50, 51, 52], // රූප - 1st Jhana (35) - No Virati
+        22: [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 50, 51, 52], // රූප - 2nd Jhana (34) - No Vitakka (8)
+        23: [1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 50, 51, 52], // රූප - 3rd Jhana (33) - No Vitakka, Vicara (9)
+        24: [1, 2, 3, 4, 5, 6, 7, 10, 11, 13, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 50, 51, 52], // රූප - 4th Jhana (32) - No Piti (12)
+        25: [1, 2, 3, 4, 5, 6, 7, 10, 11, 13, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 52] // රූප - 5th Jhana (30) - No Appamanna (50, 51) in Upekkha Jhana
     }
 };
 
@@ -234,7 +234,7 @@ const comparisonTableBody = document.getElementById('comparisonTableBody');
 const languageSwitcher = document.getElementById('languageSwitcher');
 
 // Initialize the application
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     initializeNavigation();
     populateTable();
     populateSelectionGrid();
@@ -247,20 +247,20 @@ document.addEventListener('DOMContentLoaded', function() {
 function initializeNavigation() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
-    
-    hamburger.addEventListener('click', function() {
+
+    hamburger.addEventListener('click', function () {
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
     });
-    
+
     // Close mobile menu when clicking on a link
     document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function() {
+        link.addEventListener('click', function () {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
         });
     });
-    
+
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -279,46 +279,46 @@ function initializeNavigation() {
 // Populate the main data table
 function populateTable() {
     tableBody.innerHTML = '';
-    
+
     filteredData.forEach(citta => {
         const row = document.createElement('tr');
         const displayName = currentLanguage === 'si' ? citta.name : (citta.nameEn || citta.name);
         const displayCategory = currentLanguage === 'si' ? citta.category : (citta.categoryEn || citta.category);
         const displayType = currentLanguage === 'si' ? citta.type : (citta.typeEn || citta.type);
-        
-        const displayDescription = currentLanguage === 'si' ? 
-            (citta.descriptionSi || citta.description || citta.name) : 
+
+        const displayDescription = currentLanguage === 'si' ?
+            (citta.descriptionSi || citta.description || citta.name) :
             (citta.descriptionEn || citta.description || citta.nameEn);
-        
+
         // Create row elements properly to avoid HTML injection issues
         const idCell = document.createElement('td');
         idCell.textContent = citta.id;
-        
+
         const nameCell = document.createElement('td');
         nameCell.textContent = displayName;
-        
+
         const categoryCell = document.createElement('td');
         const categoryBadge = document.createElement('span');
         const categoryClass = (citta.categoryEn || citta.category).toLowerCase().replace(/\s+/g, '-');
         categoryBadge.className = `category-badge category-${categoryClass}`;
         categoryBadge.textContent = displayCategory;
         categoryCell.appendChild(categoryBadge);
-        
+
         const typeCell = document.createElement('td');
         typeCell.textContent = displayType;
-        
+
         const descCell = document.createElement('td');
         descCell.textContent = displayDescription;
-        
+
         const actionCell = document.createElement('td');
         const viewBtn = document.createElement('button');
         viewBtn.className = 'view-details-btn';
         viewBtn.setAttribute('data-citta-id', citta.id);
         viewBtn.title = currentLanguage === 'si' ? 'විස්තර බලන්න' : 'View Details';
         viewBtn.innerHTML = '<i class="fas fa-eye"></i> <span data-si="විස්තර" data-en="View">විස්තර</span>';
-        
+
         actionCell.appendChild(viewBtn);
-        
+
         row.appendChild(idCell);
         row.appendChild(nameCell);
         row.appendChild(categoryCell);
@@ -327,7 +327,7 @@ function populateTable() {
         row.appendChild(actionCell);
         row.style.cursor = 'pointer';
         // Allow entire row to open details on mobile/tablet
-        row.addEventListener('click', function(e) {
+        row.addEventListener('click', function (e) {
             // avoid double-triggering when actual button clicked
             if (e.target.closest('button')) {
                 return;
@@ -339,14 +339,14 @@ function populateTable() {
 
         // Add click handler to the button - this takes priority
         if (viewBtn) {
-            viewBtn.addEventListener('click', function(e) {
+            viewBtn.addEventListener('click', function (e) {
                 e.preventDefault();
                 e.stopPropagation();
                 e.stopImmediatePropagation();
-                
+
                 const cittaId = parseInt(this.getAttribute('data-citta-id') || citta.id);
                 console.log('View details button clicked for citta:', cittaId);
-                
+
                 // For cittas 1-3, use new detailed pages
                 if (cittaId === 1) {
                     console.log('Navigating to citta-1-detailed-page.html');
@@ -799,9 +799,9 @@ function populateTable() {
                 return false;
             }, true); // Use capture phase to ensure it fires first
         }
-        
+
         // Also make entire row clickable - but show modal popup instead
-        row.addEventListener('click', function(e) {
+        row.addEventListener('click', function (e) {
             // Only trigger if not clicking the button itself
             if (!e.target.closest('.view-details-btn')) {
                 // Show modal with cetasika details
@@ -814,7 +814,7 @@ function populateTable() {
                 }
             }
         });
-        
+
         tableBody.appendChild(row);
     });
 }
@@ -826,24 +826,24 @@ window.populateTable = populateTable;
 // Populate the selection grid for comparison
 function populateSelectionGrid() {
     selectionGrid.innerHTML = '';
-    
+
     meditationData.cittas.forEach(citta => {
         const item = document.createElement('div');
         item.className = 'selection-item';
         item.dataset.cittaId = citta.id;
-        
+
         const displayName = currentLanguage === 'si' ? citta.name : (citta.nameEn || citta.name);
         const displayCategory = currentLanguage === 'si' ? citta.category : (citta.categoryEn || citta.category);
-        
+
         item.innerHTML = `
             <div class="citta-name">${displayName}</div>
             <div class="citta-category">${displayCategory}</div>
         `;
-        
-        item.addEventListener('click', function() {
+
+        item.addEventListener('click', function () {
             toggleCittaSelection(citta.id, this);
         });
-        
+
         selectionGrid.appendChild(item);
     });
 }
@@ -851,7 +851,7 @@ function populateSelectionGrid() {
 // Toggle citta selection for comparison
 function toggleCittaSelection(cittaId, element) {
     const index = selectedCittas.indexOf(cittaId);
-    
+
     if (index > -1) {
         // Remove from selection
         selectedCittas.splice(index, 1);
@@ -866,7 +866,7 @@ function toggleCittaSelection(cittaId, element) {
             return;
         }
     }
-    
+
     updateComparison();
 }
 
@@ -876,38 +876,38 @@ function updateComparison() {
         comparisonResults.style.display = 'none';
         return;
     }
-    
+
     comparisonResults.style.display = 'block';
-    
+
     // Create header row
     const headerRow = document.createElement('tr');
     headerRow.innerHTML = '<th>චෛතසිකය</th>';
-    
+
     selectedCittas.forEach(cittaId => {
         const citta = meditationData.cittas.find(c => c.id === cittaId);
         const displayName = currentLanguage === 'si' ? citta.name : (citta.nameEn || citta.name);
         headerRow.innerHTML += `<th>${displayName}</th>`;
     });
-    
+
     comparisonTableBody.innerHTML = '';
     comparisonTableBody.appendChild(headerRow);
-    
+
     // Create data rows for each chaithasika
     meditationData.chaithasikas.forEach(chaithasika => {
         const row = document.createElement('tr');
         const displayName = currentLanguage === 'si' ? chaithasika.name : (chaithasika.nameEn || chaithasika.name);
         row.innerHTML = `<td>${displayName}</td>`;
-        
+
         selectedCittas.forEach(cittaId => {
             const associations = meditationData.associations[cittaId] || [];
             const isPresent = associations.includes(chaithasika.id);
-            
+
             const cell = document.createElement('td');
             cell.textContent = isPresent ? '✓' : '✗';
             cell.className = isPresent ? 'present' : 'absent';
             row.appendChild(cell);
         });
-        
+
         comparisonTableBody.appendChild(row);
     });
 }
@@ -915,9 +915,9 @@ function updateComparison() {
 // Setup event listeners
 function setupEventListeners() {
     // Search functionality
-    searchInput.addEventListener('input', function() {
+    searchInput.addEventListener('input', function () {
         const searchTerm = this.value.toLowerCase();
-        filteredData = meditationData.cittas.filter(citta => 
+        filteredData = meditationData.cittas.filter(citta =>
             citta.name.toLowerCase().includes(searchTerm) ||
             citta.description.toLowerCase().includes(searchTerm) ||
             citta.category.toLowerCase().includes(searchTerm) ||
@@ -925,14 +925,14 @@ function setupEventListeners() {
         );
         populateTable();
     });
-    
+
     // Category filter
-    categoryFilter.addEventListener('change', function() {
+    categoryFilter.addEventListener('change', function () {
         const selectedCategory = this.value;
         if (selectedCategory === '') {
             filteredData = [...meditationData.cittas];
         } else {
-            filteredData = meditationData.cittas.filter(citta => 
+            filteredData = meditationData.cittas.filter(citta =>
                 citta.category === selectedCategory
             );
         }
@@ -962,11 +962,11 @@ function highlightRow(row) {
 }
 
 // Add click handlers to table rows
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     setTimeout(() => {
         const tableRows = document.querySelectorAll('#mainTable tbody tr');
         tableRows.forEach(row => {
-            row.addEventListener('click', function() {
+            row.addEventListener('click', function () {
                 highlightRow(this);
             });
         });
@@ -980,10 +980,10 @@ function exportData() {
         chaithasikas: meditationData.chaithasikas,
         associations: meditationData.associations
     };
-    
+
     const dataStr = JSON.stringify(data, null, 2);
-    const dataBlob = new Blob([dataStr], {type: 'application/json'});
-    
+    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+
     const link = document.createElement('a');
     link.href = URL.createObjectURL(dataBlob);
     link.download = 'buddhist_meditation_data.json';
@@ -991,13 +991,13 @@ function exportData() {
 }
 
 // Add keyboard shortcuts
-document.addEventListener('keydown', function(e) {
+document.addEventListener('keydown', function (e) {
     // Ctrl/Cmd + F to focus search
     if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
         e.preventDefault();
         searchInput.focus();
     }
-    
+
     // Escape to clear search
     if (e.key === 'Escape') {
         searchInput.value = '';
@@ -1007,17 +1007,17 @@ document.addEventListener('keydown', function(e) {
 });
 
 // Add scroll-to-top functionality and navbar scroll behavior
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function () {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const navbar = document.querySelector('.navbar');
-    
+
     // Navbar scroll behavior
     if (scrollTop > 100) {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
     }
-    
+
     // Scroll-to-top button
     if (scrollTop > 300) {
         if (!document.querySelector('.scroll-to-top')) {
@@ -1040,20 +1040,20 @@ window.addEventListener('scroll', function() {
                 transition: transform 0.25s ease, box-shadow 0.25s ease;
             `;
             scrollBtn.setAttribute('aria-label', currentLanguage === 'si' ? 'ඉහළට' : 'Back to top');
-            scrollBtn.addEventListener('mouseenter', function() {
+            scrollBtn.addEventListener('mouseenter', function () {
                 scrollBtn.style.transform = 'translateY(-2px)';
             });
-            scrollBtn.addEventListener('mouseleave', function() {
+            scrollBtn.addEventListener('mouseleave', function () {
                 scrollBtn.style.transform = 'translateY(0)';
             });
-            
-            scrollBtn.addEventListener('click', function() {
+
+            scrollBtn.addEventListener('click', function () {
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth'
                 });
             });
-            
+
             document.body.appendChild(scrollBtn);
         }
     } else {
@@ -1068,22 +1068,22 @@ window.addEventListener('scroll', function() {
 function initializeLanguageSwitcher() {
     // Get the button element - ensure it exists in DOM
     const button = document.getElementById('languageSwitcher');
-    
+
     if (button) {
         // Remove any existing event listeners by replacing onclick
         button.onclick = null;
-        
+
         // Add click event listener with proper event handling
-        button.addEventListener('click', function(e) {
+        button.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
             console.log('Language button clicked, current language:', currentLanguage);
             toggleLanguage();
             return false;
         });
-        
+
         // Also ensure onclick works as backup
-        button.onclick = function(e) {
+        button.onclick = function (e) {
             if (e) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -1091,17 +1091,17 @@ function initializeLanguageSwitcher() {
             toggleLanguage();
             return false;
         };
-        
+
         console.log('Language switcher button initialized successfully');
     } else {
         console.error('Language switcher button not found, retrying...');
         // Retry after a short delay if button not found
-        setTimeout(function() {
+        setTimeout(function () {
             initializeLanguageSwitcher();
         }, 100);
         return;
     }
-    
+
     // Load saved language preference
     const savedLanguage = localStorage.getItem('preferredLanguage');
     if (savedLanguage && (savedLanguage === 'si' || savedLanguage === 'en')) {
@@ -1119,37 +1119,37 @@ function toggleLanguage() {
 function updateLanguage() {
     // Update document language attribute first
     document.documentElement.lang = currentLanguage === 'si' ? 'si' : 'en';
-    
+
     // Update page title
     const title = document.querySelector('title');
     if (title) {
-        title.textContent = currentLanguage === 'si' ? 
-            'අභිධර්මය - චිත්ත චෛතසික මෙවලම' : 
+        title.textContent = currentLanguage === 'si' ?
+            'අභිධර්මය - චිත්ත චෛතසික මෙවලම' :
             'Abhidhamma - Citta Chaithasika Tool';
     }
-    
+
     // Update all elements with data attributes
     const elements = document.querySelectorAll('[data-si], [data-en]');
     elements.forEach(element => {
         const siText = element.getAttribute('data-si');
         const enText = element.getAttribute('data-en');
-        
+
         if (siText && enText) {
             element.textContent = currentLanguage === 'si' ? siText : enText;
         }
     });
-    
+
     // Update placeholders
     const placeholders = document.querySelectorAll('[data-si-placeholder], [data-en-placeholder]');
     placeholders.forEach(element => {
         const siPlaceholder = element.getAttribute('data-si-placeholder');
         const enPlaceholder = element.getAttribute('data-en-placeholder');
-        
+
         if (siPlaceholder && enPlaceholder) {
             element.placeholder = currentLanguage === 'si' ? siPlaceholder : enPlaceholder;
         }
     });
-    
+
     // Update language switcher button text
     const button = document.getElementById('languageSwitcher');
     if (button) {
@@ -1163,17 +1163,17 @@ function updateLanguage() {
     if (scrollBtn) {
         scrollBtn.setAttribute('aria-label', currentLanguage === 'si' ? 'ඉහළට' : 'Back to top');
     }
-    
+
     // Update all dynamic content
     updateTableWithTranslations();
     updateSelectionGridWithTranslations();
     updateComparisonWithTranslations();
     updateExplanationsWithTranslations();
     updateAnalysisWithTranslations();
-    
+
     // Update any dynamically generated content
     updateDynamicContent();
-    
+
     // Clean up broken HTML if term definitions system is available
     if (window.termDefinitionsSystem && typeof window.termDefinitionsSystem.cleanupBrokenHTML === 'function') {
         window.termDefinitionsSystem.cleanupBrokenHTML();
@@ -1192,7 +1192,7 @@ function updateTableWithTranslations() {
             header.textContent = currentLanguage === 'si' ? siText : enText;
         }
     });
-    
+
     // Update search placeholder
     if (searchInput) {
         const siPlaceholder = searchInput.getAttribute('data-si-placeholder');
@@ -1201,7 +1201,7 @@ function updateTableWithTranslations() {
             searchInput.placeholder = currentLanguage === 'si' ? siPlaceholder : enPlaceholder;
         }
     }
-    
+
     // Update filter options
     const filterOptions = document.querySelectorAll('#categoryFilter option');
     filterOptions.forEach(option => {
@@ -1211,7 +1211,7 @@ function updateTableWithTranslations() {
             option.textContent = currentLanguage === 'si' ? siText : enText;
         }
     });
-    
+
     // Repopulate the table with translated content
     populateTable();
 }
@@ -1225,7 +1225,7 @@ function updateSelectionGridWithTranslations() {
         if (citta) {
             const cittaName = item.querySelector('.citta-name');
             const cittaCategory = item.querySelector('.citta-category');
-            
+
             if (cittaName) {
                 cittaName.textContent = currentLanguage === 'si' ? citta.name : citta.nameEn;
             }
@@ -1246,7 +1246,7 @@ function updateComparisonWithTranslations() {
             header.textContent = currentLanguage === 'si' ? siText : enText;
         }
     });
-    
+
     // Update comparison results if they exist
     if (selectedCittas.length > 0) {
         updateComparison();
@@ -1268,7 +1268,7 @@ function updateAnalysisWithTranslations() {
         const title = card.querySelector('h3');
         const subtitle = card.querySelector('p');
         const details = card.querySelector('.analysis-details p');
-        
+
         if (title) {
             const siText = title.getAttribute('data-si');
             const enText = title.getAttribute('data-en');
@@ -1276,7 +1276,7 @@ function updateAnalysisWithTranslations() {
                 title.textContent = currentLanguage === 'si' ? siText : enText;
             }
         }
-        
+
         if (subtitle) {
             const siText = subtitle.getAttribute('data-si');
             const enText = subtitle.getAttribute('data-en');
@@ -1284,7 +1284,7 @@ function updateAnalysisWithTranslations() {
                 subtitle.textContent = currentLanguage === 'si' ? siText : enText;
             }
         }
-        
+
         if (details) {
             const siText = details.getAttribute('data-si');
             const enText = details.getAttribute('data-en');
@@ -1305,7 +1305,7 @@ function updateDynamicContent() {
             alert.textContent = currentLanguage === 'si' ? siText : enText;
         }
     });
-    
+
     // Update button texts
     const buttons = document.querySelectorAll('button');
     buttons.forEach(button => {

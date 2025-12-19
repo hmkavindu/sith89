@@ -404,6 +404,7 @@ window.sobanaCetasikaDeepContent['මුදිතාව'] = window.sobanaCetasik
 // Panna aliases
 window.sobanaCetasikaDeepContent['ප්‍රඥාව'] = window.sobanaCetasikaDeepContent['පඤ්ඤින්ද්‍රිය'];
 window.sobanaCetasikaDeepContent['ප්‍රඥාව (අමෝහය)'] = window.sobanaCetasikaDeepContent['පඤ්ඤින්ද්‍රිය'];
+window.sobanaCetasikaDeepContent['පඤ්ඤා'] = window.sobanaCetasikaDeepContent['පඤ්ඤින්ද්‍රිය'];
 
 // Make it globally accessible
 window.getSobanaCetasikaDeepContent = function (cetasikaName) {
