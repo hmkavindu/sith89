@@ -28,9 +28,9 @@ async function loadCittaDetailedContent() {
 // Render the page
 async function renderCittaDetailPage() {
     currentCittaId = getCittaIdFromURL();
-    
+
     await loadCittaDetailedContent();
-    
+
     if (!cittaDetailedData) {
         document.getElementById('sectionsContainer').innerHTML = `
             <div class="content-box red">
@@ -39,9 +39,9 @@ async function renderCittaDetailPage() {
         `;
         return;
     }
-    
+
     const citta = cittaDetailedData.cittas.find(c => c.id === currentCittaId);
-    
+
     if (!citta) {
         document.getElementById('sectionsContainer').innerHTML = `
             <div class="content-box red">
@@ -50,70 +50,70 @@ async function renderCittaDetailPage() {
         `;
         return;
     }
-    
+
     // Update page title and header
     document.title = `${citta.name} - අභිධර්මය`;
     document.getElementById('cittaName').textContent = citta.name;
-    
+
     // Render all sections
     const container = document.getElementById('sectionsContainer');
     container.innerHTML = '';
-    
+
     // Level 1: Simple
     if (citta.levels.level1_simple) {
         container.appendChild(createLevel1Section(citta.levels.level1_simple));
     }
-    
+
     // Level 2: Word Analysis
     if (citta.levels.level2_wordAnalysis) {
         container.appendChild(createLevel2Section(citta.levels.level2_wordAnalysis));
     }
-    
+
     // Level 3: Classification
     if (citta.levels.level3_classification) {
         container.appendChild(createLevel3Section(citta.levels.level3_classification));
     }
-    
+
     // Level 4: Cetasikas
     if (citta.levels.level4_cetasikas) {
         container.appendChild(createLevel4Section(citta.levels.level4_cetasikas));
     }
-    
+
     // Level 5: Causes
     if (citta.levels.level5_causes) {
         container.appendChild(createLevel5Section(citta.levels.level5_causes));
     }
-    
+
     // Level 6: Deep Analysis
     if (citta.levels.level6_deepAnalysis) {
         container.appendChild(createLevel6Section(citta.levels.level6_deepAnalysis));
     }
-    
+
     // Level 7: Results & Remedies
     if (citta.levels.level7_resultsRemedies) {
         container.appendChild(createLevel7Section(citta.levels.level7_resultsRemedies));
     }
-    
+
     // Level 8: Technical
     if (citta.levels.level8_technical) {
         container.appendChild(createLevel8Section(citta.levels.level8_technical));
     }
-    
+
     // Add practical examples
     if (citta.levels.practicalExamples) {
         container.appendChild(createExamplesSection(citta.levels.practicalExamples));
     }
-    
+
     // Add comparison table
     if (citta.levels.comparison) {
         container.appendChild(createComparisonSection(citta.levels.comparison));
     }
-    
+
     // Add final message
     if (citta.levels.finalMessage) {
         container.appendChild(createFinalMessageSection(citta.levels.finalMessage));
     }
-    
+
     // Setup collapsible sections
     setupCollapsibleSections();
 }
@@ -121,7 +121,7 @@ async function renderCittaDetailPage() {
 function createSectionCard(level) {
     const card = document.createElement('div');
     card.className = 'section-card';
-    
+
     const header = document.createElement('div');
     header.className = `section-header ${level.color}`;
     header.innerHTML = `
@@ -131,19 +131,19 @@ function createSectionCard(level) {
         </div>
         <i class="fas fa-chevron-down"></i>
     `;
-    
+
     const content = document.createElement('div');
     content.className = 'section-content';
-    
+
     card.appendChild(header);
     card.appendChild(content);
-    
+
     return { card, header, content };
 }
 
 function createLevel1Section(level) {
     const { card, header, content } = createSectionCard(level);
-    
+
     content.innerHTML = `
         <div class="content-box green">
             <h3 style="font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">සරල භාෂාවෙන්:</h3>
@@ -160,13 +160,13 @@ function createLevel1Section(level) {
             </div>
         </div>
     `;
-    
+
     return card;
 }
 
 function createLevel2Section(level) {
     const { card, header, content } = createSectionCard(level);
-    
+
     content.innerHTML = `
         <div class="content-box blue">
             <h3 style="font-weight: 700; margin-bottom: 1rem;">සෑම වචනයක් තනි තනිව:</h3>
@@ -203,13 +203,13 @@ function createLevel2Section(level) {
             `).join('')}
         </div>
     `;
-    
+
     return card;
 }
 
 function createLevel3Section(level) {
     const { card, header, content } = createSectionCard(level);
-    
+
     content.innerHTML = `
         <div class="content-box purple">
             <h3 style="font-weight: 700; margin-bottom: 1rem;">මෙම සිත අයත් වන්නේ:</h3>
@@ -235,13 +235,13 @@ function createLevel3Section(level) {
             </div>
         </div>
     `;
-    
+
     return card;
 }
 
 function createLevel4Section(level) {
     const { card, header, content } = createSectionCard(level);
-    
+
     content.innerHTML = `
         <div class="content-box orange">
             <h3 style="font-weight: 700; margin-bottom: 1rem;">මෙම සිතෙහි චෛතසික ${level.total}ක් යෙදේ:</h3>
@@ -266,13 +266,13 @@ function createLevel4Section(level) {
             ` : ''}
         </div>
     `;
-    
+
     return card;
 }
 
 function createLevel5Section(level) {
     const { card, header, content } = createSectionCard(level);
-    
+
     content.innerHTML = `
         <div class="content-box red">
             <h3 style="font-weight: 700; margin-bottom: 1rem;">මෙම සිත ඇතිවන තත්වයන්:</h3>
@@ -315,13 +315,13 @@ function createLevel5Section(level) {
             ` : ''}
         </div>
     `;
-    
+
     return card;
 }
 
 function createLevel6Section(level) {
     const { card, header, content } = createSectionCard(level);
-    
+
     content.innerHTML = `
         <div class="content-box purple">
             <h3 style="font-weight: 700; margin-bottom: 1rem;">චිත්ත විතානය තුළ තත්වය:</h3>
@@ -382,13 +382,13 @@ function createLevel6Section(level) {
             </div>
         </div>
     `;
-    
+
     return card;
 }
 
 function createLevel7Section(level) {
     const { card, header, content } = createSectionCard(level);
-    
+
     content.innerHTML = `
         <div class="content-box red">
             <h3 style="font-weight: 700; margin-bottom: 1rem; color: #dc2626;">මෙම සිතෙහි අනිෂ්ට විපාක:</h3>
@@ -436,13 +436,13 @@ function createLevel7Section(level) {
             ` : ''}
         </div>
     `;
-    
+
     return card;
 }
 
 function createLevel8Section(level) {
     const { card, header, content } = createSectionCard(level);
-    
+
     content.innerHTML = `
         <div class="content-box blue">
             <h3 style="font-weight: 700; margin-bottom: 1rem;">අභිධර්ම ග්‍රන්ථ සඳහන්:</h3>
@@ -505,14 +505,14 @@ function createLevel8Section(level) {
             </div>
         </div>
     `;
-    
+
     return card;
 }
 
 function createExamplesSection(examples) {
     const card = document.createElement('div');
     card.className = 'section-card';
-    
+
     card.innerHTML = `
         <div class="section-header blue">
             <div class="section-title">
@@ -535,14 +535,14 @@ function createExamplesSection(examples) {
             `).join('')}
         </div>
     `;
-    
+
     return card;
 }
 
 function createComparisonSection(comparison) {
     const card = document.createElement('div');
     card.className = 'section-card';
-    
+
     card.innerHTML = `
         <div class="section-header blue">
             <div class="section-title">
@@ -597,14 +597,14 @@ function createComparisonSection(comparison) {
             ` : ''}
         </div>
     `;
-    
+
     return card;
 }
 
 function createFinalMessageSection(message) {
     const section = document.createElement('div');
     section.className = 'final-message';
-    
+
     section.innerHTML = `
         <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
             <i class="fas fa-heart"></i>
@@ -625,7 +625,7 @@ function createFinalMessageSection(message) {
             </div>
         </div>
     `;
-    
+
     return section;
 }
 
@@ -633,10 +633,10 @@ function createFinalMessageSection(message) {
 function setupCollapsibleSections() {
     const headers = document.querySelectorAll('.section-header');
     headers.forEach(header => {
-        header.addEventListener('click', function() {
+        header.addEventListener('click', function () {
             const content = this.nextElementSibling;
             const icon = this.querySelector('.fa-chevron-down, .fa-chevron-up');
-            
+
             if (content.classList.contains('expanded')) {
                 content.classList.remove('expanded');
                 icon.classList.remove('fa-chevron-up');

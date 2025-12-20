@@ -368,7 +368,9 @@ I. සෝබන සාධාරණ චෛතසික 19
 ආසන්නය: සමාධිය.
 
 සංස්කෘත නාමය: ප්‍රඥා, ප්‍රඥානින්ද්‍රිය
-ඉංග්‍රීසි නාමය: Wisdom, Understanding, Insight`
+ඉංග්‍රීසි නාමය: Wisdom, Understanding, Insight
+
+විස්තරය: සිතින් දැන ගන්නවාට වඩා හොඳින් වඩා පිරිසුදු ලෙස වඩා ගැඹුරු ලෙස අරමුණු දක්නා ස්වභාවය ප්‍රඥා චෛතසිකයයි`
 };
 
 // Aliases to match script.js names exactly if they differ

@@ -1,14 +1,21 @@
 ﻿<!DOCTYPE html>
 <html lang="si">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>සෝමනස්ස සහගත ඥාන විප්‍රයුක්ත සසංස්කාරික විපාක චිත්තය - විස්තර</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Noto Sans Sinhala', sans-serif;
             background: radial-gradient(circle at top, #1a0d2e 0%, #2d1b3d 45%, #0f0518 100%);
@@ -16,7 +23,13 @@
             color: #f3e8ff;
             line-height: 1.78;
         }
-        .container { max-width: 1180px; margin: 0 auto; padding: 0 1.5rem 3.5rem; }
+
+        .container {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 1.5rem 3.5rem;
+        }
+
         .back-button {
             display: inline-flex;
             align-items: center;
@@ -31,20 +44,70 @@
             box-shadow: 0 18px 40px rgba(139, 92, 246, 0.45);
             transition: all 0.25s ease;
         }
-        .back-button:hover { transform: translateX(-6px); box-shadow: 0 24px 52px rgba(139, 92, 246, 0.65); }
+
+        .back-button:hover {
+            transform: translateX(-6px);
+            box-shadow: 0 24px 52px rgba(139, 92, 246, 0.65);
+        }
+
         .hero-header {
             background: linear-gradient(135deg, rgba(221, 214, 254, 0.45) 0%, rgba(196, 181, 253, 0.5) 45%, rgba(167, 139, 250, 0.5) 100%);
             border-radius: 1.9rem;
             box-shadow: 0 32px 64px rgba(15, 5, 24, 0.8);
             margin-bottom: 2.5rem;
         }
-        .hero-content { padding: 3.7rem 2.4rem; }
-        .hero-title-section { display: flex; gap: 1.6rem; align-items: center; margin-bottom: 2rem; }
-        .hero-icon { width: 4.1rem; height: 4.1rem; color: #f3e8ff; animation: pulse 3s ease-in-out infinite; }
-        @keyframes pulse { 0%,100% {opacity:1; transform:scale(1);} 50% {opacity:.85; transform:scale(0.95);} }
-        .hero-title { font-size: 2.35rem; font-weight: 800; color: #2d1b3d; line-height: 1.2; }
-        .hero-subtitle { margin-top: 0.75rem; font-size: 1.08rem; color: #3d2a4d; }
-        .hero-badges { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+        .hero-content {
+            padding: 3.7rem 2.4rem;
+        }
+
+        .hero-title-section {
+            display: flex;
+            gap: 1.6rem;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .hero-icon {
+            width: 4.1rem;
+            height: 4.1rem;
+            color: #f3e8ff;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: .85;
+                transform: scale(0.95);
+            }
+        }
+
+        .hero-title {
+            font-size: 2.35rem;
+            font-weight: 800;
+            color: #2d1b3d;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            margin-top: 0.75rem;
+            font-size: 1.08rem;
+            color: #3d2a4d;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
         .hero-badge {
             padding: 0.45rem 1.35rem;
             border-radius: 999px;
@@ -54,6 +117,7 @@
             color: #2d1b3d;
             box-shadow: inset 0 0 0 1px rgba(167, 139, 250, 0.5);
         }
+
         .section-card {
             background: rgba(15, 5, 24, 0.95);
             border-radius: 1.35rem;
@@ -62,6 +126,7 @@
             margin-bottom: 1.7rem;
             overflow: hidden;
         }
+
         .section-header {
             width: 100%;
             padding: 1.25rem 1.9rem;
@@ -73,14 +138,50 @@
             background: linear-gradient(135deg, rgba(196, 181, 253, 0.2) 0%, rgba(167, 139, 250, 0.32) 100%);
             transition: all 0.3s ease;
         }
-        .section-header:hover { background: linear-gradient(135deg, rgba(196, 181, 253, 0.3) 0%, rgba(167, 139, 250, 0.42) 100%); }
-        .section-header.expanded { box-shadow: inset 0 0 0 2px rgba(167, 139, 250, 0.55); }
-        .section-title-content { display: flex; align-items: center; gap: 1.1rem; }
-        .section-icon { width: 1.85rem; height: 1.85rem; color: #ddd6fe; }
-        .section-title { font-size: 1.24rem; font-weight: 700; color: #f3e8ff; }
-        .section-chevron { width: 1.45rem; height: 1.45rem; color: #ddd6fe; transition: transform 0.3s ease; }
-        .section-content { padding: 1.8rem 2rem; background: rgba(10, 3, 18, 0.92); display: none; }
-        .section-content.expanded { display: block; }
+
+        .section-header:hover {
+            background: linear-gradient(135deg, rgba(196, 181, 253, 0.3) 0%, rgba(167, 139, 250, 0.42) 100%);
+        }
+
+        .section-header.expanded {
+            box-shadow: inset 0 0 0 2px rgba(167, 139, 250, 0.55);
+        }
+
+        .section-title-content {
+            display: flex;
+            align-items: center;
+            gap: 1.1rem;
+        }
+
+        .section-icon {
+            width: 1.85rem;
+            height: 1.85rem;
+            color: #ddd6fe;
+        }
+
+        .section-title {
+            font-size: 1.24rem;
+            font-weight: 700;
+            color: #f3e8ff;
+        }
+
+        .section-chevron {
+            width: 1.45rem;
+            height: 1.45rem;
+            color: #ddd6fe;
+            transition: transform 0.3s ease;
+        }
+
+        .section-content {
+            padding: 1.8rem 2rem;
+            background: rgba(10, 3, 18, 0.92);
+            display: none;
+        }
+
+        .section-content.expanded {
+            display: block;
+        }
+
         .content-box {
             padding: 2rem;
             border-radius: 1.35rem;
@@ -89,15 +190,32 @@
             background: rgba(20, 10, 30, 0.88);
             box-shadow: 0 18px 36px rgba(5, 2, 10, 0.78);
         }
-                .content-box.highlight {
+
+        .content-box.highlight {
             background: linear-gradient(135deg, rgba(34, 211, 238, 0.22) 0%, rgba(56, 189, 248, 0.32) 100%);
             border-color: rgba(56, 189, 248, 0.65);
             color: #f2fbff;
             box-shadow: 0 20px 45px rgba(0, 12, 24, 0.65);
         }
-        .grid-2 { display: grid; gap: 1.6rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-        .grid-3 { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-        .badge-list { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+        .grid-2 {
+            display: grid;
+            gap: 1.6rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        }
+
+        .grid-3 {
+            display: grid;
+            gap: 1.1rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+
+        .badge-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
         .badge {
             display: inline-flex;
             align-items: center;
@@ -109,6 +227,7 @@
             font-weight: 600;
             color: #f3e8ff;
         }
+
         .example-card {
             background: rgba(25, 15, 35, 0.92);
             border-radius: 1.15rem;
@@ -118,6 +237,7 @@
             font-size: 1.02rem;
             font-weight: 500;
         }
+
         .summary-section {
             margin-top: 3.4rem;
             background: linear-gradient(135deg, rgba(15, 5, 24, 0.96) 0%, rgba(20, 10, 30, 0.9) 55%, rgba(167, 139, 250, 0.32) 100%);
@@ -126,14 +246,21 @@
             border-radius: 2.2rem;
             box-shadow: 0 36px 72px rgba(5, 2, 10, 0.85);
         }
-        .summary-grid { display: grid; gap: 1.6rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-                .summary-card {
+
+        .summary-grid {
+            display: grid;
+            gap: 1.6rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+
+        .summary-card {
             background: rgba(8, 47, 73, 0.82);
             border: 1px solid rgba(56, 189, 248, 0.4);
             color: #e6f6ff;
             box-shadow: 0 22px 48px rgba(2, 8, 15, 0.65);
         }
-                .summary-highlight {
+
+        .summary-highlight {
             margin-top: 2.4rem;
             text-align: center;
             font-size: 1.6rem;
@@ -145,10 +272,24 @@
             color: #f0faff;
             box-shadow: 0 24px 52px rgba(0, 8, 16, 0.7);
         }
-        .footer-section { margin-top: 3.4rem; text-align: center; color: #ddd6fe; }
-        .footer-title { font-size: 3rem; font-weight: 800; }
-        .footer-text { font-size: 1.2rem; margin-top: 1rem; }
-                .footer-note {
+
+        .footer-section {
+            margin-top: 3.4rem;
+            text-align: center;
+            color: #ddd6fe;
+        }
+
+        .footer-title {
+            font-size: 3rem;
+            font-weight: 800;
+        }
+
+        .footer-text {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .footer-note {
             margin-top: 2rem;
             padding: 1.4rem;
             border-radius: 1.25rem;
@@ -158,20 +299,51 @@
             box-shadow: 0 30px 60px rgba(0, 5, 12, 0.85);
             font-weight: 600;
         }
-        ul { list-style: none; }
-        ul li { position: relative; padding-left: 1.35rem; margin-bottom: 0.6rem; }
-        ul li::before { content: '•'; position: absolute; left: 0; color: #a78bfa; font-weight: 800; }
-        @media (max-width: 768px) {
-            .hero-title { font-size: 1.9rem; }
-            .hero-content { padding: 2.8rem 1.7rem; }
-            .section-content { padding: 1.45rem 1.55rem; }
-            .content-box { padding: 1.65rem; }
-            .summary-section { padding: 2.2rem; }
+
+        ul {
+            list-style: none;
         }
+
+        ul li {
+            position: relative;
+            padding-left: 1.35rem;
+            margin-bottom: 0.6rem;
+        }
+
+        ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #a78bfa;
+            font-weight: 800;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 1.9rem;
+            }
+
+            .hero-content {
+                padding: 2.8rem 1.7rem;
+            }
+
+            .section-content {
+                padding: 1.45rem 1.55rem;
+            }
+
+            .content-box {
+                padding: 1.65rem;
+            }
+
+            .summary-section {
+                padding: 2.2rem;
+            }
+        }
+
         /* Theme Switcher */
         .theme-switcher {
-            background: rgba(255,255,255,0.2);
-            border: 2px solid rgba(255,255,255,0.4);
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.4);
             color: white;
             padding: 10px 15px;
             border-radius: 25px;
@@ -186,8 +358,8 @@
         }
 
         .theme-switcher:hover {
-            background: rgba(255,255,255,0.3);
-            border-color: rgba(255,255,255,0.6);
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.6);
             transform: translateY(-1px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
@@ -213,7 +385,7 @@
 
         body.dark-mode .section-header {
             background: rgba(26, 26, 26, 0.9);
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             color: #e0e0e0;
         }
 
@@ -224,7 +396,7 @@
 
         body.dark-mode .content-box {
             background: rgba(26, 26, 26, 0.9) !important;
-            border-color: rgba(255,255,255,0.2) !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
             color: #e0e0e0 !important;
         }
 
@@ -234,16 +406,17 @@
         }
 
         body.dark-mode .theme-switcher {
-            background: rgba(255,255,255,0.1);
-            border-color: rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
         body.dark-mode .theme-switcher:hover {
-            background: rgba(255,255,255,0.2);
-            border-color: rgba(255,255,255,0.5);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
         }
     </style>
 </head>
+
 <body>
     <!-- Theme Switcher -->
     <button id="themeSwitcher" class="theme-switcher-fixed">
@@ -261,7 +434,8 @@
                     <i class="fas fa-lightbulb hero-icon"></i>
                     <div>
                         <h1 class="hero-title">සෝමනස්ස සහගත ඥාන විප්‍රයුක්ත සසංස්කාරික විපාක චිත්තය</h1>
-                        <p class="hero-subtitle">කුසල කර්මයක වහාම ලබන සුභ විපාක – ඥානයෙන් වෙන්ව (ඥාන විප්‍රයුක්ත) සවුඛ්‍ය සෝමනස්ස සහගත, සසංස්කාරික කාමාවචර විපාක සිත.</p>
+                        <p class="hero-subtitle">කුසල කර්මයක වහාම ලබන සුභ විපාක – ඥානයෙන් වෙන්ව (ඥාන විප්‍රයුක්ත)
+                            සවුඛ්‍ය සෝමනස්ස සහගත, සසංස්කාරික කාමාවචර විපාක සිත.</p>
                     </div>
                 </div>
                 <div class="hero-badges">
@@ -385,7 +559,8 @@
                 <div class="content-box">
                     <p>සෝමනස්ස සහගත ඥාන විප්‍රයුක්ත සසංස්කාරික විපාකයේ චෛතසික 32ක් පවතී.</p>
                     <div class="grid-3" style="margin-top:1.4rem;">
-                        <div class="content-box" style="background: rgba(20,10,30,0.68); border-color: rgba(167,139,250,0.32);">
+                        <div class="content-box"
+                            style="background: rgba(20,10,30,0.68); border-color: rgba(167,139,250,0.32);">
                             <h4 class="mb-2">සබ්බචිත්ත සාධාරණ 7</h4>
                             <div class="badge-list">
                                 <span class="badge">ඵස්ස</span>
@@ -397,21 +572,24 @@
                                 <span class="badge">මනසිකාර</span>
                             </div>
                         </div>
-                        <div class="content-box" style="background: rgba(20,10,30,0.68); border-color: rgba(167,139,250,0.32);">
+                        <div class="content-box"
+                            style="background: rgba(20,10,30,0.68); border-color: rgba(167,139,250,0.32);">
                             <h4 class="mb-2">පකිණ්ණක 13</h4>
                             <ul>
                                 <li>විතක්ක, විචාර, අධිමොක්ඛ, විරිය, පීති, චන්ද</li>
                                 <li>මනසිකාර, විතක්ක, විචාර, විරිය, පීති, චන්ද, අධිමොක්ඛ</li>
                             </ul>
                         </div>
-                        <div class="content-box" style="background: rgba(20,10,30,0.68); border-color: rgba(167,139,250,0.32);">
+                        <div class="content-box"
+                            style="background: rgba(20,10,30,0.68); border-color: rgba(167,139,250,0.32);">
                             <h4 class="mb-2">ඥාන විප්‍රයුක්ත</h4>
                             <div class="badge-list">
                                 <span class="badge">අලෝභ</span>
                                 <span class="badge">අදෝස</span>
                                 <span class="badge">අමෝහ</span>
                             </div>
-                            <p class="text-sm mt-3" style="color:#ddd6fe;">ඥාන විප්‍රයුක්ත බව නිසා ඤාණ චෛතසිකය නැත. සසංස්කාරික බව නිසා යම් යම් ආයාසයකින් උපදින බැවින් අතිරික්ත චෛතසික ඇත.</p>
+                            <p class="text-sm mt-3" style="color:#ddd6fe;">ඥාන විප්‍රයුක්ත බව නිසා ඤාණ චෛතසිකය නැත.
+                                සසංස්කාරික බව නිසා යම් යම් ආයාසයකින් උපදින බැවින් අතිරික්ත චෛතසික ඇත.</p>
                         </div>
                     </div>
                     <div class="content-box highlight" style="margin-top:1.2rem;">
@@ -438,7 +616,8 @@
                 <div class="grid-2">
                     <div class="example-card">
                         <strong>1. දානයක් දීමෙන් පසු</strong><br>
-                        යම් කෙනෙකුට දානයක් දීමෙන් පසු, යම් යම් සංකල්පනයකින් හෝ අතිරේක ආයාසයකින් සතුටු වන අවස්ථාවක මෙය උපදී.
+                        යම් කෙනෙකුට දානයක් දීමෙන් පසු, යම් යම් සංකල්පනයකින් හෝ අතිරේක ආයාසයකින් සතුටු වන අවස්ථාවක මෙය
+                        උපදී.
                     </div>
                     <div class="example-card">
                         <strong>2. සිල් රැකීමෙන් පසු</strong><br>
@@ -467,13 +646,15 @@
                     <ul>
                         <li>විපාක චිත්තයන් කර්මයක් නොකරන බැවින් නව කර්මයක් නොඋපදවයි.</li>
                         <li>කුසල/අකුසල කර්මයන්ගේ පලාඵලයක් ලෙස උපදින අතර, එය අත්විඳීම පමණක් කරයි.</li>
-                        <li>සසංස්කාරික බව නිසා යම් යම් හේතුකරණයකින් හෝ අතිරික්ත ආයාසයකින් උපදින බැවින් අතිරික්ත චෛතසික ඇත.</li>
+                        <li>සසංස්කාරික බව නිසා යම් යම් හේතුකරණයකින් හෝ අතිරික්ත ආයාසයකින් උපදින බැවින් අතිරික්ත චෛතසික
+                            ඇත.</li>
                     </ul>
                     <div class="content-box highlight" style="margin-top:1.3rem;">
                         <h4 class="mb-3">සසංස්කාරික vs අසංස්කාරික</h4>
                         <ul>
                             <li><strong>සසංස්කාරික:</strong> යම් යම් හේතුකරණයකින් හෝ අතිරික්ත ආයාසයකින් උපදින.</li>
-                            <li><strong>අසංස්කාරික:</strong> කිසිදු සංකල්පනයකින් හෝ අතිරේක ආයාසයකින් තොරව ස්වයංක්‍රීයව උදාවක්.</li>
+                            <li><strong>අසංස්කාරික:</strong> කිසිදු සංකල්පනයකින් හෝ අතිරේක ආයාසයකින් තොරව ස්වයංක්‍රීයව
+                                උදාවක්.</li>
                         </ul>
                     </div>
                 </div>
@@ -491,7 +672,9 @@
             </button>
             <div class="section-content" id="content-lvl7">
                 <div class="content-box">
-                    <p>සෝමනස්ස සහගත ඥාන විප්‍රයුක්ත සසංස්කාරික විපාක චිත්තය – කුසල කර්මයක වහාම ලබන සුභ විපාකයකි. ඥාන විප්‍රයුක්ත බව නිසා ඥාණයෙන් වෙන්ව ඇති අතර, ඵලය සරල ආකාරයෙන් අත්විඳිය හැක. සසංස්කාරික බව නිසා යම් යම් හේතුකරණයකින් හෝ අතිරික්ත ආයාසයකින් උපදින බැවින් අතිරික්ත චෛතසික ඇත.</p>
+                    <p>සෝමනස්ස සහගත ඥාන විප්‍රයුක්ත සසංස්කාරික විපාක චිත්තය – කුසල කර්මයක වහාම ලබන සුභ විපාකයකි. ඥාන
+                        විප්‍රයුක්ත බව නිසා ඥාණයෙන් වෙන්ව ඇති අතර, ඵලය සරල ආකාරයෙන් අත්විඳිය හැක. සසංස්කාරික බව නිසා යම්
+                        යම් හේතුකරණයකින් හෝ අතිරික්ත ආයාසයකින් උපදින බැවින් අතිරික්ත චෛතසික ඇත.</p>
                 </div>
             </div>
         </div>
@@ -533,9 +716,9 @@
         </div>
     </div>
 
-            <script>
+    <script>
         // Theme Switcher functionality for Citta Pages
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             initializeThemeSwitcher();
         });
 
@@ -553,7 +736,7 @@
                 }
 
                 // Add click event listener
-                themeButton.addEventListener('click', function(e) {
+                themeButton.addEventListener('click', function (e) {
                     e.preventDefault();
                     toggleTheme();
                 });
@@ -577,14 +760,14 @@
                 localStorage.setItem('preferredTheme', 'dark');
             }
         }
-    </script>            }
+    </script>
 
     <script>
         function toggleSection(level) {
             const content = document.getElementById(`content-${level}`);
             const header = document.getElementById(`header-${level}`);
             const chevron = header.querySelector('.section-chevron');
-            
+
             if (content.classList.contains('expanded')) {
                 content.classList.remove('expanded');
                 header.classList.remove('expanded');
@@ -594,14 +777,9 @@
                 header.classList.add('expanded');
                 chevron.style.transform = 'rotate(180deg)';
             }
-        }        });
+        }
     </script>
     <script src="script.js"></script>
 </body>
+
 </html>
-
-
-
-
-
-

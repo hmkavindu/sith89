@@ -250,9 +250,6 @@ class ExplanationsManager {
         card.appendChild(header);
         card.appendChild(descriptionDiv);
         card.appendChild(detailsDiv);
-        if (referenceDiv) {
-            card.appendChild(referenceDiv);
-        }
 
         // Add deep content section for universal cetasikas
         if (isUniversal && window.getUniversalCetasikaDeepContent) {
@@ -500,6 +497,11 @@ class ExplanationsManager {
                     }
                 });
             }
+        }
+
+        // Add reference links at the bottom of the card
+        if (referenceDiv) {
+            card.appendChild(referenceDiv);
         }
 
         return card;
