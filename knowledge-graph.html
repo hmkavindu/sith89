@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="si">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>අභිධර්ම දැනුම් ජාලය - Knowledge Graph</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#2196f3',
+                primaryTextColor: '#fff',
+                primaryBorderColor: '#1976d2',
+                lineColor: '#757575',
+                secondaryColor: '#ff9800',
+                tertiaryColor: '#1565c0',
+                fontSize: '16px',
+                fontFamily: 'Noto Sans Sinhala, sans-serif'
+            },
+            flowchart: {
+                curve: 'basis',
+                padding: 20
+            }
+        });
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .controls {
+            background: #f5f5f5;
+            padding: 20px 40px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .controls button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            background: #2196f3;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1976d2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4);
+        }
+
+        .btn-secondary {
+            background: #ff9800;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #f57c00;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
+        }
+
+        .btn-outline {
+            background: white;
+            color: #1565c0;
+            border: 2px solid #1565c0;
+        }
+
+        .btn-outline:hover {
+            background: #1565c0;
+            color: white;
+        }
+
+        .graph-container {
+            padding: 40px;
+            background: white;
+            min-height: 600px;
+            overflow-x: auto;
+        }
+
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .legend {
+            background: #f9f9f9;
+            padding: 30px 40px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .legend h3 {
+            color: #1565c0;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .legend-color {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+
+        .legend-color.spine {
+            background: #1565c0;
+            border: 3px solid #0d47a1;
+        }
+
+        .legend-color.major {
+            background: #2196f3;
+            border: 2px solid #1976d2;
+        }
+
+        .legend-color.minor {
+            background: #ff9800;
+            border: 2px solid #f57c00;
+        }
+
+        .legend-text {
+            flex: 1;
+        }
+
+        .legend-text strong {
+            display: block;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .legend-text span {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            margin: 20px 40px;
+            border-radius: 8px;
+        }
+
+        .info-box h4 {
+            color: #1565c0;
+            margin-bottom: 10px;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-box li {
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .info-box li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #2196f3;
+            font-weight: bold;
+        }
+
+        .back-link {
+            text-align: center;
+            padding: 30px;
+            background: #f5f5f5;
+        }
+
+        .back-link a {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #1565c0;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .back-link a:hover {
+            background: #0d47a1;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(21, 101, 192, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            .controls button {
+                width: 100%;
+            }
+
+            .graph-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>අභිධර්ම දැනුම් ජාලය</h1>
+            <p>Abhidhamma Knowledge Graph - සම්පූර්ණ දැනුම් ව්‍යුහය</p>
+        </div>
+
+        <div class="controls">
+            <button class="btn-primary" onclick="resetZoom()">📍 මුල් දර්ශනය</button>
+            <button class="btn-secondary" onclick="showSpineOnly()">🔵 Spine පමණක්</button>
+            <button class="btn-secondary" onclick="showMajorBones()">🔷 Major Bones</button>
+            <button class="btn-secondary" onclick="showAllNodes()">🌐 සියල්ල පෙන්වන්න</button>
+            <button class="btn-outline" onclick="downloadSVG()">💾 Download SVG</button>
+            <button class="btn-outline" onclick="window.location.href='index.html'">🏠 මුල් පිටුවට</button>
+        </div>
+
+        <div class="info-box">
+            <h4>📖 භාවිතා කිරීමේ මාර්ගෝපදේශ</h4>
+            <ul>
+                <li>Graph එකේ node එකක් මත click කරන්න විස්තර බලන්න</li>
+                <li>🔵 නිල් වර්ණය = Spine (මූලික ප්‍රවාහය)</li>
+                <li>🔷 ආකාශ නිල් = Major Bones (ප්‍රධාන කාණ්ඩ)</li>
+                <li>🟠 තැඹිලි = Minor Bones (විස්තර)</li>
+            </ul>
+        </div>
+
+        <div class="graph-container">
+            <div class="mermaid">
+                graph LR
+                %% SPINE
+                index["index.html"]:::spine --> sitha["සිත (චිත්ත)"]:::spine
+                sitha --> sitha_page["sitha-mind-page.html"]:::spine
+                sitha_page --> knowledge["අභිධර්ම දැනුම"]:::spine
+
+                %% BRANCH 1: ත්‍රිවිද්‍යාව
+                sitha --> trivida["ත්‍රිවිද්‍යාව"]:::major
+                trivida --> raga["රාග (ලෝභ)"]:::minor
+                trivida --> dwesha["ද්වේශ (පටිඝ)"]:::minor
+                trivida --> moha["මෝහ (අවිජ්ජා)"]:::minor
+                raga --> raga_page["raga-analysis.html"]:::minor
+                dwesha --> anger_page["anger-analysis.html"]:::minor
+                moha --> moha_page["moha-analysis.html"]:::minor
+
+                %% BRANCH 2: චිත්ත කාණ්ඩ
+                sitha --> citta_cat["චිත්ත කාණ්ඩ"]:::major
+                citta_cat --> kusala["කුසල් චිත්ත"]:::minor
+                citta_cat --> akusala["අකුසල් චිත්ත"]:::minor
+                citta_cat --> vipaka["විපාක චිත්ත"]:::minor
+                citta_cat --> kiriya["ක්‍රියා චිත්ත"]:::minor
+                akusala --> akusala_page["akusala-citta-page.html"]:::minor
+
+                %% BRANCH 3: මෙවලම්
+                sitha --> tools["මෙවලම්"]:::major
+                tools --> table["චිත්ත චෛතසික වගුව"]:::minor
+                tools --> comparison["සංසන්දනය"]:::minor
+                tools --> fishbone["චිත්ත බෙදීම් ජාලය"]:::minor
+
+                %% BRANCH 4: භූමි වර්ග
+                sitha --> bhumi["භූමි වර්ග"]:::major
+                bhumi --> rupavacara["රූපාවචර චිත්ත"]:::minor
+                bhumi --> arupavacara["අරූපාවචර චිත්ත"]:::minor
+                bhumi --> lokuttara["ලෝකෝත්තර චිත්ත"]:::minor
+
+                %% BRANCH 5: චෛතසික 52
+                sitha --> cetasika52["චෛතසික 52"]:::major
+                cetasika52 --> phassa["ඵස්සය"]:::minor
+                cetasika52 --> vedana["වේදනා"]:::minor
+                cetasika52 --> sanna["සංඤ්ඤා"]:::minor
+                cetasika52 --> cetana["චේතනා"]:::minor
+
+                %% BRANCH 6: විස්තර පිටු
+                sitha --> all_cittas["සියලුම චිත්ත"]:::major
+                all_cittas --> citta_idx["citta-index.html"]:::minor
+
+                %% STYLES
+                classDef spine fill:#1565c0,stroke:#0d47a1,stroke-width:4px,color:#fff
+                classDef major fill:#2196f3,stroke:#1976d2,stroke-width:3px,color:#fff
+                classDef minor fill:#ff9800,stroke:#f57c00,stroke-width:2px,color:#fff
+            </div>
+        </div>
+
+        <div class="legend">
+            <h3>සංකේත පැහැදිලි කිරීම (Legend)</h3>
+            <div class="legend-grid">
+                <div class="legend-item">
+                    <div class="legend-color spine"></div>
+                    <div class="legend-text">
+                        <strong>Spine (කොඳු නාරටිය)</strong>
+                        <span>මූලික දැනුම් ප්‍රවාහය</span>
+                    </div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color major"></div>
+                    <div class="legend-text">
+                        <strong>Major Bones (ප්‍රධාන අතු)</strong>
+                        <span>ප්‍රධාන කාණ්ඩ සහ මෙවලම්</span>
+                    </div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color minor"></div>
+                    <div class="legend-text">
+                        <strong>Minor Bones (විස්තර අතු)</strong>
+                        <span>තනි පිටු සහ සංකල්ප</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="back-link">
+            <a href="index.html">← මුල් පිටුවට ආපසු යන්න</a>
+        </div>
+    </div>
+
+    <script>
+        function resetZoom() {
+            location.reload();
+        }
+
+        function showSpineOnly() {
+            alert('Spine nodes: index.html → සිත (චිත්ත) → අභිධර්ම දැනුම');
+        }
+
+        function showMajorBones() {
+            alert('Major categories:\n- ත්‍රිවිද්‍යාව\n- චිත්ත කාණ්ඩ\n- මෙවලම්\n- භූමි වර්ග\n- චෛතසික 52\n- සියලුම චිත්ත');
+        }
+
+        function showAllNodes() {
+            alert('සම්පූර්ණ graph එක දැන්වීම දර්ශනය වේ');
+        }
+
+        function downloadSVG() {
+            const svg = document.querySelector('.mermaid svg');
+            if (svg) {
+                const serializer = new XMLSerializer();
+                const svgStr = serializer.serializeToString(svg);
+                const blob = new Blob([svgStr], { type: 'image/svg+xml' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'abhidhamma-knowledge-graph.svg';
+                link.click();
+                URL.revokeObjectURL(url);
+            }
+        }
+
+        // Add click handlers to nodes
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const nodes = document.querySelectorAll('.mermaid .node');
+                nodes.forEach(node => {
+                    node.style.cursor = 'pointer';
+                    node.addEventListener('click', function () {
+                        const label = this.querySelector('text')?.textContent || 'Unknown';
+                        alert(`Node: ${label}\n\nClick එකකින් විස්තර පිටුවට යන්න`);
+                    });
+                });
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>

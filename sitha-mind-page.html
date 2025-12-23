@@ -1,15 +1,38 @@
 <!DOCTYPE html>
 <html lang="si">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>සිත - අභිධර්මයේ මූලික සිදුවීම</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Malithi+Web:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Iskoola+Pota:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://unpkg.com/cytoscape@3.26.0/dist/cytoscape.min.js"></script>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#2196f3',
+                primaryTextColor: '#fff',
+                primaryBorderColor: '#1976d2',
+                lineColor: '#757575',
+                secondaryColor: '#ff9800',
+                tertiaryColor: '#1565c0',
+                fontSize: '16px',
+                fontFamily: 'Noto Sans Sinhala, sans-serif'
+            },
+            flowchart: {
+                curve: 'basis',
+                padding: 20
+            }
+        });
+    </script>
     <style>
         .mind-hierarchy-container {
             max-width: 1400px;
@@ -17,7 +40,7 @@
             padding: 30px;
             background: white;
             border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
         .mind-hierarchy-header {
@@ -100,7 +123,33 @@
 
         .hierarchy-controls button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .knowledge-graph-section {
+            margin: 50px 0;
+            padding: 40px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .mermaid-container {
+            background: #fafafa;
+            border-radius: 12px;
+            padding: 30px;
+            overflow-x: auto;
+            border: 2px solid #e0e0e0;
+        }
+
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            min-height: 400px;
+        }
+
+        .graph-legend {
+            font-family: 'Noto Sans Sinhala', sans-serif;
         }
 
         .detailed-sections {
@@ -112,7 +161,7 @@
             border-radius: 12px;
             padding: 30px;
             margin-bottom: 30px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             border: 1px solid #e9ecef;
         }
 
@@ -147,7 +196,7 @@
 
         .subdivision-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .subdivision-card h4 {
@@ -197,7 +246,7 @@
         }
 
         .source-link:hover {
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             transform: translateY(-2px);
         }
 
@@ -246,7 +295,7 @@
         }
 
         .tooltip-custom {
-            background: rgba(0,0,0,0.9);
+            background: rgba(0, 0, 0, 0.9);
             color: white;
             padding: 12px 16px;
             border-radius: 8px;
@@ -255,7 +304,7 @@
             position: absolute;
             z-index: 1000;
             max-width: 350px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
         @media (max-width: 768px) {
@@ -282,6 +331,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar">
@@ -299,22 +349,28 @@
                     <a href="index.html" class="nav-link" data-si="මුල් පිටුව" data-en="Home">මුල් පිටුව</a>
                 </li>
                 <li class="nav-item">
-                    <a href="index.html#categories" class="nav-link" data-si="මූලික කාණ්ඩ" data-en="Categories">මූලික කාණ්ඩ</a>
+                    <a href="index.html#categories" class="nav-link" data-si="මූලික කාණ්ඩ" data-en="Categories">මූලික
+                        කාණ්ඩ</a>
                 </li>
                 <li class="nav-item">
-                    <a href="index.html#table" class="nav-link" data-si="චිත්ත වගුව" data-en="Citta Table">චිත්ත වගුව</a>
+                    <a href="index.html#table" class="nav-link" data-si="චිත්ත වගුව" data-en="Citta Table">චිත්ත
+                        වගුව</a>
                 </li>
                 <li class="nav-item">
-                    <a href="kusala-citta-page.html" class="nav-link" data-si="කුසල් සිතුවිලි" data-en="Kusala Citta">කුසල් සිතුවිලි</a>
+                    <a href="kusala-citta-page.html" class="nav-link" data-si="කුසල් සිතුවිලි"
+                        data-en="Kusala Citta">කුසල් සිතුවිලි</a>
                 </li>
                 <li class="nav-item">
-                    <a href="akusala-citta-page.html" class="nav-link" data-si="අකුසල් සිතුවිලි" data-en="Akusala Citta">අකුසල් සිතුවිලි</a>
+                    <a href="akusala-citta-page.html" class="nav-link" data-si="අකුසල් සිතුවිලි"
+                        data-en="Akusala Citta">අකුසල් සිතුවිලි</a>
                 </li>
                 <li class="nav-item">
-                    <a href="citta-index.html" class="nav-link" data-si="සියලුම චිත්ත" data-en="All Cittas">සියලුම චිත්ත</a>
+                    <a href="citta-index.html" class="nav-link" data-si="සියලුම චිත්ත" data-en="All Cittas">සියලුම
+                        චිත්ත</a>
                 </li>
                 <li class="nav-item">
-                    <a href="citta-fishbone-diagram.html" class="nav-link" data-si="චිත්ත බෙදීම් ජාලය" data-en="Citta Division Network">චිත්ත බෙදීම් ජාලය</a>
+                    <a href="citta-fishbone-diagram.html" class="nav-link" data-si="චිත්ත බෙදීම් ජාලය"
+                        data-en="Citta Division Network">චිත්ත බෙදීම් ජාලය</a>
                 </li>
             </ul>
         </div>
@@ -322,12 +378,17 @@
 
     <div class="mind-hierarchy-container">
         <div class="mind-hierarchy-header">
-            <h1 data-si="සිත - අභිධර්මයේ මූලික සිදුවීම" data-en="Citta - Fundamental Principle of Abhidhamma">සිත - අභිධර්මයේ මූලික සිදුවීම</h1>
-            <p data-si="අභිධර්මයේ මූලික සිදුවීම වන සිත පිළිබඳව ගැඹුරින් අධ්‍යනය කරමින් කුසල් සහ අකුසල් සිතුවිලි වල හිරු බෙදීම් අධ්‍යනය කරන්න" data-en="Study the fundamental principle of Abhidhamma - Citta, and analyze the hierarchical divisions of wholesome and unwholesome consciousness">
-                අභිධර්මයේ මූලික සිදුවීම වන සිත පිළිබඳව ගැඹුරින් අධ්‍යනය කරමින් කුසල් සහ අකුසල් සිතුවිලි වල හිරු බෙදීම් අධ්‍යනය කරන්න
+            <h1 data-si="සිත - අභිධර්මයේ මූලික සිදුවීම" data-en="Citta - Fundamental Principle of Abhidhamma">සිත -
+                අභිධර්මයේ මූලික සිදුවීම</h1>
+            <p data-si="සිත සිට පටන් ගෙන පරමාර්ථ ධර්ම 4, චිත්ත වීථිය, චිත්ත 89, චෛතසික 52, රූප 28 දක්වා සියල්ල ආවරණය කරන සම්පූර්ණ network ජාලය"
+                data-en="Complete network from Citta covering පරමාර්ථ ධර්ම 4, Citta Vithi, 89 Cittas, 52 Cetasikas, and 28 Rupas">
+                සිත සිට පටන් ගෙන පරමාර්ථ ධර්ම 4 (චිත්තය, චෛත සික, රූපය, නිබ්බාන), චිත්ත වීථිය (පියවර 17), චිත්ත 89
+                බෙදීම්, චෛතසික 52 සහ රූප 28 දක්වා සියල්ලම සම්බන්ධ කරන අන්තර්ක්‍රියාකාරී network ජාලය
             </p>
             <div style="margin-top: 20px; font-size: 1rem;">
-                <span data-si="🧠 සිතුවිලි කුසල්/අකුසල් බෙදීම් | 🔗 අභිධර්මයට මුළාශ්‍ර සම්බන්ධිත | 📚 ගැඹුරු අධ්‍යනය සඳහා" data-en="🧠 Mind divisions into wholesome/unwholesome | 🔗 Abhidhamma source linked | 📚 For deep study">🧠 සිතුවිලි කුසල්/අකුසල් බෙදීම් | 🔗 අභිධර්මයට මුළාශ්‍ර සම්බන්ධිත | 📚 ගැඹුරු අධ්‍යනය සඳහා</span>
+                <span data-si="🧠 සිත සිට ආරම්භය | 📊 චිත්ත වීථිය (17) | ⚡ පරමාර්ථ ධර්ම 4 | 🔗 එක් ජාලයකට සියලු data"
+                    data-en="🧠 Starting from Citta | 📊 Citta Vithi (17) | ⚡ 4 Ultimate Realities | 🔗 All data in one mesh">🧠
+                    සිත සිට ආරම්භය | 📊 චිත්ත වීථිය (17) | ⚡ පරමාර්ථ ධර්ම 4 | 🔗 එක් ජාලයකට සියලු data</span>
             </div>
         </div>
 
@@ -335,72 +396,198 @@
         <div class="hierarchy-overview">
             <div class="overview-card">
                 <h3 data-si="සිත යනු කුමක්ද?" data-en="What is Citta?">සිත යනු කුමක්ද?</h3>
-                <p data-si="අභිධර්මයේ මූලික සිදුවීම වන සිත යනු මනෝවිඥානධාතු වල මූලාරම්භය වන අත්තනෝ සිදුවීමකි. මෙය මනසේ ඇතිවන සියලුම සිතුවිලි වල මූලික ආකාරය වේ." data-en="Citta, the fundamental principle of Abhidhamma, is the root phenomenon of mind consciousness elements. It is the basic form of all thoughts that arise in the mind.">
-                    අභිධර්මයේ මූලික සිදුවීම වන සිත යනු මනෝවිඥානධාතු වල මූලාරම්භය වන අත්තනෝ සිදුවීමකි. මෙය මනසේ ඇතිවන සියලුම සිතුවිලි වල මූලික ආකාරය වේ.
+                <p data-si="අභිධර්මයේ මූලික සිදුවීම වන සිත යනු මනෝවිඥානධාතු වල මූලාරම්භය වන අත්තනෝ සිදුවීමකි. මෙය මනසේ ඇතිවන සියලුම සිතුවිලි වල මූලික ආකාරය වේ."
+                    data-en="Citta, the fundamental principle of Abhidhamma, is the root phenomenon of mind consciousness elements. It is the basic form of all thoughts that arise in the mind.">
+                    අභිධර්මයේ මූලික සිදුවීම වන සිත යනු මනෝවිඥානධාතු වල මූලාරම්භය වන අත්තනෝ සිදුවීමකි. මෙය මනසේ ඇතිවන
+                    සියලුම සිතුවිලි වල මූලික ආකාරය වේ.
                 </p>
             </div>
             <div class="overview-card">
-                <h3 data-si="හිරු බෙදීම් වල වැදගත්කම" data-en="Importance of Hierarchical Divisions">හිරු බෙදීම් වල වැදගත්කම</h3>
-                <p data-si="සිතුවිලි කුසල් සහ අකුසල් බෙදීම් වලට වැටී සිටීම මගින් ධර්මයේ සත්‍යයන් විශේෂයෙන් ද්විත්ව සත්‍යය ගැඹුරින් විශ්ලේෂණය කිරීමට හැකි වේ." data-en="By dividing consciousness into wholesome and unwholesome categories, it becomes possible to deeply analyze the truths of Dhamma, especially the truth of suffering.">
-                    සිතුවිලි කුසල් සහ අකුසල් බෙදීම් වලට වැටී සිටීම මගින් ධර්මයේ සත්‍යයන් විශේෂයෙන් ද්විත්ව සත්‍යය ගැඹුරින් විශ්ලේෂණය කිරීමට හැකි වේ.
+                <h3 data-si="හිරු බෙදීම් වල වැදගත්කම" data-en="Importance of Hierarchical Divisions">හිරු බෙදීම් වල
+                    වැදගත්කම</h3>
+                <p data-si="සිතුවිලි කුසල් සහ අකුසල් බෙදීම් වලට වැටී සිටීම මගින් ධර්මයේ සත්‍යයන් විශේෂයෙන් ද්විත්ව සත්‍යය ගැඹුරින් විශ්ලේෂණය කිරීමට හැකි වේ."
+                    data-en="By dividing consciousness into wholesome and unwholesome categories, it becomes possible to deeply analyze the truths of Dhamma, especially the truth of suffering.">
+                    සිතුවිලි කුසල් සහ අකුසල් බෙදීම් වලට වැටී සිටීම මගින් ධර්මයේ සත්‍යයන් විශේෂයෙන් ද්විත්ව සත්‍යය
+                    ගැඹුරින් විශ්ලේෂණය කිරීමට හැකි වේ.
                 </p>
             </div>
         </div>
 
-        <!-- Mind Hierarchy Graph -->
-        <div id="mindHierarchyGraph"></div>
 
-        <!-- Hierarchy Controls -->
-        <div class="hierarchy-controls">
-            <button onclick="resetMindHierarchy()" data-si="සැකසුම් නැවත සකසන්න" data-en="Reset Layout">සැකසුම් නැවත සකසන්න</button>
-            <button onclick="focusKusalaMind()" data-si="කුසල් සිත කේන්ද්‍රගත කරන්න" data-en="Focus Kusala">කුසල් සිත කේන්ද්‍රගත කරන්න</button>
-            <button onclick="focusAkusalaMind()" data-si="අකුසල් සිත කේන්ද්‍රගත කරන්න" data-en="Focus Akusala">අකුසල් සිත කේන්ද්‍රගත කරන්න</button>
-            <button onclick="showMindOverview()" data-si="සම්පූර්ණ දර්ශනය" data-en="Complete Overview">සම්පූර්ණ දර්ශනය</button>
+        <!-- Knowledge Graph Diagram -->
+        <div class="knowledge-graph-section">
+            <h2 style="text-align: center; color: #1565c0; margin-bottom: 30px; font-size: 2rem;">
+                අභිධර්ම දැනුම් ජාලය
+            </h2>
+            <div class="mermaid-container">
+                <div class="mermaid">
+                    graph LR
+                    %% SPINE
+                    index["index.html"]:::spine --> sitha["සිත (චිත්ත)"]:::spine
+                    sitha --> sitha_page["sitha-mind-page.html"]:::spine
+                    sitha_page --> knowledge["අභිධර්ම දැනුම"]:::spine
+
+                    %% BRANCH 1: ත්‍රිවිද්‍යාව
+                    sitha --> trivida["ත්‍රිවිද්‍යාව - රාග ද්වේශ මෝහ"]:::major
+                    trivida --> raga["රාග (ලෝභ)"]:::minor
+                    trivida --> dwesha["ද්වේශ (පටිඝ) - තරහ"]:::minor
+                    trivida --> moha["මෝහ (අවිජ්ජා)"]:::minor
+                    raga --> raga_page["raga-analysis.html"]:::minor
+                    dwesha --> anger_page["anger-analysis.html"]:::minor
+                    moha --> moha_page["moha-analysis.html"]:::minor
+
+                    %% BRANCH 2: චිත්ත කාණ්ඩ
+                    sitha --> citta_cat["චිත්ත චෛතසික මූලික කාණ්ඩ"]:::major
+                    citta_cat --> kusala["කුසල් චිත්ත"]:::minor
+                    citta_cat --> akusala["අකුසල් චිත්ත"]:::minor
+                    citta_cat --> vipaka["විපාක චිත්ත"]:::minor
+                    citta_cat --> kiriya["ක්‍රියා චිත්ත"]:::minor
+                    akusala --> akusala_page["akusala-citta-page.html"]:::minor
+                    akusala -.-> raga
+                    akusala -.-> dwesha
+                    akusala -.-> moha
+
+                    %% BRANCH 3: මෙවලම්
+                    sitha --> tools["මෙවලම්"]:::major
+                    tools --> table["චිත්ත චෛතසික වගුව"]:::minor
+                    tools --> comparison["සංසන්දනය"]:::minor
+                    tools --> fishbone["චිත්ත බෙදීම් ජාලය"]:::minor
+                    fishbone --> fishbone_page["citta-fishbone-diagram.html"]:::minor
+
+                    %% BRANCH 4: භූමි වර්ග
+                    sitha --> bhumi["භූමි වර්ග"]:::major
+                    bhumi --> rupavacara["රූපාවචර චිත්ත"]:::minor
+                    bhumi --> arupavacara["අරූපාවචර චිත්ත"]:::minor
+                    bhumi --> lokuttara["ලෝකෝත්තර චිත්ත"]:::minor
+
+                    %% BRANCH 5: චෛතසික 52
+                    sitha --> cetasika52["චෛතසික 52"]:::major
+                    cetasika52 --> phassa["ඵස්සය"]:::minor
+                    cetasika52 --> vedana["වේදනා"]:::minor
+                    cetasika52 --> sanna["සංඤ්ඤා"]:::minor
+                    cetasika52 --> cetana["චේතනා"]:::minor
+
+                    %% BRANCH 6: විස්තර පිටු
+                    sitha --> all_cittas["සියලුම චිත්ත"]:::major
+                    all_cittas --> citta_idx["citta-index.html"]:::minor
+                    all_cittas --> detail_pages["විස්තර පිටු"]:::major
+                    detail_pages --> citta1["citta-1-detailed-page.html"]:::minor
+                    detail_pages --> citta2["citta-2-detailed-page.html"]:::minor
+                    detail_pages --> citta3["citta-3-detailed-page.html"]:::minor
+                    citta1 --> citta1_guide["citta-1-guide.html"]:::minor
+                    citta2 --> citta2_guide["citta-2-guide.html"]:::minor
+                    citta3 --> citta3_guide["citta-3-guide.html"]:::minor
+
+                    %% BRANCH 7: චෛතසික විග්‍රහයන්
+                    sitha --> cetasika_analysis["චෛතසික විග්‍රහයන්"]:::major
+                    cetasika_analysis -.-> phassa
+                    cetasika_analysis -.-> vedana
+                    cetasika_analysis -.-> sanna
+                    cetasika_analysis -.-> cetana
+
+                    %% STYLES
+                    classDef spine fill:#1565c0,stroke:#0d47a1,stroke-width:4px,color:#fff
+                    classDef major fill:#2196f3,stroke:#1976d2,stroke-width:3px,color:#fff
+                    classDef minor fill:#ff9800,stroke:#f57c00,stroke-width:2px,color:#fff
+                </div>
+            </div>
+
+            <div class="graph-legend"
+                style="margin-top: 30px; padding: 20px; background: #f5f5f5; border-radius: 12px;">
+                <h3 style="color: #1565c0; margin-bottom: 15px;">සංකේත පැහැදිලි කිරීම</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div
+                            style="width: 30px; height: 30px; background: #1565c0; border: 3px solid #0d47a1; border-radius: 4px;">
+                        </div>
+                        <span><strong>Spine:</strong> මූලික ප්‍රවාහය</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div
+                            style="width: 30px; height: 30px; background: #2196f3; border: 2px solid #1976d2; border-radius: 4px;">
+                        </div>
+                        <span><strong>Major:</strong> ප්‍රධාන කාණ්ඩ</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div
+                            style="width: 30px; height: 30px; background: #ff9800; border: 2px solid #f57c00; border-radius: 4px;">
+                        </div>
+                        <span><strong>Minor:</strong> විස්තර පිටු</span>
+                    </div>
+                </div>
+            </div>
         </div>
+
 
         <!-- Detailed Sections -->
         <div class="detailed-sections">
             <!-- Kusala Section -->
             <div class="section-card kusala-section">
-                <h2 data-si="කුසල් සිත - සුභ කර්මයන්ගේ මූලාරම්භය" data-en="Kusala Citta - Origin of Wholesome Actions">කුසල් සිත - සුභ කර්මයන්ගේ මූලාරම්භය</h2>
-                <p data-si="කුසල් සිත යනු සුභ කර්මයන් සම්බන්ධ වන සිතුවිලි වල කාණ්ඩයකි. මෙම සිතුවිලි විරාගය, අද්වේශය සහ අමෝහය යන ගුණාත්මක භාවයන්ගෙන් සමන්විත වේ." data-en="Kusala Citta is the category of consciousness related to wholesome actions. These consciousness states are composed of the qualities of non-attachment, non-aversion, and non-delusion.">
-                    කුසල් සිත යනු සුභ කර්මයන් සම්බන්ධ වන සිතුවිලි වල කාණ්ඩයකි. මෙම සිතුවිලි විරාගය, අද්වේශය සහ අමෝහය යන ගුණාත්මක භාවයන්ගෙන් සමන්විත වේ.
+                <h2 data-si="කුසල් සිත - සුභ කර්මයන්ගේ මූලාරම්භය" data-en="Kusala Citta - Origin of Wholesome Actions">
+                    කුසල් සිත - සුභ කර්මයන්ගේ මූලාරම්භය</h2>
+                <p data-si="කුසල් සිත යනු සුභ කර්මයන් සම්බන්ධ වන සිතුවිලි වල කාණ්ඩයකි. මෙම සිතුවිලි විරාගය, අද්වේශය සහ අමෝහය යන ගුණාත්මක භාවයන්ගෙන් සමන්විත වේ."
+                    data-en="Kusala Citta is the category of consciousness related to wholesome actions. These consciousness states are composed of the qualities of non-attachment, non-aversion, and non-delusion.">
+                    කුසල් සිත යනු සුභ කර්මයන් සම්බන්ධ වන සිතුවිලි වල කාණ්ඩයකි. මෙම සිතුවිලි විරාගය, අද්වේශය සහ අමෝහය යන
+                    ගුණාත්මක භාවයන්ගෙන් සමන්විත වේ.
                 </p>
 
                 <div class="subdivision-grid">
                     <div class="subdivision-card">
-                        <h4 data-si="කාමාවචර කුසල් චිත්ත" data-en="Kamavacara Kusala Citta">කාමාවචර කුසල් චිත්ත <span class="count">8</span></h4>
-                        <p data-si="කාම භූමියේ සිදුවන කුසල් සිතුවිලි වල කාණ්ඩය" data-en="Category of wholesome consciousness occurring in the sensual sphere">කාම භූමියේ සිදුවන කුසල් සිතුවිලි වල කාණ්ඩය</p>
+                        <h4 data-si="කාමාවචර කුසල් චිත්ත" data-en="Kamavacara Kusala Citta">කාමාවචර කුසල් චිත්ත <span
+                                class="count">8</span></h4>
+                        <p data-si="කාම භූමියේ සිදුවන කුසල් සිතුවිලි වල කාණ්ඩය"
+                            data-en="Category of wholesome consciousness occurring in the sensual sphere">කාම භූමියේ
+                            සිදුවන කුසල් සිතුවිලි වල කාණ්ඩය</p>
                         <ul>
-                            <li data-si="සෝමනස්ස සහගත ඤාණ සම්ප්යුත්ත අසංස්කාරික කුසල් සිත" data-en="Pleasant wholesome consciousness with knowledge, unprompted">සෝමනස්ස සහගත ඤාණ සම්ප්යුත්ත අසංස්කාරික කුසල් සිත</li>
-                            <li data-si="උපේක්ෂා සහගත ඤාණ සම්ප්යුත්ත සසංස්කාරික කුසල් සිත" data-en="Neutral wholesome consciousness with knowledge, prompted">උපේක්ෂා සහගත ඤාණ සම්ප්යුත්ත සසංස්කාරික කුසල් සිත</li>
+                            <li data-si="සෝමනස්ස සහගත ඤාණ සම්ප්යුත්ත අසංස්කාරික කුසල් සිත"
+                                data-en="Pleasant wholesome consciousness with knowledge, unprompted">සෝමනස්ස සහගත ඤාණ
+                                සම්ප්යුත්ත අසංස්කාරික කුසල් සිත</li>
+                            <li data-si="උපේක්ෂා සහගත ඤාණ සම්ප්යුත්ත සසංස්කාරික කුසල් සිත"
+                                data-en="Neutral wholesome consciousness with knowledge, prompted">උපේක්ෂා සහගත ඤාණ
+                                සම්ප්යුත්ත සසංස්කාරික කුසල් සිත</li>
                         </ul>
                     </div>
 
                     <div class="subdivision-card">
-                        <h4 data-si="රූපාවචර කුසල් චිත්ත" data-en="Rupavacara Kusala Citta">රූපාවචර කුසල් චිත්ත <span class="count">15</span></h4>
-                        <p data-si="රූප භූමියේ ධ්‍යාන තුළ සිදුවන කුසල් සිතුවිලි" data-en="Wholesome consciousness occurring in the form sphere meditations">රූප භූමියේ ධ්‍යාන තුළ සිදුවන කුසල් සිතුවිලි</p>
+                        <h4 data-si="රූපාවචර කුසල් චිත්ත" data-en="Rupavacara Kusala Citta">රූපාවචර කුසල් චිත්ත <span
+                                class="count">15</span></h4>
+                        <p data-si="රූප භූමියේ ධ්‍යාන තුළ සිදුවන කුසල් සිතුවිලි"
+                            data-en="Wholesome consciousness occurring in the form sphere meditations">රූප භූමියේ ධ්‍යාන
+                            තුළ සිදුවන කුසල් සිතුවිලි</p>
                         <ul>
-                            <li data-si="පඨමජ්ඣාන කුසල් සිත" data-en="First jhana wholesome consciousness">පඨමජ්ඣාන කුසල් සිත</li>
-                            <li data-si="දුතියජ්ඣාන කුසල් සිත" data-en="Second jhana wholesome consciousness">දුතියජ්ඣාන කුසල් සිත</li>
+                            <li data-si="පඨමජ්ඣාන කුසල් සිත" data-en="First jhana wholesome consciousness">පඨමජ්ඣාන
+                                කුසල් සිත</li>
+                            <li data-si="දුතියජ්ඣාන කුසල් සිත" data-en="Second jhana wholesome consciousness">දුතියජ්ඣාන
+                                කුසල් සිත</li>
                         </ul>
                     </div>
 
                     <div class="subdivision-card">
-                        <h4 data-si="අරූපාවචර කුසල් චිත්ත" data-en="Arupavacara Kusala Citta">අරූපාවචර කුසල් චිත්ත <span class="count">12</span></h4>
-                        <p data-si="අරූප භූමියේ ධ්‍යාන තුළ සිදුවන කුසල් සිතුවිලි" data-en="Wholesome consciousness occurring in the formless sphere meditations">අරූප භූමියේ ධ්‍යාන තුළ සිදුවන කුසල් සිතුවිලි</p>
+                        <h4 data-si="අරූපාවචර කුසල් චිත්ත" data-en="Arupavacara Kusala Citta">අරූපාවචර කුසල් චිත්ත <span
+                                class="count">12</span></h4>
+                        <p data-si="අරූප භූමියේ ධ්‍යාන තුළ සිදුවන කුසල් සිතුවිලි"
+                            data-en="Wholesome consciousness occurring in the formless sphere meditations">අරූප භූමියේ
+                            ධ්‍යාන තුළ සිදුවන කුසල් සිතුවිලි</p>
                         <ul>
-                            <li data-si="ආකාසානඤ්චායතන කුසල් සිත" data-en="Base of infinite space wholesome consciousness">ආකාසානඤ්චායතන කුසල් සිත</li>
-                            <li data-si="විඤ්ඤාණඤ්චායතන කුසල් සිත" data-en="Base of infinite consciousness wholesome consciousness">විඤ්ඤාණඤ්චායතන කුසල් සිත</li>
+                            <li data-si="ආකාසානඤ්චායතන කුසල් සිත"
+                                data-en="Base of infinite space wholesome consciousness">ආකාසානඤ්චායතන කුසල් සිත</li>
+                            <li data-si="විඤ්ඤාණඤ්චායතන කුසල් සිත"
+                                data-en="Base of infinite consciousness wholesome consciousness">විඤ්ඤාණඤ්චායතන කුසල්
+                                සිත</li>
                         </ul>
                     </div>
 
                     <div class="subdivision-card">
-                        <h4 data-si="ලෝකෝත්තර කුසල් චිත්ත" data-en="Lokuttara Kusala Citta">ලෝකෝත්තර කුසල් චිත්ත <span class="count">8</span></h4>
-                        <p data-si="මාර්ගඵල තුළ සිදුවන ලෝකෝත්තර කුසල් සිතුවිලි" data-en="Supramundane wholesome consciousness occurring in path and fruition">මාර්ගඵල තුළ සිදුවන ලෝකෝත්තර කුසල් සිතුවිලි</p>
+                        <h4 data-si="ලෝකෝත්තර කුසල් චිත්ත" data-en="Lokuttara Kusala Citta">ලෝකෝත්තර කුසල් චිත්ත <span
+                                class="count">8</span></h4>
+                        <p data-si="මාර්ගඵල තුළ සිදුවන ලෝකෝත්තර කුසල් සිතුවිලි"
+                            data-en="Supramundane wholesome consciousness occurring in path and fruition">මාර්ගඵල තුළ
+                            සිදුවන ලෝකෝත්තර කුසල් සිතුවිලි</p>
                         <ul>
-                            <li data-si="සෝතාපත්ති මාර්ග කුසල් සිත" data-en="Stream-entry path wholesome consciousness">සෝතාපත්ති මාර්ග කුසල් සිත</li>
-                            <li data-si="අර්හත් මාර්ග කුසල් සිත" data-en="Arahant path wholesome consciousness">අර්හත් මාර්ග කුසල් සිත</li>
+                            <li data-si="සෝතාපත්ති මාර්ග කුසල් සිත" data-en="Stream-entry path wholesome consciousness">
+                                සෝතාපත්ති මාර්ග කුසල් සිත</li>
+                            <li data-si="අර්හත් මාර්ග කුසල් සිත" data-en="Arahant path wholesome consciousness">අර්හත්
+                                මාර්ග කුසල් සිත</li>
                         </ul>
                     </div>
                 </div>
@@ -408,36 +595,60 @@
 
             <!-- Akusala Section -->
             <div class="section-card akusala-section">
-                <h2 data-si="අකුසල් සිත - අසුභ කර්මයන්ගේ මූලාරම්භය" data-en="Akusala Citta - Origin of Unwholesome Actions">අකුසල් සිත - අසුභ කර්මයන්ගේ මූලාරම්භය</h2>
-                <p data-si="අකුසල් සිත යනු අසුභ කර්මයන් සම්බන්ධ වන සිතුවිලි වල කාණ්ඩයකි. මෙම සිතුවිලි රාගය, ද්වේශය සහ මෝහය යන අකුසල මූලයන්ගෙන් සමන්විත වේ." data-en="Akusala Citta is the category of consciousness related to unwholesome actions. These consciousness states are composed of the unwholesome roots of greed, hatred, and delusion.">
-                    අකුසල් සිත යනු අසුභ කර්මයන් සම්බන්ධ වන සිතුවිලි වල කාණ්ඩයකි. මෙම සිතුවිලි රාගය, ද්වේශය සහ මෝහය යන අකුසල මූලයන්ගෙන් සමන්විත වේ.
+                <h2 data-si="අකුසල් සිත - අසුභ කර්මයන්ගේ මූලාරම්භය"
+                    data-en="Akusala Citta - Origin of Unwholesome Actions">අකුසල් සිත - අසුභ කර්මයන්ගේ මූලාරම්භය</h2>
+                <p data-si="අකුසල් සිත යනු අසුභ කර්මයන් සම්බන්ධ වන සිතුවිලි වල කාණ්ඩයකි. මෙම සිතුවිලි රාගය, ද්වේශය සහ මෝහය යන අකුසල මූලයන්ගෙන් සමන්විත වේ."
+                    data-en="Akusala Citta is the category of consciousness related to unwholesome actions. These consciousness states are composed of the unwholesome roots of greed, hatred, and delusion.">
+                    අකුසල් සිත යනු අසුභ කර්මයන් සම්බන්ධ වන සිතුවිලි වල කාණ්ඩයකි. මෙම සිතුවිලි රාගය, ද්වේශය සහ මෝහය යන
+                    අකුසල මූලයන්ගෙන් සමන්විත වේ.
                 </p>
 
                 <div class="subdivision-grid">
                     <div class="subdivision-card">
-                        <h4 data-si="ලෝභ මූල අකුසල් චිත්ත" data-en="Lobha Mula Akusala Citta">ලෝභ මූල අකුසල් චිත්ත <span class="count">8</span></h4>
-                        <p data-si="ලෝභය මුල් කරගත් අකුසල් සිතුවිලි වල කාණ්ඩය" data-en="Category of unwholesome consciousness rooted in greed">ලෝභය මුල් කරගත් අකුසල් සිතුවිලි වල කාණ්ඩය</p>
+                        <h4 data-si="ලෝභ මූල අකුසල් චිත්ත" data-en="Lobha Mula Akusala Citta">ලෝභ මූල අකුසල් චිත්ත <span
+                                class="count">8</span></h4>
+                        <p data-si="ලෝභය මුල් කරගත් අකුසල් සිතුවිලි වල කාණ්ඩය"
+                            data-en="Category of unwholesome consciousness rooted in greed">ලෝභය මුල් කරගත් අකුසල්
+                            සිතුවිලි වල කාණ්ඩය</p>
                         <ul>
-                            <li data-si="සෝමනස්ස සහගත දෘෂ්ටිගත සම්ප්‍රයුක්ත අසංස්කාරික අකුසල් සිත" data-en="Pleasant unwholesome consciousness with wrong view, unprompted">සෝමනස්ස සහගත දෘෂ්ටිගත සම්ප්‍රයුක්ත අසංස්කාරික අකුසල් සිත</li>
-                            <li data-si="උපේක්ෂා සහගත දෘෂ්ටි විප්‍රයුක්ත සසංස්කාරික අකුසල් සිත" data-en="Neutral unwholesome consciousness without wrong view, prompted">උපේක්ෂා සහගත දෘෂ්ටි විප්‍රයුක්ත සසංස්කාරික අකුසල් සිත</li>
+                            <li data-si="සෝමනස්ස සහගත දෘෂ්ටිගත සම්ප්‍රයුක්ත අසංස්කාරික අකුසල් සිත"
+                                data-en="Pleasant unwholesome consciousness with wrong view, unprompted">සෝමනස්ස සහගත
+                                දෘෂ්ටිගත සම්ප්‍රයුක්ත අසංස්කාරික අකුසල් සිත</li>
+                            <li data-si="උපේක්ෂා සහගත දෘෂ්ටි විප්‍රයුක්ත සසංස්කාරික අකුසල් සිත"
+                                data-en="Neutral unwholesome consciousness without wrong view, prompted">උපේක්ෂා සහගත
+                                දෘෂ්ටි විප්‍රයුක්ත සසංස්කාරික අකුසල් සිත</li>
                         </ul>
                     </div>
 
                     <div class="subdivision-card">
-                        <h4 data-si="දෝස මූල අකුසල් චිත්ත" data-en="Dosa Mula Akusala Citta">දෝස මූල අකුසල් චිත්ත <span class="count">2</span></h4>
-                        <p data-si="දෝෂය මුල් කරගත් අකුසල් සිතුවිලි වල කාණ්ඩය" data-en="Category of unwholesome consciousness rooted in hatred">දෝෂය මුල් කරගත් අකුසල් සිතුවිලි වල කාණ්ඩය</p>
+                        <h4 data-si="දෝස මූල අකුසල් චිත්ත" data-en="Dosa Mula Akusala Citta">දෝස මූල අකුසල් චිත්ත <span
+                                class="count">2</span></h4>
+                        <p data-si="දෝෂය මුල් කරගත් අකුසල් සිතුවිලි වල කාණ්ඩය"
+                            data-en="Category of unwholesome consciousness rooted in hatred">දෝෂය මුල් කරගත් අකුසල්
+                            සිතුවිලි වල කාණ්ඩය</p>
                         <ul>
-                            <li data-si="දෝමනස්ස සහගත පටිඝ සම්ප්යුත්ත අසංස්කාරික අකුසල් සිත" data-en="Unpleasant unwholesome consciousness with aversion, unprompted">දෝමනස්ස සහගත පටිඝ සම්ප්යුත්ත අසංස්කාරික අකුසල් සිත</li>
-                            <li data-si="දෝමනස්ස සහගත පටිඝ සම්ප්යුත්ත සසංස්කාරික අකුසල් සිත" data-en="Unpleasant unwholesome consciousness with aversion, prompted">දෝමනස්ස සහගත පටිඝ සම්ප්යුත්ත සසංස්කාරික අකුසල් සිත</li>
+                            <li data-si="දෝමනස්ස සහගත පටිඝ සම්ප්යුත්ත අසංස්කාරික අකුසල් සිත"
+                                data-en="Unpleasant unwholesome consciousness with aversion, unprompted">දෝමනස්ස සහගත
+                                පටිඝ සම්ප්යුත්ත අසංස්කාරික අකුසල් සිත</li>
+                            <li data-si="දෝමනස්ස සහගත පටිඝ සම්ප්යුත්ත සසංස්කාරික අකුසල් සිත"
+                                data-en="Unpleasant unwholesome consciousness with aversion, prompted">දෝමනස්ස සහගත පටිඝ
+                                සම්ප්යුත්ත සසංස්කාරික අකුසල් සිත</li>
                         </ul>
                     </div>
 
                     <div class="subdivision-card">
-                        <h4 data-si="මෝහ මූල අකුසල් චිත්ත" data-en="Moha Mula Akusala Citta">මෝහ මූල අකුසල් චිත්ත <span class="count">2</span></h4>
-                        <p data-si="මෝහය මුල් කරගත් අකුසල් සිතුවිලි වල කාණ්ඩය" data-en="Category of unwholesome consciousness rooted in delusion">මෝහය මුල් කරගත් අකුසල් සිතුවිලි වල කාණ්ඩය</p>
+                        <h4 data-si="මෝහ මූල අකුසල් චිත්ත" data-en="Moha Mula Akusala Citta">මෝහ මූල අකුසල් චිත්ත <span
+                                class="count">2</span></h4>
+                        <p data-si="මෝහය මුල් කරගත් අකුසල් සිතුවිලි වල කාණ්ඩය"
+                            data-en="Category of unwholesome consciousness rooted in delusion">මෝහය මුල් කරගත් අකුසල්
+                            සිතුවිලි වල කාණ්ඩය</p>
                         <ul>
-                            <li data-si="උපේක්ෂා සහගත උද්ධච්ච සම්ප්යුත්ත අසංස්කාරික අකුසල් සිත" data-en="Neutral unwholesome consciousness with restlessness, unprompted">උපේක්ෂා සහගත උද්ධච්ච සම්ප්යුත්ත අසංස්කාරික අකුසල් සිත</li>
-                            <li data-si="උපේක්ෂා සහගත විචිකිච්ඡා සම්ප්යුත්ත අසංස්කාරික අකුසල් සිත" data-en="Neutral unwholesome consciousness with doubt, unprompted">උපේක්ෂා සහගත විචිකිච්ඡා සම්ප්යුත්ත අසංස්කාරික අකුසල් සිත</li>
+                            <li data-si="උපේක්ෂා සහගත උද්ධච්ච සම්ප්යුත්ත අසංස්කාරික අකුසල් සිත"
+                                data-en="Neutral unwholesome consciousness with restlessness, unprompted">උපේක්ෂා සහගත
+                                උද්ධච්ච සම්ප්යුත්ත අසංස්කාරික අකුසල් සිත</li>
+                            <li data-si="උපේක්ෂා සහගත විචිකිච්ඡා සම්ප්යුත්ත අසංස්කාරික අකුසල් සිත"
+                                data-en="Neutral unwholesome consciousness with doubt, unprompted">උපේක්ෂා සහගත
+                                විචිකිච්ඡා සම්ප්යුත්ත අසංස්කාරික අකුසල් සිත</li>
                         </ul>
                     </div>
                 </div>
@@ -446,19 +657,24 @@
             <!-- Resultant and Functional -->
             <div class="section-card">
                 <h2 data-si="විපාක සහ ක්‍රියා චිත්ත" data-en="Vipaka and Kiriya Citta">විපාක සහ ක්‍රියා චිත්ත</h2>
-                <p data-si="කර්ම විපාකයන්ගේ ප්‍රතිඵල සහ අරහත් වරුන්ගේ ක්‍රියාත්මක සිතුවිලි වල කාණ්ඩ විස්තර කර ඇත." data-en="Details of consciousness that are results of karmic actions and functional consciousness of Arahants are explained.">
+                <p data-si="කර්ම විපාකයන්ගේ ප්‍රතිඵල සහ අරහත් වරුන්ගේ ක්‍රියාත්මක සිතුවිලි වල කාණ්ඩ විස්තර කර ඇත."
+                    data-en="Details of consciousness that are results of karmic actions and functional consciousness of Arahants are explained.">
                     කර්ම විපාකයන්ගේ ප්‍රතිඵල සහ අරහත් වරුන්ගේ ක්‍රියාත්මක සිතුවිලි වල කාණ්ඩ විස්තර කර ඇත.
                 </p>
 
                 <div class="subdivision-grid">
                     <div class="subdivision-card">
                         <h4 data-si="විපාක චිත්ත" data-en="Vipaka Citta">විපාක චිත්ත <span class="count">23</span></h4>
-                        <p data-si="කර්මයන්ගේ විපාකයන් ලෙස ඇතිවන සිතුවිලි" data-en="Consciousness that arises as results of actions">කර්මයන්ගේ විපාකයන් ලෙස ඇතිවන සිතුවිලි</p>
+                        <p data-si="කර්මයන්ගේ විපාකයන් ලෙස ඇතිවන සිතුවිලි"
+                            data-en="Consciousness that arises as results of actions">කර්මයන්ගේ විපාකයන් ලෙස ඇතිවන
+                            සිතුවිලි</p>
                     </div>
 
                     <div class="subdivision-card">
-                        <h4 data-si="ක්‍රියා චිත්ත" data-en="Kiriya Citta">ක්‍රියා චිත්ත <span class="count">11</span></h4>
-                        <p data-si="අරහත් වරුන්ගේ ක්‍රියාත්මක සිතුවිලි" data-en="Functional consciousness of Arahants">අරහත් වරුන්ගේ ක්‍රියාත්මක සිතුවිලි</p>
+                        <h4 data-si="ක්‍රියා චිත්ත" data-en="Kiriya Citta">ක්‍රියා චිත්ත <span class="count">11</span>
+                        </h4>
+                        <p data-si="අරහත් වරුන්ගේ ක්‍රියාත්මක සිතුවිලි" data-en="Functional consciousness of Arahants">
+                            අරහත් වරුන්ගේ ක්‍රියාත්මක සිතුවිලි</p>
                     </div>
                 </div>
             </div>
@@ -466,30 +682,39 @@
 
         <!-- Source References -->
         <div class="source-references">
-            <h3 data-si="📚 මූලාශ්‍ර ග්‍රන්ථ සහ යොමු කිරීම්" data-en="📚 Source Texts and References">📚 මූලාශ්‍ර ග්‍රන්ථ සහ යොමු කිරීම්</h3>
-            <p data-si="අභිධර්මය ගැඹුරින් අධ්‍යනය කිරීම සඳහා මෙහි දී ඇති මූලාශ්‍ර ග්‍රන්ථ භාවිතා කරන්න. සෑම සිතුවිල්ලකටම අදාල යොමු කිරීම් ඇතුළත් කර ඇත." data-en="Use these source texts for deep study of Abhidhamma. Each consciousness state includes relevant references.">
-                අභිධර්මය ගැඹුරින් අධ්‍යනය කිරීම සඳහා මෙහි දී ඇති මූලාශ්‍ර ග්‍රන්ථ භාවිතා කරන්න. සෑම සිතුවිල්ලකටම අදාල යොමු කිරීම් ඇතුළත් කර ඇත.
+            <h3 data-si="📚 මූලාශ්‍ර ග්‍රන්ථ සහ යොමු කිරීම්" data-en="📚 Source Texts and References">📚 මූලාශ්‍ර
+                ග්‍රන්ථ සහ යොමු කිරීම්</h3>
+            <p data-si="අභිධර්මය ගැඹුරින් අධ්‍යනය කිරීම සඳහා මෙහි දී ඇති මූලාශ්‍ර ග්‍රන්ථ භාවිතා කරන්න. සෑම සිතුවිල්ලකටම අදාල යොමු කිරීම් ඇතුළත් කර ඇත."
+                data-en="Use these source texts for deep study of Abhidhamma. Each consciousness state includes relevant references.">
+                අභිධර්මය ගැඹුරින් අධ්‍යනය කිරීම සඳහා මෙහි දී ඇති මූලාශ්‍ර ග්‍රන්ථ භාවිතා කරන්න. සෑම සිතුවිල්ලකටම අදාල
+                යොමු කිරීම් ඇතුළත් කර ඇත.
             </p>
             <div class="source-links">
-                <a href="https://tipitaka.lk/sinhala/sutta-pitaka/abhidhamma-pitaka/dhammasangani/" class="source-link" target="_blank">
+                <a href="https://tipitaka.lk/sinhala/sutta-pitaka/abhidhamma-pitaka/dhammasangani/" class="source-link"
+                    target="_blank">
                     <i class="fas fa-book-open"></i>
                     <div>
                         <strong data-si="ධම්මසංගණි" data-en="Dhammasangani">ධම්මසංගණි</strong><br>
-                        <small data-si="අභිධර්මයේ පළමු පොත - සිතුවිලි විස්තර" data-en="First book of Abhidhamma - Consciousness details">අභිධර්මයේ පළමු පොත - සිතුවිලි විස්තර</small>
+                        <small data-si="අභිධර්මයේ පළමු පොත - සිතුවිලි විස්තර"
+                            data-en="First book of Abhidhamma - Consciousness details">අභිධර්මයේ පළමු පොත - සිතුවිලි
+                            විස්තර</small>
                     </div>
                 </a>
                 <a href="https://pitaka.lk/books/abhidharma-margaya/" class="source-link" target="_blank">
                     <i class="fas fa-book"></i>
                     <div>
                         <strong data-si="අභිධර්ම මාර්ගය" data-en="Abhidharma Margaya">අභිධර්ම මාර්ගය</strong><br>
-                        <small data-si="සම්පූර්ණ අභිධර්ම මාර්ගෝපදේශ" data-en="Complete Abhidhamma guide">සම්පූර්ණ අභිධර්ම මාර්ගෝපදේශ</small>
+                        <small data-si="සම්පූර්ණ අභිධර්ම මාර්ගෝපදේශ" data-en="Complete Abhidhamma guide">සම්පූර්ණ
+                            අභිධර්ම මාර්ගෝපදේශ</small>
                     </div>
                 </a>
                 <a href="https://pitaka.lk/books/abhidharmaye-mulika-karunu/" class="source-link" target="_blank">
                     <i class="fas fa-graduation-cap"></i>
                     <div>
-                        <strong data-si="අභිධර්මයේ මුලික කරුණු" data-en="Mulika Karunu of Abhidhamma">අභිධර්මයේ මුලික කරුණු</strong><br>
-                        <small data-si="අභිධර්මයේ මූලික සිදුවීම් සහ කරුණු" data-en="Basic principles and facts of Abhidhamma">අභිධර්මයේ මූලික සිදුවීම් සහ කරුණු</small>
+                        <strong data-si="අභිධර්මයේ මුලික කරුණු" data-en="Mulika Karunu of Abhidhamma">අභිධර්මයේ මුලික
+                            කරුණු</strong><br>
+                        <small data-si="අභිධර්මයේ මූලික සිදුවීම් සහ කරුණු"
+                            data-en="Basic principles and facts of Abhidhamma">අභිධර්මයේ මූලික සිදුවීම් සහ කරුණු</small>
                     </div>
                 </a>
             </div>
@@ -497,12 +722,17 @@
 
         <!-- Navigation Links -->
         <div class="navigation-links">
-            <h3 data-si="අභිධර්මය ගැඹුරින් අධ්‍යනය කිරීමට" data-en="For Deep Study of Abhidhamma">අභිධර්මය ගැඹුරින් අධ්‍යනය කිරීමට</h3>
+            <h3 data-si="අභිධර්මය ගැඹුරින් අධ්‍යනය කිරීමට" data-en="For Deep Study of Abhidhamma">අභිධර්මය ගැඹුරින්
+                අධ්‍යනය කිරීමට</h3>
             <div class="nav-buttons">
-                <a href="citta-fishbone-diagram.html" class="nav-btn" data-si="චිත්ත බෙදීම් ජාලය" data-en="Citta Division Network">චිත්ත බෙදීම් ජාලය</a>
-                <a href="citta-index.html" class="nav-btn" data-si="සියලුම චිත්ත විස්තර" data-en="All Citta Details">සියලුම චිත්ත විස්තර</a>
-                <a href="index.html#table" class="nav-btn" data-si="චිත්ත චෛතසික වගුව" data-en="Citta Chaithasika Table">චිත්ත චෛතසික වගුව</a>
-                <a href="index.html#mental-states" class="nav-btn" data-si="ත්‍රිවිද්‍යාව විශ්ලේෂණය" data-en="Three Poisons Analysis">ත්‍රිවිද්‍යාව විශ්ලේෂණය</a>
+                <a href="citta-fishbone-diagram.html" class="nav-btn" data-si="චිත්ත බෙදීම් ජාලය"
+                    data-en="Citta Division Network">චිත්ත බෙදීම් ජාලය</a>
+                <a href="citta-index.html" class="nav-btn" data-si="සියලුම චිත්ත විස්තර"
+                    data-en="All Citta Details">සියලුම චිත්ත විස්තර</a>
+                <a href="index.html#table" class="nav-btn" data-si="චිත්ත චෛතසික වගුව"
+                    data-en="Citta Chaithasika Table">චිත්ත චෛතසික වගුව</a>
+                <a href="index.html#mental-states" class="nav-btn" data-si="ත්‍රිවිද්‍යාව විශ්ලේෂණය"
+                    data-en="Three Poisons Analysis">ත්‍රිවිද්‍යාව විශ්ලේෂණය</a>
             </div>
         </div>
     </div>
@@ -510,49 +740,19 @@
     <!-- Tooltip Element -->
     <div id="mindTooltip" class="tooltip-custom" style="display: none;"></div>
 
-    <script src="mind-hierarchy-visualizer.js"></script>
+    <script src="citta-comprehensive-visualizer.js"></script>
     <script>
-        // Initialize the mind hierarchy when DOM is loaded
-        document.addEventListener('DOMContentLoaded', async function() {
-            const visualizer = new MindHierarchyVisualizer('mindHierarchyGraph');
-            await visualizer.init();
+        // Initialize the comprehensive Citta visualizer when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function () {
+            const visualizer = new CittaComprehensiveVisualizer('mindHierarchyGraph');
+            visualizer.init();
 
-            // Make visualizer globally available for button functions
-            window.mindVisualizer = visualizer;
+            // Make visualizer globally available
+            window.cittaVisualizer = visualizer;
 
-            // Language switcher
-            const languageSwitcher = document.getElementById('languageSwitcher');
-            if (languageSwitcher) {
-                languageSwitcher.addEventListener('click', () => {
-                    visualizer.toggleLanguage();
-                });
-            }
+            console.log('✅ සිත - මූලික සිදුවීම visualization loaded successfully!');
         });
-
-        // Global functions for buttons
-        function resetMindHierarchy() {
-            if (window.mindVisualizer) {
-                window.mindVisualizer.resetLayout();
-            }
-        }
-
-        function focusKusalaMind() {
-            if (window.mindVisualizer) {
-                window.mindVisualizer.focusBranch('kusala');
-            }
-        }
-
-        function focusAkusalaMind() {
-            if (window.mindVisualizer) {
-                window.mindVisualizer.focusBranch('akusala');
-            }
-        }
-
-        function showMindOverview() {
-            if (window.mindVisualizer) {
-                window.mindVisualizer.showOverview();
-            }
-        }
     </script>
 </body>
+
 </html>
