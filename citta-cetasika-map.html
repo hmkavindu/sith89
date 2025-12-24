@@ -538,61 +538,91 @@
 
             const visNodes = [];
             const visEdges = [];
-
-            // Add Cetasika Nodes (Central Hubs or Outer Ring)
-            // Strategy: Cetasikas in center, Cittas around them? Or Mixed?
-            // "Mental Map" usually implies connections.
-            // Let's put Cetasikas as the "Attributes" and Cittas as "Entities"
-
-            // To avoid clutter, we only show Cetasikas that are used by visible Cittas
             const usedCetasikas = new Set();
+
             visibleCittas.forEach(c => {
                 c.cetasikas.forEach(cetId => usedCetasikas.add(cetId));
             });
 
-            // Add Cetasika Nodes
-            cetasikaList.forEach((cet, index) => {
-                if (usedCetasikas.has(cet.id)) {
-                    visNodes.push({
-                        id: cet.id,
-                        label: cet.name,
-                        group: 'cetasika',
-                        color: {
-                            background: cet.group === 'akusala' ? '#fed7d7' : (cet.group === 'sobhana' ? '#c6f6d5' : '#e2e8f0'),
-                            border: cet.group === 'akusala' ? '#e53e3e' : (cet.group === 'sobhana' ? '#38a169' : '#718096')
-                        },
-                        font: { size: 14, face: 'Noto Sans Sinhala' },
-                        shape: 'dot',
-                        size: 15
-                    });
-                }
-            });
+            // --- Layout Constants ---
+            const startX_Citta = -400;
+            const startX_Universal = 0;
+            const startX_Particular = 250;
+            const startX_Specific = 550; // Akusala/Sobhana
 
-            // Add Citta Nodes
-            visibleCittas.forEach(c => {
+            const gapY = 50;
+
+            // 1. Add Citta Nodes (Left Column)
+            visibleCittas.forEach((c, index) => {
                 visNodes.push({
                     id: c.id,
                     label: c.name,
                     group: 'citta',
+                    x: startX_Citta,
+                    y: (index * 60) - ((visibleCittas.length * 60) / 2), // Centre vertically
                     color: {
                         background: c.type === 'akusala' ? '#fff5f5' : '#f0fff4',
                         border: c.type === 'akusala' ? '#c53030' : '#2f855a'
                     },
                     shape: 'box',
                     font: { size: 16, face: 'Noto Sans Sinhala', color: '#000' },
-                    margin: 10
+                    margin: 10,
+                    fixed: true // Stop moving
                 });
 
                 // Edges
                 c.cetasikas.forEach(cetId => {
                     if (usedCetasikas.has(cetId)) {
                         visEdges.push({
-                            from: cetId,
-                            to: c.id,
-                            color: { color: 'rgba(200,200,200,0.3)' }
+                            from: c.id,   // Flow from Citta -> Cetasika
+                            to: cetId,
+                            color: { color: 'rgba(150,150,150,0.15)' },
+                            smooth: { type: 'cubicBezier', roundness: 0.5 }
                         });
                     }
                 });
+            });
+
+            // 2. Add Cetasika Nodes (Structured Grids)
+            let uCount = 0;
+            let pCount = 0;
+            let sCount = 0; // Specific (Akusala/Sobhana)
+
+            cetasikaList.forEach((cet) => {
+                if (usedCetasikas.has(cet.id)) {
+                    let posX = 0;
+                    let posY = 0;
+
+                    if (cet.group === 'universal') {
+                        posX = startX_Universal;
+                        posY = (uCount * gapY) - 150; // Center offset
+                        uCount++;
+                    } else if (cet.group === 'particular') {
+                        posX = startX_Particular;
+                        posY = (pCount * gapY) - 130;
+                        pCount++;
+                    } else { // Akusala or Sobhana
+                        posX = startX_Specific;
+                        posY = (sCount * gapY) - 300;
+                        sCount++;
+                    }
+
+                    visNodes.push({
+                        id: cet.id,
+                        label: cet.name,
+                        group: 'cetasika',
+                        x: posX,
+                        y: posY,
+                        color: {
+                            background: cet.group === 'akusala' ? '#fed7d7' : (cet.group === 'sobhana' ? '#c6f6d5' : '#e2e8f0'),
+                            border: cet.group === 'akusala' ? '#e53e3e' : (cet.group === 'sobhana' ? '#38a169' : '#718096')
+                        },
+                        font: { size: 14, face: 'Noto Sans Sinhala' },
+                        shape: 'dot',
+                        size: 15,
+                        fixed: true // Stop moving
+                    });
+                }
             });
 
             nodes = new vis.DataSet(visNodes);
@@ -602,35 +632,45 @@
             const options = {
                 nodes: {
                     borderWidth: 2,
-                    shadow: true
+                    shadow: false // Performance
                 },
                 edges: {
                     width: 1,
                     smooth: {
-                        type: 'continuous'
+                        type: 'cubicBezier',
+                        forceDirection: 'horizontal',
+                        roundness: 0.4
                     }
                 },
                 physics: {
-                    stabilization: false,
-                    barnesHut: {
-                        gravitationalConstant: -2000,
-                        springConstant: 0.04,
-                        springLength: 150
-                    }
+                    enabled: false
                 },
                 interaction: {
                     hover: true,
-                    tooltipDelay: 200
+                    dragNodes: false, // Keep structure fixed
+                    zoomView: true,
+                    dragView: true
                 }
             };
 
             network = new vis.Network(container, data, options);
+
+            // Initial Fit
+            network.fit({
+                animation: {
+                    duration: 1000,
+                    easingFunction: 'easeOutQuart'
+                }
+            });
 
             // Events
             network.on("click", function (params) {
                 if (params.nodes.length > 0) {
                     const nodeId = params.nodes[0];
                     showDetails(nodeId);
+
+                    // Highlight connected edges
+                    // This is handled by vis.js selection default, but we can enhance if needed
                 }
             });
         }
