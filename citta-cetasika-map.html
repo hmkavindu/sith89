@@ -356,6 +356,84 @@
                 transform: rotate(360deg);
             }
         }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .app-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 280px;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 1001;
+                /* Above everything */
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            /* Overlay for sidebar */
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 1000;
+            }
+
+            .sidebar-overlay.active {
+                display: block;
+            }
+
+            .main-content {
+                width: 100%;
+                height: 100vh;
+            }
+
+            .detail-panel {
+                width: 90%;
+                right: 5%;
+                top: 10%;
+                max-height: 80vh;
+            }
+
+            /* Mobile header toggle */
+            .mobile-header {
+                display: flex !important;
+                background: white;
+                padding: 10px 15px;
+                align-items: center;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 50;
+            }
+
+            .mobile-menu-btn {
+                background: none;
+                border: none;
+                font-size: 1.2rem;
+                padding: 5px;
+                cursor: pointer;
+                color: #2d3748;
+            }
+        }
+
+        .mobile-header {
+            display: none;
+        }
     </style>
 </head>
 
@@ -368,9 +446,16 @@
         </div>
     </div>
 
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
     <div class="app-container">
         <!-- Sidebar -->
-        <div class="sidebar">
+        <div class="sidebar" id="sidebar">
+            <div style="position: absolute; top: 10px; right: 10px;">
+                <button class="close-btn" onclick="toggleSidebar()" style="font-size: 1.2rem; color: white;">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
             <div class="sidebar-header">
                 <h2>චිත්ත - චෛතසික ජාලය</h2>
                 <p>Interactive Mind Map & Matrix</p>
@@ -418,6 +503,13 @@
 
         <!-- Main Content -->
         <div class="main-content">
+            <div class="mobile-header">
+                <button class="mobile-menu-btn" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h3 style="margin: 0 0 0 10px; font-size: 1rem; color: #2d3748;">චිත්ත - චෛතසික ජාලය</h3>
+            </div>
+
             <div id="network-container"></div>
             <div id="matrix-container">
                 <table class="matrix-table" id="data-matrix">
@@ -795,6 +887,13 @@
             if (network) network.fit();
         }
 
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
         // Initialize
         window.onload = function () {
             setTimeout(() => {
@@ -803,6 +902,11 @@
 
                 initNetwork();
                 // initMatrix();
+
+                // If on mobile, zoom fit again after a delay to ensure correct size
+                if (window.innerWidth < 768) {
+                    setTimeout(fitGraph, 500);
+                }
             }, 1000);
         };
 
