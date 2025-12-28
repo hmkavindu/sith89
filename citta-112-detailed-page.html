@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="si">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>මනොද්වාරාවජ්ජන - විස්තර</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            background: linear-gradient(135deg, #ccfbf1 0%, #99f6e4 50%, #5eead4 100%);
+            min-height: 100vh;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Hero Header */
+        .hero-header {
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+            color: white;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2rem;
+        }
+
+        .hero-content {
+            padding: 3rem 1.5rem;
+        }
+
+        .hero-title-section {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-icon {
+            width: 4rem;
+            height: 4rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-top: 0.75rem;
+            opacity: 0.95;
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1.25rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Section Card */
+        .section-card {
+            margin-bottom: 1.25rem;
+            border: 2px solid;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-header {
+            width: 100%;
+            padding: 1.25rem 1.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            border: none;
+        }
+
+        .section-header:hover {
+            transform: translateY(-2px);
+        }
+
+        .section-header.green {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-color: #10b981;
+        }
+
+        .section-header.blue {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-color: #3b82f6;
+        }
+
+        .section-header.purple {
+            background: linear-gradient(135deg, #f3e8ff 0%, #ddd6fe 100%);
+            border-color: #8b5cf6;
+        }
+
+        .section-header.orange {
+            background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+            border-color: #f59e0b;
+        }
+
+        .section-header.teal {
+            background: linear-gradient(135deg, #ccfbf1 0%, #99f6e4 100%);
+            border-color: #14b8a6;
+        }
+
+        .section-header.indigo {
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            border-color: #6366f1;
+        }
+
+        .section-title-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-icon {
+            width: 1.75rem;
+            height: 1.75rem;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            color: #1f2937;
+        }
+
+        .section-chevron {
+            width: 1.5rem;
+            height: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .section-header.expanded .section-chevron {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            padding: 1.5rem 1.75rem;
+            background: rgba(249, 250, 251, 0.7);
+            display: none;
+        }
+
+        .section-content.expanded {
+            display: block;
+        }
+
+        /* Content Styles */
+        .content-box {
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 4px solid;
+            margin-bottom: 1rem;
+        }
+
+        .content-box.green {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-color: #10b981;
+            color: #1e293b;
+        }
+
+        .content-box.yellow {
+            background: #fef3c7;
+            border: 2px solid #fbbf24;
+            color: #1e293b;
+        }
+
+        .content-box.blue {
+            background: #dbeafe;
+            border-left: 8px solid #2563eb;
+            color: #1e293b;
+        }
+
+        .content-box.teal {
+            background: #ccfbf1;
+            border-left: 8px solid #14b8a6;
+            color: #1e293b;
+        }
+
+        .content-box.purple {
+            background: #f3e8ff;
+            border: 4px solid #a855f7;
+            color: #1e293b;
+        }
+
+        .content-box.orange {
+            background: #fed7aa;
+            border: 2px solid #f59e0b;
+            color: #1e293b;
+        }
+
+        .content-box.indigo {
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            color: #1e293b;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-2xl {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .text-xl {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .text-lg {
+            font-size: 1.125rem;
+        }
+
+        .mb-3 {
+            margin-bottom: 0.75rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .mb-6 {
+            margin-bottom: 1.5rem;
+        }
+
+        .mt-4 {
+            margin-top: 1rem;
+        }
+
+        .mt-6 {
+            margin-top: 1.5rem;
+        }
+
+        .p-6 {
+            padding: 1.5rem;
+        }
+
+        .rounded-xl {
+            border-radius: 1rem;
+        }
+
+        .shadow-md {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .bg-white {
+            background: white;
+        }
+
+        .font-bold {
+            font-weight: 700;
+        }
+
+        .text-gray-700 {
+            color: #374151;
+        }
+
+        .text-teal-900 {
+            color: #134e4a;
+        }
+
+        .text-teal-700 {
+            color: #0f766e;
+        }
+
+        .text-blue-900 {
+            color: #1e3a8a;
+        }
+
+        .text-purple-900 {
+            color: #581c87;
+        }
+
+        .text-orange-900 {
+            color: #7c2d12;
+        }
+
+        .space-y-4>*+* {
+            margin-top: 1rem;
+        }
+
+        .space-y-6>*+* {
+            margin-top: 1.5rem;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .gap-3 {
+            gap: 0.75rem;
+        }
+
+        .leading-relaxed {
+            line-height: 1.75;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        /* Summary Section */
+        .summary-section {
+            margin-top: 3rem;
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+            border-radius: 2rem;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            padding: 2.5rem;
+            color: white;
+        }
+
+        .summary-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .summary-highlight {
+            margin-top: 2.4rem;
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: 700;
+            padding: 1.4rem;
+            border-radius: 1.2rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            box-shadow: 0 24px 52px rgba(0, 8, 16, 0.7);
+        }
+
+        /* Back Button */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: white;
+            color: #2c3e50;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin: 1.5rem 0;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Vithi Flow */
+        .vithi-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .vithi-step {
+            background: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid #14b8a6;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .vithi-step.highlight {
+            background: #fef3c7;
+            border-left: 6px solid #f59e0b;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+        }
+
+        .vithi-number {
+            background: #14b8a6;
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .vithi-step.highlight .vithi-number {
+            background: #f59e0b;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 1.75rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.125rem;
+            }
+
+            .grid-2,
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="kriya-citta-11.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            <span>ක්‍රියා චිත්ත වෙත ආපසු</span>
+        </a>
+
+        <!-- Hero Header -->
+        <div class="hero-header">
+            <div class="hero-content">
+                <div class="hero-title-section">
+                    <i class="fas fa-door-open hero-icon"></i>
+                    <div>
+                        <h1 class="hero-title">
+                            මනොද්වාරාවජ්ජන
+                        </h1>
+                        <p class="hero-subtitle">මනෝද්වාරය වෙත ආරම්මණය හරවා යොමු කරන සිත • ක්‍රියා චිත්ත</p>
+                    </div>
+                </div>
+                <div class="hero-badges">
+                    <span class="hero-badge">අහේතුක ක්‍රියා 3න් එකක්</span>
+                    <span class="hero-badge">චෛතසික 11</span>
+                    <span class="hero-badge">උපේක්ඛා සහගත</span>
+                    <span class="hero-badge">සම්බන්ධක චිත්තය</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 1 -->
+        <div class="section-card">
+            <button class="section-header green" onclick="toggleSection('lvl1')">
+                <div class="section-title-content">
+                    <i class="fas fa-lightbulb section-icon" style="color: #059669;"></i>
+                    <h2 class="section-title">මට්ටම 1 • සරලම අර්ථය</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron" style="color: #059669;"></i>
+            </button>
+            <div class="section-content" id="lvl1">
+                <div class="content-box green">
+                    <h3 class="text-2xl font-bold text-teal-900 mb-6 text-center">ඉතා සරලෙන් කිව්වොත්...</h3>
+                    <div class="grid-2">
+                        <div class="bg-white p-6 rounded-xl shadow-md">
+                            <p class="flex items-center gap-3 mb-3">
+                                <span class="text-4xl">🚪</span>
+                                <span class="text-lg"><strong>මනසේ දොරටුව</strong> විවෘත කරන සිත</span>
+                            </p>
+                            <p class="flex items-center gap-3 mb-3">
+                                <span class="text-4xl">🎯</span>
+                                <span class="text-lg"><strong>ආරම්මණය</strong> මනසට හසු කරන සිත</span>
+                            </p>
+                            <p class="flex items-center gap-3">
+                                <span class="text-4xl">🔗</span>
+                                <span class="text-lg"><strong>සම්බන්ධක</strong> චිත්තයක්</span>
+                            </p>
+                        </div>
+                        <div class="content-box yellow">
+                            <p class="font-bold text-orange-900 mb-3">සරල උදාහරණ:</p>
+                            <p class="italic leading-relaxed text-gray-700">
+                                ඔබ පොතක් කියවමින් සිටියදී හදිසියේ ඔබේ මවගේ හඬ මතක් වෙනවා.
+                                එම මතකය මනසට ගෙන එන්නේ මනොද්වාරාවජ්ජන චිත්තයයි.
+                                එය මනසේ දොරටුව විවෘත කර ආරම්මණය ඇතුළට ගෙන එනවා.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 2 -->
+        <div class="section-card">
+            <button class="section-header blue" onclick="toggleSection('lvl2')">
+                <div class="section-title-content">
+                    <i class="fas fa-book section-icon" style="color: #2563eb;"></i>
+                    <h2 class="section-title">මට්ටම 2 • වචන විග්‍රහය</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron" style="color: #2563eb;"></i>
+            </button>
+            <div class="section-content" id="lvl2">
+                <div class="space-y-6">
+                    <div class="grid-3">
+                        <div class="content-box blue">
+                            <h4 class="font-bold text-xl text-blue-900 mb-3">මනො</h4>
+                            <p class="text-lg">මනස</p>
+                            <p class="text-sm mt-2 text-gray-700">මනෝද්වාරය - මනසේ දොර</p>
+                        </div>
+                        <div class="content-box teal">
+                            <h4 class="font-bold text-xl text-teal-900 mb-3">ද්වාර</h4>
+                            <p class="text-lg">දොර / ද්වාරය</p>
+                            <p class="text-sm mt-2 text-gray-700">ආරම්මණ ඇතුළු වන මාර්ගය</p>
+                        </div>
+                        <div class="content-box purple">
+                            <h4 class="font-bold text-xl text-purple-900 mb-3">ආවජ්ජන</h4>
+                            <p class="text-lg">හරවා යොමු කිරීම</p>
+                            <p class="text-sm mt-2 text-gray-700">ආරම්මණය වෙත අවධානය යොමු කිරීම</p>
+                        </div>
+                    </div>
+                    <div class="content-box orange">
+                        <h4 class="font-bold text-xl text-orange-900 mb-4 text-center">සම්පූර්ණ අර්ථය</h4>
+                        <p class="text-lg text-center">
+                            මනෝද්වාරය වෙත ආරම්මණය හරවා යොමු කරන සිත
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 3 -->
+        <div class="section-card">
+            <button class="section-header purple" onclick="toggleSection('lvl3')">
+                <div class="section-title-content">
+                    <i class="fas fa-cog section-icon" style="color: #8b5cf6;"></i>
+                    <h2 class="section-title">මට්ටම 3 • ලක්ෂණ හා ගුණාංග</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron" style="color: #8b5cf6;"></i>
+            </button>
+            <div class="section-content" id="lvl3">
+                <div class="space-y-4">
+                    <div class="content-box purple">
+                        <h4 class="font-bold text-xl text-purple-900 mb-4">මූලික ලක්ෂණ</h4>
+                        <div class="grid-2">
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-2">✓ අහේතුක</p>
+                                <p class="text-sm text-gray-700">අලෝභ, අද්වේෂ, අමෝහ හේතු නැත</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-2">✓ උපේක්ඛා සහගත</p>
+                                <p class="text-sm text-gray-700">උදාසීන වේදනාව</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-2">✓ ඤාණ විප්‍රයුක්ත</p>
+                                <p class="text-sm text-gray-700">ඤාණය නොමැති</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-2">✓ අසංඛාරික</p>
+                                <p class="text-sm text-gray-700">ස්වභාවිකව පැන නගින</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-box teal">
+                        <h4 class="font-bold text-xl text-teal-900 mb-4">චෛතසික 11</h4>
+                        <p class="mb-3"><strong>සබ්බචිත්ත සාධාරණ චෛතසික 7:</strong></p>
+                        <p class="text-sm text-gray-700 mb-4">ඵස්ස, වේදනා, සඤ්ඤා, චේතනා, ඒකග්ගතා, ජීවිතින්ද්‍රිය,
+                            මනසිකාර</p>
+                        <p class="mb-3"><strong>පකිණ්ණක චෛතසික 4:</strong></p>
+                        <p class="text-sm text-gray-700">විතක්ක, විචාර, අධිමොක්ඛ, විරිය</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 4 -->
+        <div class="section-card">
+            <button class="section-header orange" onclick="toggleSection('lvl4')">
+                <div class="section-title-content">
+                    <i class="fas fa-route section-icon" style="color: #f59e0b;"></i>
+                    <h2 class="section-title">මට්ටම 4 • චිත්ත වීථියේ ස්ථානය</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron" style="color: #f59e0b;"></i>
+            </button>
+            <div class="section-content" id="lvl4">
+                <div class="space-y-6">
+                    <div class="content-box orange">
+                        <h4 class="font-bold text-xl text-orange-900 mb-4">පඤ්චද්වාර වීථියේ</h4>
+                        <div class="vithi-flow">
+                            <div class="vithi-step">
+                                <div class="vithi-number">1</div>
+                                <div>පඤ්චද්වාරාවජ්ජන</div>
+                            </div>
+                            <div class="vithi-step">
+                                <div class="vithi-number">2</div>
+                                <div>චක්ඛු/සෝත/ඝාන/ජිව්හා/කාය විඤ්ඤාණ</div>
+                            </div>
+                            <div class="vithi-step">
+                                <div class="vithi-number">3</div>
+                                <div>සම්පටිච්ඡන</div>
+                            </div>
+                            <div class="vithi-step">
+                                <div class="vithi-number">4-5</div>
+                                <div>සන්තීරණ (2 වතාවක්)</div>
+                            </div>
+                            <div class="vithi-step highlight">
+                                <div class="vithi-number">6</div>
+                                <div><strong>මනොද්වාරාවජ්ජන</strong> ← මෙතන!</div>
+                            </div>
+                            <div class="vithi-step">
+                                <div class="vithi-number">7-13</div>
+                                <div>ජවන (7 වතාවක්)</div>
+                            </div>
+                            <div class="vithi-step">
+                                <div class="vithi-number">14-15</div>
+                                <div>තදාරම්මණ (2 වතාවක්)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-box indigo">
+                        <h4 class="font-bold text-xl text-purple-900 mb-4">මනෝද්වාර වීථියේ</h4>
+                        <div class="vithi-flow">
+                            <div class="vithi-step">
+                                <div class="vithi-number">1</div>
+                                <div>භවඞ්ග චලන</div>
+                            </div>
+                            <div class="vithi-step">
+                                <div class="vithi-number">2</div>
+                                <div>භවඞ්ග උපච්ඡේද</div>
+                            </div>
+                            <div class="vithi-step highlight">
+                                <div class="vithi-number">3</div>
+                                <div><strong>මනොද්වාරාවජ්ජන</strong> ← මෙතන!</div>
+                            </div>
+                            <div class="vithi-step">
+                                <div class="vithi-number">4-10</div>
+                                <div>ජවන (7 වතාවක්)</div>
+                            </div>
+                            <div class="vithi-step">
+                                <div class="vithi-number">11-12</div>
+                                <div>තදාරම්මණ (2 වතාවක්)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 5 -->
+        <div class="section-card">
+            <button class="section-header teal" onclick="toggleSection('lvl5')">
+                <div class="section-title-content">
+                    <i class="fas fa-star section-icon" style="color: #14b8a6;"></i>
+                    <h2 class="section-title">මට්ටම 5 • වැදගත්කම හා කාර්යය</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron" style="color: #14b8a6;"></i>
+            </button>
+            <div class="section-content" id="lvl5">
+                <div class="space-y-4">
+                    <div class="content-box teal">
+                        <h4 class="font-bold text-xl text-teal-900 mb-4">ප්‍රධාන කාර්යයන්</h4>
+                        <div class="space-y-4">
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-2">🔗 සම්බන්ධක චිත්තය</p>
+                                <p class="text-sm text-gray-700">පඤ්චද්වාර අත්දැකීම් මනෝද්වාරයට සම්බන්ධ කරයි</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-2">🚪 දොරටු චිත්තය</p>
+                                <p class="text-sm text-gray-700">කුසල/අකුසල ජවන චිත්ත පැන නැගීමට මග සලසයි</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-2">🎯 ආරම්මණ හඳුනාගැනීම</p>
+                                <p class="text-sm text-gray-700">ආරම්මණය මනසට ඉදිරිපත් කර හඳුනා ගැනීමේ ක්‍රියාවලිය ආරම්භ
+                                    කරයි</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-box blue">
+                        <h4 class="font-bold text-xl text-blue-900 mb-4">පඤ්චද්වාරාවජ්ජන හා වෙනස</h4>
+                        <div class="grid-2">
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-3 text-blue-900">පඤ්චද්වාරාවජ්ජන</p>
+                                <p class="text-sm text-gray-700 mb-2">• පස් ඉන්ද්‍රියයන්ට අරමුණ හසු කරයි</p>
+                                <p class="text-sm text-gray-700 mb-2">• පඤ්චද්වාර වීථියේ ආරම්භයේ</p>
+                                <p class="text-sm text-gray-700">• බාහිර ආරම්මණ සඳහා</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-3 text-teal-900">මනොද්වාරාවජ්ජන</p>
+                                <p class="text-sm text-gray-700 mb-2">• මනසට අරමුණ හසු කරයි</p>
+                                <p class="text-sm text-gray-700 mb-2">• මනෝද්වාර වීථියේ ආරම්භයේ</p>
+                                <p class="text-sm text-gray-700">• අභ්‍යන්තර ආරම්මණ සඳහා</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="summary-section">
+            <h3 class="summary-title">
+                <i class="fas fa-lightbulb"></i>
+                සාරාංශය
+            </h3>
+            <div class="space-y-4">
+                <div class="bg-white p-6 rounded-xl" style="color: #1f2937;">
+                    <p class="text-lg leading-relaxed">
+                        <strong>මනොද්වාරාවජ්ජන</strong> යනු මනෝද්වාරය වෙත ආරම්මණය හරවා යොමු කරන අහේතුක ක්‍රියා චිත්තයයි.
+                        මෙය චිත්ත වීථියේ <strong>සම්බන්ධක චිත්තයක්</strong> ලෙස ක්‍රියා කරමින් පඤ්චද්වාර අත්දැකීම්
+                        මනෝද්වාරයට සම්බන්ධ කරයි. මනෝද්වාර වීථියේදී මෙය <strong>දොරටු චිත්තය</strong> ලෙස ක්‍රියා කරමින්
+                        කුසල හෝ අකුසල ජවන චිත්ත පැන නැගීමට මග සලසයි.
+                    </p>
+                </div>
+                <div class="summary-highlight">
+                    🚪 මනසේ දොරටුව විවෘත කර ආරම්මණය ඇතුළට ගෙන එන චිත්තය 🎯
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSection(sectionId) {
+            const content = document.getElementById(sectionId);
+            const header = content.previousElementSibling;
+
+            content.classList.toggle('expanded');
+            header.classList.toggle('expanded');
+        }
+    </script>
+</body>
+
+</html>

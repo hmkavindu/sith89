@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="si">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>හසිතුප්පාද - විස්තර</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 50%, #f9a8d4 100%);
+            min-height: 100vh;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Hero Header */
+        .hero-header {
+            background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+            color: white;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2rem;
+        }
+
+        .hero-content {
+            padding: 3rem 1.5rem;
+        }
+
+        .hero-title-section {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-icon {
+            width: 4rem;
+            height: 4rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-top: 0.75rem;
+            opacity: 0.95;
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1.25rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Section Card */
+        .section-card {
+            margin-bottom: 1.25rem;
+            border: 2px solid;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-header {
+            width: 100%;
+            padding: 1.25rem 1.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            border: none;
+        }
+
+        .section-header:hover {
+            transform: translateY(-2px);
+        }
+
+        .section-header.green {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-color: #10b981;
+        }
+
+        .section-header.blue {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-color: #3b82f6;
+        }
+
+        .section-header.purple {
+            background: linear-gradient(135deg, #f3e8ff 0%, #ddd6fe 100%);
+            border-color: #8b5cf6;
+        }
+
+        .section-header.pink {
+            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+            border-color: #ec4899;
+        }
+
+        .section-header.rose {
+            background: linear-gradient(135deg, #ffe4e6 0%, #fecdd3 100%);
+            border-color: #f43f5e;
+        }
+
+        .section-title-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-icon {
+            width: 1.75rem;
+            height: 1.75rem;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            color: #1f2937;
+        }
+
+        .section-chevron {
+            width: 1.5rem;
+            height: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .section-header.expanded .section-chevron {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            padding: 1.5rem 1.75rem;
+            background: rgba(249, 250, 251, 0.7);
+            display: none;
+        }
+
+        .section-content.expanded {
+            display: block;
+        }
+
+        /* Content Styles */
+        .content-box {
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 4px solid;
+            margin-bottom: 1rem;
+        }
+
+        .content-box.green {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-color: #10b981;
+            color: #1e293b;
+        }
+
+        .content-box.yellow {
+            background: #fef3c7;
+            border: 2px solid #fbbf24;
+            color: #1e293b;
+        }
+
+        .content-box.blue {
+            background: #dbeafe;
+            border-left: 8px solid #2563eb;
+            color: #1e293b;
+        }
+
+        .content-box.pink {
+            background: #fce7f3;
+            border: 4px solid #ec4899;
+            color: #1e293b;
+        }
+
+        .content-box.purple {
+            background: #f3e8ff;
+            border: 4px solid #a855f7;
+            color: #1e293b;
+        }
+
+        .content-box.rose {
+            background: linear-gradient(135deg, #ffe4e6 0%, #fecdd3 100%);
+            border: 4px solid #f43f5e;
+            color: #1e293b;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-2xl {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .text-xl {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .text-lg {
+            font-size: 1.125rem;
+        }
+
+        .mb-3 {
+            margin-bottom: 0.75rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .mb-6 {
+            margin-bottom: 1.5rem;
+        }
+
+        .mt-4 {
+            margin-top: 1rem;
+        }
+
+        .p-6 {
+            padding: 1.5rem;
+        }
+
+        .p-4 {
+            padding: 1rem;
+        }
+
+        .rounded-xl {
+            border-radius: 1rem;
+        }
+
+        .shadow-md {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .bg-white {
+            background: white;
+        }
+
+        .font-bold {
+            font-weight: 700;
+        }
+
+        .text-gray-700 {
+            color: #374151;
+        }
+
+        .text-pink-900 {
+            color: #831843;
+        }
+
+        .text-blue-900 {
+            color: #1e3a8a;
+        }
+
+        .text-purple-900 {
+            color: #581c87;
+        }
+
+        .text-rose-900 {
+            color: #881337;
+        }
+
+        .space-y-4>*+* {
+            margin-top: 1rem;
+        }
+
+        .space-y-6>*+* {
+            margin-top: 1.5rem;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .gap-3 {
+            gap: 0.75rem;
+        }
+
+        .leading-relaxed {
+            line-height: 1.75;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        /* Summary Section */
+        .summary-section {
+            margin-top: 3rem;
+            background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+            border-radius: 2rem;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            padding: 2.5rem;
+            color: white;
+        }
+
+        .summary-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .summary-highlight {
+            margin-top: 2.4rem;
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: 700;
+            padding: 1.4rem;
+            border-radius: 1.2rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            box-shadow: 0 24px 52px rgba(0, 8, 16, 0.7);
+        }
+
+        /* Back Button */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: white;
+            color: #2c3e50;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin: 1.5rem 0;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Smile Icon Animation */
+        .smile-icon {
+            font-size: 3rem;
+            animation: smile 2s ease-in-out infinite;
+        }
+
+        @keyframes smile {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 1.75rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.125rem;
+            }
+
+            .grid-2,
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="kriya-citta-11.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            <span>ක්‍රියා චිත්ත වෙත ආපසු</span>
+        </a>
+
+        <!-- Hero Header -->
+        <div class="hero-header">
+            <div class="hero-content">
+                <div class="hero-title-section">
+                    <i class="fas fa-smile-beam hero-icon"></i>
+                    <div>
+                        <h1 class="hero-title">
+                            හසිතුප්පාද
+                        </h1>
+                        <p class="hero-subtitle">රහතන් වහන්සේලාගේ සිනහව ඇති කරන චිත්තය • අහේතුක ක්‍රියා</p>
+                    </div>
+                </div>
+                <div class="hero-badges">
+                    <span class="hero-badge">අහේතුක ක්‍රියා 3න් එකක්</span>
+                    <span class="hero-badge">චෛතසික 11</span>
+                    <span class="hero-badge">උපේක්ඛා සහගත</span>
+                    <span class="hero-badge">රහතුන්ට පමණි</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 1 -->
+        <div class="section-card">
+            <button class="section-header green" onclick="toggleSection('lvl1')">
+                <div class="section-title-content">
+                    <i class="fas fa-lightbulb section-icon" style="color: #059669;"></i>
+                    <h2 class="section-title">මට්ටම 1 • සරලම අර්ථය</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron" style="color: #059669;"></i>
+            </button>
+            <div class="section-content" id="lvl1">
+                <div class="content-box green">
+                    <h3 class="text-2xl font-bold text-pink-900 mb-6 text-center">ඉතා සරලෙන් කිව්වොත්...</h3>
+                    <div class="grid-2">
+                        <div class="bg-white p-6 rounded-xl shadow-md">
+                            <p class="flex items-center gap-3 mb-3">
+                                <span class="smile-icon">😊</span>
+                                <span class="text-lg"><strong>සිනහව</strong> ඇති කරන සිතක්</span>
+                            </p>
+                            <p class="flex items-center gap-3 mb-3">
+                                <span class="text-4xl">👑</span>
+                                <span class="text-lg"><strong>රහතුන්ට</strong> පමණක් ඇති සිතක්</span>
+                            </p>
+                            <p class="flex items-center gap-3 mb-3">
+                                <span class="text-4xl">✨</span>
+                                <span class="text-lg"><strong>පිරිසිදු</strong> සිනහවක්</span>
+                            </p>
+                            <p class="flex items-center gap-3">
+                                <span class="text-4xl">💎</span>
+                                <span class="text-lg"><strong>අකුසල රහිත</strong> සිතක්</span>
+                            </p>
+                        </div>
+                        <div class="content-box yellow">
+                            <p class="font-bold text-pink-900 mb-3">සරල උදාහරණ:</p>
+                            <p class="italic leading-relaxed text-gray-700">
+                                රහතන් වහන්සේ භික්ෂුවක් දහම් අවබෝධ කර ගත් විට සතුටින් සිනහ වේ.
+                                දායකයෙකු දානයක් කරන විට ප්‍රීතියෙන් සිනහ වේ.
+                                මෙම සිනහව කිසිදු ලෝභ, ද්වේෂ, මෝහයකින් තොර පිරිසිදු සිනහවකි.
+                                මෙය හසිතුප්පාද චිත්තයයි.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 2 -->
+        <div class="section-card">
+            <button class="section-header blue" onclick="toggleSection('lvl2')">
+                <div class="section-title-content">
+                    <i class="fas fa-book section-icon" style="color: #2563eb;"></i>
+                    <h2 class="section-title">මට්ටම 2 • වචන විග්‍රහය</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron" style="color: #2563eb;"></i>
+            </button>
+            <div class="section-content" id="lvl2">
+                <div class="space-y-6">
+                    <div class="grid-2">
+                        <div class="content-box blue">
+                            <h4 class="font-bold text-xl text-blue-900 mb-3">හසිත</h4>
+                            <p class="text-lg">සිනහව</p>
+                            <p class="text-sm mt-2 text-gray-700">රහතන් වහන්සේලාගේ පිරිසිදු සිනහව</p>
+                        </div>
+                        <div class="content-box purple">
+                            <h4 class="font-bold text-xl text-purple-900 mb-3">උප්පාද</h4>
+                            <p class="text-lg">ඇතිවීම / පැන නැගීම</p>
+                            <p class="text-sm mt-2 text-gray-700">චිත්තයේ උත්පත්තිය</p>
+                        </div>
+                    </div>
+
+                    <div class="content-box pink">
+                        <h4 class="font-bold text-xl text-pink-900 mb-4 text-center">සම්පූර්ණ අර්ථය</h4>
+                        <p class="text-lg text-center">
+                            සිනහව ඇති කරන චිත්තය - රහතන් වහන්සේලාගේ පිරිසිදු සිනහව
+                        </p>
+                    </div>
+
+                    <div class="content-box rose">
+                        <h4 class="font-bold text-xl text-rose-900 mb-4">විශේෂත්වය</h4>
+                        <div class="space-y-3">
+                            <div class="bg-white p-4 rounded-xl">
+                                <p class="text-sm text-gray-700">🔹 සාමාන්‍ය පුද්ගලයන්ගේ සිනහව කුසල හෝ අකුසල චිත්තයකින්
+                                    පැන නගී</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl">
+                                <p class="text-sm text-gray-700">🔹 රහතන් වහන්සේලාගේ සිනහව හසිතුප්පාද චිත්තයකින් පැන නගී
+                                </p>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl">
+                                <p class="text-sm text-gray-700">🔹 මෙය කිසිදු අකුසල මූලයකින් තොර පිරිසිදු සිනහවකි</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 3 -->
+        <div class="section-card">
+            <button class="section-header purple" onclick="toggleSection('lvl3')">
+                <div class="section-title-content">
+                    <i class="fas fa-cog section-icon" style="color: #8b5cf6;"></i>
+                    <h2 class="section-title">මට්ටම 3 • ලක්ෂණ හා ගුණාංග</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron" style="color: #8b5cf6;"></i>
+            </button>
+            <div class="section-content" id="lvl3">
+                <div class="space-y-4">
+                    <div class="content-box purple">
+                        <h4 class="font-bold text-xl text-purple-900 mb-4">මූලික ලක්ෂණ</h4>
+                        <div class="grid-2">
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-2">✓ අහේතුක</p>
+                                <p class="text-sm text-gray-700">අලෝභ, අද්වේෂ, අමෝහ හේතු නැත</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-2">✓ උපේක්ඛා සහගත</p>
+                                <p class="text-sm text-gray-700">උදාසීන වේදනාව</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-2">✓ ඤාණ විප්‍රයුක්ත</p>
+                                <p class="text-sm text-gray-700">ඤාණය නොමැති</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-2">✓ අසංඛාරික</p>
+                                <p class="text-sm text-gray-700">ස්වභාවිකව පැන නගින</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-box pink">
+                        <h4 class="font-bold text-xl text-pink-900 mb-4">චෛතසික 11</h4>
+                        <p class="mb-3"><strong>සබ්බචිත්ත සාධාරණ චෛතසික 7:</strong></p>
+                        <p class="text-sm text-gray-700 mb-4">ඵස්ස, වේදනා, සඤ්ඤා, චේතනා, ඒකග්ගතා, ජීවිතින්ද්‍රිය,
+                            මනසිකාර</p>
+                        <p class="mb-3"><strong>පකිණ්ණක චෛතසික 4:</strong></p>
+                        <p class="text-sm text-gray-700">විතක්ක, විචාර, අධිමොක්ඛ, විරිය</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 4 -->
+        <div class="section-card">
+            <button class="section-header pink" onclick="toggleSection('lvl4')">
+                <div class="section-title-content">
+                    <i class="fas fa-star section-icon" style="color: #ec4899;"></i>
+                    <h2 class="section-title">මට්ටම 4 • සිනහවේ ස්වභාවය</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron" style="color: #ec4899;"></i>
+            </button>
+            <div class="section-content" id="lvl4">
+                <div class="space-y-6">
+                    <div class="content-box pink">
+                        <h4 class="font-bold text-xl text-pink-900 mb-4">රහතන් වහන්සේලාගේ සිනහව</h4>
+                        <div class="space-y-4">
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-2">😊 පිරිසිදු සිනහවක්</p>
+                                <p class="text-sm text-gray-700">කිසිදු ලෝභ, ද්වේෂ, මෝහයකින් තොර</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-2">💝 අනුකම්පාවෙන් යුක්ත</p>
+                                <p class="text-sm text-gray-700">සත්ත්වයන් කෙරෙහි මෛත්‍රී කරුණාවෙන් සිනහ වේ</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-2">🌟 උපහාසයක් නොවේ</p>
+                                <p class="text-sm text-gray-700">කිසිවෙකු පහත් කිරීමක් නැත</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-2">✨ ස්වභාවික සිනහවක්</p>
+                                <p class="text-sm text-gray-700">කෘතිමව නොවේ, සරල හා පිරිසිදු</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-box blue">
+                        <h4 class="font-bold text-xl text-blue-900 mb-4">සාමාන්‍ය පුද්ගලයා vs රහතන් වහන්සේ</h4>
+                        <div class="grid-2">
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-3 text-gray-700">සාමාන්‍ය පුද්ගලයා</p>
+                                <p class="text-sm text-gray-700 mb-2">• සිනහව කුසල හෝ අකුසල චිත්තයකින්</p>
+                                <p class="text-sm text-gray-700 mb-2">• සමහර විට උපහාසයෙන්</p>
+                                <p class="text-sm text-gray-700 mb-2">• සමහර විට ලෝභයෙන්</p>
+                                <p class="text-sm text-gray-700">• හසිතුප්පාද චිත්තය නැත</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-3 text-pink-900">රහතන් වහන්සේ</p>
+                                <p class="text-sm text-gray-700 mb-2">• සිනහව හසිතුප්පාද චිත්තයකින්</p>
+                                <p class="text-sm text-gray-700 mb-2">• කිසිදු උපහාසයක් නැත</p>
+                                <p class="text-sm text-gray-700 mb-2">• කිසිදු අකුසලයක් නැත</p>
+                                <p class="text-sm text-gray-700">• පිරිසිදු සිනහවක්</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 5 -->
+        <div class="section-card">
+            <button class="section-header rose" onclick="toggleSection('lvl5')">
+                <div class="section-title-content">
+                    <i class="fas fa-heart section-icon" style="color: #f43f5e;"></i>
+                    <h2 class="section-title">මට්ටම 5 • වැදගත්කම හා උදාහරණ</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron" style="color: #f43f5e;"></i>
+            </button>
+            <div class="section-content" id="lvl5">
+                <div class="space-y-4">
+                    <div class="content-box rose">
+                        <h4 class="font-bold text-xl text-rose-900 mb-4">රහතන් වහන්සේ සිනහ වන අවස්ථා</h4>
+                        <div class="grid-2">
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-2">📖 ධර්මය අවබෝධ කර ගැනීම</p>
+                                <p class="text-sm text-gray-700">භික්ෂුවක් දහම් තේරුම් ගත් විට සතුටින් සිනහ වේ</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-2">🙏 දානය කිරීම</p>
+                                <p class="text-sm text-gray-700">දායකයෙකු දානයක් කරන විට ප්‍රීතියෙන් සිනහ වේ</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-2">🌸 ධර්ම දේශනාව</p>
+                                <p class="text-sm text-gray-700">ධර්මය දේශනා කරන විට අනුකම්පාවෙන් සිනහ වේ</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-2">💫 කුසල් ක්‍රියා</p>
+                                <p class="text-sm text-gray-700">සත්ත්වයන්ගේ කුසල් ක්‍රියා දැක සතුටු වේ</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-box purple">
+                        <h4 class="font-bold text-xl text-purple-900 mb-4">අහේතුක ක්‍රියා චිත්ත 3</h4>
+                        <div class="space-y-3">
+                            <div class="bg-white p-4 rounded-xl">
+                                <p class="text-sm">1. පඤ්චද්වාරාවජ්ජන (111) - පස් ඉන්ද්‍රියයන්ට අරමුණ හසු කරන සිත</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl">
+                                <p class="text-sm">2. මනොද්වාරාවජ්ජන (112) - මනසට අරමුණ හසු කරන සිත</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl">
+                                <p class="text-sm"><strong>3. හසිතුප්පාද (113) - සිනහව ඇති කරන සිත ← මෙය</strong></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-box pink">
+                        <h4 class="font-bold text-xl text-pink-900 mb-4">විශේෂ ලක්ෂණ</h4>
+                        <div class="space-y-3">
+                            <div class="bg-white p-4 rounded-xl">
+                                <p class="text-sm text-gray-700">🔹 රහතන් වහන්සේට පමණක් පවතින චිත්තයකි</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl">
+                                <p class="text-sm text-gray-700">🔹 කර්ම විපාක නොදෙන ක්‍රියා චිත්තයකි</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl">
+                                <p class="text-sm text-gray-700">🔹 අහේතුක නමුත් පිරිසිදු චිත්තයකි</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl">
+                                <p class="text-sm text-gray-700">🔹 සිනහව ඇති කරන එකම චිත්තයකි</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="summary-section">
+            <h3 class="summary-title">
+                <i class="fas fa-lightbulb"></i>
+                සාරාංශය
+            </h3>
+            <div class="space-y-4">
+                <div class="bg-white p-6 rounded-xl" style="color: #1f2937;">
+                    <p class="text-lg leading-relaxed">
+                        <strong>හසිතුප්පාද</strong> යනු රහතන් වහන්සේලාගේ සිනහව ඇති කරන අහේතුක ක්‍රියා චිත්තයයි.
+                        මෙය <strong>පිරිසිදු, අනුකම්පාවෙන් යුක්ත, උපහාසයකින් තොර</strong> සිනහවක් ඇති කරයි.
+                        සාමාන්‍ය පුද්ගලයන්ට මෙම චිත්තය නැති අතර ඔවුන්ගේ සිනහව කුසල හෝ අකුසල චිත්තයකින් පැන නගී.
+                        රහතන් වහන්සේ ධර්මය අවබෝධ කර ගැනීම, දානය, කුසල් ක්‍රියා ආදිය දැක <strong>සතුටින්,
+                            ප්‍රීතියෙන්, අනුකම්පාවෙන්</strong> සිනහ වන විට මෙම චිත්තය පැන නගී.
+                    </p>
+                </div>
+                <div class="summary-highlight">
+                    😊 රහතුන්ගේ පිරිසිදු, අනුකම්පාවෙන් යුක්ත සිනහව ✨
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSection(sectionId) {
+            const content = document.getElementById(sectionId);
+            const header = content.previousElementSibling;
+
+            content.classList.toggle('expanded');
+            header.classList.toggle('expanded');
+        }
+    </script>
+</body>
+
+</html>

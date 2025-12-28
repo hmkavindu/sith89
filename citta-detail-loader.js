@@ -114,6 +114,11 @@ async function renderCittaDetailPage() {
         container.appendChild(createFinalMessageSection(citta.levels.finalMessage));
     }
 
+    // Add Abhidharma Margaya book reference section (if available)
+    if (typeof window.abhidharmaMargayaSectionLoader !== 'undefined') {
+        await window.abhidharmaMargayaSectionLoader.addToPage(currentCittaId, 'sectionsContainer');
+    }
+
     // Setup collapsible sections
     setupCollapsibleSections();
 }

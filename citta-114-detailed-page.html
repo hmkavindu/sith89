@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="si">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>සෝමනස්ස සහගත ඤාණ සම්ප්‍රයුක්ත අසංඛාරික ක්‍රියා - විස්තර</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fcd34d 100%);
+            min-height: 100vh;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Hero Header */
+        .hero-header {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2rem;
+        }
+
+        .hero-content {
+            padding: 3rem 1.5rem;
+        }
+
+        .hero-title-section {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-icon {
+            width: 4rem;
+            height: 4rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-top: 0.75rem;
+            opacity: 0.95;
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1.25rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Section Card */
+        .section-card {
+            margin-bottom: 1.25rem;
+            border: 2px solid;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-header {
+            width: 100%;
+            padding: 1.25rem 1.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            border: none;
+        }
+
+        .section-header:hover {
+            transform: translateY(-2px);
+        }
+
+        .section-header.green {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-color: #10b981;
+        }
+
+        .section-header.blue {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-color: #3b82f6;
+        }
+
+        .section-header.purple {
+            background: linear-gradient(135deg, #f3e8ff 0%, #ddd6fe 100%);
+            border-color: #8b5cf6;
+        }
+
+        .section-header.orange {
+            background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+            border-color: #f59e0b;
+        }
+
+        .section-header.yellow {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-color: #eab308;
+        }
+
+        .section-header.indigo {
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            border-color: #6366f1;
+        }
+
+        .section-title-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-icon {
+            width: 1.75rem;
+            height: 1.75rem;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            color: #1f2937;
+        }
+
+        .section-chevron {
+            width: 1.5rem;
+            height: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .section-header.expanded .section-chevron {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            padding: 1.5rem 1.75rem;
+            background: rgba(249, 250, 251, 0.7);
+            display: none;
+        }
+
+        .section-content.expanded {
+            display: block;
+        }
+
+        /* Content Styles */
+        .content-box {
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 4px solid;
+            margin-bottom: 1rem;
+        }
+
+        .content-box.green {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-color: #10b981;
+            color: #1e293b;
+        }
+
+        .content-box.yellow {
+            background: #fef3c7;
+            border: 2px solid #fbbf24;
+            color: #1e293b;
+        }
+
+        .content-box.blue {
+            background: #dbeafe;
+            border-left: 8px solid #2563eb;
+            color: #1e293b;
+        }
+
+        .content-box.orange {
+            background: #fed7aa;
+            border: 4px solid #f59e0b;
+            color: #1e293b;
+        }
+
+        .content-box.purple {
+            background: #f3e8ff;
+            border: 4px solid #a855f7;
+            color: #1e293b;
+        }
+
+        .content-box.indigo {
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            color: #1e293b;
+        }
+
+        .content-box.gold {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 4px solid #eab308;
+            color: #1e293b;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-2xl {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .text-xl {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .text-lg {
+            font-size: 1.125rem;
+        }
+
+        .mb-3 {
+            margin-bottom: 0.75rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .mb-6 {
+            margin-bottom: 1.5rem;
+        }
+
+        .mt-4 {
+            margin-top: 1rem;
+        }
+
+        .mt-6 {
+            margin-top: 1.5rem;
+        }
+
+        .p-6 {
+            padding: 1.5rem;
+        }
+
+        .p-4 {
+            padding: 1rem;
+        }
+
+        .rounded-xl {
+            border-radius: 1rem;
+        }
+
+        .shadow-md {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .bg-white {
+            background: white;
+        }
+
+        .font-bold {
+            font-weight: 700;
+        }
+
+        .text-gray-700 {
+            color: #374151;
+        }
+
+        .text-orange-900 {
+            color: #7c2d12;
+        }
+
+        .text-blue-900 {
+            color: #1e3a8a;
+        }
+
+        .text-purple-900 {
+            color: #581c87;
+        }
+
+        .text-yellow-900 {
+            color: #78350f;
+        }
+
+        .text-green-900 {
+            color: #065f46;
+        }
+
+        .space-y-4>*+* {
+            margin-top: 1rem;
+        }
+
+        .space-y-6>*+* {
+            margin-top: 1.5rem;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .gap-3 {
+            gap: 0.75rem;
+        }
+
+        .leading-relaxed {
+            line-height: 1.75;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        /* Summary Section */
+        .summary-section {
+            margin-top: 3rem;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            border-radius: 2rem;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            padding: 2.5rem;
+            color: white;
+        }
+
+        .summary-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .summary-highlight {
+            margin-top: 2.4rem;
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: 700;
+            padding: 1.4rem;
+            border-radius: 1.2rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            box-shadow: 0 24px 52px rgba(0, 8, 16, 0.7);
+        }
+
+        /* Back Button */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: white;
+            color: #2c3e50;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin: 1.5rem 0;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border: 2px solid #e5e7eb;
+        }
+
+        .comparison-table th {
+            background: #f59e0b;
+            color: white;
+            font-weight: 700;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #fef3c7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 1.75rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.125rem;
+            }
+
+            .grid-2,
+            .grid-3,
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="kriya-citta-11.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            <span>ක්‍රියා චිත්ත වෙත ආපසු</span>
+        </a>
+
+        <!-- Hero Header -->
+        <div class="hero-header">
+            <div class="hero-content">
+                <div class="hero-title-section">
+                    <i class="fas fa-crown hero-icon"></i>
+                    <div>
+                        <h1 class="hero-title">
+                            සෝමනස්ස සහගත ඤාණ සම්ප්‍රයුක්ත අසංඛාරික ක්‍රියා
+                        </h1>
+                        <p class="hero-subtitle">රහතන් වහන්සේලාගේ සහේතුක ක්‍රියා චිත්තය • කර්ම විපාක නොදෙන සිත</p>
+                    </div>
+                </div>
+                <div class="hero-badges">
+                    <span class="hero-badge">සහේතුක ක්‍රියා 8න් එකක්</span>
+                    <span class="hero-badge">තිහේතුක</span>
+                    <span class="hero-badge">සෝභන චිත්තය</span>
+                    <span class="hero-badge">රහතුන්ට පමණි</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 1 -->
+        <div class="section-card">
+            <button class="section-header green" onclick="toggleSection('lvl1')">
+                <div class="section-title-content">
+                    <i class="fas fa-lightbulb section-icon" style="color: #059669;"></i>
+                    <h2 class="section-title">මට්ටම 1 • සරලම අර්ථය</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron" style="color: #059669;"></i>
+            </button>
+            <div class="section-content" id="lvl1">
+                <div class="content-box green">
+                    <h3 class="text-2xl font-bold text-green-900 mb-6 text-center">ඉතා සරලෙන් කිව්වොත්...</h3>
+                    <div class="grid-2">
+                        <div class="bg-white p-6 rounded-xl shadow-md">
+                            <p class="flex items-center gap-3 mb-3">
+                                <span class="text-4xl">😊</span>
+                                <span class="text-lg"><strong>සතුටින්</strong> යුක්ත සිතක්</span>
+                            </p>
+                            <p class="flex items-center gap-3 mb-3">
+                                <span class="text-4xl">🧠</span>
+                                <span class="text-lg"><strong>ඤාණයෙන්</strong> යුක්ත සිතක්</span>
+                            </p>
+                            <p class="flex items-center gap-3 mb-3">
+                                <span class="text-4xl">🌱</span>
+                                <span class="text-lg"><strong>ස්වභාවිකව</strong> පැන නගින සිතක්</span>
+                            </p>
+                            <p class="flex items-center gap-3">
+                                <span class="text-4xl">👑</span>
+                                <span class="text-lg"><strong>රහතුන්ට</strong> පමණක් ඇති සිතක්</span>
+                            </p>
+                        </div>
+                        <div class="content-box yellow">
+                            <p class="font-bold text-orange-900 mb-3">සරල උදාහරණ:</p>
+                            <p class="italic leading-relaxed text-gray-700">
+                                රහතන් වහන්සේ දානයක් කරන විට, සීලයක් රකින විට, භාවනාවක් කරන විට,
+                                හෝ ධර්මය දේශනා කරන විට මෙම චිත්තය පැන නගී. මෙය කුසල චිත්තයක් මෙන්
+                                ම ගුණාංග ඇති නමුත් කර්ම විපාක නොදෙන නිසා "ක්‍රියා" චිත්තයකි.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 2 -->
+        <div class="section-card">
+            <button class="section-header blue" onclick="toggleSection('lvl2')">
+                <div class="section-title-content">
+                    <i class="fas fa-book section-icon" style="color: #2563eb;"></i>
+                    <h2 class="section-title">මට්ටම 2 • වචන විග්‍රහය</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron" style="color: #2563eb;"></i>
+            </button>
+            <div class="section-content" id="lvl2">
+                <div class="space-y-6">
+                    <div class="grid-4">
+                        <div class="content-box blue">
+                            <h4 class="font-bold text-xl text-blue-900 mb-3">සෝමනස්ස සහගත</h4>
+                            <p class="text-lg">මානසික සතුට</p>
+                            <p class="text-sm mt-2 text-gray-700">සුඛ වේදනාව</p>
+                        </div>
+                        <div class="content-box purple">
+                            <h4 class="font-bold text-xl text-purple-900 mb-3">ඤාණ සම්ප්‍රයුක්ත</h4>
+                            <p class="text-lg">ඤාණය සමඟ</p>
+                            <p class="text-sm mt-2 text-gray-700">සම්මා දිට්ඨිය ඇත</p>
+                        </div>
+                        <div class="content-box green">
+                            <h4 class="font-bold text-xl text-green-900 mb-3">අසංඛාරික</h4>
+                            <p class="text-lg">ස්වභාවිකව</p>
+                            <p class="text-sm mt-2 text-gray-700">පෙළඹවීමකින් තොරව</p>
+                        </div>
+                        <div class="content-box orange">
+                            <h4 class="font-bold text-xl text-orange-900 mb-3">ක්‍රියා</h4>
+                            <p class="text-lg">කර්ම විපාක නොදෙන</p>
+                            <p class="text-sm mt-2 text-gray-700">රහතුන්ගේ සිත</p>
+                        </div>
+                    </div>
+
+                    <div class="content-box gold">
+                        <h4 class="font-bold text-xl text-yellow-900 mb-4 text-center">සම්පූර්ණ අර්ථය</h4>
+                        <p class="text-lg text-center">
+                            මානසික සතුටින්, ඤාණයෙන්, ස්වභාවිකව පැන නගින, කර්ම විපාක නොදෙන, රහතන් වහන්සේලාගේ සිත
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 3 -->
+        <div class="section-card">
+            <button class="section-header purple" onclick="toggleSection('lvl3')">
+                <div class="section-title-content">
+                    <i class="fas fa-cog section-icon" style="color: #8b5cf6;"></i>
+                    <h2 class="section-title">මට්ටම 3 • ලක්ෂණ හා ගුණාංග</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron" style="color: #8b5cf6;"></i>
+            </button>
+            <div class="section-content" id="lvl3">
+                <div class="space-y-4">
+                    <div class="content-box purple">
+                        <h4 class="font-bold text-xl text-purple-900 mb-4">මූලික ලක්ෂණ</h4>
+                        <div class="grid-2">
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-2">✓ තිහේතුක</p>
+                                <p class="text-sm text-gray-700">අලෝභ, අද්වේෂ, අමෝහ යන හේතු තුනම ඇත</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-2">✓ සෝමනස්ස සහගත</p>
+                                <p class="text-sm text-gray-700">මානසික සතුට (සුඛ වේදනාව)</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-2">✓ ඤාණ සම්ප්‍රයුක්ත</p>
+                                <p class="text-sm text-gray-700">ඤාණය සමඟ (සම්මා දිට්ඨිය)</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-2">✓ අසංඛාරික</p>
+                                <p class="text-sm text-gray-700">ස්වභාවිකව පැන නගින</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-box orange">
+                        <h4 class="font-bold text-xl text-orange-900 mb-4">චෛතසික</h4>
+                        <p class="mb-3"><strong>සබ්බචිත්ත සාධාරණ චෛතසික 7:</strong></p>
+                        <p class="text-sm text-gray-700 mb-4">ඵස්ස, වේදනා, සඤ්ඤා, චේතනා, ඒකග්ගතා, ජීවිතින්ද්‍රිය,
+                            මනසිකාර</p>
+
+                        <p class="mb-3"><strong>සෝභන සාධාරණ චෛතසික 19:</strong></p>
+                        <p class="text-sm text-gray-700 mb-4">සද්ධා, සති, හිරි, ඔත්තප්ප, අලෝභ, අද්වේෂ, තත්‍රමජ්ඣත්තතා,
+                            කායපස්සද්ධි, චිත්තපස්සද්ධි, කායලහුතා, චිත්තලහුතා, කායමුදුතා, චිත්තමුදුතා, කායකම්මඤ්ඤතා,
+                            චිත්තකම්මඤ්ඤතා, කායපාගුඤ්ඤතා, චිත්තපාගුඤ්ඤතා, කායුජුකතා, චිත්තුජුකතා</p>
+
+                        <p class="mb-3"><strong>සෝභන අඤ්ඤසමාන චෛතසික:</strong></p>
+                        <p class="text-sm text-gray-700 mb-4">සම්මා වාචා, සම්මා කම්මන්ත, සම්මා ආජීව (අවස්ථානුකූලව)</p>
+
+                        <p class="mb-3"><strong>අප්‍රමාණ චෛතසික:</strong></p>
+                        <p class="text-sm text-gray-700">කරුණා, මුදිතා (අවස්ථානුකූලව)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 4 -->
+        <div class="section-card">
+            <button class="section-header orange" onclick="toggleSection('lvl4')">
+                <div class="section-title-content">
+                    <i class="fas fa-balance-scale section-icon" style="color: #f59e0b;"></i>
+                    <h2 class="section-title">මට්ටම 4 • කුසල චිත්තය හා වෙනස</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron" style="color: #f59e0b;"></i>
+            </button>
+            <div class="section-content" id="lvl4">
+                <div class="space-y-6">
+                    <div class="content-box orange">
+                        <h4 class="font-bold text-xl text-orange-900 mb-4 text-center">සාමාන්‍ය පුද්ගලයා vs රහතන් වහන්සේ
+                        </h4>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>ලක්ෂණය</th>
+                                    <th>සාමාන්‍ය පුද්ගලයා</th>
+                                    <th>රහතන් වහන්සේ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>චිත්ත වර්ගය</strong></td>
+                                    <td>කුසල චිත්තය</td>
+                                    <td>ක්‍රියා චිත්තය</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>කර්ම විපාක</strong></td>
+                                    <td>විපාක දෙයි</td>
+                                    <td>විපාක නොදෙයි</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>චිත්ත සංඛ්‍යාව</strong></td>
+                                    <td>1 (කුසල 8න්)</td>
+                                    <td>114 (ක්‍රියා 11න්)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>ගුණාංග</strong></td>
+                                    <td>සමාන ගුණාංග</td>
+                                    <td>සමාන ගුණාංග</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>හේතු</strong></td>
+                                    <td>තිහේතුක</td>
+                                    <td>තිහේතුක</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="content-box blue">
+                        <h4 class="font-bold text-xl text-blue-900 mb-4">ප්‍රධාන වෙනස</h4>
+                        <div class="space-y-3">
+                            <div class="bg-white p-4 rounded-xl">
+                                <p class="text-sm text-gray-700">🔹 රහතන් වහන්සේ කර්ම සම්පාදනය නිමාවී ඇති නිසා ඔවුන්ගේ
+                                    සිත් කර්ම විපාක නොදෙයි</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl">
+                                <p class="text-sm text-gray-700">🔹 කුසල චිත්තයක් මෙන් ම ගුණාංග ඇති නමුත් "ක්‍රියා"
+                                    චිත්තයක් වේ</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl">
+                                <p class="text-sm text-gray-700">🔹 රහතන් වහන්සේ දානාදිය කරන විට මෙම චිත්තය පැන නගී</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 5 -->
+        <div class="section-card">
+            <button class="section-header yellow" onclick="toggleSection('lvl5')">
+                <div class="section-title-content">
+                    <i class="fas fa-star section-icon" style="color: #eab308;"></i>
+                    <h2 class="section-title">මට්ටම 5 • වැදගත්කම හා උදාහරණ</h2>
+                </div>
+                <i class="fas fa-chevron-down section-chevron" style="color: #eab308;"></i>
+            </button>
+            <div class="section-content" id="lvl5">
+                <div class="space-y-4">
+                    <div class="content-box gold">
+                        <h4 class="font-bold text-xl text-yellow-900 mb-4">රහතන් වහන්සේ මෙම චිත්තය පවතින අවස්ථා</h4>
+                        <div class="grid-2">
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-2">🙏 දානය කරන විට</p>
+                                <p class="text-sm text-gray-700">සතුටින්, ඤාණයෙන්, ස්වභාවිකව දානය දෙන විට</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-2">🧘 භාවනා කරන විට</p>
+                                <p class="text-sm text-gray-700">සමථ හෝ විදර්ශනා භාවනාවේ යෙදෙන විට</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-2">📖 ධර්මය දේශනා කරන විට</p>
+                                <p class="text-sm text-gray-700">සතුටින් ධර්මය පැහැදිලි කරන විට</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl">
+                                <p class="font-bold mb-2">🌟 සීල රකින විට</p>
+                                <p class="text-sm text-gray-700">ඤාණයෙන් යුක්තව සීල පිළිපදින විට</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-box purple">
+                        <h4 class="font-bold text-xl text-purple-900 mb-4">සහේතුක ක්‍රියා චිත්ත 8</h4>
+                        <p class="mb-3 text-gray-700">මෙය සහේතුක කාමාවචර ක්‍රියා චිත්ත 8න් පළමුවැන්නයි:</p>
+                        <div class="space-y-2">
+                            <div class="bg-white p-3 rounded-xl">
+                                <p class="text-sm">1. සෝමනස්ස සහගත ඤාණ සම්ප්‍රයුක්ත <strong>අසංඛාරික</strong> ← මෙය</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-xl">
+                                <p class="text-sm">2. සෝමනස්ස සහගත ඤාණ සම්ප්‍රයුක්ත <strong>සසංඛාරික</strong></p>
+                            </div>
+                            <div class="bg-white p-3 rounded-xl">
+                                <p class="text-sm">3. සෝමනස්ස සහගත ඤාණ විප්‍රයුක්ත අසංඛාරික</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-xl">
+                                <p class="text-sm">4. සෝමනස්ස සහගත ඤාණ විප්‍රයුක්ත සසංඛාරික</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-xl">
+                                <p class="text-sm">5. උපේක්ඛා සහගත ඤාණ සම්ප්‍රයුක්ත අසංඛාරික</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-xl">
+                                <p class="text-sm">6. උපේක්ඛා සහගත ඤාණ සම්ප්‍රයුක්ත සසංඛාරික</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-xl">
+                                <p class="text-sm">7. උපේක්ඛා සහගත ඤාණ විප්‍රයුක්ත අසංඛාරික</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-xl">
+                                <p class="text-sm">8. උපේක්ඛා සහගත ඤාණ විප්‍රයුක්ත සසංඛාරික</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-box indigo">
+                        <h4 class="font-bold text-xl text-purple-900 mb-4">විශේෂ ලක්ෂණ</h4>
+                        <div class="space-y-3">
+                            <div class="bg-white p-4 rounded-xl">
+                                <p class="text-sm text-gray-700">🔹 රහතන් වහන්සේට පමණක් පවතින චිත්තයකි</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl">
+                                <p class="text-sm text-gray-700">🔹 කර්ම විපාක නොදෙන නමුත් සෝභන ගුණාංග සියල්ලම ඇත</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl">
+                                <p class="text-sm text-gray-700">🔹 අසංඛාරික නිසා ස්වභාවිකව පැන නගී</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl">
+                                <p class="text-sm text-gray-700">🔹 සෝමනස්ස සහගත නිසා සතුටින් යුක්ත වේ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="summary-section">
+            <h3 class="summary-title">
+                <i class="fas fa-lightbulb"></i>
+                සාරාංශය
+            </h3>
+            <div class="space-y-4">
+                <div class="bg-white p-6 rounded-xl" style="color: #1f2937;">
+                    <p class="text-lg leading-relaxed">
+                        <strong>සෝමනස්ස සහගත ඤාණ සම්ප්‍රයුක්ත අසංඛාරික ක්‍රියා</strong> යනු රහතන් වහන්සේලාට පමණක්
+                        පවතින සහේතුක ක්‍රියා චිත්තයකි. මෙය <strong>මානසික සතුටින්, ඤාණයෙන්, ස්වභාවිකව</strong>
+                        පැන නගින චිත්තයක් වන අතර කුසල චිත්තයක් මෙන් ම ගුණාංග ඇති නමුත් <strong>කර්ම විපාක නොදෙන</strong>
+                        නිසා "ක්‍රියා" චිත්තයක් වේ. රහතන් වහන්සේ දානය, සීල, භාවනා, ධර්ම දේශනා ආදිය කරන විට
+                        මෙම චිත්තය පැන නගී.
+                    </p>
+                </div>
+                <div class="summary-highlight">
+                    👑 රහතුන්ගේ සතුටු, ඤාණවත්, ස්වභාවික චිත්තය 🌟
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSection(sectionId) {
+            const content = document.getElementById(sectionId);
+            const header = content.previousElementSibling;
+
+            content.classList.toggle('expanded');
+            header.classList.toggle('expanded');
+        }
+    </script>
+</body>
+
+</html>

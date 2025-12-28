@@ -917,9 +917,61 @@
             if (activeCategories[cat]) btn.classList.add('active');
             else btn.classList.remove('active');
 
-            // Refresh Views
             initNetwork();
             initMatrix();
+        }
+
+        // Helper to determine link for any node
+        function getLinkForNode(nodeId, item) {
+            // 1. Citta (c1 - c89)
+            if (nodeId.toString().startsWith('c') && !nodeId.toString().startsWith('ct') && !isNaN(nodeId.substring(1))) {
+                const id = parseInt(nodeId.substring(1));
+                return `citta-${id}-detailed-page.html`;
+            }
+            if (item && item.type === 'Citta') return `citta-${item.id}-detailed-page.html`;
+
+            // 2. Categories & Groups
+            const linkMap = {
+                'citta_root': 'sitha-mind-page.html',
+                'kamavacara': 'index.html#categories', // Or specific section
+                'akusala': 'akusala-citta-page.html',
+                'lobha_mula': 'raga-analysis.html',
+                'dosa_mula': 'anger-analysis.html',
+                'moha_mula': 'moha-analysis.html',
+                'ahetuka': 'index.html#categories', // Needs specific if available
+                'kama_sobhana': 'kusala-citta-page.html',
+                'rupavacara': 'index.html#categories',
+                'arupavacara': 'index.html#categories',
+                'lokuttara': 'index.html#categories',
+                'magga': 'index.html#categories',
+                'phala': 'index.html#categories',
+
+                // Cetasika Categories
+                'cetasika_root': 'index.html#analysis',
+                'anyasamana': 'index.html#analysis',
+                'akusala_cet': 'akusala-citta-page.html', // Relevant context
+                'sobhana_cet': 'kusala-citta-page.html',
+
+                // Specific Cetasika Groups
+                'moha_catukka': 'moha-analysis.html',
+                'dosa_catukka': 'anger-analysis.html',
+                'lobha_trika': 'raga-analysis.html',
+                'thina_middha': 'akusala-citta-page.html',
+                'vicikiccha_grp': 'moha-analysis.html'
+            };
+
+            if (linkMap[nodeId]) return linkMap[nodeId];
+
+            // 3. Individual Cetasikas (ct1 - ct52)
+            // Default to index.html#analysis or specific pages if they exist
+            if (nodeId.toString().startsWith('ct')) {
+                // Check if we can map specific ones
+                const id = parseInt(nodeId.substring(2));
+                // Groups mapping based on ID range could be done, but for now generic:
+                return 'index.html#analysis';
+            }
+
+            return null;
         }
 
         function showDetails(nodeId) {
@@ -931,45 +983,99 @@
             let item = null;
             let type = '';
 
-            // Check if Citta
-            item = allCittas.find(c => c.id == nodeId);
-            if (item) {
-                type = 'Citta';
-                typeBadge.textContent = 'සිත';
-                typeBadge.style.background = '#ebf8ff';
-                title.textContent = item.fullName || item.name;
-                content.innerHTML = `
-                    <div class="info-grid">
-                        <div class="info-item"><label>TYPE</label><span>${item.type.toUpperCase()}</span></div>
-                        <div class="info-item"><label>CETASIKAS</label><span>${item.cetasikas.length}</span></div>
-                    </div>
-                    <p>${item.desc || 'විස්තරයක් නොමැත.'}</p>
-                    <h4>සම්ප්‍රයුක්ත චෛතසික:</h4>
-                    <ul>
-                        ${item.cetasikas.map(cid => {
-                    const c = cetasikaList.find(x => x.id === cid);
-                    return `<li>${c ? c.name : cid}</li>`;
-                }).join('')}
-                    </ul>
-                `;
-            } else {
-                // Check if Cetasika
-                item = cetasikaList.find(c => c.id == nodeId);
-                if (item) {
-                    type = 'Cetasika';
-                    typeBadge.textContent = 'චෛතසික';
-                    typeBadge.style.background = '#f0fff4';
-                    title.textContent = item.name;
-                    content.innerHTML = `
-                        <div class="info-grid">
-                            <div class="info-item"><label>GROUP</label><span>${item.group.toUpperCase()}</span></div>
-                        </div>
-                        <p>මෙම චෛතසිකය අදාළ සිත් වල යෙදේ.</p>
-                    `;
+            // ... (Item finding logic remains same) ...
+            // Try to find in allCittas (Convert c1 -> 1)
+            let numericId = null;
+            if (nodeId.toString().startsWith('c') && !nodeId.toString().startsWith('ct') && !isNaN(nodeId.substring(1))) {
+                numericId = parseInt(nodeId.substring(1));
+                item = allCittas.find(c => c.id === numericId);
+            }
+            // Try to find in Cetasika list
+            if (!item && nodeId.toString().startsWith('ct')) {
+                numericId = parseInt(nodeId.substring(2));
+                item = cetasikaList.find(c => c.id === numericId);
+            }
+            // Fallback: Tree Node
+            if (!item && typeof window.richMindMapData !== 'undefined') {
+                function findInTree(node, id) {
+                    if (node.id === id) return node;
+                    if (node.children) {
+                        for (let child of node.children) {
+                            const found = findInTree(child, id);
+                            if (found) return found;
+                        }
+                    }
+                    return null;
+                }
+                const treeNode = findInTree(window.richMindMapData, nodeId);
+                if (treeNode) {
+                    item = {
+                        name: treeNode.label,
+                        desc: treeNode.description,
+                        isCategory: true,
+                        id: treeNode.id
+                    };
                 }
             }
 
+
             if (item) {
+                // Calculate Link
+                const linkUrl = getLinkForNode(nodeId, item);
+                const linkHtml = linkUrl ? `<a href="${linkUrl}" class="btn-main" style="display:inline-block; margin-top: 15px; padding: 8px 16px; background: #3182ce; color: white; border-radius: 4px; text-decoration: none; width: 100%; text-align: center;">සම්පූර්ණ විස්තරය කියවන්න <i class="fas fa-arrow-right"></i></a>` : '';
+                const titleLink = linkUrl ? `<a href="${linkUrl}" style="text-decoration:none; color:inherit; border-bottom: 2px solid transparent; transition: border-color 0.2s;">${item.fullName || item.name} <i class="fas fa-external-link-alt" style="font-size:0.6em; opacity: 0.7;"></i></a>` : (item.fullName || item.name);
+
+
+                if (item.isCategory) {
+                    type = 'Category';
+                    typeBadge.textContent = 'වර්ගය';
+                    typeBadge.style.background = '#edf2f7';
+                    title.innerHTML = titleLink;
+                    content.innerHTML = `
+                        <p>${item.desc || 'විස්තරයක් නොමැත.'}</p>
+                        ${linkUrl ? `<p style="font-size: 0.9em; color: #718096;">තවත් තොරතුරු සඳහා පිවිසෙන්න:</p>` : ''}
+                        ${linkHtml}
+                    `;
+                }
+                // CITTA Handling
+                else if (allCittas.some(c => c.id === item.id) && !nodeId.toString().startsWith('ct')) {
+                    type = 'Citta';
+                    typeBadge.textContent = 'සිත';
+                    typeBadge.style.background = '#ebf8ff';
+                    title.innerHTML = titleLink;
+
+                    content.innerHTML = `
+                        <div class="info-grid">
+                            <div class="info-item"><label>TYPE</label><span>${item.type ? item.type.toUpperCase() : ''}</span></div>
+                            <div class="info-item"><label>CETASIKAS</label><span>${item.cetasikas ? item.cetasikas.length : 0}</span></div>
+                        </div>
+                        ${linkHtml}
+                        <h4 style="margin-top:15px">සම්ප්‍රයුක්ත චෛතසික:</h4>
+                        <ul style="max-height: 150px; overflow-y: auto;">
+                            ${item.cetasikas ? item.cetasikas.map(cid => {
+                        const c = cetasikaList.find(x => x.id === cid);
+                        return `<li>${c ? c.name : cid}</li>`;
+                    }).join('') : ''}
+                        </ul>
+                    `;
+                }
+                // CETASIKA Handling
+                else {
+                    type = 'Cetasika';
+                    typeBadge.textContent = 'චෛතසික';
+                    typeBadge.style.background = '#f0fff4';
+                    title.innerHTML = titleLink;
+
+                    content.innerHTML = `
+                        <div class="info-grid">
+                            <div class="info-item"><label>GROUP</label><span>${item.group ? item.group.toUpperCase() : (item.category || '')}</span></div>
+                        </div>
+                        <p>${item.description || item.desc || 'විස්තරයක් නොමැත.'}</p>
+                        ${item.bookReference ? `<p><small>මූලාශ්‍රය: ${item.bookReference}</small></p>` : ''}
+                        ${linkHtml}
+                    `;
+                }
+
                 panel.classList.add('visible');
             }
         }
@@ -1087,9 +1193,13 @@
                     visEdges.push({
                         from: parentId,
                         to: node.id,
-                        arrows: 'to',
-                        color: { color: '#aab7b8', width: 1.5 },
-                        smooth: { type: 'cubicBezier', forceDirection: 'horizontal', roundness: 0.4 }
+                        arrows: {
+                            to: { enabled: true, scaleFactor: 1.2, type: 'arrow' }
+                        },
+                        color: { color: '#4A5568', highlight: '#2D3748', hover: '#2D3748' },
+                        width: 2,
+                        hoverWidth: 3,
+                        smooth: { type: 'cubicBezier', forceDirection: 'horizontal', roundness: 0.5 }
                     });
                 }
 
@@ -1121,10 +1231,10 @@
                         enabled: true,
                         direction: 'LR', // Left-to-Right
                         sortMethod: 'directed',
-                        nodeSpacing: 40, // Tighter spacing
-                        levelSeparation: 250, // More space for labels
-                        treeSpacing: 40,
-                        blockShifting: true,
+                        nodeSpacing: 70, // Increased vertical spacing
+                        levelSeparation: 450, // Significantly increased horizontal spacing for clear arrows
+                        treeSpacing: 80,
+                        blockShifting: true, // Try false if blocks jump around too much
                         edgeMinimization: true,
                         parentCentralization: true,
                         shakeTowards: 'roots'
@@ -1165,34 +1275,33 @@
             network.on("click", params => {
                 if (params.nodes.length) {
                     const nodeId = params.nodes[0];
-                    // Toggle State
-                    if (window.hierarchyState.has(nodeId)) {
-                        window.hierarchyState.delete(nodeId);
-                    } else {
-                        // We need to check if it actually has children to avoid useless confirms, 
-                        // but our logic above adds to visualization based on data. 
-                        // It's safe to just add to Set, re-render will handle "no children" cases naturally (won't render children).
-                        window.hierarchyState.add(nodeId);
-                    }
 
-                    // Re-render Graph (Efficiently? Or just Init again?)
-                    // For a cleaner approach, allow calling initHierarchy() again.
-                    // To prevent infinite recursion of listeners, we should be careful.
-                    // Since specific listener is attached to specific network instance, destroying network removes listener.
-                    // So calling initHierarchy() is safe.
+                    // 1. Show Details in Panel (Always)
+                    showDetails(nodeId);
 
-                    // Current cursor position or view position might be lost. 
-                    const pos = network.getViewPosition();
-                    const scale = network.getScale();
-
-                    initHierarchy(); // Re-build
-
-                    // Restore View (after a small tick)
-                    setTimeout(() => {
-                        if (network) {
-                            network.moveTo({ position: pos, scale: scale });
+                    // 2. Toggle Expansion (Logic: If it has children, toggle)
+                    // We need to check if it actually has children.
+                    // Accessing dataset is clean way.
+                    const clickedNode = nodes.get(nodeId);
+                    if (clickedNode && clickedNode.hasChildren) {
+                        if (window.hierarchyState.has(nodeId)) {
+                            window.hierarchyState.delete(nodeId);
+                        } else {
+                            window.hierarchyState.add(nodeId);
                         }
-                    }, 50);
+
+                        // Re-render
+                        const pos = network.getViewPosition();
+                        const scale = network.getScale();
+
+                        initHierarchy();
+
+                        setTimeout(() => {
+                            if (network) {
+                                network.moveTo({ position: pos, scale: scale });
+                            }
+                        }, 50);
+                    }
                 }
             });
 

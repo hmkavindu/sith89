@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     // Chatbot functionality
@@ -17,52 +17,63 @@
         return;
     }
 
-    // Chat history
-    let chatHistory = [];
-
-    // System prompt for Buddhist knowledge
-    const systemPrompt = `You are a knowledgeable Buddhist scholar specializing in Abhidhamma (Abhidharma), Citta (consciousness), and Cetasika (mental factors). You provide accurate, respectful, and insightful answers about Buddhist philosophy, meditation, and the workings of the mind according to Theravada Buddhist teachings.
-
-Key areas of expertise:
-- Abhidhamma Pitaka and its classifications
-- 89 or 121 types of Citta (consciousness)
-- 52 Cetasikas (mental factors)
-- The relationship between Citta and Cetasika
-- Buddhist meditation practices
-- The Four Noble Truths and Noble Eightfold Path
-- Dependent Origination (Paticcasamuppada)
-- Karma and rebirth
-
-Always respond in a clear, helpful manner. If asked about something outside your expertise, politely redirect to Buddhist topics.`;
-
     // Initialize chatbot
     function initChatbot() {
-        // Add welcome message
-        addMessage('assistant', 'සාදු! අභිධර්මය, චිත්ත, චෛතසික පිළිබඳව ඔබේ ප්‍රශ්න ඇසීමට සාදරයෙන් පිළිගනිමු. (Welcome! Feel free to ask about Abhidhamma, Citta, and Cetasika.)');
-        
-        // Initialize chat history with system prompt
-        chatHistory = [
-            { role: 'system', content: systemPrompt }
+        // Add welcome message with quick questions
+        const welcomeMsg = 'සාදු! අභිධර්මය, චිත්ත, චෛතසික පිළිබඳව ඔබේ ප්‍රශ්න ඇසීමට සාදරයෙන් පිළිගනිමු.\n\nමට පහත ආකාරයේ ප්‍රශ්න අසන්න:\n• "අකුසල් සිත් කීයක් තිබේද?"\n• "සාධාරණ චෛතසික කීයක්ද?"\n• "විරති චෛතසික මොනවාද?"\n• "දිට්ඨිය යනු කුමක්ද?"';
+        addMessage('assistant', welcomeMsg);
+
+        // Add quick question buttons
+        addQuickQuestions();
+    }
+
+    // Add quick question buttons
+    function addQuickQuestions() {
+        const quickQuestions = [
+            'අකුසල් සිත් කීයක් තිබේද?',
+            'සාධාරණ චෛතසික කීයක්ද?',
+            'විරති චෛතසික මොනවාද?',
+            'දිට්ඨිය යනු කුමක්ද?'
         ];
+
+        const quickQuestionsDiv = document.createElement('div');
+        quickQuestionsDiv.className = 'chatbot-quick-questions';
+        quickQuestionsDiv.style.cssText = 'display: flex; flex-wrap: wrap; gap: 8px; padding: 10px; margin-top: 10px;';
+
+        quickQuestions.forEach(question => {
+            const btn = document.createElement('button');
+            btn.textContent = question;
+            btn.style.cssText = 'padding: 8px 12px; background: #667eea; color: white; border: none; border-radius: 15px; cursor: pointer; font-size: 12px; transition: all 0.3s;';
+            btn.onmouseover = () => btn.style.background = '#5568d3';
+            btn.onmouseout = () => btn.style.background = '#667eea';
+            btn.onclick = () => {
+                chatbotInput.value = question;
+                chatbotForm.dispatchEvent(new Event('submit'));
+            };
+            quickQuestionsDiv.appendChild(btn);
+        });
+
+        chatbotMessages.appendChild(quickQuestionsDiv);
     }
 
     // Add message to chat
     function addMessage(role, content) {
         const messageDiv = document.createElement('div');
         messageDiv.className = `chatbot-message ${role}`;
-        
+
         const roleDiv = document.createElement('div');
         roleDiv.className = 'chatbot-message-role';
         roleDiv.textContent = role === 'user' ? 'You' : 'Assistant';
-        
+
         const bodyDiv = document.createElement('div');
         bodyDiv.className = 'chatbot-message-body';
+        bodyDiv.style.whiteSpace = 'pre-wrap';
         bodyDiv.textContent = content;
-        
+
         messageDiv.appendChild(roleDiv);
         messageDiv.appendChild(bodyDiv);
         chatbotMessages.appendChild(messageDiv);
-        
+
         // Scroll to bottom
         chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     }
@@ -81,19 +92,16 @@ Always respond in a clear, helpful manner. If asked about something outside your
         }
     }
 
-    // Send message to API
+    // Send message using custom engine
     async function sendMessage(userMessage) {
         // Add user message to UI
         addMessage('user', userMessage);
-        
-        // Add to chat history
-        chatHistory.push({ role: 'user', content: userMessage });
-        
+
         // Disable input and show loading
         chatbotInput.disabled = true;
         chatbotSend.disabled = true;
         updateStatus('පිළිතුර ලබා ගැනීම... (Getting response...)');
-        
+
         // Show typing indicator
         const typingIndicator = document.createElement('div');
         typingIndicator.className = 'chatbot-message assistant chatbot-typing';
@@ -109,54 +117,38 @@ Always respond in a clear, helpful manner. If asked about something outside your
         chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
 
         try {
-            const response = await fetch('/.netlify/functions/groq-chat', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    messages: chatHistory,
-                    temperature: 0.7,
-                    max_tokens: 1024
-                })
-            });
-
-            if (!response.ok) {
-                let errorData;
-                try {
-                    errorData = await response.json();
-                } catch (e) {
-                    errorData = { error: `HTTP ${response.status}: ${response.statusText}` };
-                }
-                throw new Error(errorData.error?.message || errorData.error || `HTTP ${response.status}`);
+            // Use custom pattern matching engine
+            if (!window.patternMatcher || !window.responseGenerator) {
+                throw new Error('Chatbot engine not initialized');
             }
 
-            let data;
-            try {
-                data = await response.json();
-            } catch (e) {
-                throw new Error('Invalid response from server');
+            // Analyze question
+            const analysis = window.patternMatcher.analyzeQuestion(userMessage);
+            console.log('Question analysis:', analysis);
+
+            // Generate response
+            const response = await window.responseGenerator.generateResponse(analysis);
+            console.log('Generated response:', response);
+
+            // Format and display response
+            let replyText = response.answer;
+            if (response.details) {
+                replyText += '\n\n' + response.details;
             }
-            
-            if (data.error) {
-                throw new Error(data.error);
+            if (response.references && response.references.length > 0) {
+                replyText += '\n\n📚 මූලාශ්‍ර: ' + response.references.join(', ');
             }
 
-            const reply = data.reply || 'කණගාටුයි, පිළිතුරක් ලබා ගත නොහැකි විය. (Sorry, could not get a response.)';
-            
             // Add assistant reply to UI
-            addMessage('assistant', reply);
-            
-            // Add to chat history
-            chatHistory.push({ role: 'assistant', content: reply });
-            
+            addMessage('assistant', replyText);
+
             updateStatus('');
-            
+
         } catch (error) {
-            console.error('Chatbot API error:', error);
-            
+            console.error('Chatbot error:', error);
+
             // Show error message
-            const errorMsg = error.message || 'කණගාටුයි, මේ මොහොතේ පිළිතුර ලබා ගත නොහැකි විය. කරුණාකර නැවත උත්සාහ කරන්න. (Sorry, could not get a response at this time. Please try again.)';
+            const errorMsg = 'කණගාටුයි, මේ මොහොතේ පිළිතුර ලබා ගත නොහැකි විය. කරුණාකර නැවත උත්සාහ කරන්න. (Sorry, could not get a response at this time. Please try again.)';
             addMessage('assistant', errorMsg);
             updateStatus('දෝෂයක් ඇති විය. (An error occurred.)', true);
         } finally {
@@ -164,7 +156,7 @@ Always respond in a clear, helpful manner. If asked about something outside your
             if (typingIndicator && typingIndicator.parentNode) {
                 typingIndicator.remove();
             }
-            
+
             // Re-enable input
             chatbotInput.disabled = false;
             chatbotSend.disabled = false;
@@ -175,7 +167,7 @@ Always respond in a clear, helpful manner. If asked about something outside your
     // Toggle chatbot visibility
     function toggleChatbot() {
         const isOpen = chatbotWidget.classList.contains('open');
-        
+
         if (isOpen) {
             chatbotWidget.classList.remove('open');
             chatbotWidget.setAttribute('aria-hidden', 'true');
@@ -190,22 +182,22 @@ Always respond in a clear, helpful manner. If asked about something outside your
 
     // Event listeners
     chatbotLauncher.addEventListener('click', toggleChatbot);
-    
+
     if (chatbotClose) {
         chatbotClose.addEventListener('click', toggleChatbot);
     }
 
     chatbotForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         const message = chatbotInput.value.trim();
         if (!message) {
             return;
         }
-        
+
         // Clear input
         chatbotInput.value = '';
-        
+
         // Send message
         await sendMessage(message);
     });
@@ -227,8 +219,7 @@ Always respond in a clear, helpful manner. If asked about something outside your
     // Expose chatbot object for debugging
     window.chatbot = {
         toggle: toggleChatbot,
-        sendMessage: sendMessage,
-        history: () => chatHistory
+        sendMessage: sendMessage
     };
 
 })();

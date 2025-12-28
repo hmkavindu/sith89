@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="si">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>අකුසල් චිත්ත 12 - අභිධර්මය</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: white;
+            color: #ef4444;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+        }
+
+        .page-header {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #ef4444;
+            margin-bottom: 0.5rem;
+        }
+
+        .subcategory {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            border-left: 6px solid #ef4444;
+        }
+
+        .subcategory-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ef4444;
+            margin-bottom: 1rem;
+        }
+
+        .citta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .citta-card {
+            background: #fef2f2;
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            border-left: 4px solid #ef4444;
+            transition: all 0.3s;
+        }
+
+        .citta-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+        }
+
+        .citta-number {
+            background: #ef4444;
+            color: white;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .citta-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+
+        .view-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: #ef4444;
+            color: white;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 0.75rem;
+            transition: all 0.3s;
+        }
+
+        .view-btn:hover {
+            background: #dc2626;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="index.html#categories" class="back-button"><i class="fas fa-arrow-left"></i> මූලික කාණ්ඩ වෙත ආපසු</a>
+        <div class="page-header">
+            <h1 class="page-title">අකුසල් චිත්ත 12</h1>
+            <p>අසුභ කර්මයන් සම්බන්ධ චිත්ත - ලෝභ, ද්වේෂ, මෝහ මූලයන් මත පදනම් වූ</p>
+        </div>
+
+        <div class="subcategory">
+            <h2 class="subcategory-title">🔥 ලෝභමූල චිත්ත 8</h2>
+            <p style="margin-bottom: 1rem; color: #6b7280;">ආශාව, ඇල්ම, රාගය මත පදනම් වූ සිත්</p>
+            <div class="citta-grid">
+                <div class="citta-card">
+                    <div class="citta-number">1</div>
+                    <h3 class="citta-name">සෝමනස්ස සහගත දිට්ඨිගත සම්ප්‍රයුක්ත අසංඛාරික</h3>
+                    <a href="citta-1-detailed-page.html" class="view-btn"><i class="fas fa-eye"></i> විස්තර</a>
+                </div>
+                <div class="citta-card">
+                    <div class="citta-number">2</div>
+                    <h3 class="citta-name">සෝමනස්ස සහගත දිට්ඨිගත සම්ප්‍රයුක්ත සසංඛාරික</h3>
+                    <a href="citta-2-detailed-page.html" class="view-btn"><i class="fas fa-eye"></i> විස්තර</a>
+                </div>
+                <div class="citta-card">
+                    <div class="citta-number">3</div>
+                    <h3 class="citta-name">සෝමනස්ස සහගත දිට්ඨිගත විප්‍රයුක්ත අසංඛාරික</h3>
+                    <a href="citta-3-detailed-page.html" class="view-btn"><i class="fas fa-eye"></i> විස්තර</a>
+                </div>
+                <div class="citta-card">
+                    <div class="citta-number">4</div>
+                    <h3 class="citta-name">සෝමනස්ස සහගත දිට්ඨිගත විප්‍රයුක්ත සසංඛාරික</h3>
+                    <a href="citta-4-detailed-page.html" class="view-btn"><i class="fas fa-eye"></i> විස්තර</a>
+                </div>
+                <div class="citta-card">
+                    <div class="citta-number">5</div>
+                    <h3 class="citta-name">උපේක්ෂා සහගත දිට්ඨිගත සම්ප්‍රයුක්ත අසංඛාරික</h3>
+                    <a href="citta-5-detailed-page.html" class="view-btn"><i class="fas fa-eye"></i> විස්තර</a>
+                </div>
+                <div class="citta-card">
+                    <div class="citta-number">6</div>
+                    <h3 class="citta-name">උපේක්ෂා සහගත දිට්ඨිගත සම්ප්‍රයුක්ත සසංඛාරික</h3>
+                    <a href="citta-6-detailed-page.html" class="view-btn"><i class="fas fa-eye"></i> විස්තර</a>
+                </div>
+                <div class="citta-card">
+                    <div class="citta-number">7</div>
+                    <h3 class="citta-name">උපේක්ෂා සහගත දිට්ඨිගත විප්‍රයුක්ත අසංඛාරික</h3>
+                    <a href="citta-7-detailed-page.html" class="view-btn"><i class="fas fa-eye"></i> විස්තර</a>
+                </div>
+                <div class="citta-card">
+                    <div class="citta-number">8</div>
+                    <h3 class="citta-name">උපේක්ෂා සහගත දිට්ඨිගත විප්‍රයුක්ත සසංඛාරික</h3>
+                    <a href="citta-8-detailed-page.html" class="view-btn"><i class="fas fa-eye"></i> විස්තර</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="subcategory">
+            <h2 class="subcategory-title">⚡ ද්වේෂමූල චිත්ත 2</h2>
+            <p style="margin-bottom: 1rem; color: #6b7280;">කෝපය, තරහ, පටිඝය මත පදනම් වූ සිත්</p>
+            <div class="citta-grid">
+                <div class="citta-card">
+                    <div class="citta-number">9</div>
+                    <h3 class="citta-name">දෝමනස්ස සහගත පටිඝ සම්ප්‍රයුක්ත අසංඛාරික</h3>
+                    <a href="citta-9-detailed-page.html" class="view-btn"><i class="fas fa-eye"></i> විස්තර</a>
+                </div>
+                <div class="citta-card">
+                    <div class="citta-number">10</div>
+                    <h3 class="citta-name">දෝමනස්ස සහගත පටිඝ සම්ප්‍රයුක්ත සසංඛාරික</h3>
+                    <a href="citta-10-detailed-page.html" class="view-btn"><i class="fas fa-eye"></i> විස්තර</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="subcategory">
+            <h2 class="subcategory-title">🌫️ මෝහමූල චිත්ත 2</h2>
+            <p style="margin-bottom: 1rem; color: #6b7280;">මෝහය, අවිද්‍යාව මත පදනම් වූ සිත්</p>
+            <div class="citta-grid">
+                <div class="citta-card">
+                    <div class="citta-number">11</div>
+                    <h3 class="citta-name">උපේක්ෂා සහගත විචිකිච්ඡා සම්ප්‍රයුක්ත</h3>
+                    <a href="citta-11-detailed-page.html" class="view-btn"><i class="fas fa-eye"></i> විස්තර</a>
+                </div>
+                <div class="citta-card">
+                    <div class="citta-number">12</div>
+                    <h3 class="citta-name">උපේක්ෂා සහගත උද්ධච්ච සම්ප්‍රයුක්ත</h3>
+                    <a href="citta-12-detailed-page.html" class="view-btn"><i class="fas fa-eye"></i> විස්තර</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
