@@ -103,6 +103,186 @@
             font-size: 0.85rem;
             color: #6b7280;
         }
+
+        /* Expandable Card Styles */
+        .cetasika-card {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cetasika-card.expandable {
+            cursor: default;
+        }
+
+        .card-actions {
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .action-button {
+            padding: 0.75rem 1rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .deep-analysis-btn {
+            background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+            color: white;
+            box-shadow: 0 2px 8px rgba(168, 85, 247, 0.3);
+        }
+
+        .deep-analysis-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(168, 85, 247, 0.4);
+        }
+
+        .associated-cittas-btn {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+        }
+
+        .associated-cittas-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+        }
+
+        .expand-indicator {
+            transition: transform 0.3s ease;
+        }
+
+        .cetasika-card.expanded .expand-indicator {
+            transform: rotate(180deg);
+        }
+
+        .deep-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .cetasika-card.expanded .deep-content {
+            max-height: 500px;
+            overflow-y: auto;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid #a855f7;
+        }
+
+        .deep-content-text {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: #4b5563;
+            white-space: pre-wrap;
+            font-family: 'Noto Sans Sinhala', sans-serif;
+        }
+
+        /* PDF Modal Styles */
+        .pdf-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            padding: 2rem;
+            overflow: auto;
+        }
+
+        .pdf-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pdf-modal-content {
+            background: white;
+            border-radius: 1rem;
+            width: 95%;
+            max-width: 1200px;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .pdf-modal-header {
+            padding: 1.5rem;
+            border-bottom: 2px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+            color: white;
+            border-radius: 1rem 1rem 0 0;
+        }
+
+        .pdf-modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .pdf-close-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .pdf-close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .pdf-modal-body {
+            flex: 1;
+            overflow: hidden;
+            padding: 0;
+        }
+
+        .pdf-viewer {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .pdf-modal {
+                padding: 0.5rem;
+            }
+
+            .pdf-modal-content {
+                width: 100%;
+                height: 95vh;
+            }
+
+            .card-actions {
+                gap: 0.75rem;
+            }
+        }
     </style>
 </head>
 
@@ -350,6 +530,209 @@
             </div>
         </div>
     </div>
+
+    <!-- PDF Modal -->
+    <div id="pdfModal" class="pdf-modal">
+        <div class="pdf-modal-content">
+            <div class="pdf-modal-header">
+                <h2 class="pdf-modal-title" id="pdfModalTitle">සිත් 89 - චෛතසික විග්‍රහය</h2>
+                <button class="pdf-close-btn" onclick="closePdfModal()">×</button>
+            </div>
+            <div class="pdf-modal-body">
+                <iframe id="pdfViewer" class="pdf-viewer" src=""></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Cetasika data with names for identification
+        const cetasikaData = [
+            // සබ්බචිත්ත සාධාරණ 7
+            { id: 1, name: 'ඵස්ස', fullName: 'ඵස්ස (ස්පර්ශය)', page: 1 },
+            { id: 2, name: 'වේදනා', fullName: 'වේදනා (අනුභවය)', page: 1 },
+            { id: 3, name: 'සඤ්ඤා', fullName: 'සඤ්ඤා (සංඥාව)', page: 1 },
+            { id: 4, name: 'චේතනා', fullName: 'චේතනා (චේතනාව)', page: 1 },
+            { id: 5, name: 'ඒකග්ගතා', fullName: 'ඒකග්ගතා (ඒකාග්‍රතාව)', page: 1 },
+            { id: 6, name: 'ජීවිතින්ද්‍රිය', fullName: 'ජීවිතින්ද්‍රිය (ජීවිතය)', page: 1 },
+            { id: 7, name: 'මනසිකාර', fullName: 'මනසිකාර (මනසට යොමු කිරීම)', page: 1 },
+            // පක්ඛික 6
+            { id: 8, name: 'විතර්ක', fullName: 'විතර්ක (ආරම්භක චින්තනය)', page: 2 },
+            { id: 9, name: 'විචාර', fullName: 'විචාර (තහවුරු කිරීම)', page: 2 },
+            { id: 10, name: 'අධිමොක්ඛ', fullName: 'අධිමොක්ඛ (තීරණය)', page: 2 },
+            { id: 11, name: 'විරිය', fullName: 'විරිය (උත්සාහය)', page: 2 },
+            { id: 12, name: 'පීති', fullName: 'පීති (ප්‍රීතිය)', page: 2 },
+            { id: 13, name: 'ඡන්ද', fullName: 'ඡන්ද (කැමැත්ත)', page: 2 },
+            // අකුසල 14
+            { id: 14, name: 'මෝහ', fullName: 'මෝහ (මෝඩකම)', page: 3 },
+            { id: 15, name: 'අහිරික', fullName: 'අහිරික (නිර්ලජ්ජිත්වය)', page: 3 },
+            { id: 16, name: 'අනොත්තප්ප', fullName: 'අනොත්තප්ප (භය නැතිකම)', page: 3 },
+            { id: 17, name: 'උද්ධච්ච', fullName: 'උද්ධච්ච (නොසන්සුන්කම)', page: 3 },
+            { id: 18, name: 'ලෝභ', fullName: 'ලෝභ (ආශාව)', page: 3 },
+            { id: 19, name: 'දිට්ඨි', fullName: 'දිට්ඨි (වැරදි මතය)', page: 3 },
+            { id: 20, name: 'මාන', fullName: 'මාන (ආඩම්බරය)', page: 3 },
+            { id: 21, name: 'ද්වේෂ', fullName: 'ද්වේෂ (කෝපය)', page: 4 },
+            { id: 22, name: 'ඊර්ෂ්‍යා', fullName: 'ඊර්ෂ්‍යා (ඊර්ෂ්‍යාව)', page: 4 },
+            { id: 23, name: 'මච්ඡරිය', fullName: 'මච්ඡරිය (කුණුකම)', page: 4 },
+            { id: 24, name: 'කුක්කුච්ච', fullName: 'කුක්කුච්ච (පසුතැවිල්ල)', page: 4 },
+            { id: 25, name: 'ථීන', fullName: 'ථීන (මන්දබව)', page: 4 },
+            { id: 26, name: 'මිද්ධ', fullName: 'මිද්ධ (උදාසීනත්වය)', page: 4 },
+            { id: 27, name: 'විචිකිච්ඡා', fullName: 'විචිකිච්ඡා (සැකය)', page: 4 },
+            // සෝබන 25
+            { id: 28, name: 'සද්ධා', fullName: 'සද්ධා (ශ්‍රද්ධාව)', page: 5 },
+            { id: 29, name: 'සති', fullName: 'සති (සිහිය)', page: 5 },
+            { id: 30, name: 'හිරි', fullName: 'හිරි (ලැජ්ජාව)', page: 5 },
+            { id: 31, name: 'ඔත්තප්ප', fullName: 'ඔත්තප්ප (භය)', page: 5 },
+            { id: 32, name: 'අලෝභ', fullName: 'අලෝභ (නො ඇල්ම)', page: 5 },
+            { id: 33, name: 'අද්වේෂ', fullName: 'අද්වේෂ (මෛත්‍රිය)', page: 5 },
+            { id: 34, name: 'තත්‍රමජ්ඣත්තතා', fullName: 'තත්‍රමජ්ඣත්තතා (මධ්‍යස්ථභාවය)', page: 5 },
+            { id: 35, name: 'කායපස්සද්ධි', fullName: 'කායපස්සද්ධි (කායික සන්සුන්කම)', page: 6 },
+            { id: 36, name: 'චිත්තපස්සද්ධි', fullName: 'චිත්තපස්සද්ධි (චිත්තික සන්සුන්කම)', page: 6 },
+            { id: 37, name: 'කායලහුතා', fullName: 'කායලහුතා (කායික සැහැල්ලුකම)', page: 6 },
+            { id: 38, name: 'චිත්තලහුතා', fullName: 'චිත්තලහුතා (චිත්තික සැහැල්ලුකම)', page: 6 },
+            { id: 39, name: 'කායමුදුතා', fullName: 'කායමුදුතා (කායික මෘදුකම)', page: 6 },
+            { id: 40, name: 'චිත්තමුදුතා', fullName: 'චිත්තමුදුතා (චිත්තික මෘදුකම)', page: 6 },
+            { id: 41, name: 'කායකම්මඤ්ඤතා', fullName: 'කායකම්මඤ්ඤතා (කායික යෝග්‍යතාව)', page: 7 },
+            { id: 42, name: 'චිත්තකම්මඤ්ඤතා', fullName: 'චිත්තකම්මඤ්ඤතා (චිත්තික යෝග්‍යතාව)', page: 7 },
+            { id: 43, name: 'කායපාගුඤ්ඤතා', fullName: 'කායපාගුඤ්ඤතා (කායික ඍජුකම)', page: 7 },
+            { id: 44, name: 'චිත්තපාගුඤ්ඤතා', fullName: 'චිත්තපාගුඤ්ඤතා (චිත්තික ඍජුකම)', page: 7 },
+            { id: 45, name: 'සම්මාවාචා', fullName: 'සම්මාවාචා (යහපත් වචන)', page: 7 },
+            { id: 46, name: 'සම්මාකම්මන්ත', fullName: 'සම්මාකම්මන්ත (යහපත් ක්‍රියා)', page: 7 },
+            { id: 47, name: 'සම්මාආජීව', fullName: 'සම්මාආජීව (යහපත් ජීවනෝපාය)', page: 7 },
+            { id: 48, name: 'කරුණා', fullName: 'කරුණා (කරුණාව)', page: 8 },
+            { id: 49, name: 'මුදිතා', fullName: 'මුදිතා (මුදිතාව)', page: 8 },
+            { id: 50, name: 'පඤ්ඤින්ද්‍රිය', fullName: 'පඤ්ඤින්ද්‍රිය (ප්‍රඥාව)', page: 8 },
+            { id: 51, name: 'අමෝහ', fullName: 'අමෝහ (අමෝහය)', page: 8 },
+            { id: 52, name: 'අප්පමාද', fullName: 'අප්පමාද (නොඅඩන්තේකම)', page: 8 }
+        ];
+
+        // Function to add buttons to all cetasika cards
+        function addButtonsToCetasikaCards() {
+            const cards = document.querySelectorAll('.cetasika-card');
+
+            cards.forEach((card, index) => {
+                const cetasika = cetasikaData[index];
+                if (!cetasika) return;
+
+                // Add data attribute for identification
+                card.setAttribute('data-cetasika-id', cetasika.id);
+                card.setAttribute('data-cetasika-name', cetasika.name);
+                card.classList.add('expandable');
+
+                // Create actions container
+                const actionsDiv = document.createElement('div');
+                actionsDiv.className = 'card-actions';
+
+                // Create "ගැඹුරු විග්‍රහය බලන්න" button
+                const deepAnalysisBtn = document.createElement('button');
+                deepAnalysisBtn.className = 'action-button deep-analysis-btn';
+                deepAnalysisBtn.innerHTML = '<span class="expand-text">ගැඹුරු විග්‍රහය බලන්න</span> <span class="expand-indicator">▼</span>';
+                deepAnalysisBtn.onclick = function (e) {
+                    e.stopPropagation();
+                    toggleDeepAnalysis(card);
+                };
+
+                // Create "යෙදෙන සිත්" button
+                const associatedCittasBtn = document.createElement('button');
+                associatedCittasBtn.className = 'action-button associated-cittas-btn';
+                associatedCittasBtn.innerHTML = '<span>යෙදෙන සිත්</span> <span>📄</span>';
+                associatedCittasBtn.onclick = function (e) {
+                    e.stopPropagation();
+                    openPdfModal(cetasika);
+                };
+
+                // Create deep content div (placeholder for now)
+                const deepContentDiv = document.createElement('div');
+                deepContentDiv.className = 'deep-content';
+                const deepContentText = document.createElement('pre');
+                deepContentText.className = 'deep-content-text';
+                deepContentText.textContent = `${cetasika.fullName} සඳහා ගැඹුරු විග්‍රහය ඉදිරියේදී එකතු කරනු ලැබේ...`;
+                deepContentDiv.appendChild(deepContentText);
+
+                // Append elements
+                actionsDiv.appendChild(deepAnalysisBtn);
+                actionsDiv.appendChild(associatedCittasBtn);
+                card.appendChild(deepContentDiv);
+                card.appendChild(actionsDiv);
+            });
+        }
+
+        // Toggle deep analysis section
+        function toggleDeepAnalysis(card) {
+            const isExpanded = card.classList.contains('expanded');
+
+            // Close all other expanded cards
+            document.querySelectorAll('.cetasika-card.expanded').forEach(otherCard => {
+                if (otherCard !== card) {
+                    otherCard.classList.remove('expanded');
+                    const otherBtn = otherCard.querySelector('.deep-analysis-btn .expand-text');
+                    const otherIndicator = otherCard.querySelector('.deep-analysis-btn .expand-indicator');
+                    if (otherBtn) otherBtn.textContent = 'ගැඹුරු විග්‍රහය බලන්න';
+                    if (otherIndicator) otherIndicator.textContent = '▼';
+                }
+            });
+
+            // Toggle this card
+            card.classList.toggle('expanded');
+            const btn = card.querySelector('.deep-analysis-btn .expand-text');
+            const indicator = card.querySelector('.deep-analysis-btn .expand-indicator');
+
+            if (card.classList.contains('expanded')) {
+                if (btn) btn.textContent = 'හකුළන්න';
+                if (indicator) indicator.textContent = '▲';
+            } else {
+                if (btn) btn.textContent = 'ගැඹුරු විග්‍රහය බලන්න';
+                if (indicator) indicator.textContent = '▼';
+            }
+        }
+
+        // Open PDF modal with specific cetasika highlighted
+        function openPdfModal(cetasika) {
+            const modal = document.getElementById('pdfModal');
+            const viewer = document.getElementById('pdfViewer');
+            const title = document.getElementById('pdfModalTitle');
+
+            // Update modal title
+            title.textContent = `සිත් 89 - ${cetasika.fullName} යෙදෙන සිත්`;
+
+            // Load PDF with page number (if PDF supports it)
+            // Note: PDF page navigation depends on the PDF viewer
+            const pdfPath = '2. Sith 89 Chart  (1).pdf';
+            viewer.src = `${pdfPath}#page=${cetasika.page}`;
+
+            // Show modal
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close PDF modal
+        function closePdfModal() {
+            const modal = document.getElementById('pdfModal');
+            const viewer = document.getElementById('pdfViewer');
+
+            modal.classList.remove('active');
+            viewer.src = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('pdfModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closePdfModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closePdfModal();
+            }
+        });
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            addButtonsToCetasikaCards();
+        });
+    </script>
 </body>
 
 </html>

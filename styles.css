@@ -2210,6 +2210,27 @@ body {
     font-weight: 600;
 }
 
+/* Category label colors matching left border colors */
+.explanation-card.universal .explanation-category {
+    background: #28a745;
+    color: white;
+}
+
+.explanation-card.particular .explanation-category {
+    background: #17a2b8;
+    color: white;
+}
+
+.explanation-card.unwholesome .explanation-category {
+    background: #dc3545;
+    color: white;
+}
+
+.explanation-card.beautiful .explanation-category {
+    background: #6f42c1;
+    color: white;
+}
+
 .explanation-description {
     color: #6c757d;
     margin-bottom: 15px;
@@ -2282,7 +2303,22 @@ body {
     padding-top: 15px;
     border-top: 1px solid #e9ecef;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.pdf-button {
+    background: linear-gradient(135deg, #607d8b 0%, #455a64 100%);
+    box-shadow: 0 2px 8px rgba(96, 125, 139, 0.3);
+    width: 100%;
     justify-content: center;
+}
+
+.pdf-button:hover {
+    background: linear-gradient(135deg, #546e7a 0%, #37474f 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(96, 125, 139, 0.4);
 }
 
 .expand-button {
@@ -2310,6 +2346,47 @@ body {
 
 .expand-button:active {
     transform: translateY(0);
+}
+
+/* Category-specific expand button colors matching card labels */
+.explanation-card.universal .expand-button {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+}
+
+.explanation-card.universal .expand-button:hover {
+    background: linear-gradient(135deg, #218838 0%, #1ea87a 100%);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+}
+
+.explanation-card.particular .expand-button {
+    background: linear-gradient(135deg, #17a2b8 0%, #20c9e0 100%);
+    box-shadow: 0 2px 8px rgba(23, 162, 184, 0.3);
+}
+
+.explanation-card.particular .expand-button:hover {
+    background: linear-gradient(135deg, #138496 0%, #1ab5cc 100%);
+    box-shadow: 0 4px 12px rgba(23, 162, 184, 0.4);
+}
+
+.explanation-card.unwholesome .expand-button {
+    background: linear-gradient(135deg, #dc3545 0%, #e4606d 100%);
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+}
+
+.explanation-card.unwholesome .expand-button:hover {
+    background: linear-gradient(135deg, #c82333 0%, #d63947 100%);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+}
+
+.explanation-card.beautiful .expand-button {
+    background: linear-gradient(135deg, #6f42c1 0%, #8c5dd1 100%);
+    box-shadow: 0 2px 8px rgba(111, 66, 193, 0.3);
+}
+
+.explanation-card.beautiful .expand-button:hover {
+    background: linear-gradient(135deg, #5a32a3 0%, #7142b8 100%);
+    box-shadow: 0 4px 12px rgba(111, 66, 193, 0.4);
 }
 
 .expand-indicator {

@@ -277,6 +277,18 @@ class ExplanationsManager {
                 expandButton.innerHTML = '<span class="expand-text">ගැඹුරු විග්‍රහය බලන්න</span> <span class="expand-indicator">▼</span>';
 
                 footer.appendChild(expandButton);
+
+                // Create "යෙදෙන සිත්" button
+                const pdfButton = document.createElement('button');
+                pdfButton.className = 'expand-button pdf-button';
+                pdfButton.innerHTML = '<span class="expand-text">යෙදෙන සිත්</span> <span class="expand-indicator">📄</span>';
+
+                pdfButton.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    window.open('pdf-viewer.html', '_blank');
+                });
+
+                footer.appendChild(pdfButton);
                 card.appendChild(footer);
 
                 // Add click handler to the button only
@@ -334,6 +346,18 @@ class ExplanationsManager {
                 expandButton.innerHTML = '<span class="expand-text">ගැඹුරු විග්‍රහය බලන්න</span> <span class="expand-indicator">▼</span>';
 
                 footer.appendChild(expandButton);
+
+                // Create "යෙදෙන සිත්" button
+                const pdfButton = document.createElement('button');
+                pdfButton.className = 'expand-button pdf-button';
+                pdfButton.innerHTML = '<span class="expand-text">යෙදෙන සිත්</span> <span class="expand-indicator">📄</span>';
+
+                pdfButton.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    window.open('pdf-viewer.html', '_blank');
+                });
+
+                footer.appendChild(pdfButton);
                 card.appendChild(footer);
 
                 // Add click handler to the button only
@@ -386,14 +410,24 @@ class ExplanationsManager {
                 const footer = document.createElement('div');
                 footer.className = 'card-footer';
 
-                // Use a different color for Akusala buttons (Reddish/Orange) to distinguish
+                // Akusala button - color applied via CSS
                 const expandButton = document.createElement('button');
                 expandButton.className = 'expand-button akusala-button';
-                expandButton.style.background = 'linear-gradient(135deg, #dc3545 0%, #c82333 100%)';
-                expandButton.style.boxShadow = '0 2px 8px rgba(220, 53, 69, 0.3)';
                 expandButton.innerHTML = '<span class="expand-text">ගැඹුරු විග්‍රහය බලන්න</span> <span class="expand-indicator">▼</span>';
 
                 footer.appendChild(expandButton);
+
+                // Create "යෙදෙන සිත්" button
+                const pdfButton = document.createElement('button');
+                pdfButton.className = 'expand-button pdf-button';
+                pdfButton.innerHTML = '<span class="expand-text">යෙදෙන සිත්</span> <span class="expand-indicator">📄</span>';
+
+                pdfButton.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    window.open('pdf-viewer.html', '_blank');
+                });
+
+                footer.appendChild(pdfButton);
                 card.appendChild(footer);
 
                 // Add click handler to the button only
@@ -460,15 +494,24 @@ class ExplanationsManager {
                 const footer = document.createElement('div');
                 footer.className = 'card-footer';
 
-                // Use a different color for Sobana buttons (Gold/Yellow)
+                // Sobana button - color applied via CSS
                 const expandButton = document.createElement('button');
                 expandButton.className = 'expand-button sobana-button';
-                expandButton.style.background = 'linear-gradient(135deg, #ffc107 0%, #ffdb4d 100%)';
-                expandButton.style.color = '#333'; // Dark text for contrast on yellow
-                expandButton.style.boxShadow = '0 2px 8px rgba(255, 193, 7, 0.3)';
                 expandButton.innerHTML = '<span class="expand-text">ගැඹුරු විග්‍රහය බලන්න</span> <span class="expand-indicator">▼</span>';
 
                 footer.appendChild(expandButton);
+
+                // Create "යෙදෙන සිත්" button
+                const pdfButton = document.createElement('button');
+                pdfButton.className = 'expand-button pdf-button';
+                pdfButton.innerHTML = '<span class="expand-text">යෙදෙන සිත්</span> <span class="expand-indicator">📄</span>';
+
+                pdfButton.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    window.open('pdf-viewer.html', '_blank');
+                });
+
+                footer.appendChild(pdfButton);
                 card.appendChild(footer);
 
                 // Add click handler to the button only
