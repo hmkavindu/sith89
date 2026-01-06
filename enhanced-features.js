@@ -285,7 +285,9 @@ class ExplanationsManager {
 
                 pdfButton.addEventListener('click', (e) => {
                     e.stopPropagation();
-                    window.open('pdf-viewer.html', '_blank');
+                    const searchTerm = chaithasika.name || chaithasika.nameSi;
+                    const id = chaithasika.id;
+                    window.open(`pdf-viewer.html?q=${encodeURIComponent(searchTerm)}&id=${id}`, '_blank');
                 });
 
                 footer.appendChild(pdfButton);
@@ -354,7 +356,9 @@ class ExplanationsManager {
 
                 pdfButton.addEventListener('click', (e) => {
                     e.stopPropagation();
-                    window.open('pdf-viewer.html', '_blank');
+                    const searchTerm = chaithasika.name || chaithasika.nameSi;
+                    const id = chaithasika.id;
+                    window.open(`pdf-viewer.html?q=${encodeURIComponent(searchTerm)}&id=${id}`, '_blank');
                 });
 
                 footer.appendChild(pdfButton);
@@ -424,7 +428,9 @@ class ExplanationsManager {
 
                 pdfButton.addEventListener('click', (e) => {
                     e.stopPropagation();
-                    window.open('pdf-viewer.html', '_blank');
+                    const searchTerm = chaithasika.name || chaithasika.nameSi;
+                    const id = chaithasika.id;
+                    window.open(`pdf-viewer.html?q=${encodeURIComponent(searchTerm)}&id=${id}`, '_blank');
                 });
 
                 footer.appendChild(pdfButton);
@@ -508,7 +514,9 @@ class ExplanationsManager {
 
                 pdfButton.addEventListener('click', (e) => {
                     e.stopPropagation();
-                    window.open('pdf-viewer.html', '_blank');
+                    const searchTerm = chaithasika.name || chaithasika.nameSi;
+                    const id = chaithasika.id;
+                    window.open(`pdf-viewer.html?q=${encodeURIComponent(searchTerm)}&id=${id}`, '_blank');
                 });
 
                 footer.appendChild(pdfButton);
