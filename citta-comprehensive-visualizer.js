@@ -57,12 +57,13 @@ class CittaComprehensiveVisualizer {
             style: this.getCytoscapeStyles(),
             layout: {
                 name: 'dagre',
-                rankDir: 'TB',
+                rankDir: 'LR',
                 directed: true,
-                padding: 50,
-                rankSep: 100,
-                nodeSep: 80,
-                edgeSep: 10,
+                padding: 40,
+                rankSep: 250,        // Increased spacing to reduce overlap
+                nodeSep: 80,         // Increased node separation
+                edgeSep: 50,         // Increased edge separation
+                ranker: 'network-simplex',
                 animate: true,
                 animationDuration: 1000
             },
@@ -87,7 +88,7 @@ class CittaComprehensiveVisualizer {
                 labelEn: 'Citta\n(Consciousness)',
                 type: 'root',
                 color: this.config.colors.root,
-                description: 'අභිධර්මයේ මූලික සිදුවීම වන සිත - චිත්තය යනු අරමුණ සිතන මනස',
+                description: 'අභිධර්මයේ මූලික බෙදීමක් වන සිත - චිත්තය යනු අරමුණ සිතන මනස',
                 descriptionEn: 'The fundamental phenomenon of Abhidhamma - Citta is the mind that knows objects',
                 size: 'extra-large'
             }
@@ -497,13 +498,6 @@ class CittaComprehensiveVisualizer {
                 labelEn: 'All\nCittas (89)',
                 url: 'citta-index.html',
                 parent: 'paramartha-citta'
-            },
-            {
-                id: 'link-fishbone',
-                label: 'චිත්ත බෙදීම්\nජාලය',
-                labelEn: 'Citta Division\nNetwork',
-                url: 'citta-fishbone-diagram.html',
-                parent: 'paramartha-citta'
             }
         ];
 
@@ -551,7 +545,8 @@ class CittaComprehensiveVisualizer {
                     'text-max-width': '150px',
                     'font-family': 'Noto Sans Sinhala, sans-serif',
                     'text-outline-width': 2,
-                    'text-outline-color': 'data(color)'
+                    'text-outline-color': 'data(color)',
+                    'z-index': 10  // Priority
                 }
             },
             // Size variations
@@ -618,19 +613,22 @@ class CittaComprehensiveVisualizer {
             {
                 selector: 'edge',
                 style: {
-                    'width': 'mapData(strength, 0, 10, 1, 4)',
+                    'width': 'mapData(strength, 0, 10, 1, 3)',
                     'line-color': '#bdc3c7',
                     'target-arrow-color': '#bdc3c7',
                     'target-arrow-shape': 'triangle',
-                    'curve-style': 'bezier',
-                    'opacity': 0.7
+                    'curve-style': 'taxi',           // taxi
+                    'taxi-direction': 'horizontal',
+                    'taxi-turn': 20,
+                    'opacity': 0.6,
+                    'z-index': 1
                 }
             },
             {
                 selector: 'edge[strength="strong"]',
                 style: {
-                    'width': 4,
-                    'opacity': 1,
+                    'width': 3,
+                    'opacity': 0.8,
                     'line-color': '#34495e',
                     'target-arrow-color': '#34495e'
                 }
@@ -639,7 +637,7 @@ class CittaComprehensiveVisualizer {
                 selector: 'edge[strength="medium"]',
                 style: {
                     'width': 2,
-                    'opacity': 0.7
+                    'opacity': 0.5
                 }
             },
             {

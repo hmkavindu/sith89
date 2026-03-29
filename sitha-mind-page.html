@@ -368,10 +368,7 @@
                     <a href="citta-index.html" class="nav-link" data-si="සියලුම චිත්ත" data-en="All Cittas">සියලුම
                         චිත්ත</a>
                 </li>
-                <li class="nav-item">
-                    <a href="citta-fishbone-diagram.html" class="nav-link" data-si="චිත්ත බෙදීම් ජාලය"
-                        data-en="Citta Division Network">චිත්ත බෙදීම් ජාලය</a>
-                </li>
+
             </ul>
         </div>
     </nav>
@@ -396,14 +393,14 @@
         <div class="hierarchy-overview">
             <div class="overview-card">
                 <h3 data-si="සිත යනු කුමක්ද?" data-en="What is Citta?">සිත යනු කුමක්ද?</h3>
-                <p data-si="අභිධර්මයේ මූලික සිදුවීම වන සිත යනු මනෝවිඥානධාතු වල මූලාරම්භය වන අත්තනෝ සිදුවීමකි. මෙය මනසේ ඇතිවන සියලුම සිතුවිලි වල මූලික ආකාරය වේ."
+                <p data-si="අභිධර්මයේ මූලික බෙදීමක් වන සිත යනු අරමුණක් අරගෙන හිත හටගන්න ආකාරය වන අත්තනෝ සිදුවීමකි. මෙය මනසේ ඇතිවන සියලුම සිතුවිලි වල මූලික ආකාරය වේ."
                     data-en="Citta, the fundamental principle of Abhidhamma, is the root phenomenon of mind consciousness elements. It is the basic form of all thoughts that arise in the mind.">
-                    අභිධර්මයේ මූලික සිදුවීම වන සිත යනු මනෝවිඥානධාතු වල මූලාරම්භය වන අත්තනෝ සිදුවීමකි. මෙය මනසේ ඇතිවන
+                    අභිධර්මයේ මූලික බෙදීමක් වන සිත යනු අරමුණක් අරගෙන හිත හටගන්න ආකාරය වන අත්තනෝ සිදුවීමකි. මෙය මනසේ ඇතිවන
                     සියලුම සිතුවිලි වල මූලික ආකාරය වේ.
                 </p>
             </div>
             <div class="overview-card">
-                <h3 data-si="හිරු බෙදීම් වල වැදගත්කම" data-en="Importance of Hierarchical Divisions">හිරු බෙදීම් වල
+                <h3 data-si="සිතුවිලි බෙදී යාමේ වැදගත්කම" data-en="Importance of the Divisions">සිතුවිලි බෙදී යාමේ
                     වැදගත්කම</h3>
                 <p data-si="සිතුවිලි කුසල් සහ අකුසල් බෙදීම් වලට වැටී සිටීම මගින් ධර්මයේ සත්‍යයන් විශේෂයෙන් ද්විත්ව සත්‍යය ගැඹුරින් විශ්ලේෂණය කිරීමට හැකි වේ."
                     data-en="By dividing consciousness into wholesome and unwholesome categories, it becomes possible to deeply analyze the truths of Dhamma, especially the truth of suffering.">
@@ -451,8 +448,7 @@
                     sitha --> tools["මෙවලම්"]:::major
                     tools --> table["චිත්ත චෛතසික වගුව"]:::minor
                     tools --> comparison["සංසන්දනය"]:::minor
-                    tools --> fishbone["චිත්ත බෙදීම් ජාලය"]:::minor
-                    fishbone --> fishbone_page["citta-fishbone-diagram.html"]:::minor
+
 
                     %% BRANCH 4: භූමි වර්ග
                     sitha --> bhumi["භූමි වර්ග"]:::major
@@ -725,8 +721,7 @@
             <h3 data-si="අභිධර්මය ගැඹුරින් අධ්‍යනය කිරීමට" data-en="For Deep Study of Abhidhamma">අභිධර්මය ගැඹුරින්
                 අධ්‍යනය කිරීමට</h3>
             <div class="nav-buttons">
-                <a href="citta-fishbone-diagram.html" class="nav-btn" data-si="චිත්ත බෙදීම් ජාලය"
-                    data-en="Citta Division Network">චිත්ත බෙදීම් ජාලය</a>
+
                 <a href="citta-index.html" class="nav-btn" data-si="සියලුම චිත්ත විස්තර"
                     data-en="All Citta Details">සියලුම චිත්ත විස්තර</a>
                 <a href="index.html#table" class="nav-btn" data-si="චිත්ත චෛතසික වගුව"
@@ -740,6 +735,9 @@
     <!-- Tooltip Element -->
     <div id="mindTooltip" class="tooltip-custom" style="display: none;"></div>
 
+    <!-- Cytoscape Dagre Layout Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cytoscape-dagre@2.5.0/cytoscape-dagre.min.js"></script>
     <script src="citta-comprehensive-visualizer.js"></script>
     <script>
         // Initialize the comprehensive Citta visualizer when DOM is loaded

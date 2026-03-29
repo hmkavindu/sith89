@@ -83,7 +83,16 @@
             border-radius: 0.75rem;
             padding: 1rem;
             border-left: 4px solid #a855f7;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 420px;
+            min-height: 420px;
+            max-height: 420px;
+            /* Strict uniform height for all cards */
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
         }
 
         .cetasika-card:hover {
@@ -91,32 +100,69 @@
             box-shadow: 0 4px 12px rgba(168, 85, 247, 0.2);
         }
 
+        .cetasika-card.expanded {
+            height: auto;
+            min-height: 420px;
+            max-height: none;
+            /* Expand to fit content when active */
+            z-index: 10;
+            overflow: visible;
+            box-shadow: 0 8px 24px rgba(168, 85, 247, 0.3);
+        }
+
         .cetasika-name {
-            font-size: 0.95rem;
-            font-weight: 600;
+            font-size: 1.05rem;
+            font-weight: 700;
             color: #1f2937;
             margin-bottom: 0.5rem;
             line-height: 1.4;
+            min-height: 2.8rem;
+            /* Ensure consistent title height */
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .cetasika-desc {
+            font-size: 0.88rem;
+            color: #4b5563;
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+            line-height: 1.5;
+            min-height: 2.64rem;
+            /* Ensure consistent description height */
+        }
+
+        .explanation-preview {
             font-size: 0.85rem;
             color: #6b7280;
+            line-height: 1.6;
+            flex-grow: 1;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 6;
+            /* Show only 6 lines initially */
+            line-clamp: 6;
+            -webkit-box-orient: vertical;
+            margin-bottom: 0.75rem;
+            text-align: justify;
+            max-height: 9.6rem;
+            /* 6 lines * 1.6 line-height * 0.85rem font-size ≈ 8.16rem + buffer */
         }
 
-        /* Expandable Card Styles */
-        .cetasika-card {
-            position: relative;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .cetasika-card.expandable {
-            cursor: default;
+        .cetasika-card.expanded .explanation-preview {
+            -webkit-line-clamp: unset;
+            line-clamp: unset;
+            overflow: visible;
+            display: block;
+            color: #1f2937;
+            max-height: none;
         }
 
         .card-actions {
-            margin-top: 1rem;
+            margin-top: auto;
+            /* Push buttons to bottom */
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
@@ -165,28 +211,6 @@
 
         .cetasika-card.expanded .expand-indicator {
             transform: rotate(180deg);
-        }
-
-        .deep-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-
-        .cetasika-card.expanded .deep-content {
-            max-height: 500px;
-            overflow-y: auto;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 2px solid #a855f7;
-        }
-
-        .deep-content-text {
-            font-size: 0.85rem;
-            line-height: 1.6;
-            color: #4b5563;
-            white-space: pre-wrap;
-            font-family: 'Noto Sans Sinhala', sans-serif;
         }
 
         /* PDF Modal Styles */
@@ -287,6 +311,7 @@
 </head>
 
 <body>
+    <script src="script.js"></script>
     <div class="container">
         <a href="index.html#categories" class="back-button"><i class="fas fa-arrow-left"></i> මූලික කාණ්ඩ වෙත ආපසු</a>
         <div class="page-header">
@@ -605,7 +630,7 @@
             { id: 52, name: 'අප්පමාද', fullName: 'අප්පමාද (නොඅඩන්තේකම)', page: 8 }
         ];
 
-        // Function to add buttons to all cetasika cards
+        // Function to add buttons and detailed content to all cetasika cards
         function addButtonsToCetasikaCards() {
             const cards = document.querySelectorAll('.cetasika-card');
 
@@ -613,19 +638,35 @@
                 const cetasika = cetasikaData[index];
                 if (!cetasika) return;
 
+                // Find full data from meditationData (script.js)
+                let fullData = null;
+                if (typeof meditationData !== 'undefined' && meditationData.chaithasikas) {
+                    fullData = meditationData.chaithasikas.find(c => c.id === cetasika.id);
+                }
+
                 // Add data attribute for identification
                 card.setAttribute('data-cetasika-id', cetasika.id);
                 card.setAttribute('data-cetasika-name', cetasika.name);
-                card.classList.add('expandable');
+
+                // Get Detailed Explanation
+                const explanation = fullData ? fullData.detailedExplanation : 'විස්තරය ළඟදීම බලාපොරොත්තු වන්න...';
+
+                // Add preview text (clamped) to the card
+                const previewDiv = document.createElement('div');
+                previewDiv.className = 'explanation-preview';
+                previewDiv.textContent = explanation;
+                // Insert after description
+                const desc = card.querySelector('.cetasika-desc');
+                card.insertBefore(previewDiv, desc.nextSibling);
 
                 // Create actions container
                 const actionsDiv = document.createElement('div');
                 actionsDiv.className = 'card-actions';
 
-                // Create "ගැඹුරු විග්‍රහය බලන්න" button
+                // Create "ගැඹුරු විග්‍රහය / වැඩි විස්තර" button
                 const deepAnalysisBtn = document.createElement('button');
                 deepAnalysisBtn.className = 'action-button deep-analysis-btn';
-                deepAnalysisBtn.innerHTML = '<span class="expand-text">ගැඹුරු විග්‍රහය බලන්න</span> <span class="expand-indicator">▼</span>';
+                deepAnalysisBtn.innerHTML = '<span class="expand-text">වැඩි විස්තර බලන්න</span> <span class="expand-indicator">▼</span>';
                 deepAnalysisBtn.onclick = function (e) {
                     e.stopPropagation();
                     toggleDeepAnalysis(card);
@@ -640,20 +681,26 @@
                     openPdfModal(cetasika);
                 };
 
-                // Create deep content div (placeholder for now)
-                const deepContentDiv = document.createElement('div');
-                deepContentDiv.className = 'deep-content';
-                const deepContentText = document.createElement('pre');
-                deepContentText.className = 'deep-content-text';
-                deepContentText.textContent = `${cetasika.fullName} සඳහා ගැඹුරු විග්‍රහය ඉදිරියේදී එකතු කරනු ලැබේ...`;
-                deepContentDiv.appendChild(deepContentText);
-
                 // Append elements
                 actionsDiv.appendChild(deepAnalysisBtn);
                 actionsDiv.appendChild(associatedCittasBtn);
-                card.appendChild(deepContentDiv);
                 card.appendChild(actionsDiv);
+
+                // Make entire card clickable for expand/collapse
+                card.style.cursor = 'pointer';
+                card.addEventListener('click', function (e) {
+                    // Don't toggle if clicking on buttons
+                    if (!e.target.closest('.action-button')) {
+                        toggleDeepAnalysis(card);
+                    }
+                });
+
+                // Add hover effect hint
+                card.title = 'විස්තර බැලීමට ක්ලික් කරන්න';
             });
+
+            // Log any missing data
+            console.log(`Initialized ${cards.length} Chaithasika cards`);
         }
 
         // Toggle deep analysis section
@@ -666,7 +713,7 @@
                     otherCard.classList.remove('expanded');
                     const otherBtn = otherCard.querySelector('.deep-analysis-btn .expand-text');
                     const otherIndicator = otherCard.querySelector('.deep-analysis-btn .expand-indicator');
-                    if (otherBtn) otherBtn.textContent = 'ගැඹුරු විග්‍රහය බලන්න';
+                    if (otherBtn) otherBtn.textContent = 'වැඩි විස්තර බලන්න';
                     if (otherIndicator) otherIndicator.textContent = '▼';
                 }
             });
@@ -679,8 +726,13 @@
             if (card.classList.contains('expanded')) {
                 if (btn) btn.textContent = 'හකුළන්න';
                 if (indicator) indicator.textContent = '▲';
+
+                // Smooth scroll to bring card into view
+                setTimeout(() => {
+                    card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
             } else {
-                if (btn) btn.textContent = 'ගැඹුරු විග්‍රහය බලන්න';
+                if (btn) btn.textContent = 'වැඩි විස්තර බලන්න';
                 if (indicator) indicator.textContent = '▼';
             }
         }

@@ -55,7 +55,7 @@ class MindHierarchyVisualizer {
                 label: 'සිත\n(චිත්තය)',
                 labelEn: 'Citta\n(Mind)',
                 type: 'root',
-                description: 'අභිධර්මයේ මූලික සිදුවීම වන සිත - මනෝවිඥානධාතු වල මූලාරම්භය',
+                description: 'අභිධර්මයේ මූලික බෙදීමක් වන සිත - අරමුණක් අරගෙන හිත හටගන්න ආකාරය',
                 descriptionEn: 'The fundamental principle of Abhidhamma - Citta, the origin of mind consciousness elements',
                 size: 'large',
                 sources: {

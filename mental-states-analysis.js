@@ -15,7 +15,8 @@ class MentalStatesAnalyzer {
 
     async loadMentalStatesData() {
         try {
-            const response = await fetch('mental-states-data.json');
+            const cacheBuster = new Date().getTime();
+            const response = await fetch(`mental-states-data.json?v=${cacheBuster}`);
             this.mentalStatesData = await response.json();
         } catch (error) {
             console.error('Error loading mental states data:', error);

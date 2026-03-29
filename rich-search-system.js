@@ -128,7 +128,6 @@ class RichSearchSystem {
             { name: 'ද්වේශය විශ්ලේෂණය', nameEn: 'Dvesha Analysis', url: 'anger-analysis.html', icon: '⚡', category: 'විශ්ලේෂණය' },
             { name: 'මෝහය විශ්ලේෂණය', nameEn: 'Moha Analysis', url: 'moha-analysis.html', icon: '🌫️', category: 'විශ්ලේෂණය' },
             { name: 'සිත විශ්ලේෂණය', nameEn: 'Citta Analysis', url: 'sitha-mind-page.html', icon: '🧠', category: 'විශ්ලේෂණය' },
-            { name: 'චිත්ත බෙදීම් ජාලය', nameEn: 'Citta Division Network', url: 'citta-fishbone-diagram.html', icon: '🕸️', category: 'දෘශ්‍යකරණය' },
             { name: 'සිතුවිලි සිතියම', nameEn: 'Mind Map', url: 'citta-cetasika-map.html', icon: '🗺️', category: 'දෘශ්‍යකරණය' },
             { name: 'සියලුම චිත්ත', nameEn: 'All Cittas', url: 'citta-index.html', icon: '📋', category: 'දර්ශකය' }
         ];

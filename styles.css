@@ -1322,33 +1322,60 @@ section.data-table {
 .social-button {
     display: flex;
     align-items: center;
+    justify-content: center;
     background-color: rgba(255, 255, 255, 0.1);
     color: #fff;
     text-decoration: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 30px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
     transition: all 0.3s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 .social-button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Brand-specific hover colors */
+.youtube-btn:hover {
+    background-color: #FF0000;
+    border-color: #FF0000;
+}
+
+.facebook-btn:hover {
+    background-color: #1877F2;
+    border-color: #1877F2;
+}
+
+.github-btn:hover {
+    background-color: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+}
+
+.machineworld-btn:hover {
+    background-color: #00e5ff;
+    border-color: #00e5ff;
 }
 
 .social-icon {
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-img {
+    width: 26px;
+    height: 26px;
     object-fit: contain;
 }
 
 .social-text {
-    font-size: 16px;
-    font-weight: bold;
+    display: none;
 }
 
 /* Responsive Design */
@@ -1371,17 +1398,21 @@ section.data-table {
     }
 
     .social-button {
-        padding: 0.5rem 1rem;
+        width: 45px;
+        height: 45px;
     }
 
     .social-icon {
-        width: 20px;
-        height: 20px;
-        margin-right: 6px;
+        font-size: 22px;
+    }
+
+    .social-img {
+        width: 22px;
+        height: 22px;
     }
 
     .social-text {
-        font-size: 12px;
+        display: none;
     }
 
     .nav-header {
@@ -2164,6 +2195,22 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     border-left: 4px solid #007bff;
+
+    display: flex;
+    flex-direction: column;
+    height: 480px;
+    min-height: 480px;
+    max-height: 480px;
+    position: relative;
+    overflow: hidden;
+}
+
+.explanation-card.expanded {
+    height: auto;
+    min-height: 480px;
+    max-height: none;
+    z-index: 10;
+    overflow: visible;
 }
 
 .explanation-card:hover {
@@ -2235,6 +2282,17 @@ body {
     color: #6c757d;
     margin-bottom: 15px;
     line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.explanation-card.expanded .explanation-description {
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+    overflow: visible;
 }
 
 .explanation-details {
@@ -2242,12 +2300,25 @@ body {
     padding: 15px;
     border-radius: 8px;
     margin-bottom: 15px;
+    flex-grow: 1;
+    overflow: hidden;
 }
 
 .explanation-details p {
     margin: 0;
     color: #495057;
     font-style: italic;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.explanation-card.expanded .explanation-details p {
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+    overflow: visible;
 }
 
 .explanation-reference {
