@@ -24,7 +24,7 @@ async function testPopupBehavior() {
 
         // Test Raga card
         console.log('🧪 Testing Raga card...');
-        const ragaResults = await testCardClick(page, '#ragaCard', 'රාග (ලෝභ)');
+        const ragaResults = await testCardClick(page, '#ragaCard', 'රාගය (ලෝභය)');
 
         // Test Dwesha card
         console.log('🧪 Testing Dwesha card...');

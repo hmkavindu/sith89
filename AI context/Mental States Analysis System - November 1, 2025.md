@@ -44,7 +44,7 @@ Each mental poison (රාග/ද්වේශ/මෝහ) contains:
 ### **User Interface Components**
 
 #### **Main Cards Section**
-- **රාග (ලෝභ)**: Red-themed card with fire emoji 🔥
+- **රාගය (ලෝභය)**: Red-themed card with fire emoji 🔥
 - **ද්වේශ (පටිඝ)**: Orange-themed card with lightning emoji ⚡
 - **මෝහ (අවිජ්ජා)**: Gray-themed card with fog emoji 🌫️
 
@@ -86,7 +86,7 @@ Each mental poison (රාග/ද්වේශ/මෝහ) contains:
 ```json
 {
   "raga": {
-    "name": "රාග (ලෝභ)",
+    "name": "රාගය (ලෝභය)",
     "nameEn": "Raga (Lobha)",
     "description": "අල්ලා ගැනීම, ආශා කිරීම, රාගය",
     "causes": [

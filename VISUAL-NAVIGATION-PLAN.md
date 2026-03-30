@@ -110,7 +110,7 @@ Related Cittas → Cetasikas → Categories → Table → Comparison
     {
       "id": "raga",
       "type": "main",
-      "label": "රාග (ලෝභ)",
+      "label": "රාගය (ලෝභය)",
       "color": "#ff6b6b",
       "icon": "🔥",
       "url": "#mental-states",

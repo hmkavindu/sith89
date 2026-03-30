@@ -23,7 +23,7 @@ class MentalStatesAnalyzer {
             // Fallback data
             this.mentalStatesData = {
                 raga: {
-                    name: "රාග (ලෝභ)",
+                    name: "රාගය (ලෝභය)",
                     nameEn: "Raga (Lobha)",
                     description: "අල්ලා ගැනීම, ආශා කිරීම, රාගය",
                     causes: [],
@@ -140,7 +140,7 @@ class MentalStatesAnalyzer {
         if (data.causes && data.causes.length > 0) {
             content += `
                 <div class="analysis-section">
-                    <h4>මෙම මානසික තත්ත්වය ඇති වීමට හේතු වන සිතුවිලි</h4>
+                    <h4>මෙම මානසික ස්වභාවය ඇති වීමට හේතු</h4>
                     ${data.causes.map(cause => `
                         <div class="cause-item">
                             <strong>${cause.thought}</strong><br>

@@ -76,7 +76,7 @@ Moha (Main Card)
   "nodes": [
     {
       "id": "raga",
-      "label": "රාග (ලෝභ)",
+      "label": "රාගය (ලෝභය)",
       "type": "main-poison",
       "color": "#ff6b6b",
       "icon": "🔥",

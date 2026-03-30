@@ -222,7 +222,7 @@ class ThoughtAnalyzer {
         const scores = this.currentAnalysis.scores;
 
         const translations = {
-            raga: { si: 'රාග (ලෝභ) - අල්ලා ගැනීමේ සිතුවිලි', en: 'Raga (Lobha) - Thoughts of Attachment' },
+            raga: { si: 'රාගය (ලෝභය) - අල්ලා ගැනීමේ සිතුවිලි', en: 'Raga (Lobha) - Thoughts of Attachment' },
             dvesha: { si: 'ද්වේශ (පටිඝ) - පටිඝයේ සිතුවිලි', en: 'Dvesha (Patigha) - Thoughts of Aversion' },
             moha: { si: 'මෝහ (අවිජ්ජා) - අවිජ්ජාවේ සිතුවිලි', en: 'Moha (Avijja) - Thoughts of Ignorance' }
         };
@@ -270,7 +270,7 @@ class ThoughtAnalyzer {
         const title = document.getElementById('analysisTitle');
 
         const titles = {
-            raga: { si: 'රාග (ලෝභ) විශ්ලේෂණය', en: 'Raga (Lobha) Analysis' },
+            raga: { si: 'රාගය (ලෝභය) විශ්ලේෂණය', en: 'Raga (Lobha) Analysis' },
             dvesha: { si: 'ද්වේශ (පටිඝ) විශ්ලේෂණය', en: 'Dvesha (Patigha) Analysis' },
             moha: { si: 'මෝහ (අවිජ්ජා) විශ්ලේෂණය', en: 'Moha (Avijja) Analysis' }
         };
