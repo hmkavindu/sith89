@@ -2237,8 +2237,9 @@ body {
 .explanation-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 15px;
+    overflow: visible;
 }
 
 .explanation-title {
@@ -2251,6 +2252,8 @@ body {
     word-break: break-word;
     overflow-wrap: break-word;
     white-space: normal;
+    line-height: 1.6;
+    padding-top: 2px;
 }
 
 .explanation-category {
@@ -2288,12 +2291,13 @@ body {
 .explanation-description {
     color: #6c757d;
     margin-bottom: 15px;
-    line-height: 1.6;
+    line-height: 1.8;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    padding-bottom: 8px;
 }
 
 .explanation-card.expanded .explanation-description {
@@ -2320,6 +2324,8 @@ body {
     line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    line-height: 1.8;
+    padding-bottom: 8px;
 }
 
 .explanation-card.expanded .explanation-details p {
