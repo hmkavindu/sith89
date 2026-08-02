@@ -298,6 +298,7 @@
       relationships: [ R("alobha", "OPPOSITE_OF", "") ] }),
     N({ id: "dosa", pali: "Dosa", sinhala: "දෝස", english: "Hatred / Aversion",
       category: "defilements", importance: "high", definition: "Ill-will and aversion toward unpleasant objects.",
+      references: ["Tika Mātikā"],
       lifeKeywords: ["anger", "angry", "mad", "rage", "irritated", "irritation", "annoyed", "furious", "hatred", "hate", "කෝපය", "තරහ", "තරහයි", "රުස්සනවා"],
       relationships: [
         R("adosa", "OPPOSITE_OF", ""),

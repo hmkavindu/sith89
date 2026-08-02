@@ -214,6 +214,24 @@
     ".gnav-canvas-wrap{flex:1;min-height:0;position:relative;}",
     ".gnav-canvas{position:absolute;inset:0;}",
     ".gnav-hint{position:absolute;left:10px;bottom:10px;font-size:10.5px;color:#6b7280;background:rgba(15,18,24,.7);padding:4px 8px;border-radius:8px;pointer-events:none;}",
+    ".gnav-outline-wrap{flex:1;min-height:0;overflow-y:auto;padding:14px 16px 20px;}",
+    ".gnav-tree,.gnav-tree ul{list-style:none;margin:0;padding:0;}",
+    ".gnav-tree > li > ul{margin-left:0;padding-left:0;border-left:none;}",
+    ".gnav-tree ul{margin-left:13px;padding-left:13px;border-left:1px dashed #2e3440;}",
+    ".gnav-tree li{position:relative;padding:5px 0 5px 14px;font-size:12.5px;color:#dfe3ea;line-height:1.4;}",
+    ".gnav-tree li::before{content:'';position:absolute;top:13px;left:0;width:11px;height:1px;background:#2e3440;}",
+    ".gnav-tree-root{padding-left:0!important;}",
+    ".gnav-tree-root::before{display:none;}",
+    ".gnav-tree-root-label{font-family:'Noto Serif Sinhala',serif;font-weight:700;font-size:15.5px;color:#f5f7fb;}",
+    ".gnav-tree-group{font-weight:700;color:#8fb2f5;font-size:11px;letter-spacing:.04em;text-transform:uppercase;}",
+    ".gnav-tree-subgroup{font-weight:700;color:#c9a0ff;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;}",
+    ".gnav-tree li[data-focus]{cursor:pointer;}",
+    ".gnav-tree li[data-focus]:hover{color:#5b8def;}",
+    ".gnav-tree-self{color:#ffcf70!important;font-weight:700;}",
+    ".gnav-tree-si{color:#9aa1ac;font-size:11px;margin-left:5px;}",
+    ".gnav-tree-empty{color:#6b7280;font-size:11.5px;padding:10px 0 0;}",
+    ".gnav-tree a{color:#5b8def;text-decoration:none;}",
+    ".gnav-tree a:hover{text-decoration:underline;}",
     ".gnav-sheet{flex-shrink:0;max-height:42vh;overflow-y:auto;background:#12141b;border-top:1px solid #262b36;padding:12px 14px 16px;}",
     ".gnav-sheet-title{font-family:'Noto Serif Sinhala',serif;font-weight:700;font-size:16px;color:#f5f7fb;}",
     ".gnav-sheet-sub{font-size:12px;color:#9aa1ac;margin-top:2px;}",
@@ -257,7 +275,8 @@
     '    </div>',
     '  </div>',
     '  <div class="gnav-modes" id="gnavModes">',
-    '    <button class="gnav-mode-btn active" data-mode="network" title="Force-directed network of this concept and its direct connections">Network</button>',
+    '    <button class="gnav-mode-btn active" data-mode="breakdown" title="Full categorized breakdown — roots, hindrances, path factors, and Tripiṭaka references, as an outline">Breakdown</button>',
+    '    <button class="gnav-mode-btn" data-mode="network" title="Force-directed network of this concept and its direct connections">Network</button>',
     '    <button class="gnav-mode-btn" data-mode="tree" title="Hierarchical tree rooted at this concept">Tree</button>',
     '    <button class="gnav-mode-btn" data-mode="mindmap" title="Radial mind map, this concept at the centre">Mind Map</button>',
     '    <button class="gnav-mode-btn" data-mode="timeline" id="gnavModeTimeline" title="Sequential order (only available for concepts with a defined sequence, e.g. Dependent Origination)" disabled>Timeline</button>',
@@ -266,9 +285,12 @@
     '    <input id="gnavSearch" class="gnav-search" placeholder="Search a Dhamma concept…" autocomplete="off">',
     '    <div class="gnav-search-results" id="gnavSearchResults"></div>',
     '  </div>',
-    '  <div class="gnav-canvas-wrap">',
+    '  <div class="gnav-canvas-wrap" id="gnavCanvasWrap">',
     '    <div class="gnav-canvas" id="gnavCanvas"></div>',
     '    <div class="gnav-hint">Click a node to explore its connections</div>',
+    '  </div>',
+    '  <div class="gnav-outline-wrap" id="gnavOutlineWrap">',
+    '    <ul class="gnav-tree" id="gnavOutline"></ul>',
     '  </div>',
     '  <div class="gnav-sheet" id="gnavSheet"></div>',
     '</div>'
@@ -278,7 +300,7 @@
   var cy = null;
   var breadcrumb = []; // [{id, label}]
   var recents = [];    // [id], most recent first, session-only
-  var currentMode = "network"; // network | tree | mindmap | timeline
+  var currentMode = "breakdown"; // breakdown | network | tree | mindmap | timeline
 
   function pushRecent(id) {
     recents = [id].concat(recents.filter(function (x) { return x !== id; })).slice(0, 10);
@@ -345,6 +367,144 @@
     return els;
   }
 
+  // ---- Breakdown mode: categorized outline (not a node graph) ----------------
+  // For a concept, finds every named Buddhist system it touches — the list it's
+  // itself a member of (siblings), plus, for every direct relationship, the
+  // *related* concept's own membership — and groups everything under those
+  // system names, exactly like a hand-drawn breakdown of e.g. "Dosa" branching
+  // into Akusala-mūla, the Five Hindrances, the Brahmavihāras, the Eightfold
+  // Path, and Tripiṭaka references. Built entirely from relationships already
+  // in dhamma-graph-data.js (a node's PART_OF children = that system's
+  // members) — no separate curation needed per concept.
+  function partOfChildren(hubId) {
+    var hub = NODE_BY_ID[hubId];
+    if (!hub) return [];
+    return (hub.relationships || [])
+      .filter(function (r) { return r.type === "PART_OF" && NODE_BY_ID[r.target]; })
+      .map(function (r) { return r.target; });
+  }
+
+  function parentHubsOf(nodeId) {
+    return (REVERSE[nodeId] || [])
+      .filter(function (r) { return r.type === "PART_OF"; })
+      .map(function (r) { return r.source; })
+      .filter(function (id) { return !!NODE_BY_ID[id]; });
+  }
+
+  function buildBreakdown(centerId) {
+    var center = NODE_BY_ID[centerId];
+    if (!center) return null;
+
+    var groups = [];       // [{ hubId, hubLabel, items: [{id, self}] }]
+    var groupIndex = {};   // hubId -> group
+    var seen = {};         // "hubId|itemId" -> true, avoids duplicate items in a group
+
+    function ensureGroup(hubId) {
+      if (groupIndex[hubId]) return groupIndex[hubId];
+      var hub = NODE_BY_ID[hubId];
+      var g = { hubId: hubId, hubLabel: hub ? hub.english : hubId, items: [] };
+      groupIndex[hubId] = g;
+      groups.push(g);
+      return g;
+    }
+    function addItem(hubId, itemId, isSelf) {
+      var key = hubId + "|" + itemId;
+      if (seen[key]) return;
+      seen[key] = true;
+      ensureGroup(hubId).items.push({ id: itemId, self: !!isSelf });
+    }
+
+    // 1. The concept's own system(s) — show its siblings (its "family").
+    var ownHubs = parentHubsOf(centerId);
+    ownHubs.forEach(function (hubId) {
+      partOfChildren(hubId).forEach(function (childId) { addItem(hubId, childId, childId === centerId); });
+    });
+
+    // 2. Every other direct relationship, bucketed by what THAT concept itself
+    //    belongs to (e.g. dosa → byapada, and byapada belongs to the Five
+    //    Hindrances, so it's filed there rather than shown as a bare edge).
+    var related = [];
+    (center.relationships || []).forEach(function (r) { if (NODE_BY_ID[r.target]) related.push(r.target); });
+    (REVERSE[centerId] || []).forEach(function (r) { related.push(r.source); });
+
+    var uncategorized = [];
+    related.forEach(function (relId) {
+      if (relId === centerId) return;
+      if (ownHubs.indexOf(relId) > -1) return; // that's the parent hub itself, already the heading for group 1
+      var hubs = parentHubsOf(relId);
+      if (!hubs.length) { if (uncategorized.indexOf(relId) === -1) uncategorized.push(relId); return; }
+      hubs.forEach(function (hubId) { addItem(hubId, relId, false); });
+    });
+
+    // 3. Tripiṭaka references, grouped by Piṭaka — reuses the same registry
+    //    as the detail sheet (dhamma-citations.js), so it's equally verified
+    //    and equally happy to come back empty rather than guess.
+    var refsByPitaka = null;
+    if (center.references && center.references.length) {
+      var registry = (window.DhammaCitations && window.DhammaCitations.registry) || {};
+      center.references.forEach(function (refName) {
+        var c = registry[refName];
+        if (!c) return;
+        refsByPitaka = refsByPitaka || {};
+        (refsByPitaka[c.pitaka] = refsByPitaka[c.pitaka] || []).push(c);
+      });
+    }
+
+    return { center: center, groups: groups, uncategorized: uncategorized, refsByPitaka: refsByPitaka };
+  }
+
+  function renderBreakdownTree(centerId) {
+    var data = buildBreakdown(centerId);
+    var root = document.getElementById("gnavOutline");
+    if (!data) { root.innerHTML = ""; return; }
+
+    var body = "<ul>";
+    data.groups.forEach(function (g) {
+      body += '<li class="gnav-tree-group">' + escHtml(g.hubLabel) + "<ul>";
+      g.items.forEach(function (it) {
+        var n = NODE_BY_ID[it.id];
+        if (!n) return;
+        body += '<li' + (it.self ? ' class="gnav-tree-self"' : '') + ' data-focus="' + n.id + '">' + escHtml(n.english) +
+          (n.sinhala ? '<span class="gnav-tree-si">' + escHtml(n.sinhala) + "</span>" : "") + "</li>";
+      });
+      body += "</ul></li>";
+    });
+
+    if (data.uncategorized.length) {
+      body += '<li class="gnav-tree-group">Related Concepts<ul>';
+      data.uncategorized.forEach(function (id) {
+        var n = NODE_BY_ID[id];
+        if (!n) return;
+        body += '<li data-focus="' + n.id + '">' + escHtml(n.english) +
+          (n.sinhala ? '<span class="gnav-tree-si">' + escHtml(n.sinhala) + "</span>" : "") + "</li>";
+      });
+      body += "</ul></li>";
+    }
+
+    if (data.refsByPitaka) {
+      body += '<li class="gnav-tree-group">Tripiṭaka References<ul>';
+      ["sutta", "vinaya", "abhidhamma"].forEach(function (pitaka) {
+        var items = data.refsByPitaka[pitaka];
+        if (!items || !items.length) return;
+        body += '<li class="gnav-tree-subgroup">' + escHtml(PITAKA_LABEL[pitaka]) + "<ul>";
+        items.forEach(function (c) {
+          body += '<li><a href="' + escHtml(c.url) + '" target="_blank" rel="noopener">' +
+            escHtml(c.section) + " — " + escHtml(c.title.english || c.title.pali) + "</a></li>";
+        });
+        body += "</ul></li>";
+      });
+      body += "</ul></li>";
+    }
+
+    if (!data.groups.length && !data.uncategorized.length && !data.refsByPitaka) {
+      body += '<li class="gnav-tree-empty">No categorized connections yet for this concept.</li>';
+    }
+    body += "</ul>";
+
+    root.innerHTML = '<li class="gnav-tree-root"><span class="gnav-tree-root-label">' + escHtml(data.center.english) +
+      (data.center.sinhala ? '<span class="gnav-tree-si">' + escHtml(data.center.sinhala) + "</span>" : "") + "</span>" + body + "</li>";
+  }
+
   function ensureCy() {
     if (cy) return cy;
     cy = window.cytoscape({
@@ -387,12 +547,30 @@
   }
 
   // centerId is the hub node driving the current view (breadcrumb tail).
+  // Breakdown mode doesn't touch Cytoscape at all — it's a DOM outline (see
+  // renderBreakdownTree), so it swaps which wrapper is visible and returns.
   // Timeline mode substitutes a totally different element set (the ordered
   // chain, see timelineElements()) rather than laying the same ego-network
   // out differently — a star of 12 nodes has no meaningful "sequence" layout,
   // so this mode only activates when getTimelineSequence() finds a real one.
   function renderGraph(centerId) {
+    var canvasWrap = document.getElementById("gnavCanvasWrap");
+    var outlineWrap = document.getElementById("gnavOutlineWrap");
+    var exportBtn = document.getElementById("gnavExport");
+
+    if (currentMode === "breakdown") {
+      canvasWrap.style.display = "none";
+      outlineWrap.style.display = "block";
+      exportBtn.disabled = true;
+      renderBreakdownTree(centerId);
+      return;
+    }
+    canvasWrap.style.display = "";
+    outlineWrap.style.display = "none";
+    exportBtn.disabled = false;
+
     var c = ensureCy();
+    c.resize();
     c.elements().remove();
 
     var mode = currentMode;
@@ -584,6 +762,12 @@
   });
 
   document.getElementById("gnavSheet").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-focus]");
+    if (b) focusNode(b.getAttribute("data-focus"));
+  });
+
+  document.getElementById("gnavOutline").addEventListener("click", function (e) {
+    if (e.target.closest("a")) return; // Tripiṭaka reference links open their own tab
     var b = e.target.closest("[data-focus]");
     if (b) focusNode(b.getAttribute("data-focus"));
   });
