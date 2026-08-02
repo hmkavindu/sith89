@@ -198,6 +198,11 @@
     ".gnav-icon{width:30px;height:30px;border-radius:8px;border:1px solid #2a2f3a;background:#1c2029;color:#dfe3ea;cursor:pointer;font-size:15px;line-height:1;display:flex;align-items:center;justify-content:center;}",
     ".gnav-icon:hover{border-color:#5b8def;color:#5b8def;}",
     ".gnav-icon.gnav-close{color:#f2a1a1;}",
+    ".gnav-modes{display:flex;gap:6px;padding:7px 10px;border-bottom:1px solid #262b36;flex-shrink:0;background:#0f1218;overflow-x:auto;}",
+    ".gnav-mode-btn{background:#1c2029;border:1px solid #2a2f3a;color:#9aa1ac;border-radius:14px;padding:4px 12px;font-size:11.5px;cursor:pointer;white-space:nowrap;font-family:inherit;}",
+    ".gnav-mode-btn:hover:not(:disabled){border-color:#5b8def;color:#dfe3ea;}",
+    ".gnav-mode-btn.active{background:#26365c;border-color:#5b8def;color:#eaf1ff;}",
+    ".gnav-mode-btn:disabled{opacity:.35;cursor:not-allowed;}",
     ".gnav-search-wrap{position:relative;padding:8px 10px;border-bottom:1px solid #262b36;flex-shrink:0;background:#0f1218;}",
     ".gnav-search{width:100%;box-sizing:border-box;background:#181c25;border:1px solid #2a2f3a;color:#e7eaf0;border-radius:10px;padding:9px 12px;font-size:13px;outline:none;font-family:inherit;}",
     ".gnav-search:focus{border-color:#5b8def;}",
@@ -251,6 +256,12 @@
     '      <button class="gnav-icon gnav-close" id="gnavClose" title="Close">×</button>',
     '    </div>',
     '  </div>',
+    '  <div class="gnav-modes" id="gnavModes">',
+    '    <button class="gnav-mode-btn active" data-mode="network" title="Force-directed network of this concept and its direct connections">Network</button>',
+    '    <button class="gnav-mode-btn" data-mode="tree" title="Hierarchical tree rooted at this concept">Tree</button>',
+    '    <button class="gnav-mode-btn" data-mode="mindmap" title="Radial mind map, this concept at the centre">Mind Map</button>',
+    '    <button class="gnav-mode-btn" data-mode="timeline" id="gnavModeTimeline" title="Sequential order (only available for concepts with a defined sequence, e.g. Dependent Origination)" disabled>Timeline</button>',
+    '  </div>',
     '  <div class="gnav-search-wrap">',
     '    <input id="gnavSearch" class="gnav-search" placeholder="Search a Dhamma concept…" autocomplete="off">',
     '    <div class="gnav-search-results" id="gnavSearchResults"></div>',
@@ -267,9 +278,30 @@
   var cy = null;
   var breadcrumb = []; // [{id, label}]
   var recents = [];    // [id], most recent first, session-only
+  var currentMode = "network"; // network | tree | mindmap | timeline
 
   function pushRecent(id) {
     recents = [id].concat(recents.filter(function (x) { return x !== id; })).slice(0, 10);
+  }
+
+  // A concept has a "Timeline" if its own relationships explicitly number the
+  // steps in its explanation text (e.g. Dependent Origination's "1. Ignorance",
+  // "2. Formations", ...). This is read off data the author already wrote for
+  // the detail sheet — it is not inferred by tracing CAUSES edges across
+  // separate nodes, which need not agree on direction the way a single node's
+  // own authored, ordered explanations do.
+  function getTimelineSequence(centerId) {
+    var center = NODE_BY_ID[centerId];
+    if (!center) return null;
+    var steps = [];
+    (center.relationships || []).forEach(function (r) {
+      if (!NODE_BY_ID[r.target]) return;
+      var m = /^\s*(\d+)\s*[.)]/.exec(r.explanation || "");
+      if (m) steps.push({ id: r.target, order: parseInt(m[1], 10), type: r.type });
+    });
+    if (steps.length < 3) return null;
+    steps.sort(function (a, b) { return a.order - b.order; });
+    return steps;
   }
 
   function egoElements(centerId) {
@@ -294,6 +326,25 @@
     return els;
   }
 
+  // Timeline mode shows the numbered steps as a literal left-to-right chain
+  // (step 1 → step 2 → step 3 ...) instead of the star pattern every other
+  // mode draws from the hub node — that star is exactly what a sequence
+  // shouldn't look like. The hub itself (e.g. "Dependent Origination") isn't
+  // drawn as a node here; it's named in the hint bar instead.
+  function timelineElements(centerId, steps) {
+    var els = steps.map(function (s, i) {
+      var n = NODE_BY_ID[s.id];
+      return { data: { id: n.id, label: (i + 1) + ". " + n.english }, classes: i === 0 || i === steps.length - 1 ? "gnav-timeline-end" : "" };
+    });
+    for (var i = 0; i < steps.length - 1; i++) {
+      els.push({ data: {
+        id: "t_" + steps[i].id + "_" + steps[i + 1].id,
+        source: steps[i].id, target: steps[i + 1].id, label: ""
+      } });
+    }
+    return els;
+  }
+
   function ensureCy() {
     if (cy) return cy;
     cy = window.cytoscape({
@@ -307,6 +358,7 @@
           "width": 30, "height": 30, "border-width": 1, "border-color": "rgba(255,255,255,.35)"
         } },
         { selector: ".gnav-center", style: { "width": 46, "height": 46, "border-width": 3, "border-color": "#ffffff", "font-size": 11, "font-weight": "bold" } },
+        { selector: ".gnav-timeline-end", style: { "width": 38, "height": 38, "border-width": 2.5, "border-color": "#ffffff", "font-size": 10, "font-weight": "bold" } },
         { selector: "edge", style: {
           "width": 1.4, "line-color": "#3a4150", "target-arrow-color": "#3a4150", "target-arrow-shape": "triangle",
           "arrow-scale": 0.7, "curve-style": "bezier", "label": "data(label)", "font-size": 6.5,
@@ -318,12 +370,66 @@
     return cy;
   }
 
+  // Tree mode needs an explicit root: ego-network edges point both out of AND
+  // into the centre (the REVERSE/incoming relationships), so breadthfirst's
+  // own root auto-detection can't be trusted to land on the centre node.
+  function layoutFor(mode, centerId) {
+    switch (mode) {
+      case "tree": return { name: "breadthfirst", animate: false, fit: true, padding: 24, directed: true, spacingFactor: 1.15, avoidOverlap: true, roots: "#" + centerId };
+      case "mindmap": return {
+        name: "concentric", animate: false, fit: true, padding: 24, equidistant: true, minNodeSpacing: 45,
+        concentric: function (ele) { return ele.hasClass("gnav-center") ? 2 : 1; },
+        levelWidth: function () { return 1; }
+      };
+      case "timeline": return { name: "grid", animate: false, fit: true, padding: 24, rows: 1, avoidOverlapPadding: 30, condense: true };
+      default: return { name: "cose", animate: false, fit: true, padding: 24, nodeRepulsion: 6000, idealEdgeLength: 70 };
+    }
+  }
+
+  // centerId is the hub node driving the current view (breadcrumb tail).
+  // Timeline mode substitutes a totally different element set (the ordered
+  // chain, see timelineElements()) rather than laying the same ego-network
+  // out differently — a star of 12 nodes has no meaningful "sequence" layout,
+  // so this mode only activates when getTimelineSequence() finds a real one.
   function renderGraph(centerId) {
     var c = ensureCy();
     c.elements().remove();
-    c.add(egoElements(centerId));
-    var layout = c.layout({ name: "cose", animate: false, fit: true, padding: 24, nodeRepulsion: 6000, idealEdgeLength: 70 });
-    layout.run();
+
+    var mode = currentMode;
+    var steps = mode === "timeline" ? getTimelineSequence(centerId) : null;
+    if (mode === "timeline" && !steps) mode = "network"; // safety net; button is disabled when unavailable
+
+    c.add(mode === "timeline" ? timelineElements(centerId, steps) : egoElements(centerId));
+    c.layout(layoutFor(mode, centerId)).run();
+  }
+
+  function setActiveModeButton(mode) {
+    document.querySelectorAll(".gnav-mode-btn").forEach(function (b) {
+      b.classList.toggle("active", b.getAttribute("data-mode") === mode);
+    });
+  }
+
+  // Used by the mode-switcher buttons: changes mode and re-renders the
+  // current concept immediately.
+  function setMode(mode) {
+    currentMode = mode;
+    setActiveModeButton(mode);
+    if (breadcrumb.length) renderGraph(breadcrumb[breadcrumb.length - 1].id);
+  }
+
+  // Called on every navigation, before the node's own renderGraph() call, so
+  // it only updates state — it must not render itself, or the concept would
+  // render twice per navigation. Keeps the Timeline button truthful for
+  // whatever concept is now on screen, and silently falls back out of
+  // timeline mode (rather than letting the next renderGraph draw an empty
+  // canvas) if the destination concept doesn't have one.
+  function updateModeAvailability(centerId) {
+    var available = !!getTimelineSequence(centerId);
+    document.getElementById("gnavModeTimeline").disabled = !available;
+    if (currentMode === "timeline" && !available) {
+      currentMode = "network";
+      setActiveModeButton("network");
+    }
   }
 
   function renderBreadcrumb() {
@@ -422,6 +528,7 @@
     else breadcrumb.push({ id: id, label: node.english });
     pushRecent(id);
     renderBreadcrumb();
+    updateModeAvailability(id);
     renderGraph(id);
     renderDetail(node);
   }
@@ -462,6 +569,12 @@
     }
   });
   document.addEventListener("fullscreenchange", function () { if (cy) setTimeout(function () { cy.resize(); cy.fit(undefined, 24); }, 60); });
+
+  document.getElementById("gnavModes").addEventListener("click", function (e) {
+    var b = e.target.closest(".gnav-mode-btn");
+    if (!b || b.disabled) return;
+    setMode(b.getAttribute("data-mode"));
+  });
 
   document.getElementById("gnavCrumbs").addEventListener("click", function (e) {
     var b = e.target.closest("[data-crumb-idx]");
