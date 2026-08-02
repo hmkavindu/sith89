@@ -216,8 +216,16 @@
     ".gnav-badges{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;}",
     ".gnav-badge{font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:.02em;}",
     ".gnav-def{font-size:12.5px;line-height:1.6;color:#d3d7e0;margin-top:10px;}",
-    ".gnav-refs{font-size:11px;color:#9aa1ac;margin-top:8px;}",
-    ".gnav-refs span{background:#1c2029;border:1px solid #2a2f3a;border-radius:6px;padding:2px 7px;margin-right:5px;display:inline-block;margin-top:4px;}",
+    ".gnav-refs-block{margin-top:10px;display:flex;flex-direction:column;gap:6px;}",
+    ".gnav-ref-plain{font-size:11px;color:#9aa1ac;background:#1c2029;border:1px solid #2a2f3a;border-radius:6px;padding:2px 7px;display:inline-block;}",
+    ".gnav-cite{display:flex;flex-direction:column;gap:3px;text-decoration:none;background:#161920;border:1px solid #262b36;border-left:3px solid #5b8def;border-radius:8px;padding:8px 10px;}",
+    ".gnav-cite:hover{border-color:#454c5c;background:#181c25;}",
+    ".gnav-cite-pitaka{font-size:9.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;}",
+    ".gnav-cite-path{font-size:10.5px;color:#8b93a1;}",
+    ".gnav-cite-title{font-size:12.5px;color:#e7eaf0;}",
+    ".gnav-cite-title .gnav-pali{font-style:italic;color:#c9a0ff;margin-right:6px;}",
+    ".gnav-cite-en{font-size:11px;color:#aab0bc;font-style:italic;}",
+    ".gnav-cite-link{font-size:10px;color:#5b8def;margin-top:2px;}",
     ".gnav-rel-group{margin-top:12px;}",
     ".gnav-rel-type{font-size:10.5px;font-weight:700;color:#8fb2f5;letter-spacing:.04em;margin-bottom:5px;}",
     ".gnav-rel-item{display:flex;align-items:baseline;gap:6px;font-size:12px;padding:4px 0;cursor:pointer;color:#dfe3ea;border-bottom:1px dashed #20242e;}",
@@ -328,6 +336,35 @@
 
   function escHtml(s) { return (s == null ? "" : String(s)).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
 
+  // ---- Structured Tripiṭaka citations ----------------------------------------
+  // Looks each reference string up in window.DhammaCitations (dhamma-citations.js,
+  // loaded separately — see its header for how every entry was verified against
+  // the live tipitaka.lk source tree). A reference with no registry entry still
+  // renders, just as a plain unlinked label — this file never fabricates the
+  // book/chapter/section/link for a citation it doesn't actually have.
+  var PITAKA_LABEL = { sutta: "Sutta Piṭaka", vinaya: "Vinaya Piṭaka", abhidhamma: "Abhidhamma Piṭaka" };
+  var PITAKA_COLOR = { sutta: "#5b8def", vinaya: "#f0a84e", abhidhamma: "#c084fc" };
+
+  function renderReferences(refs) {
+    if (!refs || !refs.length) return "";
+    var registry = (window.DhammaCitations && window.DhammaCitations.registry) || {};
+    var html = '<div class="gnav-refs-block">';
+    refs.forEach(function (r) {
+      var c = registry[r];
+      if (!c) { html += '<span class="gnav-ref-plain">' + escHtml(r) + "</span>"; return; }
+      var color = PITAKA_COLOR[c.pitaka] || "#8a93a6";
+      html += '<a class="gnav-cite" href="' + escHtml(c.url) + '" target="_blank" rel="noopener" style="border-left-color:' + color + '">' +
+        '<span class="gnav-cite-pitaka" style="color:' + color + '">' + escHtml(PITAKA_LABEL[c.pitaka] || c.pitaka) + "</span>" +
+        '<span class="gnav-cite-path">' + escHtml(c.book.english) + " › " + escHtml(c.chapter.english) + (c.section ? " · " + escHtml(c.section) : "") + "</span>" +
+        '<span class="gnav-cite-title"><span class="gnav-pali">' + escHtml(c.title.pali) + "</span>" + escHtml(c.title.sinhala) + "</span>" +
+        (c.title.english ? '<span class="gnav-cite-en">' + escHtml(c.title.english) + "</span>" : "") +
+        '<span class="gnav-cite-link">Read on tipitaka.lk ↗</span>' +
+        "</a>";
+    });
+    html += "</div>";
+    return html;
+  }
+
   function renderDetail(node) {
     var sheet = document.getElementById("gnavSheet");
     var outgoing = {}, incoming = {};
@@ -354,9 +391,7 @@
       '<span class="gnav-badge" style="background:' + colorFor(node) + "22;color:" + colorFor(node) + ';border:1px solid ' + colorFor(node) + '55">' + escHtml(node.category) + "</span>" +
       '<span class="gnav-badge" style="background:#2a2f3a;color:#cfd4dd;">' + escHtml(node.importance) + "</span></div>";
     if (node.definition) html += '<div class="gnav-def">' + escHtml(node.definition) + "</div>";
-    if (node.references && node.references.length) {
-      html += '<div class="gnav-refs">References: ' + node.references.map(function (r) { return "<span>" + escHtml(r) + "</span>"; }).join("") + "</div>";
-    }
+    html += renderReferences(node.references);
 
     Object.keys(outgoing).forEach(function (type) {
       html += '<div class="gnav-rel-group"><div class="gnav-rel-type">' + escHtml(relLabel(type)) + "</div>" +
