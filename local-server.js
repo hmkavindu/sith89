@@ -13,8 +13,16 @@ const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 
+// Sith AI · Dhamma Assistant (grounded Tipitaka RAG) — proxies to Anthropic
+const ANTHROPIC_API_URL = 'https://api.anthropic.com/v1/messages';
+const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
+const ANTHROPIC_MODEL = process.env.ANTHROPIC_MODEL || 'claude-sonnet-4-5';
+
 if (!OPENROUTER_API_KEY && !GROQ_API_KEY) {
     console.warn('[local-server] Neither OPENROUTER_API_KEY nor GROQ_API_KEY is set. Chatbot requests will fail until you export a key.');
+}
+if (!ANTHROPIC_API_KEY) {
+    console.warn('[local-server] ANTHROPIC_API_KEY is not set. The Dhamma Assistant will fail until you export a key.');
 }
 
 app.use(express.json({ limit: '1mb' }));
@@ -97,6 +105,54 @@ app.post('/.netlify/functions/groq-chat', async (req, res) => {
             error: `Failed to reach ${useOpenRouter ? 'OpenRouter' : 'Groq'} API.`,
             message: error.message 
         });
+    }
+});
+
+app.post('/.netlify/functions/dhamma', async (req, res) => {
+    if (!ANTHROPIC_API_KEY) {
+        return res.status(500).json({ error: 'Server missing ANTHROPIC_API_KEY' });
+    }
+
+    const maxTokens = Math.min(Math.max(Number(req.body && req.body.max_tokens) || 800, 64), 2000);
+    const system = typeof (req.body && req.body.system) === 'string' ? req.body.system.slice(0, 20000) : '';
+    const messages = Array.isArray(req.body && req.body.messages)
+        ? req.body.messages.slice(-12).map((m) => ({
+            role: m && m.role === 'assistant' ? 'assistant' : 'user',
+            content: String((m && m.content) || '').slice(0, 12000),
+        })).filter((m) => m.content)
+        : [];
+
+    if (!messages.length) {
+        return res.status(400).json({ error: 'No messages provided' });
+    }
+
+    try {
+        const response = await fetch(ANTHROPIC_API_URL, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'x-api-key': ANTHROPIC_API_KEY,
+                'anthropic-version': '2023-06-01',
+            },
+            body: JSON.stringify({ model: ANTHROPIC_MODEL, max_tokens: maxTokens, system, messages }),
+        });
+
+        if (!response.ok) {
+            const detail = await response.text();
+            return res.status(502).json({ error: 'Upstream error', status: response.status, detail: detail.slice(0, 600) });
+        }
+
+        const data = await response.json();
+        const text = (data.content || [])
+            .filter((b) => b.type === 'text')
+            .map((b) => b.text)
+            .join('\n')
+            .trim();
+
+        res.json({ text });
+    } catch (error) {
+        console.error('[local-server] Unexpected error calling Anthropic:', error);
+        res.status(500).json({ error: 'Request failed', detail: String(error).slice(0, 300) });
     }
 });
 

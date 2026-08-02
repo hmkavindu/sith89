@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="si" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>සිත් AI · ධර්ම සහායක</title>
+<meta name="description" content="Sith89 Dhamma Assistant — grounded answers from the Tipiṭaka, in real time, with citations. No hallucination.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Sinhala:wght@400;500;600;700&family=Noto+Sans+Sinhala:wght@400;500;600;700&family=Gentium+Plus:ital@0;1&family=Marcellus&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f7f2e9; --panel:#fffdf8; --panel2:#fbf6ec; --border:#e7dcc6;
+    --text:#2b2622; --sub:#9c8f79; --accent:#b8541e; --accent2:#8a1c1c;
+    --botText:#3a2f22; --codeBg:#f0e7d5; --chipTrack:#f0e7d5;
+    --shadow:0 1px 2px rgba(0,0,0,0.03);
+    --userGrad:linear-gradient(150deg,#b8541e,#9a3d16);
+  }
+  html[data-theme="dark"]{
+    --bg:#1b1714; --panel:#221d18; --panel2:#2a241e; --border:#3a332b;
+    --text:#efe6d6; --sub:#a89a82; --accent:#e0894f; --accent2:#e9a06a;
+    --botText:#e6dccb; --codeBg:#332c24; --chipTrack:#2a241e;
+    --shadow:none;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;height:100%;}
+  body{background:var(--bg);color:var(--text);font-family:'Noto Sans Sinhala',sans-serif;
+    -webkit-font-smoothing:antialiased;transition:background .2s,color .2s;overflow-x:hidden;}
+  ::-webkit-scrollbar{width:9px;height:9px;}
+  ::-webkit-scrollbar-thumb{background:rgba(140,120,90,.35);border-radius:8px;border:2px solid transparent;background-clip:content-box;}
+  @keyframes s89-spin{to{transform:rotate(360deg);}}
+  @keyframes s89-bar{0%,100%{transform:scaleY(.35);}50%{transform:scaleY(1);}}
+  @keyframes s89-fade{from{opacity:0;transform:translateY(7px);}to{opacity:1;transform:none;}}
+  @keyframes s89-pulse{0%{box-shadow:0 0 0 0 rgba(184,84,30,.45);}70%{box-shadow:0 0 0 15px rgba(184,84,30,0);}100%{box-shadow:0 0 0 0 rgba(184,84,30,0);}}
+  @keyframes s89-blink{0%,50%{opacity:1;}51%,100%{opacity:.15;}}
+
+  #app{display:flex;flex-direction:column;height:100vh;height:100dvh;width:100%;overflow:hidden;position:relative;}
+
+  /* Header */
+  .hdr{display:flex;align-items:center;gap:12px;padding:11px 18px;background:var(--panel);
+    border-bottom:1px solid var(--border);z-index:20;flex-shrink:0;}
+  .brand{display:flex;align-items:center;gap:11px;min-width:0;}
+  .brand-logo{width:40px;height:40px;border-radius:11px;background:linear-gradient(150deg,#b8541e,#8a1c1c);
+    display:flex;align-items:center;justify-content:center;color:#fdeecf;font-family:'Marcellus',serif;
+    font-size:19px;flex-shrink:0;box-shadow:0 3px 9px rgba(138,28,28,.28);}
+  .brand-title{font-family:'Noto Serif Sinhala',serif;font-weight:700;font-size:16px;line-height:1.15;white-space:nowrap;color:var(--text);}
+  .brand-sub{font-size:11px;letter-spacing:.02em;white-space:nowrap;color:var(--sub);}
+  .grow{flex:1;}
+  .hdr-actions{display:flex;align-items:center;gap:7px;flex-shrink:0;}
+  .seg{display:flex;border-radius:9px;padding:3px;gap:2px;background:var(--chipTrack);}
+  .seg button{border:none;cursor:pointer;border-radius:7px;padding:5px 10px;font-family:'Noto Sans Sinhala',sans-serif;
+    font-size:12px;font-weight:600;background:transparent;color:var(--sub);}
+  .seg button.on{background:var(--panel);color:var(--accent2);box-shadow:0 1px 3px rgba(0,0,0,.1);}
+  .iconbtn{width:36px;height:36px;border:1px solid var(--border);background:var(--panel2);border-radius:9px;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--accent2);flex-shrink:0;}
+  .iconbtn:hover{border-color:var(--accent);}
+
+  /* Scroll area */
+  .scroll{flex:1;overflow-y:auto;overflow-x:hidden;min-height:0;}
+  .wrap{max-width:760px;margin:0 auto;padding:24px 20px 20px;display:flex;flex-direction:column;gap:18px;}
+
+  /* Empty state */
+  .empty{display:flex;flex-direction:column;align-items:center;text-align:center;padding:36px 12px 8px;animation:s89-fade .4s ease both;}
+  .empty-badge{width:66px;height:66px;border-radius:20px;background:linear-gradient(150deg,#b8541e,#8a1c1c);
+    display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(138,28,28,.3);margin-bottom:16px;}
+  .empty-title{font-family:'Noto Serif Sinhala',serif;font-weight:700;font-size:23px;color:var(--text);line-height:1.3;}
+  .empty-sub{font-size:13.5px;line-height:1.7;color:var(--sub);max-width:440px;margin-top:9px;}
+  .sugg{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-top:22px;}
+  .sugg button{background:var(--panel);border:1px solid var(--border);color:var(--text);border-radius:22px;
+    padding:9px 15px;cursor:pointer;font-family:'Noto Sans Sinhala',sans-serif;font-size:13px;line-height:1.3;box-shadow:var(--shadow);}
+  .sugg button:hover{border-color:var(--accent);}
+
+  /* Messages */
+  .row-user{display:flex;justify-content:flex-end;animation:s89-fade .25s ease both;}
+  .bubble-user{background:var(--userGrad);color:#fdeecf;border-radius:15px 15px 4px 15px;padding:11px 15px;
+    font-size:14px;line-height:1.7;max-width:80%;box-shadow:0 3px 10px rgba(184,84,30,.22);}
+  .row-bot{display:flex;animation:s89-fade .3s ease both;}
+  .row-bot-inner{display:flex;gap:11px;align-items:flex-start;width:100%;}
+  .bot-avatar{width:32px;height:32px;border-radius:9px;background:linear-gradient(150deg,#b8541e,#8a1c1c);
+    flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fdeecf;margin-top:1px;}
+  .bot-card{flex:1;min-width:0;background:var(--panel);border:1px solid var(--border);
+    border-radius:15px 15px 15px 4px;padding:16px 18px;box-shadow:var(--shadow);}
+  .bot-card.info{background:transparent;border:none;padding:4px 2px;box-shadow:none;}
+  .conf{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:3px 10px;
+    border-radius:20px;font-family:'Noto Sans Sinhala',sans-serif;}
+  .conf-row{display:flex;align-items:center;gap:8px;margin-bottom:11px;flex-wrap:wrap;}
+  .conf-reason{font-size:11.5px;color:var(--sub);line-height:1.4;}
+  .conf-High{color:#3a7d44;background:rgba(58,125,68,.08);border:1px solid #3a7d4455;}
+  html[data-theme="dark"] .conf-High{background:rgba(255,255,255,.06);}
+  .conf-Medium{color:#b8801e;background:rgba(0,0,0,.03);border:1px solid #b8801e55;}
+  html[data-theme="dark"] .conf-Medium{color:#d1a24a;background:rgba(255,255,255,.06);}
+  .conf-Low{color:#a1442a;background:rgba(0,0,0,.03);border:1px solid #a1442a55;}
+  html[data-theme="dark"] .conf-Low{color:#d98a6a;background:rgba(255,255,255,.06);}
+  .src-local{color:#3a7d44;background:rgba(58,125,68,.08);border:1px solid #3a7d4455;}
+  html[data-theme="dark"] .src-local{background:rgba(255,255,255,.06);}
+  .src-teaching{color:var(--accent2);background:rgba(184,84,30,.08);border:1px solid var(--accent);}
+  html[data-theme="dark"] .src-teaching{background:rgba(255,255,255,.06);}
+  .src-general{color:#b8801e;background:rgba(0,0,0,.03);border:1px solid #b8801e55;}
+  html[data-theme="dark"] .src-general{color:#d1a24a;background:rgba(255,255,255,.06);}
+
+  /* Visual parts breakdown */
+  .parts-block{margin-top:14px;}
+  .parts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:9px;}
+  .part-card{background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;min-width:0;}
+  .part-title{font-family:'Noto Serif Sinhala',serif;font-weight:700;font-size:13px;color:var(--accent2);line-height:1.35;}
+  .part-sub{font-size:10.5px;color:var(--sub);margin-top:2px;font-family:'Gentium Plus',serif;font-style:italic;}
+  .part-text{font-size:12px;color:var(--botText);line-height:1.55;margin-top:5px;}
+
+  /* Markdown */
+  .md{color:var(--botText);font-size:14px;line-height:1.78;}
+  .md p{margin:0 0 10px;} .md p:last-child{margin-bottom:0;}
+  .md ul,.md ol{margin:4px 0 12px;padding-inline-start:22px;} .md li{margin:3px 0;line-height:1.7;}
+  .md strong{font-weight:700;} .md em{font-style:italic;}
+  .md h3,.md h4{margin:14px 0 7px;line-height:1.3;font-family:'Noto Serif Sinhala',serif;}
+  .md h3{color:var(--accent2);font-size:16px;font-weight:700;} .md h4{color:var(--text);font-size:15px;font-weight:700;}
+  .md code{background:var(--codeBg);padding:1px 5px;border-radius:4px;font-size:.9em;}
+
+  /* Citations */
+  .cites{margin-top:14px;border-top:1px solid var(--border);padding-top:11px;}
+  .cites-toggle{display:flex;align-items:center;gap:7px;background:transparent;border:none;cursor:pointer;padding:0;
+    color:var(--accent);font-family:'Noto Sans Sinhala',sans-serif;font-size:12.5px;font-weight:600;}
+  .cite-caret{transition:transform .15s;} .cites-toggle.open .cite-caret{transform:rotate(90deg);}
+  .cite-list{display:flex;flex-direction:column;gap:9px;margin-top:11px;}
+  .cite-card{background:var(--panel2);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;padding:12px 13px;}
+  .cite-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+  .cite-title{font-family:'Noto Serif Sinhala',serif;font-weight:700;font-size:13.5px;color:var(--text);line-height:1.3;}
+  .cite-pali{font-family:'Gentium Plus',serif;font-style:italic;font-size:12px;color:var(--sub);margin-top:1px;}
+  .cite-page{flex-shrink:0;font-size:10px;color:var(--sub);background:var(--chipTrack);border-radius:20px;padding:2px 8px;font-family:'Gentium Plus',serif;white-space:nowrap;}
+  .cite-crumb{font-size:11.5px;color:var(--sub);margin-top:6px;line-height:1.5;}
+  .cite-snip{font-size:12.5px;color:var(--botText);margin-top:8px;line-height:1.7;border-left:3px solid var(--accent);padding-left:10px;font-family:'Noto Serif Sinhala',serif;}
+  .cite-link{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:var(--accent);text-decoration:none;margin-top:9px;font-family:'Noto Sans Sinhala',sans-serif;}
+  .cite-link:hover{text-decoration:underline;}
+
+  /* Related + actions */
+  .related{margin-top:13px;}
+  .related-label{font-size:11px;font-weight:600;color:var(--sub);letter-spacing:.04em;margin-bottom:7px;}
+  .related-chips{display:flex;flex-wrap:wrap;gap:7px;}
+  .related-chips button{background:var(--panel2);border:1px solid var(--border);color:var(--accent2);border-radius:20px;
+    padding:6px 12px;cursor:pointer;font-family:'Noto Sans Sinhala',sans-serif;font-size:12px;}
+  .related-chips button:hover{border-color:var(--accent);}
+  .actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+  .actbtn{display:inline-flex;align-items:center;gap:6px;background:transparent;border:1px solid var(--border);
+    color:var(--sub);border-radius:8px;padding:6px 11px;cursor:pointer;font-family:'Noto Sans Sinhala',sans-serif;font-size:12px;}
+  .actbtn:hover{border-color:var(--accent);color:var(--accent);}
+
+  /* Status */
+  .status-card{background:var(--panel);border:1px solid var(--border);border-radius:15px 15px 15px 4px;
+    padding:12px 16px;font-size:13px;color:var(--sub);}
+  .status-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-right:4px;animation:s89-blink 1s infinite;}
+  .spinner{width:15px;height:15px;border:2.5px solid rgba(253,238,207,.4);border-top-color:#fdeecf;border-radius:50%;animation:s89-spin .8s linear infinite;display:block;}
+
+  /* Composer */
+  .composer-wrap{flex-shrink:0;padding:14px 18px 16px;background:var(--panel);border-top:1px solid var(--border);}
+  .composer-inner{max-width:760px;margin:0 auto;}
+  .composer{display:flex;align-items:center;gap:9px;}
+  .mic{width:46px;height:46px;cursor:pointer;border-radius:12px;display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;color:var(--accent2);background:var(--panel2);border:1px solid var(--border);}
+  .mic.on{color:#fff;background:linear-gradient(150deg,#b8541e,#8a1c1c);border-color:transparent;animation:s89-pulse 1.4s infinite;}
+  .input{flex:1;border:1px solid var(--border);background:var(--bg);border-radius:12px;padding:13px 15px;outline:none;
+    font-family:'Noto Sans Sinhala',sans-serif;font-size:14px;color:var(--text);min-width:0;}
+  .input:focus{border-color:var(--accent);}
+  .send{width:46px;height:46px;border:none;background:linear-gradient(150deg,#b8541e,#9a3d16);color:#fdeecf;border-radius:12px;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 3px 9px rgba(184,84,30,.3);}
+  .composer-note{text-align:center;font-size:10.5px;color:var(--sub);margin-top:8px;}
+  .listening-row{display:flex;align-items:center;justify-content:center;gap:5px;height:24px;margin-bottom:9px;}
+  .listening-row i{width:4px;height:18px;border-radius:4px;display:block;transform-origin:center;background:#b8541e;}
+  .listening-row .lbl{margin-left:9px;font-size:12px;color:var(--accent);}
+
+  /* History drawer */
+  .hist-overlay{position:absolute;inset:0;background:rgba(20,10,4,.35);z-index:44;opacity:0;pointer-events:none;transition:opacity .2s;}
+  .hist-overlay.open{opacity:1;pointer-events:auto;}
+  .hist-panel{position:absolute;top:0;right:0;height:100%;width:min(320px,86vw);background:var(--panel);
+    border-left:1px solid var(--border);z-index:45;display:flex;flex-direction:column;transform:translateX(100%);
+    transition:transform .25s ease;box-shadow:-12px 0 40px rgba(40,20,8,.18);}
+  .hist-panel.open{transform:translateX(0);}
+  .hist-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--border);}
+  .hist-head span{font-family:'Noto Serif Sinhala',serif;font-weight:700;font-size:15px;color:var(--text);}
+  .hist-list{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:7px;}
+  .hist-item{text-align:right;background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:10px;
+    padding:10px 12px;cursor:pointer;font-family:'Noto Sans Sinhala',sans-serif;font-size:13px;line-height:1.5;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .hist-empty{text-align:center;color:var(--sub);font-size:12.5px;padding:34px 16px;line-height:1.7;}
+  .hist-foot{padding:12px;border-top:1px solid var(--border);font-size:10.5px;color:var(--sub);line-height:1.6;text-align:center;}
+</style>
+</head>
+<body>
+<div id="app">
+  <header class="hdr">
+    <div class="brand">
+      <div class="brand-logo">සිත්</div>
+      <div style="min-width:0;">
+        <div class="brand-title">සිත් AI · ධර්ම සහායක</div>
+        <div class="brand-sub">බුද්ධ ජයන්ති ත්‍රිපිටකයෙන් සජීවීව · මූලාශ්‍ර සහිතව</div>
+      </div>
+    </div>
+    <div class="grow"></div>
+    <div class="hdr-actions">
+      <div class="seg" id="langSeg">
+        <button data-lang="si" class="on">සිං</button>
+        <button data-lang="en">EN</button>
+      </div>
+      <button class="iconbtn" id="themeBtn" aria-label="theme" title="Light / Dark"></button>
+      <button class="iconbtn" id="histBtn" aria-label="history" title="History">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v6h6M3.5 9a9 9 0 1 0 2-4.5L3 9"/><path d="M12 7v5l3 2"/></svg>
+      </button>
+      <button class="iconbtn" id="clearBtn" aria-label="clear" title="Clear chat">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="scroll" id="scroll"><div class="wrap" id="wrap"></div></div>
+
+  <div class="composer-wrap">
+    <div class="composer-inner">
+      <div id="listening" style="display:none;"></div>
+      <div class="composer">
+        <button class="mic" id="micBtn" aria-label="speak">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/></svg>
+        </button>
+        <input class="input" id="input" placeholder="ධර්ම ප්‍රශ්නය අසන්න… හෝ mic ඔබන්න" autocomplete="off">
+        <button class="send" id="sendBtn" aria-label="send">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+      <div class="composer-note" id="note">පිළිතුරු ත්‍රිපිටකයෙන් සජීවීව සොයනු ලැබේ · මූලාශ්‍ර නොමැති නම් AI එය පවසයි</div>
+    </div>
+  </div>
+
+  <div class="hist-overlay" id="histOverlay"></div>
+  <aside class="hist-panel" id="histPanel">
+    <div class="hist-head">
+      <span id="histTitle">මෙම සැසියේ ප්‍රශ්න</span>
+      <button class="iconbtn" id="histClose" aria-label="close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="hist-list" id="histList"></div>
+    <div class="hist-foot" id="histFoot">ඉතිහාසය මෙම සැසියේ පමණි · කිසිවක් ගබඩා නොකෙරේ</div>
+  </aside>
+</div>
+
+<!-- Site's own curated Abhidhamma dataset (52 cetasikas) — used for instant,
+     zero-hallucination citta/cetasika answers. See abhidhamma.js below for the
+     121-citta dataset (fetched as JSON) and the citta<->cetasika merge logic. -->
+<script src="chaithasika-data.js"></script>
+<script src="dhamma-abhidhamma.js"></script>
+<script>
+/* ============================================================================
+   Sith89 Dhamma Assistant — grounded, real-time RAG over the Tipiṭaka.
+   - Retrieval runs in the browser, live from the tipitaka.lk repo (jsDelivr CDN).
+     Nothing is stored, cached, or copied. Stateless.
+   - The LLM (query understanding + grounded answer) runs on YOUR backend, which
+     holds your API key. Configure the endpoint below.
+   ========================================================================== */
+(function () {
+  "use strict";
+
+  // --- Config -----------------------------------------------------------------
+  // Your serverless endpoint that proxies to the Claude API (see netlify/functions/dhamma.js).
+  var AI_ENDPOINT = (window.SITH89_AI_ENDPOINT) || "/.netlify/functions/dhamma";
+  // Set false to run as a pure retrieval-only tool (no LLM answers).
+  var AI_ENABLED = (window.SITH89_AI_ENABLED !== false);
+
+  var BASE = "https://cdn.jsdelivr.net/gh/pathnirvana/tipitaka.lk@master/public/static";
+  var GH   = "https://github.com/pathnirvana/tipitaka.lk/blob/master/public/static/text/";
+
+  // --- State ------------------------------------------------------------------
+  var state = {
+    theme: "light", lang: "si",
+    messages: [], working: false, status: "",
+    history: [], openCites: {}, listening: false,
+  };
+  var tree = null, searchIdx = null, retrieved = [], recog = null;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (s) { return (s == null ? "" : String(s)).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); };
+
+  // --- Data layer (live, stateless) ------------------------------------------
+  function fetchJSON(url, ms) {
+    var ctrl = new AbortController();
+    var to = setTimeout(function () { ctrl.abort(); }, ms || 9000);
+    return fetch(url, { signal: ctrl.signal }).then(function (r) {
+      clearTimeout(to);
+      if (!r.ok) throw new Error("http " + r.status);
+      return r.json();
+    }, function (e) { clearTimeout(to); throw e; });
+  }
+
+  function loadTree() {
+    return fetchJSON(BASE + "/data/tree.json", 12000).then(function (t) {
+      var idx = [];
+      for (var k in t) { var n = t[k]; idx.push([k, n[1] || "", n[0] || ""]); }
+      tree = t; searchIdx = idx;
+    }).catch(function () { tree = null; });
+  }
+
+  // Site's own curated Abhidhamma dataset (121 cittas x 52 cetasikas) — loaded
+  // once, merged with window.chaithasikaData by dhamma-abhidhamma.js, and used
+  // as the assistant's tier-0 answer source (see DhammaLocal.match in run()).
+  function loadAbhidhamma() {
+    return fetchJSON("abhidhamma-complete-data.json", 12000).then(function (d) {
+      if (window.DhammaLocal) window.DhammaLocal.init(d);
+    }).catch(function () { /* local tier simply stays unavailable */ });
+  }
+
+  function breadcrumb(key) {
+    if (!tree || !key) return "";
+    var parts = [], p = tree[key] ? tree[key][4] : null, g = 0;
+    while (p && p !== "root" && tree[p] && g < 30) { parts.unshift(tree[p][1] || tree[p][0]); p = tree[p][4]; g++; }
+    return parts.join(" · ");
+  }
+
+  function search(query, limit) {
+    if (!searchIdx) return [];
+    var q = (query || "").trim(); if (!q) return [];
+    var toks = q.split(/\s+/).filter(Boolean), scored = [];
+    for (var i = 0; i < searchIdx.length; i++) {
+      var row = searchIdx[i], hay = row[1] + " " + row[2], sc = 0;
+      if (hay.indexOf(q) > -1) sc += 10;
+      for (var j = 0; j < toks.length; j++) if (toks[j].length > 1 && hay.indexOf(toks[j]) > -1) sc += 3;
+      if (sc > 0) scored.push([sc, row]);
+    }
+    scored.sort(function (a, b) { return b[0] - a[0]; });
+    return scored.slice(0, limit || 8).map(function (s) {
+      var k = s[1][0];
+      return { key: k, sinh: s[1][1], pali: s[1][2], crumb: breadcrumb(k) };
+    });
+  }
+
+  function extractPassage(key) {
+    var n = tree && tree[key];
+    if (!n) return Promise.resolve(null);
+    var file = n[5], loc = n[3] || [0, 0];
+    return fetchJSON(BASE + "/text/" + file + ".json", 9000).then(function (data) {
+      var pages = data.pages || data;
+      var pi = loc[0] || 0; if (pi >= pages.length) pi = 0;
+      var ei = loc[1] || 0, paliArr = [], sinhArr = [], count = 0, chars = 0, headings = 0, done = false;
+      for (var p = pi; p < pages.length && !done; p++) {
+        var se = (pages[p].sinh && pages[p].sinh.entries) || [];
+        var pe = (pages[p].pali && pages[p].pali.entries) || [];
+        var start = (p === pi) ? ei : 0;
+        for (var i = start; i < se.length; i++) {
+          var s = se[i]; if (!s) continue;
+          if (s.type === "heading") { headings++; if (headings >= 2 && count > 0) { done = true; break; } }
+          var txt = (s.text || "").trim();
+          if (txt) { sinhArr.push(txt); if (pe[i] && pe[i].text) paliArr.push(pe[i].text.trim()); count++; chars += txt.length; }
+          if (count >= 18 || chars >= 1700) { done = true; break; }
+        }
+      }
+      var sj = sinhArr.join(" ");
+      return {
+        key: key, title: n[1] || n[0], pali: n[0] || "", crumb: breadcrumb(key),
+        pageNum: pages[pi] ? pages[pi].pageNum : "", file: file, url: GH + file + ".json",
+        sinhText: sinhArr.join("\n"), paliText: paliArr.join("\n"),
+        snippet: sj.slice(0, 170) + (sj.length > 170 ? "…" : ""),
+      };
+    });
+  }
+
+  // --- LLM (your backend) -----------------------------------------------------
+  function llm(opts) {
+    return fetch(AI_ENDPOINT, {
+      method: "POST", headers: { "content-type": "application/json" },
+      body: JSON.stringify({ system: opts.system, messages: opts.messages, max_tokens: opts.max_tokens }),
+    }).then(function (r) {
+      if (!r.ok) return r.text().then(function (t) { throw new Error("ai " + r.status + " " + t.slice(0, 200)); });
+      return r.json();
+    }).then(function (data) { return typeof data === "string" ? data : (data.text || ""); });
+  }
+
+  // --- Language ---------------------------------------------------------------
+  function detectLang(t) { return /[඀-෿]/.test(t || "") ? "si" : "en"; }
+
+  // --- Tier 0: local Abhidhamma match (instant, zero hallucination) ----------
+  function tryLocalMatch(q, lang) {
+    if (!window.DhammaLocal || !window.DhammaLocal.ready()) return false;
+    var lm = window.DhammaLocal.match(q);
+    if (!lm) return false;
+    var en = lang === "en";
+
+    if (lm.kind === "teaching") {
+      var t = lm.teaching;
+      var answer = "**" + (en ? t.titleEn : t.titleSi) + (t.titleEn && t.titleSi ? " (" + (en ? t.titleSi : t.titleEn) + ")" : "") +
+        "**\n\n" + (en ? t.introEn : t.introSi);
+      finish({
+        answer: answer, source: "teaching",
+        parts: t.parts.map(function (p) {
+          return { title: en ? p.titleEn : p.titleSi, sub: p.sub || "", text: en ? p.textEn : p.textSi };
+        }),
+        related: [], reading: [],
+      });
+      return true;
+    }
+
+    if (lm.kind === "cetasika") {
+      var c = lm.cetasika;
+      var head = (en ? (c.nameEn || c.nameSi) : c.nameSi) + (c.nameEn && c.nameSi ? " (" + (en ? c.nameSi : c.nameEn) + ")" : "");
+      var body = en ? (c.descriptionEn || c.summaryEn || "") : (c.descriptionSi || c.summarySi || "");
+      var siblings = window.DhammaLocal.cetasikaSiblings(c, 11);
+      var parts = [{
+        title: head, sub: (en ? "Category" : "කාණ්ඩය") + ": " + (en ? (c.categoryEn || c.categorySi) : c.categorySi),
+        text: en ? (c.summaryEn || "") : (c.summarySi || ""),
+      }].concat(siblings.map(function (s) {
+        return { title: en ? (s.nameEn || s.nameSi) : s.nameSi, sub: en ? (s.categoryEn || "") : (s.categorySi || ""), text: en ? (s.summaryEn || "") : (s.summarySi || "") };
+      }));
+      finish({ answer: "**" + head + "**\n\n" + body, source: "local", parts: parts, related: [], reading: [] });
+      return true;
+    }
+
+    if (lm.kind === "citta") {
+      var ci = lm.citta;
+      var answer2 = en
+        ? "**Citta #" + ci.id + "** — " + ci.name + "\n\n" + (ci.category ? "Category: " + (ci.categoryEn || ci.category) : "") + (ci.type ? " · " + ci.type : "") +
+          "\n\nThis mind-moment arises together with " + ci.chaithasikaCount + " cetasikas (mental factors), shown below."
+        : "**සිත #" + ci.id + "** — " + ci.name + "\n\n" + (ci.category ? "කාණ්ඩය: " + ci.category : "") + (ci.type ? " · " + ci.type : "") +
+          "\n\nමෙම චිත්ත ක්ෂණය සමඟ චෛතසික " + ci.chaithasikaCount + "ක් යෙදී පවතී — පහත දැක්වේ.";
+      finish({ answer: answer2, source: "local", parts: window.DhammaLocal.cittaParts(ci, en), related: [], reading: [] });
+      return true;
+    }
+
+    if (lm.kind === "citta-list") {
+      var items = lm.cittas;
+      var parts2 = items.map(function (it) {
+        return { title: it.name, sub: (it.category || "") + (it.type ? " · " + it.type : ""), text: (en ? "Cetasikas: " : "චෛතසික: ") + (it.chaithasikaCount != null ? it.chaithasikaCount : "?") };
+      });
+      var answer3 = en ? "Found " + items.length + " matching cittas in the Abhidhamma dataset:" : "අභිධර්ම දත්තයෙන් ගැළපෙන සිත් " + items.length + "ක් හමු විය:";
+      finish({ answer: answer3, source: "local", parts: parts2, related: [], reading: [] });
+      return true;
+    }
+
+    return false;
+  }
+
+  // --- Tier 3: general Dhamma knowledge (no Tipiṭaka passage found) ----------
+  function generalKnowledgeAnswer(q, hist, lang) {
+    var en = lang === "en";
+    setStatus("generating");
+    var system = [
+      "You are a compassionate, learned Theravāda Dhamma teacher for the Sith89 website.",
+      "No matching passage was found in the live Tipiṭaka full-text search for this question. Answer from your own general knowledge of the Pāli Canon, Abhidhamma, and the standard commentarial tradition instead of refusing — the user explicitly wants Dhamma explanations that go beyond what is literally indexed in the search.",
+      "HONESTY: Do not present invented text as a direct sutta quotation. You may name suttas or texts by their well-known title when relevant, but do not fabricate specific quoted wording or page citations.",
+      "LANGUAGE: Answer in the user's language — Sinhala for a Sinhala question, English for an English question. Include Pāli terms in brackets where helpful.",
+      "STRUCTURE: If the topic has 2 to 12 clearly distinct natural components (an enumerated teaching, causes, stages, factors, etc.), list them briefly in the prose AND also return them as structured parts (see below). If there is no natural breakdown, return an empty parts array.",
+      "STYLE: Warm, clear, simple markdown. If answering in Sinhala you may close with “තරුවන් සරණයි”.",
+      "After the answer, output EXACTLY one final line and nothing after it: <<META>>{\"parts\":[{\"title\":\"short part name\",\"sub\":\"Pali/Sinhala term or empty string\",\"text\":\"one short explanatory line\"}],\"related\":[\"short topic\"]}<<END>>",
+    ].join("\n");
+    return llm({
+      system: system, max_tokens: 1100,
+      messages: (hist || []).concat([{ role: "user", content: q }]),
+    }).then(function (raw) {
+      var answer = (raw || "").trim(), meta = {};
+      var mm = answer.match(/<<META>>([\s\S]*?)<<END>>/);
+      if (mm) { try { meta = JSON.parse(mm[1].trim()); } catch (e) {} answer = answer.replace(/<<META>>[\s\S]*?<<END>>/, "").trim(); }
+      answer = answer.replace(/<<META>>[\s\S]*$/, "").trim();
+      finish({
+        answer: answer || (en ? "I could not compose an answer. Please try again." : "පිළිතුරක් සැකසිය නොහැකි විය. නැවත උත්සාහ කරන්න."),
+        source: "general", parts: meta.parts || [], related: meta.related || [], reading: [],
+      });
+    }).catch(function (e) {
+      console.error("Sith89 AI error:", e);
+      finish({
+        answer: en ? "The Dhamma assistant is temporarily unavailable. Please try again in a moment."
+                   : "ධර්ම සහායක තාවකාලිකව ලබාගත නොහැකි විය. මොහොතකින් නැවත උත්සාහ කරන්න.",
+        source: "general", parts: [], related: [], reading: [],
+      });
+    });
+  }
+
+  // --- The RAG pipeline -------------------------------------------------------
+  function run(q, hist) {
+    var lang = detectLang(q), en = lang === "en";
+    retrieved = [];
+
+    if (tryLocalMatch(q, lang)) return;
+
+    setStatus("searching");
+
+    var termsP = AI_ENABLED ? llm({
+      system: 'You convert a Buddhist question into search terms for a Sinhala/Pāli Tipiṭaka index. Output ONLY a JSON array of 2 to 6 short search terms written in SINHALA script or Pāli-in-Sinhala script (never English/Latin). Examples: "what is anicca" -> ["අනිච්ච","අනිච්චතා","අනිත්‍ය"]. "metta" -> ["මෙත්ත","මෙත්තා"]. "four noble truths" -> ["චතුරාර්ය සත්‍ය","දුක්ඛ","චත්තාරි අරියසච්ච","ධම්මචක්ක"]. Output JSON array only, no prose.',
+      messages: [{ role: "user", content: q }], max_tokens: 150,
+    }).then(function (tt) {
+      var mt = (tt || "").match(/\[[\s\S]*\]/);
+      if (mt) { try { var arr = JSON.parse(mt[0]); if (Array.isArray(arr)) return arr.filter(function (x) { return typeof x === "string"; }); } catch (e) {} }
+      return [];
+    }).catch(function () { return []; }) : Promise.resolve([]);
+
+    termsP.then(function (terms) {
+      if (!terms.length) terms = [q];
+      var seen = {}, keys = [];
+      terms.forEach(function (t) { search(t, 4).forEach(function (r) { if (!seen[r.key]) { seen[r.key] = 1; keys.push(r.key); } }); });
+      keys = keys.slice(0, 5);
+      setStatus("retrieving");
+      return Promise.all(keys.map(function (k) {
+        return extractPassage(k).then(function (p) { return (p && p.sinhText) ? p : null; }).catch(function () { return null; });
+      }));
+    }).then(function (settled) {
+      retrieved = (settled || []).filter(Boolean);
+
+      if (!retrieved.length) {
+        if (!AI_ENABLED) {
+          return finish({
+            answer: en ? "I could not find a matching passage in the Tipiṭaka repository. Please try rephrasing with a specific term or sutta name."
+                       : "ත්‍රිපිටකයෙන් ගැළපෙන ඡේදයක් සොයාගත නොහැකි විය. නිශ්චිත පදයක් හෝ සූත්‍ර නමක් සමඟ නැවත උත්සාහ කරන්න.",
+            confidence: "Low", reason: en ? "No matching passage found in the repository." : "ගැළපෙන ඡේදයක් හමු නොවීය.",
+            related: [], reading: [],
+          });
+        }
+        return generalKnowledgeAnswer(q, hist, lang);
+      }
+
+      if (!AI_ENABLED) {
+        return finish({
+          answer: en ? "Here are the most relevant Tipiṭaka passages I retrieved for your question — open the sources below."
+                     : "ඔබේ ප්‍රශ්නයට අදාළ ත්‍රිපිටක ඡේද මෙන්න — පහත මූලාශ්‍ර විවෘත කරන්න.",
+          confidence: "Medium", reason: "", related: [], reading: [],
+        });
+      }
+
+      setStatus("generating");
+      var context = retrieved.map(function (p, i) {
+        return "[" + (i + 1) + "] " + p.title + " — " + p.crumb + " (පිටුව " + p.pageNum + ")\nපාළි: " +
+          (p.paliText || "(n/a)").slice(0, 700) + "\nසිංහල: " + p.sinhText.slice(0, 1200);
+      }).join("\n\n");
+      var system = [
+        "You are a compassionate, learned Theravāda Dhamma teacher for the Sith89 website. Answer the user question using ONLY the retrieved Tipiṭaka passages provided after the question.",
+        "GROUNDING: Base every claim and every quotation ONLY on the provided passages. NEVER add suttas, quotes, references, or teachings from your own memory. If the passages do not actually address the question, say so honestly (in the user's language) and set confidence Low.",
+        "LANGUAGE: Answer in the user's language — Sinhala for a Sinhala question, English for an English question. Include Pāli terms in brackets where helpful.",
+        "STYLE: Use simple markdown. Give (1) a direct answer, (2) a short clear explanation, (3) a short relevant quotation taken from the passages with its source name. Reference passages inline like [1], [2]. Keep it warm; if answering in Sinhala you may close with “තෙරුවන් සරණයි”.",
+        "BREAKDOWN: If the answer's topic has 2 to 12 clearly distinct natural components (an enumerated teaching, causes, stages, factors, etc.) that are actually supported by the passages, also return them as structured parts (see below). Otherwise return an empty parts array — do not force a breakdown.",
+        "After the answer, output EXACTLY one final line and nothing after it: <<META>>{\"confidence\":\"High|Medium|Low\",\"reason\":\"one short line in the user's language\",\"related\":[\"short topic\"],\"reading\":[\"sutta/section name\"],\"parts\":[{\"title\":\"short part name\",\"sub\":\"Pali/Sinhala term or empty string\",\"text\":\"one short explanatory line\"}]}<<END>>",
+        "Confidence High only if a provided passage directly addresses the question; Medium if related; Low if the passages do not really answer it.",
+      ].join("\n");
+      return llm({
+        system: system, max_tokens: 1100,
+        messages: (hist || []).concat([{ role: "user", content: q + "\n\n--- RETRIEVED TIPIṬAKA PASSAGES ---\n" + context }]),
+      }).then(function (raw) {
+        var answer = (raw || "").trim(), meta = {};
+        var mm = answer.match(/<<META>>([\s\S]*?)<<END>>/);
+        if (mm) { try { meta = JSON.parse(mm[1].trim()); } catch (e) {} answer = answer.replace(/<<META>>[\s\S]*?<<END>>/, "").trim(); }
+        answer = answer.replace(/<<META>>[\s\S]*$/, "").trim();
+        finish({
+          answer: answer || (en ? "I could not compose a grounded answer. Please try again." : "මූලාශ්‍ර මත පිළිතුරක් සැකසිය නොහැකි විය. නැවත උත්සාහ කරන්න."),
+          confidence: meta.confidence || "Medium", reason: meta.reason || "", related: meta.related || [], reading: meta.reading || [],
+          parts: meta.parts || [],
+        });
+      });
+    }).catch(function (e) {
+      console.error("Sith89 AI error:", e);
+      finish({
+        answer: en ? "The Dhamma assistant is temporarily unavailable. Please try again in a moment."
+                   : "ධර්ම සහායක තාවකාලිකව ලබාගත නොහැකි විය. මොහොතකින් නැවත උත්සාහ කරන්න.",
+        confidence: "", reason: "", related: [], reading: [],
+      });
+    });
+  }
+
+  function finish(ans) {
+    state.messages.push({
+      role: "bot", answer: ans.answer, confidence: ans.confidence, reason: ans.reason,
+      source: ans.source || "tipitaka", parts: ans.parts || [],
+      related: ans.related || [], reading: ans.reading || [], citations: retrieved.slice(),
+    });
+    state.working = false; state.status = "";
+    render();
+    speak(plain(ans.answer), detectLang(ans.answer));
+  }
+
+  function pushInfo(text) {
+    state.messages.push({ role: "bot", answer: text, citations: [], info: true });
+    render();
+  }
+
+  function setStatus(s) { state.status = s; render(); }
+
+  // --- Send -------------------------------------------------------------------
+  function send(forced) {
+    var q = typeof forced === "string" ? forced : $("input").value;
+    if (!q || !q.trim() || state.working) return;
+    var hist = state.messages.filter(function (m) { return !m.info; }).slice(-6).map(function (m) {
+      return { role: m.role === "bot" ? "assistant" : "user", content: m.role === "bot" ? (m.answer || "") : m.text };
+    });
+    addHistory(q.trim());
+    state.messages.push({ role: "user", text: q.trim() });
+    state.working = true; state.status = "searching";
+    $("input").value = "";
+    render();
+    run(q.trim(), hist);
+  }
+
+  function addHistory(q) { state.history = [q].concat(state.history.filter(function (x) { return x !== q; })).slice(0, 40); }
+
+  // --- Speech -----------------------------------------------------------------
+  function stopSpeak() { try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch (e) {} }
+  function plain(md) { return (md || "").replace(/\[\d+\]/g, "").replace(/[#*`_>]/g, "").replace(/\n{2,}/g, ". ").replace(/\n/g, " ").replace(/\s+/g, " ").trim(); }
+
+  function speak(text, lang) {
+    if (!window.speechSynthesis || !text) return;
+    try {
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text.slice(0, 3000));
+      var voices = window.speechSynthesis.getVoices();
+      var want = lang === "en" ? /en/i : /si|sin|LK/i;
+      var v = voices.find(function (x) { return want.test(x.lang); });
+      if (v) u.voice = v; u.lang = v ? v.lang : (lang === "en" ? "en-US" : "si-LK");
+      u.rate = 0.94;
+      window.speechSynthesis.speak(u);
+    } catch (e) {}
+  }
+
+  function toggleListen() {
+    var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) { pushInfo(state.lang === "en" ? "Your browser does not support speech input. Please type your question. (Chrome/Edge recommended.)" : "ඔබගේ බ්‍රවුසරය හඬ ආදානයට සහාය නොදක්වයි. කරුණාකර type කරන්න."); return; }
+    if (state.listening && recog) { try { recog.stop(); } catch (e) {} state.listening = false; renderListening(); return; }
+    var start = function () {
+      try {
+        var r = new SR(); recog = r;
+        r.lang = state.lang === "en" ? "en-US" : "si-LK";
+        r.interimResults = false; r.maxAlternatives = 1;
+        r.onresult = function (e) { var t = e.results[0][0].transcript; $("input").value = t; state.listening = false; renderListening(); send(t); };
+        r.onend = function () { state.listening = false; renderListening(); };
+        r.onerror = function (e) { state.listening = false; renderListening(); if (e.error !== "aborted" && e.error !== "no-speech") micHelp(e.error); };
+        state.listening = true; renderListening(); r.start();
+      } catch (e) { state.listening = false; renderListening(); }
+    };
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ audio: true }).then(function (st) {
+        st.getTracks().forEach(function (t) { t.stop(); }); start();
+      }).catch(function (err) { micHelp((err && err.name) || "not-allowed"); });
+    } else { start(); }
+  }
+
+  function micHelp(reason) {
+    var en = state.lang === "en", msg;
+    if (["not-allowed", "NotAllowedError", "service-not-allowed", "SecurityError"].indexOf(reason) > -1) {
+      msg = en ? "🎤 Microphone access is blocked. Please allow microphone permission for this site in your browser, then tap the mic again. For now, you can type."
+               : "🎤 මයික්‍රෆෝන ප්‍රවේශය අවහිරයි. කරුණාකර මෙම අඩවියට browser එකේ මයික් අවසර දී, නැවත mic ඔබන්න. දැනට type කළ හැක.";
+    } else { msg = en ? "Could not start voice input. Please type your question." : "හඬ ආරම්භ කළ නොහැකි විය. කරුණාකර type කරන්න."; }
+    pushInfo(msg);
+  }
+
+  // --- Markdown ---------------------------------------------------------------
+  function mdToHtml(src) {
+    var t = esc(src);
+    t = t.replace(/`([^`]+)`/g, "<code>$1</code>");
+    t = t.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+    t = t.replace(/(^|[^*\w])\*([^*\n]+)\*(?=[^*\w]|$)/g, "$1<em>$2</em>");
+    var blocks = t.split(/\n{2,}/);
+    return blocks.map(function (b) {
+      var lines = b.split(/\n/);
+      if (/^###\s/.test(b)) return "<h4>" + b.replace(/^###\s/, "") + "</h4>";
+      if (/^##\s/.test(b)) return "<h3>" + b.replace(/^##\s/, "") + "</h3>";
+      if (/^#\s/.test(b)) return "<h3>" + b.replace(/^#\s/, "") + "</h3>";
+      if (lines.length && lines.every(function (l) { return /^\s*[-*]\s+/.test(l); })) return "<ul>" + lines.map(function (l) { return "<li>" + l.replace(/^\s*[-*]\s+/, "") + "</li>"; }).join("") + "</ul>";
+      if (lines.length && lines.every(function (l) { return /^\s*\d+[.)]\s+/.test(l); })) return "<ol>" + lines.map(function (l) { return "<li>" + l.replace(/^\s*\d+[.)]\s+/, "") + "</li>"; }).join("") + "</ol>";
+      return "<p>" + lines.join("<br>") + "</p>";
+    }).join("");
+  }
+
+  // --- i18n strings -----------------------------------------------------------
+  function T() {
+    var en = state.lang === "en";
+    return {
+      emptyTitle: en ? "Ask your Dhamma question" : "ඔබේ ධර්ම ප්‍රශ්නය අසන්න",
+      emptySub: en ? "Answers come live from the Tipiṭaka with sources, from Sith89's own Abhidhamma data with a visual parts breakdown, or from general Dhamma knowledge clearly labeled as such — never presented as a fake quote."
+                   : "පිළිතුරු ත්‍රිපිටකයෙන් සජීවීව මූලාශ්‍ර සහිතව, Sith89ගේම අභිධර්ම දත්තයෙන් දෘශ්‍ය ලෙස කොටස් වශයෙන් බෙදා, හෝ පැහැදිලිව සලකුණු කළ සාමාන්‍ය ධර්ම දැනුමෙන් ලැබේ — කිසිවිටෙක අනුකරණික උපුටනයක් ලෙස නොපෙන්වයි.",
+      placeholder: en ? "Ask about the Dhamma… or tap the mic" : "ධර්ම ප්‍රශ්නය අසන්න… හෝ mic ඔබන්න",
+      note: en ? "Answers are searched live from the Tipiṭaka · if there's no source, the AI says so" : "පිළිතුරු ත්‍රිපිටකයෙන් සජීවීව සොයනු ලැබේ · මූලාශ්‍ර නොමැති නම් AI එය පවසයි",
+      histTitle: en ? "This session's questions" : "මෙම සැසියේ ප්‍රශ්න",
+      histFoot: en ? "History is this session only · nothing is stored" : "ඉතිහාසය මෙම සැසියේ පමණි · කිසිවක් ගබඩා නොකෙරේ",
+      histEmpty: en ? "No questions yet.<br>Ask something to begin." : "තවම ප්‍රශ්න නැත.<br>ප්‍රශ්නයක් අසා ආරම්භ කරන්න.",
+      searching: en ? "Searching the Tipiṭaka…" : "ත්‍රිපිටකය සොයමින්…",
+      retrieving: en ? "Retrieving passages…" : "මූලාශ්‍ර ලබාගනිමින්…",
+      generating: en ? "Composing a grounded answer…" : "මූලාශ්‍ර මත පිළිතුර සකසමින්…",
+      listening: en ? "Listening…" : "සවන් දෙමින්…",
+      confHigh: en ? "High confidence" : "ඉහළ විශ්වාසය",
+      confMed: en ? "Medium confidence" : "මධ්‍යම විශ්වාසය",
+      confLow: en ? "Low confidence" : "අඩු විශ්වාසය",
+      srcLocal: en ? "Sith89 Abhidhamma data" : "Sith89 අභිධර්ම දත්ත",
+      srcTeaching: en ? "Core teaching" : "මූලික ඉගැන්වීම",
+      srcGeneral: en ? "General Dhamma knowledge — not a direct Tipiṭaka quote" : "සාමාන්‍ය ධර්ම දැනුම — සෘජු ත්‍රිපිටක උපුටනයක් නොවේ",
+      cites: en ? "sources" : "මූලාශ්‍ර", citesTail: en ? "· Tipiṭaka" : "ක් · ත්‍රිපිටකය",
+      related: en ? "Related teachings" : "අදාළ ඉගැන්වීම්",
+      breakdown: en ? "Broken into parts" : "කොටස් වශයෙන් බෙදා දැක්වීම",
+      read: en ? "Read aloud" : "කියවන්න", copy: en ? "Copy" : "පිටපත්", copied: en ? "✓ Copied" : "✓ පිටපත් විය",
+      copyCites: en ? "Copy sources" : "මූලාශ්‍ර පිටපත්",
+      source: en ? "Source (GitHub)" : "මූලාශ්‍රය (GitHub)",
+      page: en ? "p." : "පි.",
+      sugg: en ? ["What is anicca?", "Explain Satipaṭṭhāna", "What did the Buddha teach about anger?", "What is Mettā?", "The Four Noble Truths", "What cetasikas are in citta 1?"]
+                : ["අනිච්ච යනු කුමක්ද?", "සතිපට්ඨානය පැහැදිලි කරන්න", "බුදුන් වහන්සේ කෝපය ගැන කුමක් උගැන්වූයේද?", "මෙත්තා යනු කුමක්ද?", "චතුරාර්ය සත්‍ය මොනවාද?", "සිත 1 හි චෛතසික මොනවාද?"],
+    };
+  }
+
+  // --- Rendering --------------------------------------------------------------
+  var STAR = '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fdeecf" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 15.3 7.2 17.7l.9-5.4L4.2 8.5l5.4-.8z"/></svg>';
+  var STAR_SM = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 15.3 7.2 17.7l.9-5.4L4.2 8.5l5.4-.8z"/></svg>';
+  var ICON_READ = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>';
+  var ICON_COPY = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+  var ICON_CITE = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>';
+  var ICON_LINK = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6M10 14L21 3"/></svg>';
+  var ICON_CARET = '<svg class="cite-caret" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>';
+  var ICON_BOOK = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>';
+
+  function confClass(c) { return c === "High" ? "conf-High" : c === "Medium" ? "conf-Medium" : "conf-Low"; }
+  function confText(c, t) { return c === "High" ? t.confHigh : c === "Medium" ? t.confMed : t.confLow; }
+
+  function render() {
+    var t = T(), wrap = $("wrap"), html = "";
+
+    if (state.messages.length === 0) {
+      html += '<div class="empty"><div class="empty-badge">' + STAR + '</div>' +
+        '<div class="empty-title">' + esc(t.emptyTitle) + '</div>' +
+        '<div class="empty-sub">' + esc(t.emptySub) + '</div><div class="sugg">' +
+        t.sugg.map(function (s, i) { return '<button data-sugg="' + i + '">' + esc(s) + '</button>'; }).join("") +
+        '</div></div>';
+    }
+
+    state.messages.forEach(function (m, i) {
+      if (m.role === "user") {
+        html += '<div class="row-user"><div class="bubble-user">' + esc(m.text) + '</div></div>';
+        return;
+      }
+      var body = "";
+      if (m.source === "local") {
+        body += '<div class="conf-row"><span class="conf src-local">' + ICON_BOOK + ' ' + esc(t.srcLocal) + '</span></div>';
+      } else if (m.source === "teaching") {
+        body += '<div class="conf-row"><span class="conf src-teaching">' + ICON_BOOK + ' ' + esc(t.srcTeaching) + '</span></div>';
+      } else if (m.source === "general") {
+        body += '<div class="conf-row"><span class="conf src-general">' + esc(t.srcGeneral) + '</span></div>';
+      } else if (m.confidence) {
+        body += '<div class="conf-row"><span class="conf ' + confClass(m.confidence) + '">' + esc(confText(m.confidence, t)) + '</span>' +
+          (m.reason ? '<span class="conf-reason">' + esc(m.reason) + '</span>' : "") + '</div>';
+      }
+      body += '<div class="md">' + mdToHtml(m.answer) + '</div>';
+
+      if (!m.info && m.parts && m.parts.length) {
+        body += '<div class="parts-block"><div class="related-label">' + esc(t.breakdown) + '</div><div class="parts-grid">' +
+          m.parts.map(function (p) {
+            return '<div class="part-card">' +
+              '<div class="part-title">' + esc(p.title || "") + '</div>' +
+              (p.sub ? '<div class="part-sub">' + esc(p.sub) + '</div>' : "") +
+              (p.text ? '<div class="part-text">' + esc(p.text) + '</div>' : "") +
+              '</div>';
+          }).join("") + '</div></div>';
+      }
+
+      if (!m.info && m.citations && m.citations.length) {
+        var open = !!state.openCites[i];
+        body += '<div class="cites"><button class="cites-toggle ' + (open ? "open" : "") + '" data-cites="' + i + '">' +
+          ICON_CARET + ' ' + m.citations.length + ' ' + esc(t.cites) + ' ' + esc(t.citesTail) + '</button>';
+        if (open) {
+          body += '<div class="cite-list">' + m.citations.map(function (c, ci) {
+            return '<div class="cite-card"><div class="cite-head"><div style="min-width:0;">' +
+              '<div class="cite-title">[' + (ci + 1) + '] ' + esc(c.title) + '</div>' +
+              (c.pali ? '<div class="cite-pali">' + esc(c.pali) + '</div>' : "") + '</div>' +
+              '<span class="cite-page">' + esc(t.page) + ' ' + esc(c.pageNum) + '</span></div>' +
+              (c.crumb ? '<div class="cite-crumb">' + esc(c.crumb) + '</div>' : "") +
+              (c.snippet ? '<div class="cite-snip">' + esc(c.snippet) + '</div>' : "") +
+              '<a class="cite-link" href="' + esc(c.url) + '" target="_blank" rel="noopener">' + ICON_LINK + ' ' + esc(t.source) + '</a></div>';
+          }).join("") + '</div>';
+        }
+        body += '</div>';
+      }
+
+      if (!m.info && m.related && m.related.length) {
+        body += '<div class="related"><div class="related-label">' + esc(t.related) + '</div><div class="related-chips">' +
+          m.related.map(function (r, ri) { return '<button data-related="' + i + '_' + ri + '">' + esc(r) + '</button>'; }).join("") + '</div></div>';
+      }
+
+      if (!m.info) {
+        body += '<div class="actions">' +
+          '<button class="actbtn" data-read="' + i + '">' + ICON_READ + ' ' + esc(t.read) + '</button>' +
+          '<button class="actbtn" data-copy="' + i + '">' + ICON_COPY + ' ' + esc(m._copied ? t.copied : t.copy) + '</button>' +
+          (m.citations && m.citations.length ? '<button class="actbtn" data-copycites="' + i + '">' + ICON_CITE + ' ' + esc(t.copyCites) + '</button>' : "") +
+          '</div>';
+      }
+
+      html += '<div class="row-bot"><div class="row-bot-inner"><div class="bot-avatar">' + STAR_SM + '</div>' +
+        '<div class="bot-card' + (m.info ? " info" : "") + '">' + body + '</div></div></div>';
+    });
+
+    if (state.working) {
+      var st = state.status === "searching" ? t.searching : state.status === "retrieving" ? t.retrieving : t.generating;
+      html += '<div class="row-bot"><div class="row-bot-inner"><div class="bot-avatar"><span class="spinner"></span></div>' +
+        '<div class="status-card"><span class="status-dot"></span>' + esc(st) + '</div></div></div>';
+    }
+
+    wrap.innerHTML = html;
+    var sc = $("scroll"); setTimeout(function () { sc.scrollTop = sc.scrollHeight; }, 40);
+
+    // texts that depend on lang
+    $("input").placeholder = t.placeholder;
+    $("note").textContent = t.note;
+    $("histTitle").textContent = t.histTitle;
+    $("histFoot").textContent = t.histFoot;
+    renderHistory();
+  }
+
+  function renderHistory() {
+    var t = T(), list = $("histList");
+    if (!state.history.length) { list.innerHTML = '<div class="hist-empty">' + t.histEmpty + '</div>'; return; }
+    list.innerHTML = state.history.map(function (h, i) { return '<button class="hist-item" data-hist="' + i + '">' + esc(h) + '</button>'; }).join("");
+  }
+
+  function renderListening() {
+    var box = $("listening");
+    $("micBtn").classList.toggle("on", state.listening);
+    if (!state.listening) { box.style.display = "none"; box.innerHTML = ""; return; }
+    var t = T(), bars = "";
+    var delays = [0, .15, .3, .45, .6], colors = ["#b8541e", "#b8541e", "#8a1c1c", "#b8541e", "#b8541e"];
+    for (var i = 0; i < 5; i++) bars += '<i style="background:' + colors[i] + ';animation:s89-bar .9s ease-in-out ' + delays[i] + 's infinite;"></i>';
+    box.style.display = "block";
+    box.innerHTML = '<div class="listening-row">' + bars + '<span class="lbl">' + esc(t.listening) + '</span></div>';
+  }
+
+  // --- Theme ------------------------------------------------------------------
+  var SUN = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.4 1.4M17.6 17.6L19 19M5 19l1.4-1.4M17.6 6.4L19 5"/></svg>';
+  var MOON = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+  function applyTheme() {
+    document.documentElement.setAttribute("data-theme", state.theme);
+    $("themeBtn").innerHTML = state.theme === "dark" ? SUN : MOON;
+  }
+
+  function applyLang() {
+    document.documentElement.setAttribute("lang", state.lang === "en" ? "en" : "si");
+    var seg = $("langSeg").querySelectorAll("button");
+    seg.forEach(function (b) { b.classList.toggle("on", b.getAttribute("data-lang") === state.lang); });
+  }
+
+  // --- Events -----------------------------------------------------------------
+  function wire() {
+    $("sendBtn").addEventListener("click", function () { send(); });
+    $("input").addEventListener("keydown", function (e) { if (e.key === "Enter") send(); });
+    $("micBtn").addEventListener("click", function () { toggleListen(); });
+    $("themeBtn").addEventListener("click", function () { state.theme = state.theme === "dark" ? "light" : "dark"; applyTheme(); });
+    $("clearBtn").addEventListener("click", function () { stopSpeak(); state.messages = []; state.openCites = {}; state.working = false; state.status = ""; render(); });
+    $("histBtn").addEventListener("click", function () { $("histPanel").classList.add("open"); $("histOverlay").classList.add("open"); });
+    $("histClose").addEventListener("click", closeHist);
+    $("histOverlay").addEventListener("click", closeHist);
+    $("langSeg").addEventListener("click", function (e) {
+      var b = e.target.closest("button"); if (!b) return;
+      state.lang = b.getAttribute("data-lang"); applyLang(); render();
+    });
+
+    // delegated clicks inside the chat
+    $("wrap").addEventListener("click", function (e) {
+      var el = e.target.closest("[data-sugg],[data-cites],[data-read],[data-copy],[data-copycites],[data-related]");
+      if (!el) return;
+      var t = T();
+      if (el.hasAttribute("data-sugg")) { send(t.sugg[+el.getAttribute("data-sugg")]); return; }
+      if (el.hasAttribute("data-cites")) { var i = +el.getAttribute("data-cites"); state.openCites[i] = !state.openCites[i]; render(); return; }
+      if (el.hasAttribute("data-read")) { var m = state.messages[+el.getAttribute("data-read")]; speak(plain(m.answer), detectLang(m.answer)); return; }
+      if (el.hasAttribute("data-copy")) {
+        var mi = +el.getAttribute("data-copy"), mm = state.messages[mi];
+        try { navigator.clipboard.writeText(plain(mm.answer)); mm._copied = true; render(); setTimeout(function () { mm._copied = false; render(); }, 1600); } catch (x) {}
+        return;
+      }
+      if (el.hasAttribute("data-copycites")) {
+        var cm = state.messages[+el.getAttribute("data-copycites")];
+        try { navigator.clipboard.writeText((cm.citations || []).map(function (c, ci) { return "[" + (ci + 1) + "] " + c.title + " — " + c.crumb + " (" + T().page + " " + c.pageNum + ")\n" + c.url; }).join("\n\n")); } catch (x) {}
+        return;
+      }
+      if (el.hasAttribute("data-related")) {
+        var parts = el.getAttribute("data-related").split("_"), rm = state.messages[+parts[0]];
+        if (rm && rm.related) send(rm.related[+parts[1]]);
+        return;
+      }
+    });
+
+    $("histList").addEventListener("click", function (e) {
+      var b = e.target.closest("[data-hist]"); if (!b) return;
+      closeHist(); send(state.history[+b.getAttribute("data-hist")]);
+    });
+  }
+
+  function closeHist() { $("histPanel").classList.remove("open"); $("histOverlay").classList.remove("open"); }
+
+  // --- Boot -------------------------------------------------------------------
+  function boot() {
+    applyTheme(); applyLang(); wire(); render();
+    if (window.speechSynthesis && window.speechSynthesis.getVoices) { try { window.speechSynthesis.getVoices(); } catch (e) {} }
+    loadTree();
+    loadAbhidhamma();
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot); else boot();
+})();
+</script>
+<!-- Additive Visual Dhamma Knowledge Navigation (concept graph) — bolts on
+     purely via DOM, does not modify anything above this line. -->
+<script src="https://cdn.jsdelivr.net/npm/cytoscape@3.26.0/dist/cytoscape.min.js"></script>
+<script src="dhamma-graph-data.js"></script>
+<script src="dhamma-graph.js"></script>
+</body>
+</html>

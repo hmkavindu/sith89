@@ -602,46 +602,19 @@
     </footer>
 
     <!-- Chatbot Launcher -->
-    <button id="chatbotLauncher" class="chatbot-launcher" aria-expanded="false" aria-controls="chatbotWidget"
-        style="display: none;">
+    <button id="chatbotLauncher" class="chatbot-launcher" aria-expanded="false" aria-controls="chatbotWidget">
         <span class="chatbot-launcher-icon"><i class="fas fa-comments"></i></span>
-        <span class="chatbot-launcher-label" data-si="දම්ම AI උපකාරක" data-en="Dhamma AI Guide">දම්ම AI උපකාරක</span>
+        <span class="chatbot-launcher-label" data-si="සිත් AI · ධර්ම සහායක" data-en="Sith AI · Dhamma Assistant">සිත් AI ·
+            ධර්ම සහායක</span>
     </button>
 
-    <!-- Chatbot Widget -->
+    <!-- Chatbot Widget: embeds the grounded Tipitaka-RAG Dhamma Assistant -->
     <section id="chatbotWidget" class="chatbot-widget" aria-hidden="true" role="dialog"
-        aria-label="Dhamma AI Chat Assistant">
-        <div class="chatbot-header">
-            <div class="chatbot-title-group">
-                <h3 data-si="ධර්ම දැනුම AI උපකාරක" data-en="Dhamma Knowledge Assistant">ධර්ම දැනුම AI උපකාරක</h3>
-                <p data-si="අභිධර්මය, චිත්ත, චෛතසික පිළිබඳ ප්‍රශ්න කරන්න"
-                    data-en="Ask about Abhidhamma, chitta, and cetasika insights">අභිධර්මය, චිත්ත, චෛතසික පිළිබඳ ප්‍රශ්න
-                    කරන්න</p>
-            </div>
-            <button id="chatbotClose" class="chatbot-close" aria-label="Close chatbot"><span
-                    aria-hidden="true">&times;</span></button>
+        aria-label="Sith AI Dhamma Assistant">
+        <button id="chatbotClose" class="chatbot-widget-close" aria-label="Close chatbot">&times;</button>
+        <div class="chatbot-widget-body">
+            <iframe id="chatbotFrame" src="dhamma-assistant.html" title="සිත් AI · ධර්ම සහායක" loading="lazy"></iframe>
         </div>
-
-        <div id="chatbotMessages" class="chatbot-messages" aria-live="polite"></div>
-
-        <form id="chatbotForm" class="chatbot-form" autocomplete="off">
-            <label class="chatbot-input-label" for="chatbotInput" data-si="ඔබේ ප්‍රශ්නය ලියන්න"
-                data-en="Type your question">
-                ඔබේ ප්‍රශ්නය ලියන්න
-            </label>
-            <div class="chatbot-input-row">
-                <textarea id="chatbotInput" class="chatbot-input" rows="2"
-                    placeholder="අභිධර්මය පිළිබඳව ඔබට වැරදි නොවන විශ්ලේෂණයක් ලබා ගන්න..."
-                    data-si-placeholder="අභිධර්මය පිළිබඳව ඔබේ ප්‍රශ්නය ලියන්න..."
-                    data-en-placeholder="Ask your Abhidhamma question..." required></textarea>
-                <button id="chatbotSend" type="submit" class="chatbot-send">
-                    <span class="chatbot-send-text" data-si="නැව්වන්න" data-en="Send"></span>
-                    <i class="fas fa-paper-plane"></i>
-                </button>
-            </div>
-        </form>
-
-        <div id="chatbotStatus" class="chatbot-status" role="status" aria-live="polite"></div>
     </section>
 
     <script src="script.js"></script>
@@ -658,10 +631,7 @@
     <script src="term-definitions-system.js"></script>
     <script src="rich-search-system.js"></script>
 
-    <!-- Chatbot Engine Components -->
-    <script src="abhidhamma-knowledge-base.js"></script>
-    <script src="chatbot-pattern-matcher.js"></script>
-    <script src="chatbot-response-generator.js"></script>
+    <!-- Dhamma Assistant Launcher -->
     <script src="chatbot.js"></script>
 
     <!-- Visual Navigation Graph -->
