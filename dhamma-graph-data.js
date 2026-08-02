@@ -52,7 +52,14 @@
       category: o.category, definition: o.definition || "",
       importance: o.importance || "supporting",
       references: o.references || [],
-      relationships: o.relationships || []
+      relationships: o.relationships || [],
+      // Everyday English/Sinhala words and phrases ("I am angry", "stress") that
+      // should resolve straight to this concept — see dhamma-graph.js's
+      // lifeKeywordBonus(), which matches these as whole phrases (not the
+      // generic per-token scoring) so ordinary life questions reliably map to
+      // the right node even when the query shares no Pali/technical vocabulary
+      // with the node's own text.
+      lifeKeywords: o.lifeKeywords || []
     };
   }
 
@@ -134,6 +141,7 @@
     N({ id: "dukkha", pali: "Dukkha", sinhala: "දුක්ඛ", english: "Suffering / Unsatisfactoriness",
       category: "fourNobleTruths", importance: "essential",
       definition: "The truth that conditioned existence is marked by suffering, stress, and unsatisfactoriness.",
+      lifeKeywords: ["suffering", "i am suffering", "suffer", "unhappy", "sad", "sadness", "dissatisfied", "dissatisfaction", "pain", "දුක", "දුකයි", "දුක්බර"],
       relationships: [
         R("five-aggregates", "ASSOCIATED_WITH", "The Buddha defined dukkha in terms of clinging to the five aggregates."),
         R("nibbana", "OPPOSITE_OF", "Nibbāna is the complete freedom from dukkha."),
@@ -261,6 +269,7 @@
       relationships: [ R("vedana", "CAUSES", "Contact conditions feeling.") ] }),
     N({ id: "tanha", pali: "Taṇhā", sinhala: "තණ්හාව", english: "Craving",
       category: "core", importance: "essential", definition: "The thirst for sensual pleasure, existence, or non-existence — the proximate cause of suffering.",
+      lifeKeywords: ["craving", "desire", "wanting", "attachment", "attached", "addicted", "addiction", "ආශාව", "තණ්හාව"],
       relationships: [
         R("samudaya", "CLASSIFIED_UNDER", "Craving is the content of the Second Noble Truth."),
         R("upadana", "CAUSES", "Intensified craving becomes clinging."),
@@ -287,9 +296,17 @@
       relationships: [ R("alobha", "OPPOSITE_OF", "") ] }),
     N({ id: "dosa", pali: "Dosa", sinhala: "දෝස", english: "Hatred / Aversion",
       category: "defilements", importance: "high", definition: "Ill-will and aversion toward unpleasant objects.",
-      relationships: [ R("adosa", "OPPOSITE_OF", ""), R("byapada", "SIMILAR_TO", "Ill-will as a hindrance is this root manifesting during meditation.") ] }),
+      lifeKeywords: ["anger", "angry", "mad", "rage", "irritated", "irritation", "annoyed", "furious", "hatred", "hate", "කෝපය", "තරහ", "තරහයි", "රުස්සනවා"],
+      relationships: [
+        R("adosa", "OPPOSITE_OF", ""),
+        R("byapada", "SIMILAR_TO", "Ill-will as a hindrance is this root manifesting during meditation."),
+        R("metta", "ELIMINATED_BY", "Loving-kindness meditation is the classic antidote to hatred and aversion."),
+        R("khanti", "ELIMINATED_BY", "Patience directly counters the impulse of anger."),
+        R("right-effort", "ASSOCIATED_WITH", "Right Effort is the sustained work of abandoning arisen states like hatred.")
+      ] }),
     N({ id: "moha", pali: "Moha", sinhala: "මෝහ", english: "Delusion",
       category: "defilements", importance: "high", definition: "Fundamental not-seeing of things as they truly are.",
+      lifeKeywords: ["confused", "confusion", "lost", "don't understand", "unclear mind", "මුළාව"],
       relationships: [ R("amoha", "OPPOSITE_OF", "") ] }),
     N({ id: "wholesome-roots", pali: "Kusala-mūla", sinhala: "කුසල් මූල", english: "The Three Wholesome Roots",
       category: "core", importance: "high", definition: "Non-greed, non-hatred, and non-delusion — the roots from which all wholesome mind-states grow.",
@@ -304,17 +321,52 @@
       category: "core", importance: "high", definition: "Clear wisdom that sees things as they actually are.",
       relationships: [ R("panna", "SIMILAR_TO", "Non-delusion is wisdom (paññā) in its rooted form.") ] }),
 
+    // --- Everyday afflictive/aspirational states (not classical enumerations,
+    //     but explicitly requested so life questions like "I am afraid" or
+    //     "I am jealous" have a proper home in the graph) ------------------
+    N({ id: "bhaya", pali: "Bhaya", sinhala: "භය", english: "Fear",
+      category: "defilements", importance: "medium",
+      definition: "Apprehension or dread, arising from craving for safety and continuity and an unexamined sense of self; closely tied to aversion and the hindrances.",
+      lifeKeywords: ["fear", "afraid", "scared", "terrified", "worried about the future", "භය", "බය", "බයයි"],
+      relationships: [
+        R("tanha", "CAUSES", "Fear is rooted in craving for security and continued existence."),
+        R("dosa", "SIMILAR_TO", "Fear and aversion are closely related afflictive states."),
+        R("metta", "ELIMINATED_BY", "Loving-kindness toward oneself softens fear."),
+        R("sati", "ELIMINATED_BY", "Clear, present-moment awareness counters fear of the unknown.")
+      ] }),
+    N({ id: "issa", pali: "Issā", sinhala: "ඉස්සා", english: "Envy / Jealousy",
+      category: "defilements", importance: "medium",
+      definition: "Resentment of others' success, good fortune, or possessions — an unwholesome mental factor rooted in aversion.",
+      lifeKeywords: ["jealous", "jealousy", "envy", "envious", "ඊර්ෂ්‍යාව", "ඊර්ෂියා"],
+      relationships: [
+        R("dosa", "CLASSIFIED_UNDER", "Envy is a manifestation of the aversion/hatred root.")
+      ] }),
+    N({ id: "sukha", pali: "Sukha", sinhala: "සැප", english: "Happiness / Wellbeing",
+      category: "core", importance: "high",
+      definition: "Ease and wellbeing — from ordinary pleasant feeling to the deep, unshakeable peace cultivated through practice, culminating in Nibbāna.",
+      lifeKeywords: ["happiness", "happy", "want happiness", "wellbeing", "well-being", "joy", "contentment", "how to be happy", "සතුට", "සතුටයි"],
+      relationships: [
+        R("piti", "SIMILAR_TO", "Rapture is a refined, meditative form of happiness."),
+        R("metta-bhavana", "PRACTICED_THROUGH", "Loving-kindness meditation directly cultivates a happy mind."),
+        R("sila", "SUPPORTED_BY", "An ethical life free of remorse is a foundation for genuine happiness."),
+        R("nibbana", "LEADS_TO", "The deepest and only unconditioned happiness is Nibbāna.")
+      ] }),
+
     // --- Four Brahmavihāras ---------------------------------------------------------
     N({ id: "brahmaviharas", pali: "Brahmavihāra", sinhala: "බ්‍රහ්ම විහරණ", english: "The Four Brahmavihāras",
       category: "meditation", importance: "high", definition: "Four boundless mental states to be cultivated toward all beings without limit.",
       relationships: [ R("metta", "PART_OF", ""), R("karuna", "PART_OF", ""), R("mudita", "PART_OF", ""), R("upekkha", "PART_OF", "") ] }),
     N({ id: "metta", pali: "Mettā", sinhala: "මෙත්තා", english: "Loving-kindness",
       category: "meditation", importance: "high", definition: "The wish for all beings to be happy and well.",
+      lifeKeywords: ["loving kindness", "kindness", "how to love", "unconditional love"],
       relationships: [ R("metta-bhavana", "PRACTICED_THROUGH", "Cultivated directly through mettā meditation."), R("dosa", "OPPOSITE_OF", "") ] }),
     N({ id: "karuna", pali: "Karuṇā", sinhala: "කරුණා", english: "Compassion",
-      category: "meditation", importance: "medium", definition: "The wish for beings suffering to be free from that suffering." }),
+      category: "meditation", importance: "medium", definition: "The wish for beings suffering to be free from that suffering.",
+      lifeKeywords: ["compassion", "empathy", "how to be compassionate"] }),
     N({ id: "mudita", pali: "Muditā", sinhala: "මුදිතා", english: "Sympathetic Joy",
-      category: "meditation", importance: "medium", definition: "Rejoicing in the happiness and success of others." }),
+      category: "meditation", importance: "medium", definition: "Rejoicing in the happiness and success of others.",
+      lifeKeywords: ["jealous of others' success", "can't be happy for others"],
+      relationships: [ R("issa", "OPPOSITE_OF", "Sympathetic joy is the direct antidote to envy.") ] }),
     N({ id: "upekkha", pali: "Upekkhā", sinhala: "උපේක්ඛා", english: "Equanimity",
       category: "meditation", importance: "high", definition: "Balanced, even-minded observation amid gain and loss, praise and blame.",
       relationships: [ R("seven-factors-enlightenment", "PART_OF", "Equanimity is also the seventh factor of enlightenment.") ] }),
@@ -405,7 +457,8 @@
       category: "core", importance: "essential", definition: "Discerning wisdom that sees reality as it truly is.",
       relationships: [ R("vipassana", "PRACTICED_THROUGH", "Insight meditation directly cultivates wisdom."), R("five-faculties", "PART_OF", ""), R("five-powers", "PART_OF", "") ] }),
     N({ id: "khanti", pali: "Khantī", sinhala: "ක්ෂාන්ති", english: "Patience",
-      category: "ethics", importance: "medium", definition: "Forbearance in the face of hardship and provocation." }),
+      category: "ethics", importance: "medium", definition: "Forbearance in the face of hardship and provocation.",
+      lifeKeywords: ["patience", "impatient", "impatience", "how to be patient"] }),
     N({ id: "sacca", pali: "Sacca", sinhala: "සත්‍ය", english: "Truthfulness",
       category: "ethics", importance: "medium", definition: "Steadfast commitment to truth in word and deed." }),
     N({ id: "adhitthana", pali: "Adhiṭṭhāna", sinhala: "අධිෂ්ඨාන", english: "Determination",
@@ -420,18 +473,23 @@
       ] }),
     N({ id: "kamacchanda", pali: "Kāmacchanda", sinhala: "කාමච්ඡන්ද", english: "Sensual Desire",
       category: "defilements", importance: "medium", definition: "Longing for sensual pleasure that pulls attention outward.",
+      lifeKeywords: ["craving something", "temptation", "tempted", "can't stop wanting"],
       relationships: [ R("nekkhamma", "ELIMINATED_BY", "Renunciation directly counters sensual desire.") ] }),
     N({ id: "byapada", pali: "Byāpāda", sinhala: "ව්‍යාපාද", english: "Ill-will",
       category: "defilements", importance: "medium", definition: "Aversion, irritation, or hatred arising in the mind.",
+      lifeKeywords: ["resentment", "resentful", "grudge"],
       relationships: [ R("metta", "ELIMINATED_BY", "Loving-kindness is the classic antidote to ill-will.") ] }),
     N({ id: "thina-middha", pali: "Thīna-middha", sinhala: "ථීන-මිද්ධ", english: "Sloth and Torpor",
       category: "defilements", importance: "medium", definition: "Dullness and heaviness of mind and body.",
+      lifeKeywords: ["tired", "exhausted", "lazy", "laziness", "lethargic", "sluggish", "unmotivated", "no energy", "මැලිකම", "අලසකම"],
       relationships: [ R("viriya", "ELIMINATED_BY", "Energetic effort revives a dull mind."), R("piti", "ELIMINATED_BY", "Rapture lifts a heavy mind.") ] }),
     N({ id: "uddhacca-kukkucca", pali: "Uddhacca-kukkucca", sinhala: "උද්ධච්ච-කුක්කුච්ච", english: "Restlessness and Worry",
       category: "defilements", importance: "medium", definition: "An agitated, scattered mind troubled by remorse.",
-      relationships: [ R("passaddhi", "ELIMINATED_BY", "Tranquility settles a restless mind.") ] }),
+      lifeKeywords: ["stress", "stressed", "anxiety", "anxious", "overwhelmed", "restless", "restlessness", "worry", "worried", "can't relax", "නොසන්සුන්කම", "කනස්සල්ල", "ආතතිය"],
+      relationships: [ R("passaddhi", "ELIMINATED_BY", "Tranquility settles a restless mind."), R("anapanasati", "ELIMINATED_BY", "Mindfulness of breathing calms a stressed, scattered mind.") ] }),
     N({ id: "vicikiccha", pali: "Vicikicchā", sinhala: "විචිකිච්ඡාව", english: "Doubt",
       category: "defilements", importance: "medium", definition: "Uncertainty or skepticism that prevents settled confidence in practice.",
+      lifeKeywords: ["doubt", "unsure", "uncertain", "indecisive", "can't decide"],
       relationships: [ R("dhammavicaya", "ELIMINATED_BY", "Investigation of states resolves doubt.") ] }),
 
     // --- Five Faculties & Five Powers (same 5 qualities, two roles) ---------------
@@ -473,6 +531,7 @@
     // --- Meditation methods ------------------------------------------------------------
     N({ id: "meditation-methods", pali: "Bhāvanā", sinhala: "භාවනා", english: "Meditation",
       category: "meditation", importance: "essential", definition: "Mental cultivation — the practices through which the path is directly developed.",
+      lifeKeywords: ["meditation", "meditate", "how to meditate", "calm my mind", "relax", "how to relax"],
       relationships: [ R("samatha", "PART_OF", ""), R("vipassana", "PART_OF", ""), R("anapanasati", "PART_OF", ""), R("metta-bhavana", "PART_OF", "") ] }),
     N({ id: "samatha", pali: "Samatha", sinhala: "සමථ", english: "Calm (Tranquility) Meditation",
       category: "meditation", importance: "high", definition: "Meditation aimed at calming and unifying the mind into deep concentration.",

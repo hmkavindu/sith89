@@ -43,15 +43,33 @@
   }
   NODES.forEach(function (n) {
     n._hay = normalize([n.pali, n.sinhala, n.english, n.definition].join(" "));
+    n._lifeHay = (n.lifeKeywords || []).map(normalize).filter(Boolean);
   });
 
   function colorFor(n) { return CATEGORY_COLORS[n.category] || "#8a93a6"; }
   function relLabel(t) { return (t || "").replace(/_/g, " "); }
 
+  // Ordinary life language ("I am angry", "I have stress") rarely shares any
+  // Pali/technical vocabulary with a node's own text, so it can't rely on the
+  // generic per-token scoring below. Each life keyword is matched as a whole
+  // phrase against the full query and, on a hit, contributes a large fixed
+  // bonus — large enough to dominate incidental token-level noise from other
+  // nodes, so "I am angry" reliably resolves to dosa (etc.) rather than
+  // whatever node happens to share a short substring with the query.
+  var LIFE_KEYWORD_BONUS = 12;
+  function lifeKeywordBonus(node, normText) {
+    if (!node._lifeHay || !node._lifeHay.length || !normText) return 0;
+    var bonus = 0;
+    for (var i = 0; i < node._lifeHay.length; i++) {
+      if (normText.indexOf(node._lifeHay[i]) > -1) bonus += LIFE_KEYWORD_BONUS;
+    }
+    return bonus;
+  }
+
   // ---- Deterministic, local Q/A -> node matching (no LLM call) --------------
   function scoreNode(node, normText) {
     if (!node._hay || !normText) return 0;
-    var score = 0;
+    var score = lifeKeywordBonus(node, normText);
     var en = (node.english || "").toLowerCase();
     if (en.length > 3 && normText.indexOf(en) > -1) score += 6;
     var toks = normText.split(/\s+/).filter(function (t) { return t.length > 1; });
@@ -77,7 +95,7 @@
     if (!nt) return [];
     var toks = nt.split(/\s+/).filter(Boolean);
     var scored = NODES.map(function (n) {
-      var s = 0;
+      var s = lifeKeywordBonus(n, nt);
       var en = (n.english || "").toLowerCase(), si = n.sinhala || "", pa = (n.pali || "").toLowerCase();
       if (en.indexOf(nt) > -1 || si.indexOf(query) > -1 || pa.indexOf(nt) > -1) s += 8;
       toks.forEach(function (t) { if (n._hay.indexOf(t) > -1) s += t.length >= 4 ? 3 : 1; });
