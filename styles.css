@@ -4185,8 +4185,8 @@ a.explore-btn:hover {
     position: fixed;
     bottom: 200px;
     right: 24px;
-    width: min(92vw, 400px);
-    max-height: 82vh;
+    width: min(92vw, 360px);
+    max-height: 78vh;
     background: #ffffff;
     border-radius: 18px;
     box-shadow: 0 22px 54px rgba(0, 0, 0, 0.28);
@@ -4204,46 +4204,6 @@ a.explore-btn:hover {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
-}
-
-.chatbot-widget-close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(0, 0, 0, 0.55);
-    color: #fff;
-    font-size: 18px;
-    line-height: 1;
-    cursor: pointer;
-    z-index: 5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.chatbot-widget-close:hover,
-.chatbot-widget-close:focus {
-    background: rgba(0, 0, 0, 0.75);
-}
-
-.chatbot-widget-body {
-    position: relative;
-    flex: 1;
-    min-height: 0;
-    display: flex;
-    border-radius: 18px;
-    overflow: hidden;
-}
-
-.chatbot-widget-body iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
-    display: block;
 }
 
 .chatbot-header {
