@@ -29,14 +29,53 @@
   NODES.forEach(function (n) { NODE_BY_ID[n.id] = n; });
 
   // ---- Reverse relationship index -------------------------------------------
-  var REVERSE = {}; // targetId -> [{source, type, explanation}]
+  var REVERSE = {}; // targetId -> [{source, type, explanation, basis}]
   NODES.forEach(function (n) {
     (n.relationships || []).forEach(function (r) {
       if (!NODE_BY_ID[r.target]) return;
       if (!REVERSE[r.target]) REVERSE[r.target] = [];
-      REVERSE[r.target].push({ source: n.id, type: r.type, explanation: r.explanation });
+      REVERSE[r.target].push({ source: n.id, type: r.type, explanation: r.explanation, basis: r.basis || "canonical" });
     });
   });
+
+  // ---- Full-graph adjacency (both directions) for search connection-paths ---
+  var ADJACENT = {}; // nodeId -> [neighborId]
+  function addAdjacency(a, b) {
+    (ADJACENT[a] = ADJACENT[a] || []);
+    if (ADJACENT[a].indexOf(b) === -1) ADJACENT[a].push(b);
+  }
+  NODES.forEach(function (n) {
+    (n.relationships || []).forEach(function (r) {
+      if (!NODE_BY_ID[r.target]) return;
+      addAdjacency(n.id, r.target);
+      addAdjacency(r.target, n.id);
+    });
+  });
+
+  // Shortest path (inclusive of both endpoints) between two nodes over the
+  // full curated graph, ignoring relationship direction — used so the search
+  // box can show a connecting chain (e.g. සිත → චේතනා → කර්ම → විපාක) instead
+  // of just jumping blind when the target isn't a direct neighbor of the
+  // current focus. Returns null if there's no path (disconnected subgraphs).
+  function shortestPath(fromId, toId) {
+    if (fromId === toId) return [fromId];
+    var visited = {}; visited[fromId] = true;
+    var queue = [[fromId]];
+    while (queue.length) {
+      var path = queue.shift();
+      var last = path[path.length - 1];
+      var neighbors = ADJACENT[last] || [];
+      for (var i = 0; i < neighbors.length; i++) {
+        var nb = neighbors[i];
+        if (visited[nb]) continue;
+        visited[nb] = true;
+        var next = path.concat([nb]);
+        if (nb === toId) return next;
+        queue.push(next);
+      }
+    }
+    return null;
+  }
 
   function normalize(s) {
     return (s || "").toString().toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
@@ -131,6 +170,81 @@
 
   var ICON_WEB = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="2.4"/><circle cx="19" cy="6" r="2.4"/><circle cx="12" cy="12" r="2.4"/><circle cx="6" cy="19" r="2.4"/><circle cx="18" cy="19" r="2.4"/><path d="M6.9 7.3L10.3 10.7M17.1 7.3L13.7 10.7M10.6 13.6L7.3 17.4M13.4 13.6L16.7 17.4"/></svg>';
 
+  // ---- Inline concept-mention linking inside chat answers --------------------
+  // Layer-1/Layer-2 sync: beyond the one "View concept map" button per answer,
+  // wrap recognized concept names *inside* the already-rendered answer text
+  // with a clickable span (reusing the same [data-graph-node] convention and
+  // click handler as everything else in this file) so a mentioned term like
+  // "තණ්හා" can be clicked to focus the graph on that exact concept.
+  function escapeRegExp(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+
+  var TERM_INDEX = (function () {
+    var terms = [];
+    NODES.forEach(function (n) {
+      if (n.english) {
+        var base = n.english.split(/[\/(]/)[0].trim();
+        if (base.length >= 4) terms.push({ text: base, nodeId: n.id });
+      }
+      if (n.pali && n.pali.length >= 4) terms.push({ text: n.pali, nodeId: n.id });
+      if (n.sinhala && n.sinhala.length >= 2) terms.push({ text: n.sinhala, nodeId: n.id });
+    });
+    terms.sort(function (a, b) { return b.text.length - a.text.length; });
+    return terms;
+  })();
+
+  // Unicode lookbehind ("(?<!...)") is what makes word-boundary matching work
+  // for Sinhala script (which \b doesn't handle) as well as Latin — feature
+  // detect and simply skip inline linking (never break the chat) on any
+  // browser old enough not to support it.
+  var SUPPORTS_LOOKBEHIND = (function () {
+    try { new RegExp("(?<=a)b"); return true; } catch (e) { return false; }
+  })();
+
+  function wireInlineTerms(mdEl) {
+    if (!SUPPORTS_LOOKBEHIND || !mdEl || mdEl.getAttribute("data-terms-wired")) return;
+    mdEl.setAttribute("data-terms-wired", "1");
+
+    var used = {}; // don't wrap the same term text more than once per answer
+    var walker = document.createTreeWalker(mdEl, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        var p = node.parentElement;
+        if (!p || p.closest("a,code,pre,.gnav-term")) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var textNodes = [], tn;
+    while ((tn = walker.nextNode())) textNodes.push(tn);
+
+    textNodes.forEach(function (node) {
+      var text = node.nodeValue;
+      var found = null;
+      for (var i = 0; i < TERM_INDEX.length; i++) {
+        var t = TERM_INDEX[i];
+        if (used[t.text]) continue;
+        var re = new RegExp("(?<![\\p{L}\\p{N}])(" + escapeRegExp(t.text) + ")(?![\\p{L}\\p{N}])", "u");
+        var m = re.exec(text);
+        if (m) { found = { term: t, index: m.index, length: m[1].length }; break; }
+      }
+      if (!found) return;
+      used[found.term.text] = true;
+
+      var before = text.slice(0, found.index);
+      var matchText = text.slice(found.index, found.index + found.length);
+      var after = text.slice(found.index + found.length);
+
+      var frag = document.createDocumentFragment();
+      if (before) frag.appendChild(document.createTextNode(before));
+      var span = document.createElement("span");
+      span.className = "gnav-term";
+      span.setAttribute("data-graph-node", found.term.nodeId);
+      span.title = "Explore in the concept map";
+      span.textContent = matchText;
+      frag.appendChild(span);
+      if (after) frag.appendChild(document.createTextNode(after));
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+
   function scanAndWire() {
     var rows = wrapEl.querySelectorAll(".row-bot");
     var ordinal = -1;
@@ -144,6 +258,7 @@
 
       var mdEl = card.querySelector(".md");
       var answerText = mdEl ? mdEl.textContent : "";
+      if (mdEl) wireInlineTerms(mdEl);
       var cacheKey = ordinal + "|" + answerText.slice(0, 60);
 
       var nodeId;
@@ -239,7 +354,10 @@
     ".gnav-badges{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;}",
     ".gnav-badge{font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:.02em;}",
     ".gnav-def{font-size:12.5px;line-height:1.6;color:#d3d7e0;margin-top:10px;}",
+    ".gnav-sitelink{display:inline-block;margin-top:10px;font-size:11.5px;color:#8fb2f5;background:#161b2b;border:1px solid #2a3550;border-radius:8px;padding:6px 10px;text-decoration:none;}",
+    ".gnav-sitelink:hover{border-color:#5b8def;color:#cfe0ff;}",
     ".gnav-refs-block{margin-top:10px;display:flex;flex-direction:column;gap:6px;}",
+    ".gnav-refs-empty{margin-top:6px;font-size:11px;line-height:1.5;color:#6b7280;font-style:italic;}",
     ".gnav-ref-plain{font-size:11px;color:#9aa1ac;background:#1c2029;border:1px solid #2a2f3a;border-radius:6px;padding:2px 7px;display:inline-block;}",
     ".gnav-cite{display:flex;flex-direction:column;gap:3px;text-decoration:none;background:#161920;border:1px solid #262b36;border-left:3px solid #5b8def;border-radius:8px;padding:8px 10px;}",
     ".gnav-cite:hover{border-color:#454c5c;background:#181c25;}",
@@ -253,10 +371,14 @@
     ".gnav-rel-type{font-size:10.5px;font-weight:700;color:#8fb2f5;letter-spacing:.04em;margin-bottom:5px;}",
     ".gnav-rel-item{display:flex;align-items:baseline;gap:6px;font-size:12px;padding:4px 0;cursor:pointer;color:#dfe3ea;border-bottom:1px dashed #20242e;}",
     ".gnav-rel-item:hover{color:#5b8def;}",
+    ".gnav-rel-typetag{font-size:9px;color:#6b7280;border:1px solid #2a2f3a;border-radius:5px;padding:1px 5px;text-transform:lowercase;}",
     ".gnav-rel-expl{color:#8b93a1;font-size:11px;}",
+    ".gnav-basis-tag{font-size:9px;color:#c9a0ff;border:1px solid #3a2f52;border-radius:5px;padding:1px 5px;}",
     ".gnav-recents{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}",
     ".gnav-recents button{background:#1c2029;border:1px solid #2a2f3a;color:#cfd4dd;border-radius:14px;padding:4px 10px;font-size:11px;cursor:pointer;}",
-    ".gnav-empty-note{font-size:12px;color:#8b93a1;text-align:center;padding:8px 4px;}"
+    ".gnav-empty-note{font-size:12px;color:#8b93a1;text-align:center;padding:8px 4px;}",
+    ".gnav-term{cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-decoration-color:#5b8def99;text-underline-offset:2px;}",
+    ".gnav-term:hover{color:#5b8def;}"
   ].join("\n");
   document.head.appendChild(style);
 
@@ -649,16 +771,49 @@
     return html;
   }
 
+  // ---- Detail-panel section buckets ------------------------------------------
+  // Mechanical, direction-aware bucketing of the existing relationship `type`
+  // values into the four sections the spec asks for — no per-edge judgment
+  // calls, just the semantics already encoded by each type. "Producer" types
+  // (CAUSES/RESULTS_IN/LEADS_TO/CONDITIONS) point from cause to effect, so
+  // outgoing lands in Results and incoming lands in Causes; DEPENDS_ON points
+  // the other way (source depends on target), so it's the mirror image.
+  var SECTION_ORDER = ["classification", "causes", "results", "related"];
+  var SECTION_LABEL = {
+    classification: "වර්ගීකරණය · Classification",
+    causes: "හේතු / ප්‍රත්‍යය · Causes &amp; Conditions",
+    results: "ප්‍රතිඵල · Results",
+    related: "සම්බන්ධ ධර්මතා · Related Concepts"
+  };
+  var PRODUCER_TYPES = { CAUSES: 1, RESULTS_IN: 1, LEADS_TO: 1, CONDITIONS: 1 };
+  function bucketFor(type, direction) {
+    if (type === "PART_OF" || type === "CLASSIFIED_UNDER") return "classification";
+    if (type === "DEPENDS_ON") return direction === "out" ? "causes" : "results";
+    if (PRODUCER_TYPES[type]) return direction === "out" ? "results" : "causes";
+    return "related";
+  }
+
+  function basisTag(basis) {
+    if (basis !== "explanatory") return "";
+    return ' <span class="gnav-basis-tag" title="A pedagogical bridge added to connect ordinary experience to the Dhamma — not itself a classical enumeration.">explanatory bridge</span>';
+  }
+
   function renderDetail(node) {
     var sheet = document.getElementById("gnavSheet");
-    var outgoing = {}, incoming = {};
+    var buckets = { classification: [], causes: [], results: [], related: [] };
     (node.relationships || []).forEach(function (r) {
-      if (!NODE_BY_ID[r.target]) return;
-      (outgoing[r.type] = outgoing[r.type] || []).push(r);
+      var t = NODE_BY_ID[r.target];
+      if (!t) return;
+      buckets[bucketFor(r.type, "out")].push({
+        dir: "out", nodeRef: t, typeLabel: relLabel(r.type), explanation: r.explanation, basis: r.basis || "canonical"
+      });
     });
     (REVERSE[node.id] || []).forEach(function (r) {
-      var label = REVERSE_LABELS[r.type] || relLabel(r.type);
-      (incoming[label] = incoming[label] || []).push(r);
+      var s = NODE_BY_ID[r.source];
+      if (!s) return;
+      buckets[bucketFor(r.type, "in")].push({
+        dir: "in", nodeRef: s, typeLabel: REVERSE_LABELS[r.type] || relLabel(r.type), explanation: r.explanation, basis: r.basis || "canonical"
+      });
     });
 
     var html = "";
@@ -675,24 +830,28 @@
       '<span class="gnav-badge" style="background:' + colorFor(node) + "22;color:" + colorFor(node) + ';border:1px solid ' + colorFor(node) + '55">' + escHtml(node.category) + "</span>" +
       '<span class="gnav-badge" style="background:#2a2f3a;color:#cfd4dd;">' + escHtml(node.importance) + "</span></div>";
     if (node.definition) html += '<div class="gnav-def">' + escHtml(node.definition) + "</div>";
-    html += renderReferences(node.references);
+    if (node.siteLink) {
+      html += '<a class="gnav-sitelink" href="' + escHtml(node.siteLink.url) + '" target="_blank" rel="noopener">' +
+        escHtml(node.siteLink.labelEn) + " · " + escHtml(node.siteLink.labelSi) + " ↗</a>";
+    }
 
-    Object.keys(outgoing).forEach(function (type) {
-      html += '<div class="gnav-rel-group"><div class="gnav-rel-type">' + escHtml(relLabel(type)) + "</div>" +
-        outgoing[type].map(function (r) {
-          var t = NODE_BY_ID[r.target];
-          return '<div class="gnav-rel-item" data-focus="' + t.id + '">→ ' + escHtml(t.english) +
-            (r.explanation ? ' <span class="gnav-rel-expl">— ' + escHtml(r.explanation) + "</span>" : "") + "</div>";
+    SECTION_ORDER.forEach(function (key) {
+      var items = buckets[key];
+      if (!items.length) return;
+      html += '<div class="gnav-rel-group"><div class="gnav-rel-type">' + SECTION_LABEL[key] + "</div>" +
+        items.map(function (it) {
+          return '<div class="gnav-rel-item" data-focus="' + it.nodeRef.id + '">' + (it.dir === "out" ? "→ " : "← ") +
+            escHtml(it.nodeRef.english) + ' <span class="gnav-rel-typetag">' + escHtml(it.typeLabel) + "</span>" +
+            (it.explanation ? ' <span class="gnav-rel-expl">— ' + escHtml(it.explanation) + "</span>" : "") +
+            basisTag(it.basis) + "</div>";
         }).join("") + "</div>";
     });
-    Object.keys(incoming).forEach(function (label) {
-      html += '<div class="gnav-rel-group"><div class="gnav-rel-type">' + escHtml(label) + "</div>" +
-        incoming[label].map(function (r) {
-          var s = NODE_BY_ID[r.source];
-          return '<div class="gnav-rel-item" data-focus="' + s.id + '">← ' + escHtml(s.english) +
-            (r.explanation ? ' <span class="gnav-rel-expl">— ' + escHtml(r.explanation) + "</span>" : "") + "</div>";
-        }).join("") + "</div>";
-    });
+
+    html += '<div class="gnav-rel-group"><div class="gnav-rel-type">ත්‍රිපිටක මූලාශ්‍ර · Tripiṭaka Sources</div>' +
+      (node.references && node.references.length
+        ? renderReferences(node.references)
+        : '<div class="gnav-refs-empty">No specific Tripiṭaka citation linked yet for this concept.<br>මෙම සංකල්පය සඳහා තවම විශේෂිත ත්‍රිපිටක උපුටාගැනීමක් සම්බන්ධ කර නැත.</div>') +
+      "</div>";
 
     sheet.innerHTML = html;
   }
@@ -704,6 +863,31 @@
     for (var i = 0; i < breadcrumb.length; i++) if (breadcrumb[i].id === id) { idx = i; break; }
     if (idx > -1) breadcrumb = breadcrumb.slice(0, idx + 1);
     else breadcrumb.push({ id: id, label: node.english });
+    pushRecent(id);
+    renderBreadcrumb();
+    updateModeAvailability(id);
+    renderGraph(id);
+    renderDetail(node);
+  }
+
+  // Search-driven navigation: if the searched concept isn't a direct neighbor
+  // of the current focus, jump straight to it but also show the connecting
+  // chain in the breadcrumb bar (e.g. සිත → චේතනා → කර්ම → විපාක) rather than
+  // silently teleporting with no visible relationship to where you were.
+  function focusNodeViaSearch(id) {
+    var node = NODE_BY_ID[id];
+    if (!node) return;
+    var currentCenter = breadcrumb.length ? breadcrumb[breadcrumb.length - 1].id : null;
+    var alreadyInCrumbs = breadcrumb.some(function (b) { return b.id === id; });
+    var isNeighbor = currentCenter && (ADJACENT[currentCenter] || []).indexOf(id) > -1;
+    if (!currentCenter || alreadyInCrumbs || isNeighbor) { focusNode(id); return; }
+
+    var path = shortestPath(currentCenter, id);
+    if (!path || path.length < 2) { focusNode(id); return; }
+    breadcrumb = path.map(function (pid) {
+      var n = NODE_BY_ID[pid];
+      return { id: pid, label: n ? n.english : pid };
+    });
     pushRecent(id);
     renderBreadcrumb();
     updateModeAvailability(id);
@@ -790,7 +974,7 @@
   searchResults.addEventListener("click", function (e) {
     var b = e.target.closest("[data-focus-search]");
     if (!b) return;
-    focusNode(b.getAttribute("data-focus-search"));
+    focusNodeViaSearch(b.getAttribute("data-focus-search"));
     searchInput.value = "";
     searchResults.classList.remove("show");
     searchResults.innerHTML = "";

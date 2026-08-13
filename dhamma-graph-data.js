@@ -44,7 +44,14 @@
     CLASSIFIED_UNDER: "CLASSIFIES"
   };
 
-  function R(target, type, explanation) { return { target: target, type: type, explanation: explanation || "" }; }
+  // basis: "canonical" (default — a named canonical/Abhidhamma enumeration or
+  // structural relationship) or "explanatory" (a pedagogical bridge the site
+  // authors added to connect ordinary experience to the Dhamma, not itself a
+  // classical enumeration). Kept deliberately coarse — see dhamma-graph.js's
+  // renderDetail() for how it's surfaced; this is not a claim about whether a
+  // specific Tripiṭaka passage was quoted, only whether the link reflects a
+  // named traditional classification/system or an explanatory bridge.
+  function R(target, type, explanation, basis) { return { target: target, type: type, explanation: explanation || "", basis: basis || "canonical" }; }
 
   function N(o) {
     return {
@@ -52,6 +59,11 @@
       category: o.category, definition: o.definition || "",
       importance: o.importance || "supporting",
       references: o.references || [],
+      // Optional link to a page already on this site (e.g. the full 121-citta
+      // index) for concepts whose full enumeration lives outside the graph
+      // itself. Rendered separately from Tripiṭaka citations in the detail
+      // panel — an internal site link is never presented as a scripture link.
+      siteLink: o.siteLink || null,
       relationships: o.relationships || [],
       // Everyday English/Sinhala words and phrases ("I am angry", "stress") that
       // should resolve straight to this concept — see dhamma-graph.js's
@@ -333,27 +345,27 @@
       definition: "Apprehension or dread, arising from craving for safety and continuity and an unexamined sense of self; closely tied to aversion and the hindrances.",
       lifeKeywords: ["fear", "afraid", "scared", "terrified", "worried about the future", "භය", "බය", "බයයි"],
       relationships: [
-        R("tanha", "CAUSES", "Fear is rooted in craving for security and continued existence."),
-        R("dosa", "SIMILAR_TO", "Fear and aversion are closely related afflictive states."),
-        R("metta", "ELIMINATED_BY", "Loving-kindness toward oneself softens fear."),
-        R("sati", "ELIMINATED_BY", "Clear, present-moment awareness counters fear of the unknown.")
+        R("tanha", "CAUSES", "Fear is rooted in craving for security and continued existence.", "explanatory"),
+        R("dosa", "SIMILAR_TO", "Fear and aversion are closely related afflictive states.", "explanatory"),
+        R("metta", "ELIMINATED_BY", "Loving-kindness toward oneself softens fear.", "explanatory"),
+        R("sati", "ELIMINATED_BY", "Clear, present-moment awareness counters fear of the unknown.", "explanatory")
       ] }),
     N({ id: "issa", pali: "Issā", sinhala: "ඉස්සා", english: "Envy / Jealousy",
       category: "defilements", importance: "medium",
       definition: "Resentment of others' success, good fortune, or possessions — an unwholesome mental factor rooted in aversion.",
       lifeKeywords: ["jealous", "jealousy", "envy", "envious", "ඊර්ෂ්‍යාව", "ඊර්ෂියා"],
       relationships: [
-        R("dosa", "CLASSIFIED_UNDER", "Envy is a manifestation of the aversion/hatred root.")
+        R("dosa", "CLASSIFIED_UNDER", "Envy is a manifestation of the aversion/hatred root.", "explanatory")
       ] }),
     N({ id: "sukha", pali: "Sukha", sinhala: "සැප", english: "Happiness / Wellbeing",
       category: "core", importance: "high",
       definition: "Ease and wellbeing — from ordinary pleasant feeling to the deep, unshakeable peace cultivated through practice, culminating in Nibbāna.",
       lifeKeywords: ["happiness", "happy", "want happiness", "wellbeing", "well-being", "joy", "contentment", "how to be happy", "සතුට", "සතුටයි"],
       relationships: [
-        R("piti", "SIMILAR_TO", "Rapture is a refined, meditative form of happiness."),
-        R("metta-bhavana", "PRACTICED_THROUGH", "Loving-kindness meditation directly cultivates a happy mind."),
-        R("sila", "SUPPORTED_BY", "An ethical life free of remorse is a foundation for genuine happiness."),
-        R("nibbana", "LEADS_TO", "The deepest and only unconditioned happiness is Nibbāna.")
+        R("piti", "SIMILAR_TO", "Rapture is a refined, meditative form of happiness.", "explanatory"),
+        R("metta-bhavana", "PRACTICED_THROUGH", "Loving-kindness meditation directly cultivates a happy mind.", "explanatory"),
+        R("sila", "SUPPORTED_BY", "An ethical life free of remorse is a foundation for genuine happiness.", "explanatory"),
+        R("nibbana", "LEADS_TO", "The deepest and only unconditioned happiness is Nibbāna.", "explanatory")
       ] }),
 
     // --- Four Brahmavihāras ---------------------------------------------------------
@@ -556,10 +568,144 @@
     N({ id: "citta", pali: "Citta", sinhala: "චිත්තය", english: "Mind / Consciousness Moment",
       category: "abhidhamma", importance: "high", definition: "A single moment of consciousness, classified in the Abhidhamma into 121 types by ethical quality and sphere.",
       references: ["Cittuppāda-kaṇḍa"],
-      relationships: [ R("cetasika", "ASSOCIATED_WITH", "Every citta arises together with a specific set of cetasikas.") ] }),
+      siteLink: { url: "citta-index.html", labelEn: "Browse all 121 cittas", labelSi: "සියලුම චිත්ත 121 බලන්න" },
+      relationships: [
+        R("cetasika", "ASSOCIATED_WITH", "Every citta arises together with a specific set of cetasikas."),
+        R("citta-kamavacara", "PART_OF", "54 cittas of the sense-sphere plane."),
+        R("citta-rupavacara", "PART_OF", "15 cittas of the fine-material jhāna plane."),
+        R("citta-arupavacara", "PART_OF", "12 cittas of the immaterial jhāna plane."),
+        R("citta-lokuttara", "PART_OF", "40 supramundane cittas that directly realize Nibbāna.")
+      ] }),
     N({ id: "cetasika", pali: "Cetasika", sinhala: "චෛතසිකය", english: "Mental Factor",
       category: "abhidhamma", importance: "high", definition: "A mental factor that arises together with citta, coloring and shaping each moment of experience — 52 in total.",
-      relationships: [ R("sankhara", "CLASSIFIED_UNDER", "Cetasikas are the detailed Abhidhamma analysis of the formations aggregate.") ] })
+      siteLink: { url: "citta-cetasika-map.html", labelEn: "Open the citta–cetasika mind map", labelSi: "චිත්ත-චෛතසික සිතුවිලි සිතියම" },
+      relationships: [ R("sankhara", "CLASSIFIED_UNDER", "Cetasikas are the detailed Abhidhamma analysis of the formations aggregate.") ] }),
+
+    // --- Citta classification (121-citta system) --------------------------------
+    // Category nodes only — grouped exactly as abhidhamma-complete-data.json
+    // (the site's own verified 121-citta dataset) already groups them, not an
+    // invented scheme. Individual cittas stay reachable via citta-index.html /
+    // citta-cetasika-map.html / the per-citta detail pages rather than becoming
+    // 121 separate graph nodes.
+    N({ id: "citta-kamavacara", pali: "Kāmāvacara Citta", sinhala: "කාමාවචර සිත්", english: "Sense-Sphere Consciousness (54)",
+      category: "abhidhamma", importance: "high",
+      definition: "The 54 cittas of the sense-sphere (kāma) plane — the cittas most commonly experienced by ordinary beings: 12 unwholesome, 18 rootless, and 24 beautiful.",
+      references: ["Cittuppāda-kaṇḍa"],
+      relationships: [
+        R("citta-akusala", "PART_OF", "12 unwholesome sense-sphere cittas."),
+        R("citta-ahetuka", "PART_OF", "18 rootless sense-sphere cittas."),
+        R("citta-sobhana", "PART_OF", "24 beautiful sense-sphere cittas.")
+      ] }),
+    N({ id: "citta-rupavacara", pali: "Rūpāvacara Citta", sinhala: "රූපාවචර සිත්", english: "Fine-Material-Sphere Consciousness (15)",
+      category: "abhidhamma", importance: "medium",
+      definition: "The 15 cittas of the fine-material jhāna plane — 5 wholesome, 5 resultant, and 5 functional, one for each of the five jhānas.",
+      references: ["Cittuppāda-kaṇḍa"],
+      relationships: [
+        R("citta-rupavacara-kusala", "PART_OF", "5 wholesome jhāna cittas."),
+        R("citta-rupavacara-vipaka", "PART_OF", "5 resultant jhāna cittas."),
+        R("citta-rupavacara-kiriya", "PART_OF", "5 functional jhāna cittas."),
+        R("samadhi", "ASSOCIATED_WITH", "These cittas are the consciousness-moments of jhānic concentration itself.")
+      ] }),
+    N({ id: "citta-arupavacara", pali: "Arūpāvacara Citta", sinhala: "අරූපාවචර සිත්", english: "Immaterial-Sphere Consciousness (12)",
+      category: "abhidhamma", importance: "medium",
+      definition: "The 12 cittas of the immaterial jhāna plane — 4 wholesome, 4 resultant, and 4 functional, one for each of the four immaterial attainments.",
+      references: ["Cittuppāda-kaṇḍa"],
+      relationships: [
+        R("citta-arupavacara-kusala", "PART_OF", "4 wholesome immaterial-jhāna cittas."),
+        R("citta-arupavacara-vipaka", "PART_OF", "4 resultant immaterial-jhāna cittas."),
+        R("citta-arupavacara-kiriya", "PART_OF", "4 functional immaterial-jhāna cittas.")
+      ] }),
+    N({ id: "citta-lokuttara", pali: "Lokuttara Citta", sinhala: "ලෝකෝත්තර සිත්", english: "Supramundane Consciousness (40)",
+      category: "abhidhamma", importance: "essential",
+      definition: "The 40 supramundane cittas that take Nibbāna as their object — 20 path (magga) and 20 fruition (phala) cittas across the four stages of awakening.",
+      references: ["Cittuppāda-kaṇḍa"],
+      relationships: [
+        R("citta-lokuttara-magga", "PART_OF", "20 path-moment cittas."),
+        R("citta-lokuttara-phala", "PART_OF", "20 fruition-moment cittas."),
+        R("nibbana", "ASSOCIATED_WITH", "Every supramundane citta takes Nibbāna directly as its object.")
+      ] }),
+
+    N({ id: "citta-akusala", pali: "Akusala Citta", sinhala: "අකුසල් සිත්", english: "Unwholesome Consciousness (12)",
+      category: "abhidhamma", importance: "high",
+      definition: "The 12 unwholesome sense-sphere cittas: 8 rooted in greed, 2 in hatred, and 2 in delusion alone.",
+      references: ["Cittuppāda-kaṇḍa"],
+      relationships: [ R("unwholesome-roots", "ASSOCIATED_WITH", "Every akusala citta is rooted in greed, hatred, or delusion.") ] }),
+    N({ id: "citta-ahetuka", pali: "Ahetuka Citta", sinhala: "අහේතුක සිත්", english: "Rootless Consciousness (18)",
+      category: "abhidhamma", importance: "medium",
+      definition: "The 18 'rootless' cittas — resultant and functional cittas (including the five-sense-door resultants) that arise without any of the six roots.",
+      references: ["Cittuppāda-kaṇḍa"] }),
+    N({ id: "citta-sobhana", pali: "Kāmāvacara Sobhana Citta", sinhala: "කාමාවචර සෝභන සිත්", english: "Beautiful Sense-Sphere Consciousness (24)",
+      category: "abhidhamma", importance: "high",
+      definition: "The 24 'beautiful' sense-sphere cittas — 8 wholesome, 8 resultant, and 8 functional, rooted in non-greed and non-hatred (and optionally non-delusion).",
+      references: ["Cittuppāda-kaṇḍa"],
+      relationships: [ R("wholesome-roots", "ASSOCIATED_WITH", "Beautiful cittas are rooted in non-greed, non-hatred, and (when accompanied by knowledge) non-delusion.") ] }),
+
+    N({ id: "citta-rupavacara-kusala", pali: "Rūpāvacara Kusala Citta", sinhala: "රූපාවචර කුසල් සිත්", english: "Fine-Material Wholesome Consciousness (5)",
+      category: "abhidhamma", importance: "supporting", definition: "The 5 wholesome jhāna cittas cultivated through calm (samatha) meditation.",
+      references: ["Cittuppāda-kaṇḍa"] }),
+    N({ id: "citta-rupavacara-vipaka", pali: "Rūpāvacara Vipāka Citta", sinhala: "රූපාවචර විපාක සිත්", english: "Fine-Material Resultant Consciousness (5)",
+      category: "abhidhamma", importance: "supporting", definition: "The 5 resultant jhāna cittas — the rebirth-linking, life-continuum, and death consciousness of one born in a fine-material Brahma realm.",
+      references: ["Cittuppāda-kaṇḍa"] }),
+    N({ id: "citta-rupavacara-kiriya", pali: "Rūpāvacara Kiriya Citta", sinhala: "රූපාවචර ක්‍රියා සිත්", english: "Fine-Material Functional Consciousness (5)",
+      category: "abhidhamma", importance: "supporting", definition: "The 5 functional jhāna cittas that arise only in an Arahant who has attained jhāna.",
+      references: ["Cittuppāda-kaṇḍa"] }),
+    N({ id: "citta-arupavacara-kusala", pali: "Arūpāvacara Kusala Citta", sinhala: "අරූපාවචර කුසල් සිත්", english: "Immaterial Wholesome Consciousness (4)",
+      category: "abhidhamma", importance: "supporting", definition: "The 4 wholesome immaterial-jhāna cittas, one for each of the four immaterial attainments.",
+      references: ["Cittuppāda-kaṇḍa"] }),
+    N({ id: "citta-arupavacara-vipaka", pali: "Arūpāvacara Vipāka Citta", sinhala: "අරූපාවචර විපාක සිත්", english: "Immaterial Resultant Consciousness (4)",
+      category: "abhidhamma", importance: "supporting", definition: "The 4 resultant immaterial-jhāna cittas of one reborn in an immaterial Brahma realm.",
+      references: ["Cittuppāda-kaṇḍa"] }),
+    N({ id: "citta-arupavacara-kiriya", pali: "Arūpāvacara Kiriya Citta", sinhala: "අරූපාවචර ක්‍රියා සිත්", english: "Immaterial Functional Consciousness (4)",
+      category: "abhidhamma", importance: "supporting", definition: "The 4 functional immaterial-jhāna cittas that arise only in an Arahant who has attained the immaterial jhānas.",
+      references: ["Cittuppāda-kaṇḍa"] }),
+
+    N({ id: "citta-lokuttara-magga", pali: "Lokuttara Magga Citta", sinhala: "ලෝකෝත්තර මාර්ග සිත්", english: "Path Consciousness (20)",
+      category: "abhidhamma", importance: "essential",
+      definition: "The path-moment citta of each of the four stages of awakening — the single consciousness-moment that directly realizes Nibbāna and eradicates defilements, counted across the jhāna levels in the Abhidhammattha Saṅgaha's expanded reckoning.",
+      references: ["Cittuppāda-kaṇḍa"],
+      relationships: [
+        R("citta-sotapatti-magga", "PART_OF", ""), R("citta-sakadagami-magga", "PART_OF", ""),
+        R("citta-anagami-magga", "PART_OF", ""), R("citta-arahatta-magga", "PART_OF", ""),
+        R("noble-eightfold-path", "ASSOCIATED_WITH", "The path-moment is the direct culmination of cultivating the Noble Eightfold Path.")
+      ] }),
+    N({ id: "citta-lokuttara-phala", pali: "Lokuttara Phala Citta", sinhala: "ලෝකෝත්තර ඵල සිත්", english: "Fruition Consciousness (20)",
+      category: "abhidhamma", importance: "essential",
+      definition: "The fruition-moment citta that immediately follows each path citta, experiencing the fruit of that realization.",
+      references: ["Cittuppāda-kaṇḍa"],
+      relationships: [
+        R("citta-sotapatti-phala", "PART_OF", ""), R("citta-sakadagami-phala", "PART_OF", ""),
+        R("citta-anagami-phala", "PART_OF", ""), R("citta-arahatta-phala", "PART_OF", "")
+      ] }),
+
+    N({ id: "citta-sotapatti-magga", pali: "Sotāpatti-magga Citta", sinhala: "සෝතාපත්ති මාර්ග සිත", english: "Stream-Entry Path Consciousness",
+      category: "abhidhamma", importance: "high", definition: "The path-consciousness of stream-entry, which eradicates wrong view and doubt and cuts off rebirth in states of woe.",
+      references: ["Cittuppāda-kaṇḍa"],
+      relationships: [ R("citta-sotapatti-phala", "LEADS_TO", "The path-moment is immediately followed by its own fruition-moment.") ] }),
+    N({ id: "citta-sotapatti-phala", pali: "Sotāpatti-phala Citta", sinhala: "සෝතාපත්ති ඵල සිත", english: "Stream-Entry Fruition Consciousness",
+      category: "abhidhamma", importance: "high", definition: "The fruition-consciousness of a Sotāpanna (stream-enterer), experiencing the fruit of stream-entry.",
+      references: ["Cittuppāda-kaṇḍa"] }),
+    N({ id: "citta-sakadagami-magga", pali: "Sakadāgāmi-magga Citta", sinhala: "සකදාගාමී මාර්ග සිත", english: "Once-Returner Path Consciousness",
+      category: "abhidhamma", importance: "medium", definition: "The path-consciousness of the once-returner, which attenuates sensual desire and ill-will.",
+      references: ["Cittuppāda-kaṇḍa"],
+      relationships: [ R("citta-sakadagami-phala", "LEADS_TO", "The path-moment is immediately followed by its own fruition-moment.") ] }),
+    N({ id: "citta-sakadagami-phala", pali: "Sakadāgāmi-phala Citta", sinhala: "සකදාගාමී ඵල සිත", english: "Once-Returner Fruition Consciousness",
+      category: "abhidhamma", importance: "medium", definition: "The fruition-consciousness of a Sakadāgāmi (once-returner), experiencing the fruit of that path.",
+      references: ["Cittuppāda-kaṇḍa"] }),
+    N({ id: "citta-anagami-magga", pali: "Anāgāmi-magga Citta", sinhala: "අනාගාමි මාර්ග සිත", english: "Non-Returner Path Consciousness",
+      category: "abhidhamma", importance: "medium", definition: "The path-consciousness of the non-returner, which fully eradicates sensual desire and ill-will.",
+      references: ["Cittuppāda-kaṇḍa"],
+      relationships: [ R("citta-anagami-phala", "LEADS_TO", "The path-moment is immediately followed by its own fruition-moment.") ] }),
+    N({ id: "citta-anagami-phala", pali: "Anāgāmi-phala Citta", sinhala: "අනාගාමි ඵල සිත", english: "Non-Returner Fruition Consciousness",
+      category: "abhidhamma", importance: "medium", definition: "The fruition-consciousness of an Anāgāmi (non-returner), experiencing the fruit of that path.",
+      references: ["Cittuppāda-kaṇḍa"] }),
+    N({ id: "citta-arahatta-magga", pali: "Arahatta-magga Citta", sinhala: "අරහත්ත මාර්ග සිත", english: "Arahantship Path Consciousness",
+      category: "abhidhamma", importance: "high", definition: "The path-consciousness of full awakening, which eradicates every remaining defilement.",
+      references: ["Cittuppāda-kaṇḍa"],
+      relationships: [ R("citta-arahatta-phala", "LEADS_TO", "The path-moment is immediately followed by its own fruition-moment.") ] }),
+    N({ id: "citta-arahatta-phala", pali: "Arahatta-phala Citta", sinhala: "අරහත්ත ඵල සිත", english: "Arahantship Fruition Consciousness",
+      category: "abhidhamma", importance: "high", definition: "The fruition-consciousness of an Arahant, the final fruition-moment of one who has fully realized Nibbāna.",
+      references: ["Cittuppāda-kaṇḍa"],
+      relationships: [ R("nibbana", "ASSOCIATED_WITH", "Arahatta-phala citta is the final fruition-consciousness of one who has fully realized Nibbāna.") ] })
   ];
 
   global.DhammaGraphData = {
